@@ -25,17 +25,10 @@ struct OutlinedButton: View {
         }
         .frame(maxWidth: .infinity)
         .foregroundColor(Color(AppColor.DARK_BLUE))
-        .background(RoundedRectangle(cornerRadius: 8).stroke(Color(AppColor.DARK_BLUE), lineWidth: 1))
+        .background(RoundedRectangle(cornerRadius: 8).stroke(color, lineWidth: 1))
         .padding(.horizontal, 32.0)
-        .background(color)
+        
     }
 }
 
-struct OutlinedButton_Previews: PreviewProvider {
-    static var previews: some View {
-        OutlinedButton(label: "I'm owner", color: Color(AppColor.BACKGROUND), action: {
-            print("Hi")
-        })
-    }
-}
     

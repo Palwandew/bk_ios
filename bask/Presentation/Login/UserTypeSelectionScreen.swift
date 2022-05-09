@@ -30,7 +30,7 @@ struct UserTypeSelectionScreen: View {
             }.padding(.horizontal, 32.0)
             Spacer()
             
-            OutlinedButton(label: "I'm Owner", color: Color(AppColor.BACKGROUND), action: {
+            OutlinedButton(label: "I'm Owner", color: Color(AppColor.DARK_BLUE), action: {
                 print("Hello Owner")
             })
             

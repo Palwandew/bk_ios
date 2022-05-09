@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct UserTypeSelectionScreen: View {
+    
+    @State private var showDetail = false
+    
     var body: some View {
         
         VStack(spacing: 16.0){
@@ -30,13 +33,22 @@ struct UserTypeSelectionScreen: View {
             }.padding(.horizontal, 32.0)
             Spacer()
             
-            OutlinedButton(label: "I'm Owner", color: Color(AppColor.DARK_BLUE), action: {
-                print("Hello Owner")
-            })
+            if showDetail{
+                OutlinedButton(label: "I'm Owner", color: Color(AppColor.DARK_BLUE), action: {
+                    print("Hello Owner")
+                }).transition(.slide)
+            }
+            
+            
             
             FilledButton(label: "I'm guest", color: Color(AppColor.DARKEST_BLUE), action: {
-                print("Hello Guest")
+                withAnimation(){
+                    showDetail.toggle()
+                    print("Hello Guest")
+                }
+
             })
+            
             
             
         }.background(Color(AppColor.BACKGROUND))

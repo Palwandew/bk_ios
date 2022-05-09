@@ -18,7 +18,7 @@ struct LoginEndpoint: Endpoint{
     
     init(path: String, method: RequestMethod, header: [String: String], body: [String: String]){
         self.path = path
-        self.method = RequestMethod.post
+        self.method = method
         self.header = header
         self.body = body
     }

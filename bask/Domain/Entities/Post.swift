@@ -13,7 +13,7 @@ public struct Post: Identifiable{
     public let id: Int?
     public let title: String?
     public let body: String
-        
+    
     public init(userId: Int?, id: Int?, title: String?, body: String) {
         self.userId = userId
         self.id = id

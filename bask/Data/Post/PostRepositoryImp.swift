@@ -21,7 +21,7 @@ public class PostRepositoryImp: PostDomainRepoProtocol {
         postRemoteDataSource.getPosts { (postModels) in
             var postEntities = [Post]()
             for postModel in postModels {
-                postEntities.append(postModel.dtoPostEntity())
+                postEntities.append(postModel.dotPostEntity())
             }
             
             handler(postEntities)

@@ -8,30 +8,23 @@
 import Foundation
 
 class LoginRepositoryImp: LoginDomainRepoProtocol{
-    
-    func login(with email: String, password: String) {
+   
+    func login(with email: String, password: String, completion: @escaping (User?) -> Void) {
         let encodedString = Data("\(email):\(password)".utf8).base64EncodedString()
-        
-        
         let loginEndpoint = LoginEndpoint(path: "login", method: RequestMethod.post, header: ["Authorization": "Basic \(encodedString)", "Content-Type":"application/json; charset=utf-8"], body: ["userType" : "owner"])
         
-        guard let url = URL(string: loginEndpoint.path) else {
-            return
-        }
         
-        var request = URLRequest(url: url)
-        request.allHTTPHeaderFields = loginEndpoint.header
-        request.httpMethod = loginEndpoint.method.rawValue
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data else {
-                print(String(describing: error))
-                return
+        URLSession.shared.sendRequest(endpoint: loginEndpoint.baseURL + loginEndpoint.path, requestType: loginEndpoint.method, headers: loginEndpoint.header, body: loginEndpoint.body, responseModel: UserModel.self) { result in
+            
+            switch result {
+            case .failure(let error):
+                print("ERRROR --> \(error)")
+                
+            case .success(let userModel):
+                completion(userModel.data.user.dotUserEntity())
             }
-            print(String(data: data, encoding: .utf8)!)
             
         }
-        task.resume()
         
     }
 }

@@ -27,7 +27,7 @@ class PostRemoteDataSourceImp: PostRemoteDataSourceProtocol {
             return handler([])
         }
         
-        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, urlResponse, error) in
+        let task = URLSession.shared.dataTask(with: url) { (data,urlResponse, error) in
             
             guard let data = data else {
                 return handler([])

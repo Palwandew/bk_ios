@@ -18,7 +18,11 @@ class PostViewModel: ObservableObject{
     }
     
     func login(){
-        self.loginUseCase.login()
+        self.loginUseCase.login() { (user) in
+            DispatchQueue.main.async {
+                print("User--> \(String(describing: user))")
+            }
+        }
     }
     
     func getPosts() {

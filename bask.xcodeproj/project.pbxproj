@@ -7,31 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C492059E2827BF5700EB1112 /* PostEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492059D2827BF5700EB1112 /* PostEndpoint.swift */; };
-		C4A2B841282809C9006E8C11 /* LoginDomainRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2B840282809C9006E8C11 /* LoginDomainRepoProtocol.swift */; };
-		C4A2B84328280A20006E8C11 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2B84228280A20006E8C11 /* LoginUseCase.swift */; };
-		C4A2B84528280A66006E8C11 /* LoginRepositoryImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2B84428280A66006E8C11 /* LoginRepositoryImp.swift */; };
-		C4A2B84728280E49006E8C11 /* LoginEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2B84628280E49006E8C11 /* LoginEndpoint.swift */; };
-		C4C63A7E282355FF00343032 /* baskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A7D282355FF00343032 /* baskApp.swift */; };
-		C4C63A80282355FF00343032 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A7F282355FF00343032 /* ContentView.swift */; };
+		C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */; };
+		C46BD7612828FBD2006AC587 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD7602828FBD2006AC587 /* User.swift */; };
+		C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD76228290A7E006AC587 /* HttpClient.swift */; };
+		C46BD76628290DB9006AC587 /* UserTypeSelectionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD76528290DB9006AC587 /* UserTypeSelectionScreen.swift */; };
+		C46BD779282918EB006AC587 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C46BD776282917A2006AC587 /* Poppins-Medium.ttf */; };
+		C46BD77A28291908006AC587 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4C63A812823560300343032 /* Assets.xcassets */; };
+		C46BD77B28291912006AC587 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4C63A842823560300343032 /* Preview Assets.xcassets */; };
+		C46BD77F282919C6006AC587 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C46BD77E282919C6006AC587 /* Poppins-Light.ttf */; };
+		C46BD78228292161006AC587 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78128292161006AC587 /* FilledButton.swift */; };
+		C46BD78728295CCB006AC587 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78628295CCA006AC587 /* AppColors.swift */; };
+		C46BD78A28295FA0006AC587 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78928295FA0006AC587 /* ColorExtension.swift */; };
+		C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC82823833E00343032 /* Endpoint.swift */; };
+		C4AF9B172828216600EBB141 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACA282385B000343032 /* RequestError.swift */; };
+		C4AF9B182828216600EBB141 /* HttpClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACC2823904B00343032 /* HttpClientProtocol.swift */; };
+		C4AF9B192828216600EBB141 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AD128239DF700343032 /* RequestMethod.swift */; };
+		C4AF9B1A2828216600EBB141 /* baskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A7D282355FF00343032 /* baskApp.swift */; };
+		C4AF9B1B2828216600EBB141 /* PostDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC22823723C00343032 /* PostDI.swift */; };
+		C4AF9B1C2828216600EBB141 /* AppDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC42823741800343032 /* AppDI.swift */; };
+		C4AF9B1D2828216600EBB141 /* LoginRepositoryImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2B84428280A66006E8C11 /* LoginRepositoryImp.swift */; };
+		C4AF9B1E2828216600EBB141 /* LoginEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2B84628280E49006E8C11 /* LoginEndpoint.swift */; };
+		C4AF9B1F2828216600EBB141 /* PostRepositoryImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ABA28236A0800343032 /* PostRepositoryImp.swift */; };
+		C4AF9B202828216600EBB141 /* PostRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ABE28236A3000343032 /* PostRemoteDataSource.swift */; };
+		C4AF9B212828216600EBB141 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC028236A7400343032 /* PostModel.swift */; };
+		C4AF9B222828216600EBB141 /* PostEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492059D2827BF5700EB1112 /* PostEndpoint.swift */; };
+		C4AF9B232828216600EBB141 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AB52823665100343032 /* PostViewModel.swift */; };
+		C4AF9B242828216600EBB141 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AB72823683F00343032 /* PostView.swift */; };
+		C4AF9B252828216600EBB141 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A7F282355FF00343032 /* ContentView.swift */; };
+		C4AF9B262828216600EBB141 /* PostDomainRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AB028235D4900343032 /* PostDomainRepoProtocol.swift */; };
+		C4AF9B272828216600EBB141 /* LoginDomainRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2B840282809C9006E8C11 /* LoginDomainRepoProtocol.swift */; };
+		C4AF9B282828216600EBB141 /* PostUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AB228235E7800343032 /* PostUseCase.swift */; };
+		C4AF9B292828216600EBB141 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2B84228280A20006E8C11 /* LoginUseCase.swift */; };
+		C4AF9B2A2828216600EBB141 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AAE28235C1200343032 /* Post.swift */; };
 		C4C63A8F2823560300343032 /* baskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A8E2823560300343032 /* baskTests.swift */; };
 		C4C63A992823560300343032 /* baskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A982823560300343032 /* baskUITests.swift */; };
 		C4C63A9B2823560300343032 /* baskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A9A2823560300343032 /* baskUITestsLaunchTests.swift */; };
-		C4C63AAF28235C1200343032 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AAE28235C1200343032 /* Post.swift */; };
-		C4C63AB128235D4900343032 /* PostDomainRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AB028235D4900343032 /* PostDomainRepoProtocol.swift */; };
-		C4C63AB328235E7800343032 /* PostUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AB228235E7800343032 /* PostUseCase.swift */; };
-		C4C63AB62823665100343032 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AB52823665100343032 /* PostViewModel.swift */; };
-		C4C63AB82823683F00343032 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AB72823683F00343032 /* PostView.swift */; };
-		C4C63ABB28236A0800343032 /* PostRepositoryImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ABA28236A0800343032 /* PostRepositoryImp.swift */; };
-		C4C63ABF28236A3000343032 /* PostRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ABE28236A3000343032 /* PostRemoteDataSource.swift */; };
-		C4C63AC128236A7400343032 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC028236A7400343032 /* PostModel.swift */; };
-		C4C63AC32823723C00343032 /* PostDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC22823723C00343032 /* PostDI.swift */; };
-		C4C63AC52823741800343032 /* AppDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC42823741800343032 /* AppDI.swift */; };
-		C4C63AC92823833E00343032 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC82823833E00343032 /* Endpoint.swift */; };
-		C4C63ACB282385B000343032 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACA282385B000343032 /* RequestError.swift */; };
-		C4C63ACD2823904B00343032 /* HttpClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACC2823904B00343032 /* HttpClientProtocol.swift */; };
-		C4C63AD028239D8500343032 /* LoginEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACF28239D8500343032 /* LoginEndpoint.swift */; };
-		C4C63AD228239DF700343032 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AD128239DF700343032 /* RequestMethod.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +62,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
+		C46BD7602828FBD2006AC587 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C46BD76228290A7E006AC587 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
+		C46BD76528290DB9006AC587 /* UserTypeSelectionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeSelectionScreen.swift; sourceTree = "<group>"; };
+		C46BD76A28291228006AC587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C46BD776282917A2006AC587 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		C46BD77E282919C6006AC587 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		C46BD78128292161006AC587 /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
+		C46BD78628295CCA006AC587 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		C46BD78928295FA0006AC587 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		C492059D2827BF5700EB1112 /* PostEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEndpoint.swift; sourceTree = "<group>"; };
 		C4A2B840282809C9006E8C11 /* LoginDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDomainRepoProtocol.swift; sourceTree = "<group>"; };
 		C4A2B84228280A20006E8C11 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
@@ -80,7 +100,6 @@
 		C4C63AC82823833E00343032 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		C4C63ACA282385B000343032 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		C4C63ACC2823904B00343032 /* HttpClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClientProtocol.swift; sourceTree = "<group>"; };
-		C4C63ACF28239D8500343032 /* LoginEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndpoint.swift; sourceTree = "<group>"; };
 		C4C63AD128239DF700343032 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,11 +128,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C46BD76428290D8A006AC587 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C46BD76528290DB9006AC587 /* UserTypeSelectionScreen.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		C46BD78028292130006AC587 /* SharedComponents */ = {
+			isa = PBXGroup;
+			children = (
+				C46BD78128292161006AC587 /* FilledButton.swift */,
+			);
+			path = SharedComponents;
+			sourceTree = "<group>";
+		};
+		C46BD783282937B1006AC587 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				C46BD77E282919C6006AC587 /* Poppins-Light.ttf */,
+				C46BD776282917A2006AC587 /* Poppins-Medium.ttf */,
+				C46BD78628295CCA006AC587 /* AppColors.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		C46BD78828295F81006AC587 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C46BD78928295FA0006AC587 /* ColorExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C49205A32827E4FD00EB1112 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				C4A2B84428280A66006E8C11 /* LoginRepositoryImp.swift */,
 				C4A2B84628280E49006E8C11 /* LoginEndpoint.swift */,
+				C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -141,6 +195,8 @@
 		C4C63A7C282355FF00343032 /* bask */ = {
 			isa = PBXGroup;
 			children = (
+				C46BD78828295F81006AC587 /* Extensions */,
+				C46BD76A28291228006AC587 /* Info.plist */,
 				C4C63AC62823830700343032 /* Network */,
 				C4C63AAA2823573A00343032 /* App */,
 				C4C63AA92823572500343032 /* Data */,
@@ -190,6 +246,9 @@
 		C4C63AA82823571900343032 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C46BD783282937B1006AC587 /* Theme */,
+				C46BD78028292130006AC587 /* SharedComponents */,
+				C46BD76428290D8A006AC587 /* Login */,
 				C4C63AB42823662900343032 /* Post */,
 				C4C63A7F282355FF00343032 /* ContentView.swift */,
 			);
@@ -219,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				C4C63AAE28235C1200343032 /* Post.swift */,
+				C46BD7602828FBD2006AC587 /* User.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -266,6 +326,7 @@
 			children = (
 				C4C63ACE28239D5B00343032 /* Endpoints */,
 				C4C63AC72823831600343032 /* Base */,
+				C46BD76228290A7E006AC587 /* HttpClient.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -284,7 +345,6 @@
 		C4C63ACE28239D5B00343032 /* Endpoints */ = {
 			isa = PBXGroup;
 			children = (
-				C4C63ACF28239D8500343032 /* LoginEndpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -298,7 +358,7 @@
 			buildPhases = (
 				C4C63A76282355FF00343032 /* Sources */,
 				C4C63A77282355FF00343032 /* Frameworks */,
-				C4C63A78282355FF00343032 /* Resources */,
+				C46BD778282918E3006AC587 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -389,10 +449,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C4C63A78282355FF00343032 /* Resources */ = {
+		C46BD778282918E3006AC587 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C46BD77B28291912006AC587 /* Preview Assets.xcassets in Resources */,
+				C46BD77A28291908006AC587 /* Assets.xcassets in Resources */,
+				C46BD779282918EB006AC587 /* Poppins-Medium.ttf in Resources */,
+				C46BD77F282919C6006AC587 /* Poppins-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,28 +481,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4C63AC92823833E00343032 /* Endpoint.swift in Sources */,
-				C4C63ACD2823904B00343032 /* HttpClientProtocol.swift in Sources */,
-				C4A2B841282809C9006E8C11 /* LoginDomainRepoProtocol.swift in Sources */,
-				C492059E2827BF5700EB1112 /* PostEndpoint.swift in Sources */,
-				C4A2B84528280A66006E8C11 /* LoginRepositoryImp.swift in Sources */,
-				C4C63AB82823683F00343032 /* PostView.swift in Sources */,
-				C4C63AC52823741800343032 /* AppDI.swift in Sources */,
-				C4C63AB62823665100343032 /* PostViewModel.swift in Sources */,
-				C4C63AC32823723C00343032 /* PostDI.swift in Sources */,
-				C4C63AB328235E7800343032 /* PostUseCase.swift in Sources */,
-				C4C63ABB28236A0800343032 /* PostRepositoryImp.swift in Sources */,
-				C4C63AAF28235C1200343032 /* Post.swift in Sources */,
-				C4C63AB128235D4900343032 /* PostDomainRepoProtocol.swift in Sources */,
-				C4C63A80282355FF00343032 /* ContentView.swift in Sources */,
-				C4C63ACB282385B000343032 /* RequestError.swift in Sources */,
-				C4C63AD028239D8500343032 /* LoginEndpoint.swift in Sources */,
-				C4A2B84728280E49006E8C11 /* LoginEndpoint.swift in Sources */,
-				C4C63ABF28236A3000343032 /* PostRemoteDataSource.swift in Sources */,
-				C4C63A7E282355FF00343032 /* baskApp.swift in Sources */,
-				C4C63AD228239DF700343032 /* RequestMethod.swift in Sources */,
-				C4C63AC128236A7400343032 /* PostModel.swift in Sources */,
-				C4A2B84328280A20006E8C11 /* LoginUseCase.swift in Sources */,
+				C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */,
+				C4AF9B172828216600EBB141 /* RequestError.swift in Sources */,
+				C4AF9B182828216600EBB141 /* HttpClientProtocol.swift in Sources */,
+				C4AF9B192828216600EBB141 /* RequestMethod.swift in Sources */,
+				C4AF9B1A2828216600EBB141 /* baskApp.swift in Sources */,
+				C46BD78228292161006AC587 /* FilledButton.swift in Sources */,
+				C4AF9B1B2828216600EBB141 /* PostDI.swift in Sources */,
+				C4AF9B1C2828216600EBB141 /* AppDI.swift in Sources */,
+				C4AF9B1D2828216600EBB141 /* LoginRepositoryImp.swift in Sources */,
+				C46BD76628290DB9006AC587 /* UserTypeSelectionScreen.swift in Sources */,
+				C46BD78A28295FA0006AC587 /* ColorExtension.swift in Sources */,
+				C4AF9B1E2828216600EBB141 /* LoginEndpoint.swift in Sources */,
+				C4AF9B1F2828216600EBB141 /* PostRepositoryImp.swift in Sources */,
+				C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */,
+				C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */,
+				C4AF9B202828216600EBB141 /* PostRemoteDataSource.swift in Sources */,
+				C4AF9B212828216600EBB141 /* PostModel.swift in Sources */,
+				C4AF9B222828216600EBB141 /* PostEndpoint.swift in Sources */,
+				C4AF9B232828216600EBB141 /* PostViewModel.swift in Sources */,
+				C4AF9B242828216600EBB141 /* PostView.swift in Sources */,
+				C4AF9B252828216600EBB141 /* ContentView.swift in Sources */,
+				C4AF9B262828216600EBB141 /* PostDomainRepoProtocol.swift in Sources */,
+				C4AF9B272828216600EBB141 /* LoginDomainRepoProtocol.swift in Sources */,
+				C4AF9B282828216600EBB141 /* PostUseCase.swift in Sources */,
+				C4AF9B292828216600EBB141 /* LoginUseCase.swift in Sources */,
+				C46BD78728295CCB006AC587 /* AppColors.swift in Sources */,
+				C4AF9B2A2828216600EBB141 /* Post.swift in Sources */,
+				C46BD7612828FBD2006AC587 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,10 +672,10 @@
 				DEVELOPMENT_TEAM = 6F532FJ454;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = bask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -631,10 +701,10 @@
 				DEVELOPMENT_TEAM = 6F532FJ454;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = bask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

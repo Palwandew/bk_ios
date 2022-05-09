@@ -17,7 +17,7 @@ public struct PostModel: Codable {
     
     
     // DOT: Data Object Transfer
-    public func dtoPostEntity() -> Post {
+    public func dotPostEntity() -> Post {
         return Post(userId: userId, id: id, title: title, body: body)
     }
 }

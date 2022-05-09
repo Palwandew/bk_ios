@@ -9,6 +9,6 @@ import Foundation
 
 protocol LoginDomainRepoProtocol{
     
-    func login(with email: String, password: String)
+    func login(with email: String, password: String, completion: @escaping (User?) -> Void)
     
 }

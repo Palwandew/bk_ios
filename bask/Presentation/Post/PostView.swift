@@ -18,16 +18,16 @@ struct PostView: View {
                    ForEach(postVM.posts) { post in
                        VStack{
                            Text(post.title ?? "")
-                               .font(.largeTitle)
+                               .font(Font.custom("Poppins-Medium", size: 20))
                                .multilineTextAlignment(.leading)
                            
                            Text(post.body )
-                               .font(.body)
+                               .font(Font.custom("Poppins-Light", size: 16))
                                .multilineTextAlignment(.leading)
                        }
                    }
                }
-               .navigationBarTitle("Posts")
+               .navigationBarTitle("Posts").font(Font.custom("Poppins-Medium", size: 22))
            }
                
            .onAppear {

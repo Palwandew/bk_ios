@@ -21,20 +21,25 @@ struct UserTypeSelectionScreen: View {
                         .padding(.leading, -18)
                         .padding(.top, 32)
                     Text("Welcome to").font(Font.custom("Poppins-Medium", size: 33))
+                        .foregroundColor(Color(AppColor.DARK_BLUE))
                     Text("Bask").font(Font.custom("Poppins-Medium", size: 33))
-                        .foregroundColor(Color(0xFF57E1D1))
+                        .foregroundColor(Color(AppColor.ACCENT_GREEN))
                     
                 }
                 Spacer()
             }.padding(.horizontal, 32.0)
             Spacer()
             
-            FilledButton(label: "I'm Owner", color: Color(0xFF57E1D1))
+            OutlinedButton(label: "I'm Owner", color: Color(AppColor.BACKGROUND), action: {
+                print("Hello Owner")
+            })
             
-            FilledButton(label: "I'm guest", color: Color(0xFF161D50))
+            FilledButton(label: "I'm guest", color: Color(AppColor.DARKEST_BLUE), action: {
+                print("Hello Guest")
+            })
             
             
-        }
+        }.background(Color(AppColor.BACKGROUND))
     }
 }
 

@@ -12,7 +12,8 @@ struct baskApp: App {
     let postViewModel = AppDI.shared.postDependencies()
     var body: some Scene {
         WindowGroup {
-            PostView(postVM: postViewModel)
+//            PostView(postVM: postViewModel)
+            UserTypeSelectionScreen()
         }
     }
 }

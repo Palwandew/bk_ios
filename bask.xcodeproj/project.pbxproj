@@ -16,8 +16,9 @@
 		C46BD77B28291912006AC587 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4C63A842823560300343032 /* Preview Assets.xcassets */; };
 		C46BD77F282919C6006AC587 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C46BD77E282919C6006AC587 /* Poppins-Light.ttf */; };
 		C46BD78228292161006AC587 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78128292161006AC587 /* FilledButton.swift */; };
-		C46BD78728295CCB006AC587 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78628295CCA006AC587 /* AppColors.swift */; };
+		C46BD78728295CCB006AC587 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78628295CCA006AC587 /* AppColor.swift */; };
 		C46BD78A28295FA0006AC587 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78928295FA0006AC587 /* ColorExtension.swift */; };
+		C46BD78C2829627D006AC587 /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78B2829627D006AC587 /* OutlinedButton.swift */; };
 		C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC82823833E00343032 /* Endpoint.swift */; };
 		C4AF9B172828216600EBB141 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACA282385B000343032 /* RequestError.swift */; };
 		C4AF9B182828216600EBB141 /* HttpClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACC2823904B00343032 /* HttpClientProtocol.swift */; };
@@ -70,8 +71,9 @@
 		C46BD776282917A2006AC587 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		C46BD77E282919C6006AC587 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
 		C46BD78128292161006AC587 /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
-		C46BD78628295CCA006AC587 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		C46BD78628295CCA006AC587 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		C46BD78928295FA0006AC587 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		C46BD78B2829627D006AC587 /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
 		C492059D2827BF5700EB1112 /* PostEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEndpoint.swift; sourceTree = "<group>"; };
 		C4A2B840282809C9006E8C11 /* LoginDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDomainRepoProtocol.swift; sourceTree = "<group>"; };
 		C4A2B84228280A20006E8C11 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				C46BD78128292161006AC587 /* FilledButton.swift */,
+				C46BD78B2829627D006AC587 /* OutlinedButton.swift */,
 			);
 			path = SharedComponents;
 			sourceTree = "<group>";
@@ -149,7 +152,7 @@
 			children = (
 				C46BD77E282919C6006AC587 /* Poppins-Light.ttf */,
 				C46BD776282917A2006AC587 /* Poppins-Medium.ttf */,
-				C46BD78628295CCA006AC587 /* AppColors.swift */,
+				C46BD78628295CCA006AC587 /* AppColor.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -506,9 +509,10 @@
 				C4AF9B272828216600EBB141 /* LoginDomainRepoProtocol.swift in Sources */,
 				C4AF9B282828216600EBB141 /* PostUseCase.swift in Sources */,
 				C4AF9B292828216600EBB141 /* LoginUseCase.swift in Sources */,
-				C46BD78728295CCB006AC587 /* AppColors.swift in Sources */,
+				C46BD78728295CCB006AC587 /* AppColor.swift in Sources */,
 				C4AF9B2A2828216600EBB141 /* Post.swift in Sources */,
 				C46BD7612828FBD2006AC587 /* User.swift in Sources */,
+				C46BD78C2829627D006AC587 /* OutlinedButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

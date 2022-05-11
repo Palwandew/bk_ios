@@ -10,10 +10,11 @@ import SwiftUI
 @main
 struct baskApp: App {
     let postViewModel = AppDI.shared.postDependencies()
+    let signUpViewModel = AppDI.shared.signupDependencies()
     var body: some Scene {
         WindowGroup {
 //            PostView(postVM: postViewModel)
-            UserTypeSelectionScreen()
+            UserTypeSelectionScreen(signupViewModel: signUpViewModel)
         }
     }
 }

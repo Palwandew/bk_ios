@@ -22,6 +22,10 @@ class AppDI: AppDIProtocol {
         
         return postViewModel
     }
+    
+    func signupDependencies() -> SignupViewModel {
+        return SignupViewModel()
+    }
 }
 
 

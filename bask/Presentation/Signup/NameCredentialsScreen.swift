@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LoginScreen: View {
+struct NameCredentialsScreen: View {
     
     @ObservedObject var signUpViewModel: SignupViewModel
     @Environment(\.presentationMode) var presentationMode
@@ -17,6 +17,7 @@ struct LoginScreen: View {
     @State private var isLastNameFocused: Bool = false
     @State private var city: String = ""
     @State private var isCityFocused = false
+    @State private var showDetail = false
     @State private var value: Float = 0.25 // Total steps to create account -> 4 hence each step will be equal to 0.25
     @State private var rootViewDidAppear: Bool = false
     
@@ -62,11 +63,18 @@ struct LoginScreen: View {
                         
                         
                     }
+                    
+                    NavigationLink(destination: EmailCredentialsScreen(), isActive: $showDetail) {
+                        EmptyView()
+                    }.isDetailLink(false)
+                    
                     FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                         
                         print("tapped")
+                        showDetail.toggle()
                         
                     }.transition(.move(edge: Edge.leading))
+                    
                     
                 }
                 
@@ -128,7 +136,7 @@ struct CreateAccountScreen_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        LoginScreen(signUpViewModel: SignupViewModel())
+        NameCredentialsScreen(signUpViewModel: SignupViewModel())
         
     }
     

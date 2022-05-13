@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4057859282E199400C7D67A /* EmailCredentialsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4057858282E199400C7D67A /* EmailCredentialsScreen.swift */; };
+		C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405785A282E22A000C7D67A /* PasswordInputField.swift */; };
 		C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */; };
 		C46BD7612828FBD2006AC587 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD7602828FBD2006AC587 /* User.swift */; };
 		C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD76228290A7E006AC587 /* HttpClient.swift */; };
@@ -43,7 +45,7 @@
 		C4C63A8F2823560300343032 /* baskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A8E2823560300343032 /* baskTests.swift */; };
 		C4C63A992823560300343032 /* baskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A982823560300343032 /* baskUITests.swift */; };
 		C4C63A9B2823560300343032 /* baskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A9A2823560300343032 /* baskUITestsLaunchTests.swift */; };
-		C4D659AC282AFA7100FAE1D1 /* CreateAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D659AB282AFA7100FAE1D1 /* CreateAccountScreen.swift */; };
+		C4D659AC282AFA7100FAE1D1 /* NameCredentialsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D659AB282AFA7100FAE1D1 /* NameCredentialsScreen.swift */; };
 		C4D659AE282B0B8B00FAE1D1 /* CustomInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D659AD282B0B8B00FAE1D1 /* CustomInputField.swift */; };
 		C4D659B2282B4F5000FAE1D1 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D659B1282B4F5000FAE1D1 /* SignupViewModel.swift */; };
 		C4D659B4282B5A8900FAE1D1 /* LinearProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D659B3282B5A8900FAE1D1 /* LinearProgressBar.swift */; };
@@ -67,6 +69,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C4057858282E199400C7D67A /* EmailCredentialsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCredentialsScreen.swift; sourceTree = "<group>"; };
+		C405785A282E22A000C7D67A /* PasswordInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputField.swift; sourceTree = "<group>"; };
 		C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
 		C46BD7602828FBD2006AC587 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C46BD76228290A7E006AC587 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
@@ -107,7 +111,7 @@
 		C4C63ACA282385B000343032 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		C4C63ACC2823904B00343032 /* HttpClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClientProtocol.swift; sourceTree = "<group>"; };
 		C4C63AD128239DF700343032 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
-		C4D659AB282AFA7100FAE1D1 /* CreateAccountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountScreen.swift; sourceTree = "<group>"; };
+		C4D659AB282AFA7100FAE1D1 /* NameCredentialsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCredentialsScreen.swift; sourceTree = "<group>"; };
 		C4D659AD282B0B8B00FAE1D1 /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
 		C4D659B1282B4F5000FAE1D1 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		C4D659B3282B5A8900FAE1D1 /* LinearProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearProgressBar.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 				C46BD78B2829627D006AC587 /* OutlinedButton.swift */,
 				C4D659AD282B0B8B00FAE1D1 /* CustomInputField.swift */,
 				C4D659B3282B5A8900FAE1D1 /* LinearProgressBar.swift */,
+				C405785A282E22A000C7D67A /* PasswordInputField.swift */,
 			);
 			path = SharedViews;
 			sourceTree = "<group>";
@@ -367,7 +372,8 @@
 			isa = PBXGroup;
 			children = (
 				C4D659B1282B4F5000FAE1D1 /* SignupViewModel.swift */,
-				C4D659AB282AFA7100FAE1D1 /* CreateAccountScreen.swift */,
+				C4D659AB282AFA7100FAE1D1 /* NameCredentialsScreen.swift */,
+				C4057858282E199400C7D67A /* EmailCredentialsScreen.swift */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -522,6 +528,7 @@
 				C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */,
 				C4AF9B202828216600EBB141 /* PostRemoteDataSource.swift in Sources */,
 				C4AF9B212828216600EBB141 /* PostModel.swift in Sources */,
+				C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */,
 				C4AF9B222828216600EBB141 /* PostEndpoint.swift in Sources */,
 				C4D659B2282B4F5000FAE1D1 /* SignupViewModel.swift in Sources */,
 				C4AF9B232828216600EBB141 /* PostViewModel.swift in Sources */,
@@ -535,8 +542,9 @@
 				C4AF9B2A2828216600EBB141 /* Post.swift in Sources */,
 				C4D659AE282B0B8B00FAE1D1 /* CustomInputField.swift in Sources */,
 				C46BD7612828FBD2006AC587 /* User.swift in Sources */,
+				C4057859282E199400C7D67A /* EmailCredentialsScreen.swift in Sources */,
 				C46BD78C2829627D006AC587 /* OutlinedButton.swift in Sources */,
-				C4D659AC282AFA7100FAE1D1 /* CreateAccountScreen.swift in Sources */,
+				C4D659AC282AFA7100FAE1D1 /* NameCredentialsScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

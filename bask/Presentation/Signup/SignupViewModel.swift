@@ -9,6 +9,5 @@ import Foundation
 
 class SignupViewModel: ObservableObject {
     @Published var navigate: Bool = false
-    
 
 }

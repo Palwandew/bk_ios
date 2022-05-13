@@ -49,7 +49,7 @@ struct UserTypeSelectionScreen: View {
                     .offset(x: signupViewModel.navigate ? -(UIScreen.main.bounds.width) : 0, y: 0)
                     .animation(.spring(), value: signupViewModel.navigate)
                 
-                NavigationLink(destination: LoginScreen(signUpViewModel: signupViewModel), isActive: $showDetail) { EmptyView() }
+                NavigationLink(destination: NameCredentialsScreen(signUpViewModel: signupViewModel), isActive: $showDetail) { EmptyView() }
                 
                 FilledButton(label: "I'm guest", color: Color(AppColor.DARKEST_BLUE), action: {
                     withAnimation{

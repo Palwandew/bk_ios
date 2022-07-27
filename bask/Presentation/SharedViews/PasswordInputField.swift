@@ -11,31 +11,70 @@ struct PasswordInputField: View {
     
     
     let placeHolder: String
-    @State var text: String = ""
-    @State private var isEdting: Bool = false
+    @Binding var text: String
+    @Binding var isEdting: Bool
     @State private var strokeColor: Color = Color(AppColor.GREY)
-    @State private var error: Bool? = nil
+    @Binding var error: Bool?
+    @State var showPassword: Bool = false
+    let isSecure: Bool
     
     var body: some View {
         ZStack(alignment: Alignment.topLeading){
             
-            TextField(
-                placeHolder,
-                text: $text,
-                onEditingChanged: { isEditing in
-                    self.strokeColor = Color(AppColor.LIGHT_VOILET)
-                    self.isEdting = isEdting
-                    print("editing --> \(isEditing)")
-                }
-            ).textFieldStyle(MaterialUITextInputField(focused: $isEdting, error: $error))
+            
+            if !isSecure{
+                TextField(
+                    placeHolder,
+                    text: $text,
+                    onEditingChanged: { (isEditing) in
+                        isEdting = isEditing
+                        
+                    }
+                ).textFieldStyle(MaterialUITextInputField(focused: $isEdting, error: $error))
+//                    .overlay(alignment: .trailing){
+//
+//                        Button{
+//                            print("show password tapped")
+//                            showPassword.toggle()
+//                        } label: {
+//                            Image(systemName: showPassword ? "eye.slash.fill" : "eye.fill" )
+//                                .padding(.horizontal, 8.0)
+//                                .foregroundColor(Color(AppColor.DARK_BLUE))
+//                        }
+//                    }
+            } else {
+                SecureField(
+                    placeHolder,
+                    text: $text
+                    
+                ).textFieldStyle(MaterialUITextInputField(focused: $isEdting, error: $error))
+//                    .overlay(alignment: .trailing){
+//                        
+//                        Button{
+//                            print("show password tapped")
+//                            showPassword.toggle()
+//                        } label: {
+//                            Image(systemName: "eye.fill")
+//                                .padding(.horizontal, 8.0)
+//                                .foregroundColor(Color(AppColor.DARK_BLUE))
+//                        }
+//                    }
+            }
+            
+            
+                
+        
             
             
             Text(placeHolder)
-                .foregroundColor(error ?? false ? Color(AppColor.RED) : strokeColor )
+                .foregroundColor(error ?? false ? Color(AppColor.RED) : Color(AppColor.LIGHT_VOILET) )
                 .padding(.horizontal, 5.0)
                 .background(Color.white)
                 .font(Font.custom("Poppins-Light", size: 12))
                 .offset(x: 12 , y: -8)
+                .transition(.move(edge: Edge.bottom))
+            
+            
             
             
             
@@ -62,10 +101,12 @@ struct MaterialUITextInputField: TextFieldStyle {
     }
 }
 
-struct PasswordInputField_Previews: PreviewProvider {
-    @State var text = ""
-    static var previews: some View {
-        PasswordInputField(placeHolder: "Email" )
-            .previewInterfaceOrientation(.portrait)
+
+private func changeTextToMask(text: String) -> String{
+    //let len = text.count
+    for i in text {
+        print(i)
     }
+    
+    return "*****"
 }

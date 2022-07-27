@@ -24,7 +24,10 @@ class AppDI: AppDIProtocol {
     }
     
     func signupDependencies() -> SignupViewModel {
-        return SignupViewModel()
+        
+        let localDataSourceDI: LocalSourceDI = LocalSourceDI()
+        let signUpVM = localDataSourceDI.localDependencies()
+        return signUpVM
     }
 }
 

@@ -9,17 +9,23 @@ import SwiftUI
 
 struct NameCredentialsScreen: View {
     
-    @ObservedObject var signUpViewModel: SignupViewModel
+    //@StateObject var signUpViewModel = SignupViewModel()
     @Environment(\.presentationMode) var presentationMode
-    @State private var firstName: String = ""
-    @State private var isFirstNameFocused: Bool = false
-    @State private var lastName: String = ""
-    @State private var isLastNameFocused: Bool = false
-    @State private var city: String = ""
-    @State private var isCityFocused = false
-    @State private var showDetail = false
+    @EnvironmentObject var signUpViewModel: SignupViewModel
+    
+//    @State private var firstName: String = ""
+//    @State private var isFirstNameFocused: Bool = false
+//    @State private var lastName: String = ""
+//    @State private var isLastNameFocused: Bool = false
+//    @State private var city: String = ""
+//    @State private var isCityFocused = false
+//    @State private var showDetail = false
+    
+    private let firstNameErrorMessage: LocalizedStringKey = "valid_first_name"
     @State private var value: Float = 0.25 // Total steps to create account -> 4 hence each step will be equal to 0.25
-    @State private var rootViewDidAppear: Bool = false
+    //@State private var rootViewDidAppear: Bool = false
+    
+    @State var isValid: Bool = true
     
     var body: some View {
         VStack(alignment: HorizontalAlignment.leading, spacing: 32.0){
@@ -29,21 +35,20 @@ struct NameCredentialsScreen: View {
                 .font(Font.custom("Poppins-Medium", size: 26.0))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
-            CustomInputField(placeHolder: "First name", text: $firstName, isFocused: $isFirstNameFocused)
-                .keyboardType(.default)
+            MaterialTextField(text: $signUpViewModel.firstName, isValid: $signUpViewModel.isValidFirstName, errorMessage: firstNameErrorMessage, placeHolder: "First name").keyboardType(.default)
             
-            CustomInputField(placeHolder: "Last name", text: $lastName, isFocused: $isLastNameFocused)
-                .keyboardType(.default)
             
-            CustomInputField(placeHolder: "City (Optional)", text: $city, isFocused: $isCityFocused)
-                .keyboardType(.default)
+            MaterialTextField(text: $signUpViewModel.lastName, isValid: $signUpViewModel.isValid, errorMessage: "", placeHolder: "Last name").keyboardType(.default)
+            
+            
+            
+            MaterialTextField(text: $signUpViewModel.city, isValid: $signUpViewModel.isValid, errorMessage: "", placeHolder: "City (Optional)").keyboardType(.default)
             
             Spacer()
             
             VStack{
                 
                 
-                if rootViewDidAppear{
                     HStack{
                         Text("Already have an account?")
                             .font(Font.custom("Poppins-Light", size: 14.0))
@@ -64,19 +69,21 @@ struct NameCredentialsScreen: View {
                         
                     }
                     
-                    NavigationLink(destination: EmailCredentialsScreen(), isActive: $showDetail) {
+                NavigationLink(destination: EmailCredentialsScreen().environmentObject(signUpViewModel), isActive: $signUpViewModel.willShowEmailInputScreen) {
                         EmptyView()
-                    }.isDetailLink(false)
+                    }
                     
                     FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                         
                         print("tapped")
-                        showDetail.toggle()
+                        //showDetail.toggle()
+                        //signUpViewModel.isValid.toggle()
+                        signUpViewModel.validateUserFullName()
                         
                     }.transition(.move(edge: Edge.leading))
                     
                     
-                }
+                
                 
                 
                 
@@ -87,11 +94,11 @@ struct NameCredentialsScreen: View {
         }
         .onAppear(perform: {
             print("Appearing -[---]-")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
-                withAnimation {
-                    self.rootViewDidAppear.toggle()
-                }
-            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+//                withAnimation {
+//                    self.rootViewDidAppear.toggle()
+//                }
+//            }
             
         }).padding(.horizontal, 32.0)
             .background(Color(AppColor.BACKGROUND))
@@ -99,11 +106,11 @@ struct NameCredentialsScreen: View {
             .navigationBarItems(
                 leading:
                     Button(action : {
-                        signUpViewModel.navigate.toggle()
+                       // signUpViewModel.navigate.toggle()
                         
-                        withAnimation{
-                            self.rootViewDidAppear.toggle()
-                        }
+//                        withAnimation{
+//                            self.rootViewDidAppear.toggle()
+//                        }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
                             self.presentationMode.wrappedValue.dismiss()
                             
@@ -126,18 +133,18 @@ struct NameCredentialsScreen: View {
                     }
                 }
             }
-            .navigationViewStyle(.stack)
+//            .navigationViewStyle(.stack)
     }
 }
 
 
 
-struct CreateAccountScreen_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        NameCredentialsScreen(signUpViewModel: SignupViewModel())
-        
-    }
-    
-}
+//struct CreateAccountScreen_Previews: PreviewProvider {
+//    
+//    static var previews: some View {
+//        
+//        NameCredentialsScreen(signUpViewModel: SignupViewModel())
+//        
+//    }
+//    
+//}

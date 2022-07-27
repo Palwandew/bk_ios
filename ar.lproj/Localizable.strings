@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  bask
+
+  Created by TEHSEEN ABBAS on 27/07/2022.
+  
+*/
+"hello_world" = "Hello, world!";
+
+"Welcome to" = "مرحبا بك في";
+"valid_name" = "رجاء ادخل اسما صحيحا";
+"valid_email" = "يرجى إدخال البريد الإلكتروني الصحيح";
+"valid_password" = "الرجاء إدخال كلمة السر الصحيحة";

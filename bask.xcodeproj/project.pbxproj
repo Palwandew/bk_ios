@@ -42,6 +42,19 @@
 		C4AF9B282828216600EBB141 /* PostUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AB228235E7800343032 /* PostUseCase.swift */; };
 		C4AF9B292828216600EBB141 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2B84228280A20006E8C11 /* LoginUseCase.swift */; };
 		C4AF9B2A2828216600EBB141 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AAE28235C1200343032 /* Post.swift */; };
+		C4BB005B2890AB89000D2E47 /* MaterialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB005A2890AB89000D2E47 /* MaterialTextField.swift */; };
+		C4BB005D2890C576000D2E47 /* MaterialSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB005C2890C576000D2E47 /* MaterialSecureField.swift */; };
+		C4BB00642890E01F000D2E47 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4BB00662890E01F000D2E47 /* Localizable.strings */; };
+		C4BB00692890F504000D2E47 /* VerifyPhoneNumberScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB00682890F504000D2E47 /* VerifyPhoneNumberScreen.swift */; };
+		C4BB006B2890F602000D2E47 /* MaterialPhoneNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB006A2890F602000D2E47 /* MaterialPhoneNumberField.swift */; };
+		C4BB006D28910657000D2E47 /* countries_code.json in Resources */ = {isa = PBXBuildFile; fileRef = C4BB006C28910657000D2E47 /* countries_code.json */; };
+		C4BB006F289106A0000D2E47 /* CountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB006E289106A0000D2E47 /* CountryCode.swift */; };
+		C4BB007128910797000D2E47 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB007028910797000D2E47 /* LocalDataSource.swift */; };
+		C4BB007428910802000D2E47 /* CountryCallingCodeRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB007328910802000D2E47 /* CountryCallingCodeRepoProtocol.swift */; };
+		C4BB0076289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB0075289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift */; };
+		C4BB007828910DCB000D2E47 /* LocalDataSourceDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB007728910DCB000D2E47 /* LocalDataSourceDI.swift */; };
+		C4BB007A2891162E000D2E47 /* CountriesCallingCodeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB00792891162E000D2E47 /* CountriesCallingCodeScreen.swift */; };
+		C4BB007C28912D29000D2E47 /* EnterOTPScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB007B28912D29000D2E47 /* EnterOTPScreen.swift */; };
 		C4C63A8F2823560300343032 /* baskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A8E2823560300343032 /* baskTests.swift */; };
 		C4C63A992823560300343032 /* baskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A982823560300343032 /* baskUITests.swift */; };
 		C4C63A9B2823560300343032 /* baskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A9A2823560300343032 /* baskUITestsLaunchTests.swift */; };
@@ -87,6 +100,20 @@
 		C4A2B84228280A20006E8C11 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		C4A2B84428280A66006E8C11 /* LoginRepositoryImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepositoryImp.swift; sourceTree = "<group>"; };
 		C4A2B84628280E49006E8C11 /* LoginEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndpoint.swift; sourceTree = "<group>"; };
+		C4BB005A2890AB89000D2E47 /* MaterialTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialTextField.swift; sourceTree = "<group>"; };
+		C4BB005C2890C576000D2E47 /* MaterialSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialSecureField.swift; sourceTree = "<group>"; };
+		C4BB00652890E01F000D2E47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C4BB00672890E04A000D2E47 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C4BB00682890F504000D2E47 /* VerifyPhoneNumberScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPhoneNumberScreen.swift; sourceTree = "<group>"; };
+		C4BB006A2890F602000D2E47 /* MaterialPhoneNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialPhoneNumberField.swift; sourceTree = "<group>"; };
+		C4BB006C28910657000D2E47 /* countries_code.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries_code.json; sourceTree = "<group>"; };
+		C4BB006E289106A0000D2E47 /* CountryCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCode.swift; sourceTree = "<group>"; };
+		C4BB007028910797000D2E47 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
+		C4BB007328910802000D2E47 /* CountryCallingCodeRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCallingCodeRepoProtocol.swift; sourceTree = "<group>"; };
+		C4BB0075289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCountriesCallingCodeUseCase.swift; sourceTree = "<group>"; };
+		C4BB007728910DCB000D2E47 /* LocalDataSourceDI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSourceDI.swift; sourceTree = "<group>"; };
+		C4BB00792891162E000D2E47 /* CountriesCallingCodeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesCallingCodeScreen.swift; sourceTree = "<group>"; };
+		C4BB007B28912D29000D2E47 /* EnterOTPScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterOTPScreen.swift; sourceTree = "<group>"; };
 		C4C63A7A282355FF00343032 /* bask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C63A7D282355FF00343032 /* baskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baskApp.swift; sourceTree = "<group>"; };
 		C4C63A7F282355FF00343032 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -158,6 +185,9 @@
 				C4D659AD282B0B8B00FAE1D1 /* CustomInputField.swift */,
 				C4D659B3282B5A8900FAE1D1 /* LinearProgressBar.swift */,
 				C405785A282E22A000C7D67A /* PasswordInputField.swift */,
+				C4BB005A2890AB89000D2E47 /* MaterialTextField.swift */,
+				C4BB005C2890C576000D2E47 /* MaterialSecureField.swift */,
+				C4BB006A2890F602000D2E47 /* MaterialPhoneNumberField.swift */,
 			);
 			path = SharedViews;
 			sourceTree = "<group>";
@@ -190,9 +220,26 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		C4BB005E2890CEA9000D2E47 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C4D659B1282B4F5000FAE1D1 /* SignupViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C4BB0072289107A7000D2E47 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C4BB006E289106A0000D2E47 /* CountryCode.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C4C63A71282355FF00343032 = {
 			isa = PBXGroup;
 			children = (
+				C4BB00662890E01F000D2E47 /* Localizable.strings */,
 				C4C63A7C282355FF00343032 /* bask */,
 				C4C63A8D2823560300343032 /* baskTests */,
 				C4C63A972823560300343032 /* baskUITests */,
@@ -264,6 +311,7 @@
 		C4C63AA82823571900343032 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C4BB005E2890CEA9000D2E47 /* ViewModels */,
 				C4D659B5282B815A00FAE1D1 /* Signup */,
 				C46BD783282937B1006AC587 /* Theme */,
 				C46BD78028292130006AC587 /* SharedViews */,
@@ -277,8 +325,11 @@
 		C4C63AA92823572500343032 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				C4BB0072289107A7000D2E47 /* Models */,
+				C4BB006C28910657000D2E47 /* countries_code.json */,
 				C49205A32827E4FD00EB1112 /* Login */,
 				C4C63AB92823699200343032 /* Post */,
+				C4BB007028910797000D2E47 /* LocalDataSource.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -289,6 +340,7 @@
 				C4C63A7D282355FF00343032 /* baskApp.swift */,
 				C4C63AC22823723C00343032 /* PostDI.swift */,
 				C4C63AC42823741800343032 /* AppDI.swift */,
+				C4BB007728910DCB000D2E47 /* LocalDataSourceDI.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -307,6 +359,7 @@
 			children = (
 				C4C63AB228235E7800343032 /* PostUseCase.swift */,
 				C4A2B84228280A20006E8C11 /* LoginUseCase.swift */,
+				C4BB0075289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -316,6 +369,7 @@
 			children = (
 				C4C63AB028235D4900343032 /* PostDomainRepoProtocol.swift */,
 				C4A2B840282809C9006E8C11 /* LoginDomainRepoProtocol.swift */,
+				C4BB007328910802000D2E47 /* CountryCallingCodeRepoProtocol.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -371,9 +425,11 @@
 		C4D659B5282B815A00FAE1D1 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
-				C4D659B1282B4F5000FAE1D1 /* SignupViewModel.swift */,
 				C4D659AB282AFA7100FAE1D1 /* NameCredentialsScreen.swift */,
 				C4057858282E199400C7D67A /* EmailCredentialsScreen.swift */,
+				C4BB00682890F504000D2E47 /* VerifyPhoneNumberScreen.swift */,
+				C4BB00792891162E000D2E47 /* CountriesCallingCodeScreen.swift */,
+				C4BB007B28912D29000D2E47 /* EnterOTPScreen.swift */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -464,6 +520,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = C4C63A71282355FF00343032;
 			productRefGroup = C4C63A7B282355FF00343032 /* Products */;
@@ -482,10 +539,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4BB00642890E01F000D2E47 /* Localizable.strings in Resources */,
 				C46BD77B28291912006AC587 /* Preview Assets.xcassets in Resources */,
 				C46BD77A28291908006AC587 /* Assets.xcassets in Resources */,
 				C46BD779282918EB006AC587 /* Poppins-Medium.ttf in Resources */,
 				C46BD77F282919C6006AC587 /* Poppins-Light.ttf in Resources */,
+				C4BB006D28910657000D2E47 /* countries_code.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,12 +571,16 @@
 			files = (
 				C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */,
 				C4AF9B172828216600EBB141 /* RequestError.swift in Sources */,
+				C4BB007428910802000D2E47 /* CountryCallingCodeRepoProtocol.swift in Sources */,
 				C4AF9B182828216600EBB141 /* HttpClientProtocol.swift in Sources */,
+				C4BB006F289106A0000D2E47 /* CountryCode.swift in Sources */,
 				C4AF9B192828216600EBB141 /* RequestMethod.swift in Sources */,
 				C4AF9B1A2828216600EBB141 /* baskApp.swift in Sources */,
 				C4D659B4282B5A8900FAE1D1 /* LinearProgressBar.swift in Sources */,
+				C4BB005B2890AB89000D2E47 /* MaterialTextField.swift in Sources */,
 				C46BD78228292161006AC587 /* FilledButton.swift in Sources */,
 				C4AF9B1B2828216600EBB141 /* PostDI.swift in Sources */,
+				C4BB0076289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift in Sources */,
 				C4AF9B1C2828216600EBB141 /* AppDI.swift in Sources */,
 				C4AF9B1D2828216600EBB141 /* LoginRepositoryImp.swift in Sources */,
 				C46BD76628290DB9006AC587 /* UserTypeSelectionScreen.swift in Sources */,
@@ -532,6 +595,7 @@
 				C4AF9B222828216600EBB141 /* PostEndpoint.swift in Sources */,
 				C4D659B2282B4F5000FAE1D1 /* SignupViewModel.swift in Sources */,
 				C4AF9B232828216600EBB141 /* PostViewModel.swift in Sources */,
+				C4BB005D2890C576000D2E47 /* MaterialSecureField.swift in Sources */,
 				C4AF9B242828216600EBB141 /* PostView.swift in Sources */,
 				C4AF9B252828216600EBB141 /* ContentView.swift in Sources */,
 				C4AF9B262828216600EBB141 /* PostDomainRepoProtocol.swift in Sources */,
@@ -541,9 +605,15 @@
 				C46BD78728295CCB006AC587 /* AppColor.swift in Sources */,
 				C4AF9B2A2828216600EBB141 /* Post.swift in Sources */,
 				C4D659AE282B0B8B00FAE1D1 /* CustomInputField.swift in Sources */,
+				C4BB006B2890F602000D2E47 /* MaterialPhoneNumberField.swift in Sources */,
 				C46BD7612828FBD2006AC587 /* User.swift in Sources */,
+				C4BB00692890F504000D2E47 /* VerifyPhoneNumberScreen.swift in Sources */,
 				C4057859282E199400C7D67A /* EmailCredentialsScreen.swift in Sources */,
+				C4BB007A2891162E000D2E47 /* CountriesCallingCodeScreen.swift in Sources */,
+				C4BB007128910797000D2E47 /* LocalDataSource.swift in Sources */,
+				C4BB007828910DCB000D2E47 /* LocalDataSourceDI.swift in Sources */,
 				C46BD78C2829627D006AC587 /* OutlinedButton.swift in Sources */,
+				C4BB007C28912D29000D2E47 /* EnterOTPScreen.swift in Sources */,
 				C4D659AC282AFA7100FAE1D1 /* NameCredentialsScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -579,6 +649,18 @@
 			targetProxy = C4C63A952823560300343032 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C4BB00662890E01F000D2E47 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4BB00652890E01F000D2E47 /* en */,
+				C4BB00672890E04A000D2E47 /* ar */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C4C63A9C2823560300343032 /* Debug */ = {
@@ -713,7 +795,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -743,7 +825,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

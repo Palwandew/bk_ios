@@ -12,6 +12,7 @@ struct CustomInputField: View {
     @Binding var text: String
     @Binding var isFocused: Bool
     
+    
     var body: some View {
         TextField(
             placeHolder,
@@ -21,7 +22,11 @@ struct CustomInputField: View {
             }
         ).textFieldStyle(FocusBasedBorderStyle(focused: $isFocused))
         
+            
+        
     }
+    
+
     
     
 }

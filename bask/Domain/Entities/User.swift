@@ -17,4 +17,12 @@ public struct User{
         self.fullName = fullName
         self.city = city
     }
+    
+    init(){
+        self.id = nil
+        self.fullName = nil
+        self.city = nil
+    }
+    
+
 }

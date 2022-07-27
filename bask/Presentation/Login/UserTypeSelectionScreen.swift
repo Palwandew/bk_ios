@@ -11,7 +11,7 @@ struct UserTypeSelectionScreen: View {
     
     @State private var showDetail = false
     
-    @ObservedObject var signupViewModel: SignupViewModel
+    @StateObject var signupViewModel: SignupViewModel
     
     
     var body: some View {
@@ -27,7 +27,7 @@ struct UserTypeSelectionScreen: View {
                             .frame(width: 90.0, height: 90.0)
                             .padding(.leading, -18)
                         
-                        Text("Welcome to").font(Font.custom("Poppins-Medium", size: 33))
+                        Text(NSLocalizedString("Welcome to", comment: "")).font(Font.custom("Poppins-Medium", size: 33))
                             .foregroundColor(Color(AppColor.DARK_BLUE))
                         
                         Text("Bask").font(Font.custom("Poppins-Medium", size: 33))
@@ -49,12 +49,12 @@ struct UserTypeSelectionScreen: View {
                     .offset(x: signupViewModel.navigate ? -(UIScreen.main.bounds.width) : 0, y: 0)
                     .animation(.spring(), value: signupViewModel.navigate)
                 
-                NavigationLink(destination: NameCredentialsScreen(signUpViewModel: signupViewModel), isActive: $showDetail) { EmptyView() }
+                NavigationLink(destination: NameCredentialsScreen().environmentObject(signupViewModel), isActive: $showDetail) { EmptyView() }
                 
                 FilledButton(label: "I'm guest", color: Color(AppColor.DARKEST_BLUE), action: {
                     withAnimation{
                         print("Width -> \(UIScreen.main.bounds.width)")
-                        signupViewModel.navigate.toggle()
+                        //signupViewModel.navigate.toggle()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                             
                             showDetail.toggle()

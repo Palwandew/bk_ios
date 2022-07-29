@@ -81,26 +81,12 @@ struct NameCredentialsScreen: View {
                         signUpViewModel.validateUserFullName()
                         
                     }.transition(.move(edge: Edge.leading))
-                    
-                    
-                
-                
-                
                 
             }
             
             
             
-        }
-        .onAppear(perform: {
-            print("Appearing -[---]-")
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
-//                withAnimation {
-//                    self.rootViewDidAppear.toggle()
-//                }
-//            }
-            
-        }).padding(.horizontal, 32.0)
+        }.padding(.horizontal, 32.0)
             .background(Color(AppColor.BACKGROUND))
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(

@@ -100,6 +100,7 @@ struct DigitInput: View{
         
             ZStack{
                 FirstResponderTextField( tag: tag, becomeFirstResponder: $responder, text: $text)
+                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
                     .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .headline))
                     .padding(.leading, 12)
                     

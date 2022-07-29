@@ -31,41 +31,41 @@ struct VerifyPhoneNumberScreen: View {
                 print("on country code selector tapped")
                 signUpViewModel.getCountriesCallingCode()
                 showCodesList.toggle()
-            }
+            }.keyboardType(.phonePad)
             
             
             Spacer()
             
-            HStack{
-                Text("Already have an account?")
-                    .font(Font.custom("Poppins-Light", size: 14.0))
-                    .fontWeight(.regular)
-                    .foregroundColor(Color(AppColor.DARK_BLUE))
-                
-                Button {
-                    
-                    print("sign in tapped")
-                    
-                } label: {
-                    Text("Sign in")
+            VStack {
+                HStack{
+                    Text("Already have an account?")
                         .font(Font.custom("Poppins-Light", size: 14.0))
-                        .fontWeight(.semibold)
+                        .fontWeight(.regular)
                         .foregroundColor(Color(AppColor.DARK_BLUE))
+                    
+                    Button {
+                        
+                        print("sign in tapped")
+                        
+                    } label: {
+                        Text("Sign in")
+                            .font(Font.custom("Poppins-Light", size: 14.0))
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color(AppColor.DARK_BLUE))
+                    }
+                    
+                }
+                NavigationLink(destination: EnterOTPScreen().environmentObject(signUpViewModel), isActive: $signUpViewModel.willShowEnterOTPScreen) {
+                    EmptyView()
                 }
                 
+                FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
+                    
+                    print("tapped")
+                    signUpViewModel.validateUserPhoneNumber()
+                    
+                }.transition(.move(edge: Edge.leading))
             }
-            
-            NavigationLink(destination: EnterOTPScreen().environmentObject(signUpViewModel), isActive: $signUpViewModel.willShowEnterOTPScreen) {
-                EmptyView()
-            }
-            
-            FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
-                
-                print("tapped")
-                signUpViewModel.validateUserPhoneNumber()
-                
-            }.transition(.move(edge: Edge.leading))
-            
         }
         .popover(isPresented: $showCodesList, content: {
             

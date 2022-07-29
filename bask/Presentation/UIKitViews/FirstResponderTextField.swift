@@ -19,6 +19,7 @@ struct FirstResponderTextField: UIViewRepresentable {
         let textField = UITextField(frame: .zero)
         textField.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         textField.font = UIFont(name: "Poppins-Medium", size: 20)
+        textField.textColor = .darkText
         textField.tag = self.tag
         textField.delegate = context.coordinator
         textField.keyboardType = .numberPad

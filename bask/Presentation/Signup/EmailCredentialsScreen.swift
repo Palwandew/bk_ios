@@ -99,7 +99,6 @@ struct EmailCredentialsScreen: View {
                 
             }
         })
-//            .navigationViewStyle(.stack)
     }
 }
 

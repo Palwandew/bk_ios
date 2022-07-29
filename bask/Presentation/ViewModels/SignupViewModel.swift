@@ -33,6 +33,7 @@ class SignupViewModel: ObservableObject {
     
     //MARK: - Properties for signup step-4
     @Published var countDown = 120
+    @Published var willShowHomeScreen = false
     
     //MARK: - Error indicators
     @Published var isValidFirstName: Bool = true
@@ -92,12 +93,13 @@ class SignupViewModel: ObservableObject {
     }
     
     func startTimer(){
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {timer in
-            self.countDown -= 1
-            if self.countDown == 0 {
-                timer.invalidate()
-            }
-        }
+//        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {timer in
+//            self.countDown -= 1
+//            if self.countDown == 0 {
+//                timer.invalidate()
+//            }
+//        }
+        willShowHomeScreen = true
     }
     
 }

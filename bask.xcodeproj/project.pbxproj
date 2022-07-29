@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4031008289459280046B645 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4031007289459280046B645 /* HomeScreen.swift */; };
+		C403100A28945D8D0046B645 /* MyBookings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403100928945D8D0046B645 /* MyBookings.swift */; };
+		C403100C289466210046B645 /* RentCollectionIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403100B289466210046B645 /* RentCollectionIndicator.swift */; };
+		C403100E289482B10046B645 /* MaterialTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403100D289482B10046B645 /* MaterialTabView.swift */; };
+		C4031010289494B30046B645 /* MaterialTabViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403100F289494B30046B645 /* MaterialTabViewRouter.swift */; };
+		C40310132894A2FE0046B645 /* LeftSwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40310122894A2FE0046B645 /* LeftSwipe.swift */; };
+		C40310172894A6260046B645 /* RightSwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40310162894A6260046B645 /* RightSwipe.swift */; };
+		C40310192894A9060046B645 /* HorizontalSwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40310182894A9060046B645 /* HorizontalSwipe.swift */; };
 		C4057859282E199400C7D67A /* EmailCredentialsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4057858282E199400C7D67A /* EmailCredentialsScreen.swift */; };
 		C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405785A282E22A000C7D67A /* PasswordInputField.swift */; };
 		C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */; };
@@ -84,6 +92,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C4031007289459280046B645 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		C403100928945D8D0046B645 /* MyBookings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookings.swift; sourceTree = "<group>"; };
+		C403100B289466210046B645 /* RentCollectionIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentCollectionIndicator.swift; sourceTree = "<group>"; };
+		C403100D289482B10046B645 /* MaterialTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialTabView.swift; sourceTree = "<group>"; };
+		C403100F289494B30046B645 /* MaterialTabViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialTabViewRouter.swift; sourceTree = "<group>"; };
+		C40310122894A2FE0046B645 /* LeftSwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSwipe.swift; sourceTree = "<group>"; };
+		C40310162894A6260046B645 /* RightSwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightSwipe.swift; sourceTree = "<group>"; };
+		C40310182894A9060046B645 /* HorizontalSwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSwipe.swift; sourceTree = "<group>"; };
 		C4057858282E199400C7D67A /* EmailCredentialsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCredentialsScreen.swift; sourceTree = "<group>"; };
 		C405785A282E22A000C7D67A /* PasswordInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputField.swift; sourceTree = "<group>"; };
 		C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
@@ -173,6 +189,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C40310062894590E0046B645 /* Owner */ = {
+			isa = PBXGroup;
+			children = (
+				C4031007289459280046B645 /* HomeScreen.swift */,
+				C403100928945D8D0046B645 /* MyBookings.swift */,
+			);
+			path = Owner;
+			sourceTree = "<group>";
+		};
+		C40310112894A29C0046B645 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				C40310122894A2FE0046B645 /* LeftSwipe.swift */,
+				C40310162894A6260046B645 /* RightSwipe.swift */,
+				C40310182894A9060046B645 /* HorizontalSwipe.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
 		C46BD76428290D8A006AC587 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				C4D659B1282B4F5000FAE1D1 /* SignupViewModel.swift */,
+				C403100F289494B30046B645 /* MaterialTabViewRouter.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -308,6 +344,8 @@
 		C4C63AA82823571900343032 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C40310112894A29C0046B645 /* ViewModifiers */,
+				C40310062894590E0046B645 /* Owner */,
 				C4D0872C2893269000DCEACF /* CustomViews */,
 				C4BB007D28913C41000D2E47 /* UIKitViews */,
 				C4BB005E2890CEA9000D2E47 /* ViewModels */,
@@ -432,6 +470,8 @@
 				C46BD78B2829627D006AC587 /* OutlinedButton.swift */,
 				C46BD78128292161006AC587 /* FilledButton.swift */,
 				C4D0872D289326B400DCEACF /* OTPInput.swift */,
+				C403100B289466210046B645 /* RentCollectionIndicator.swift */,
+				C403100D289482B10046B645 /* MaterialTabView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -584,23 +624,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */,
+				C403100C289466210046B645 /* RentCollectionIndicator.swift in Sources */,
+				C40310132894A2FE0046B645 /* LeftSwipe.swift in Sources */,
 				C4AF9B172828216600EBB141 /* RequestError.swift in Sources */,
+				C4031008289459280046B645 /* HomeScreen.swift in Sources */,
 				C4BB007428910802000D2E47 /* CountryCallingCodeRepoProtocol.swift in Sources */,
 				C4AF9B182828216600EBB141 /* HttpClientProtocol.swift in Sources */,
 				C4BB006F289106A0000D2E47 /* CountryCode.swift in Sources */,
 				C4AF9B192828216600EBB141 /* RequestMethod.swift in Sources */,
+				C403100A28945D8D0046B645 /* MyBookings.swift in Sources */,
 				C4AF9B1A2828216600EBB141 /* baskApp.swift in Sources */,
 				C4D659B4282B5A8900FAE1D1 /* LinearProgressBar.swift in Sources */,
 				C4BB005B2890AB89000D2E47 /* MaterialTextField.swift in Sources */,
 				C46BD78228292161006AC587 /* FilledButton.swift in Sources */,
+				C4031010289494B30046B645 /* MaterialTabViewRouter.swift in Sources */,
 				C4AF9B1B2828216600EBB141 /* PostDI.swift in Sources */,
 				C4BB0076289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift in Sources */,
 				C4D0872E289326B400DCEACF /* OTPInput.swift in Sources */,
+				C40310192894A9060046B645 /* HorizontalSwipe.swift in Sources */,
 				C4AF9B1C2828216600EBB141 /* AppDI.swift in Sources */,
 				C4AF9B1D2828216600EBB141 /* LoginRepositoryImp.swift in Sources */,
 				C46BD76628290DB9006AC587 /* UserTypeSelectionScreen.swift in Sources */,
 				C46BD78A28295FA0006AC587 /* ColorExtension.swift in Sources */,
 				C4AF9B1E2828216600EBB141 /* LoginEndpoint.swift in Sources */,
+				C403100E289482B10046B645 /* MaterialTabView.swift in Sources */,
 				C4AF9B1F2828216600EBB141 /* PostRepositoryImp.swift in Sources */,
 				C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */,
 				C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */,
@@ -631,6 +678,7 @@
 				C46BD78C2829627D006AC587 /* OutlinedButton.swift in Sources */,
 				C4BB007C28912D29000D2E47 /* EnterOTPScreen.swift in Sources */,
 				C4D659AC282AFA7100FAE1D1 /* NameCredentialsScreen.swift in Sources */,
+				C40310172894A6260046B645 /* RightSwipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

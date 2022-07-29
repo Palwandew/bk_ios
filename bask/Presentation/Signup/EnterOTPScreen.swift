@@ -76,6 +76,10 @@ struct EnterOTPScreen: View {
             
             HStack {
                 
+                NavigationLink(destination: HomeScreen(), isActive: $signUpViewModel.willShowHomeScreen) {
+                    EmptyView()
+                }
+                
                 Spacer()
                 FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                     

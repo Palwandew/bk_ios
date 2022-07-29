@@ -55,9 +55,11 @@
 		C4BB007828910DCB000D2E47 /* LocalDataSourceDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB007728910DCB000D2E47 /* LocalDataSourceDI.swift */; };
 		C4BB007A2891162E000D2E47 /* CountriesCallingCodeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB00792891162E000D2E47 /* CountriesCallingCodeScreen.swift */; };
 		C4BB007C28912D29000D2E47 /* EnterOTPScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB007B28912D29000D2E47 /* EnterOTPScreen.swift */; };
+		C4BB007F28913C7E000D2E47 /* FirstResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB007E28913C7E000D2E47 /* FirstResponderTextField.swift */; };
 		C4C63A8F2823560300343032 /* baskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A8E2823560300343032 /* baskTests.swift */; };
 		C4C63A992823560300343032 /* baskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A982823560300343032 /* baskUITests.swift */; };
 		C4C63A9B2823560300343032 /* baskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A9A2823560300343032 /* baskUITestsLaunchTests.swift */; };
+		C4D0872E289326B400DCEACF /* OTPInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D0872D289326B400DCEACF /* OTPInput.swift */; };
 		C4D659AC282AFA7100FAE1D1 /* NameCredentialsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D659AB282AFA7100FAE1D1 /* NameCredentialsScreen.swift */; };
 		C4D659AE282B0B8B00FAE1D1 /* CustomInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D659AD282B0B8B00FAE1D1 /* CustomInputField.swift */; };
 		C4D659B2282B4F5000FAE1D1 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D659B1282B4F5000FAE1D1 /* SignupViewModel.swift */; };
@@ -114,6 +116,7 @@
 		C4BB007728910DCB000D2E47 /* LocalDataSourceDI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSourceDI.swift; sourceTree = "<group>"; };
 		C4BB00792891162E000D2E47 /* CountriesCallingCodeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesCallingCodeScreen.swift; sourceTree = "<group>"; };
 		C4BB007B28912D29000D2E47 /* EnterOTPScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterOTPScreen.swift; sourceTree = "<group>"; };
+		C4BB007E28913C7E000D2E47 /* FirstResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstResponderTextField.swift; sourceTree = "<group>"; };
 		C4C63A7A282355FF00343032 /* bask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C63A7D282355FF00343032 /* baskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baskApp.swift; sourceTree = "<group>"; };
 		C4C63A7F282355FF00343032 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -138,6 +141,7 @@
 		C4C63ACA282385B000343032 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		C4C63ACC2823904B00343032 /* HttpClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClientProtocol.swift; sourceTree = "<group>"; };
 		C4C63AD128239DF700343032 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
+		C4D0872D289326B400DCEACF /* OTPInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPInput.swift; sourceTree = "<group>"; };
 		C4D659AB282AFA7100FAE1D1 /* NameCredentialsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCredentialsScreen.swift; sourceTree = "<group>"; };
 		C4D659AD282B0B8B00FAE1D1 /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
 		C4D659B1282B4F5000FAE1D1 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -175,21 +179,6 @@
 				C46BD76528290DB9006AC587 /* UserTypeSelectionScreen.swift */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		C46BD78028292130006AC587 /* SharedViews */ = {
-			isa = PBXGroup;
-			children = (
-				C46BD78128292161006AC587 /* FilledButton.swift */,
-				C46BD78B2829627D006AC587 /* OutlinedButton.swift */,
-				C4D659AD282B0B8B00FAE1D1 /* CustomInputField.swift */,
-				C4D659B3282B5A8900FAE1D1 /* LinearProgressBar.swift */,
-				C405785A282E22A000C7D67A /* PasswordInputField.swift */,
-				C4BB005A2890AB89000D2E47 /* MaterialTextField.swift */,
-				C4BB005C2890C576000D2E47 /* MaterialSecureField.swift */,
-				C4BB006A2890F602000D2E47 /* MaterialPhoneNumberField.swift */,
-			);
-			path = SharedViews;
 			sourceTree = "<group>";
 		};
 		C46BD783282937B1006AC587 /* Theme */ = {
@@ -234,6 +223,14 @@
 				C4BB006E289106A0000D2E47 /* CountryCode.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C4BB007D28913C41000D2E47 /* UIKitViews */ = {
+			isa = PBXGroup;
+			children = (
+				C4BB007E28913C7E000D2E47 /* FirstResponderTextField.swift */,
+			);
+			path = UIKitViews;
 			sourceTree = "<group>";
 		};
 		C4C63A71282355FF00343032 = {
@@ -311,10 +308,11 @@
 		C4C63AA82823571900343032 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C4D0872C2893269000DCEACF /* CustomViews */,
+				C4BB007D28913C41000D2E47 /* UIKitViews */,
 				C4BB005E2890CEA9000D2E47 /* ViewModels */,
 				C4D659B5282B815A00FAE1D1 /* Signup */,
 				C46BD783282937B1006AC587 /* Theme */,
-				C46BD78028292130006AC587 /* SharedViews */,
 				C46BD76428290D8A006AC587 /* Login */,
 				C4C63AB42823662900343032 /* Post */,
 				C4C63A7F282355FF00343032 /* ContentView.swift */,
@@ -420,6 +418,22 @@
 			children = (
 			);
 			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		C4D0872C2893269000DCEACF /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				C4BB006A2890F602000D2E47 /* MaterialPhoneNumberField.swift */,
+				C4BB005C2890C576000D2E47 /* MaterialSecureField.swift */,
+				C4BB005A2890AB89000D2E47 /* MaterialTextField.swift */,
+				C405785A282E22A000C7D67A /* PasswordInputField.swift */,
+				C4D659AD282B0B8B00FAE1D1 /* CustomInputField.swift */,
+				C4D659B3282B5A8900FAE1D1 /* LinearProgressBar.swift */,
+				C46BD78B2829627D006AC587 /* OutlinedButton.swift */,
+				C46BD78128292161006AC587 /* FilledButton.swift */,
+				C4D0872D289326B400DCEACF /* OTPInput.swift */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		C4D659B5282B815A00FAE1D1 /* Signup */ = {
@@ -581,6 +595,7 @@
 				C46BD78228292161006AC587 /* FilledButton.swift in Sources */,
 				C4AF9B1B2828216600EBB141 /* PostDI.swift in Sources */,
 				C4BB0076289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift in Sources */,
+				C4D0872E289326B400DCEACF /* OTPInput.swift in Sources */,
 				C4AF9B1C2828216600EBB141 /* AppDI.swift in Sources */,
 				C4AF9B1D2828216600EBB141 /* LoginRepositoryImp.swift in Sources */,
 				C46BD76628290DB9006AC587 /* UserTypeSelectionScreen.swift in Sources */,
@@ -590,6 +605,7 @@
 				C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */,
 				C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */,
 				C4AF9B202828216600EBB141 /* PostRemoteDataSource.swift in Sources */,
+				C4BB007F28913C7E000D2E47 /* FirstResponderTextField.swift in Sources */,
 				C4AF9B212828216600EBB141 /* PostModel.swift in Sources */,
 				C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */,
 				C4AF9B222828216600EBB141 /* PostEndpoint.swift in Sources */,

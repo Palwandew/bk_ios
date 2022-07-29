@@ -10,7 +10,7 @@ import SwiftUI
 struct VerifyPhoneNumberScreen: View {
     
     @EnvironmentObject var signUpViewModel: SignupViewModel
-    
+    @Environment(\.presentationMode) var presentationMode
     @State private var value: Float = 0.75
     @State private var text: String = ""
     @State var isValid: Bool = true
@@ -27,7 +27,7 @@ struct VerifyPhoneNumberScreen: View {
             
             
             
-            MaterialPhoneNumberField(text: $text, isValid: $isValid, errorMessage: "Enter a valid phone number", placeHolder: "123-456-789", countryCallingCode: signUpViewModel.selectedCallingCodeCountry.code) {
+            MaterialPhoneNumberField(text: $signUpViewModel.phoneNumber, isValid: $signUpViewModel.isValidPhoneNumber, errorMessage: "Enter a valid phone number", placeHolder: "123-456-789", countryCallingCode: signUpViewModel.selectedCallingCodeCountry.code) {
                 print("on country code selector tapped")
                 signUpViewModel.getCountriesCallingCode()
                 showCodesList.toggle()
@@ -55,23 +55,20 @@ struct VerifyPhoneNumberScreen: View {
                 
             }
             
+            NavigationLink(destination: EnterOTPScreen().environmentObject(signUpViewModel), isActive: $signUpViewModel.willShowEnterOTPScreen) {
+                EmptyView()
+            }
+            
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
                 print("tapped")
-                //isValid.toggle()
-                //showCodesList.toggle()
-                //signUpViewModel.validateUserEmailAndPassword()
+                signUpViewModel.validateUserPhoneNumber()
                 
             }.transition(.move(edge: Edge.leading))
             
         }
         .popover(isPresented: $showCodesList, content: {
-            //Text("List")
-//            LazyVStack{
-//            ForEach(signUpViewModel.countries, id:\.self){ country in
-//                Text(country.code)
-//            }
-//            }
+            
             CountriesCallingCodeScreen( onCloseTapped: {
                 self.showCodesList.toggle()
             })
@@ -84,7 +81,7 @@ struct VerifyPhoneNumberScreen: View {
             leading:
                 Button(action : {
                     print("Back button tapped")
-                    //                        self.presentationMode.wrappedValue.dismiss()
+                    self.presentationMode.wrappedValue.dismiss()
                 }){
                     Image(systemName: "chevron.backward")
                         .foregroundColor(Color(AppColor.GREY))

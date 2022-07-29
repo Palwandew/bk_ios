@@ -27,12 +27,18 @@ class SignupViewModel: ObservableObject {
     
     
     //MARK: - Properties for signup step-3
+    @Published var phoneNumber: String = ""
     @Published var selectedCallingCodeCountry = Country(code: "+92", name: "Pakistan")
+    @Published var willShowEnterOTPScreen: Bool = false
+    
+    //MARK: - Properties for signup step-4
+    @Published var countDown = 120
     
     //MARK: - Error indicators
     @Published var isValidFirstName: Bool = true
     @Published var isValidEmail: Bool = true
     @Published var isValidPassword: Bool = true
+    @Published var isValidPhoneNumber: Bool = true
     
     //MARK: - Properties for calling code screen
     @Published var countries: [Country] = []
@@ -72,6 +78,24 @@ class SignupViewModel: ObservableObject {
             print(countries)
             DispatchQueue.main.async {
                 self.countries = countries
+            }
+        }
+    }
+    
+    func validateUserPhoneNumber(){
+        if self.phoneNumber.isEmpty || self.phoneNumber.count < 8 {
+            isValidPhoneNumber = false
+        } else {
+            isValidPhoneNumber = true
+            willShowEnterOTPScreen = true
+        }
+    }
+    
+    func startTimer(){
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {timer in
+            self.countDown -= 1
+            if self.countDown == 0 {
+                timer.invalidate()
             }
         }
     }

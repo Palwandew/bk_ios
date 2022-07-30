@@ -12,7 +12,7 @@ struct HomeScreen: View {
     var body: some View {
         TabView{
             
-            MaterialTabView(viewRouter: viewRouter)
+            MyBookings()
                 .tabItem {
                     Label("Home", systemImage: "house.fill")
                 }

@@ -11,76 +11,86 @@ struct MaterialTabView: View {
     
     @StateObject var viewRouter: MaterialTabViewRouter
     
-    @State var upComing: Bool = true
-    @State var present: Bool = false
-    @State var past: Bool = false
+    let title: String
+    let titleSize: CGFloat
+    var titleStyle: Font.TextStyle = .body
+    
     
     var body: some View {
         GeometryReader { geomerty in
-            VStack {
-                HStack{
-                    TabBarText(isSelected: $upComing, viewRouter: viewRouter, title: "Upcoming", width: geomerty.size.width/5, height: geomerty.size.height/150, assignedTab: .upcoming)
-                    
-                    Spacer()
-                    
-                    TabBarText(isSelected: $present, viewRouter: viewRouter, title: "Present", width: geomerty.size.width/5, height: geomerty.size.height/150, assignedTab: .present)
-                    
-                    Spacer()
-                    
-                    TabBarText(isSelected: $past, viewRouter: viewRouter, title: "Past", width: geomerty.size.width/5, height: geomerty.size.height/150, assignedTab: .past)
-                }
-                .padding(.horizontal)
-                .frame(width: geomerty.size.width, height: geomerty.size.height/12)
-                .background(Color(AppColor.GREY).shadow(radius: 2))
+//            VStack {
                 
-                Spacer()
-                switch viewRouter.currentTab {
-                case .upcoming:
-                    Text("Upcoming")
-                        .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
-                        .onLeftSwipe {
-                            withAnimation {
-                                viewRouter.currentTab = .present
-                            }
-                        }
+                VStack(alignment: .leading) {
                     
-                case .present:
-                    Text("Present")
-                        .transition(.opacity)
-                        .onHorizontalSwipe(onLeft: {
-                            withAnimation {
-                                viewRouter.currentTab = .past
-                            }
-                        }, onRight: {
-                            withAnimation {
-                                viewRouter.currentTab = .upcoming
-                            }
-                        })
+                    Text(title)
+                        .font(Font.custom("Poppins-Medium", size: titleSize, relativeTo: titleStyle))
+                        .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
+                        .padding([.top, .leading])
                     
-                case .past:
-                    Text("Past")
-                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
-                        .onRightSwipe {
-                            viewRouter.currentTab = .present
-                        }
-                }
-                Spacer()
+                    
+                    HStack{
+                        TabBarText(viewRouter: viewRouter, title: "Upcoming", width: geomerty.size.width/5, height: geomerty.size.height/150, assignedTab: .upcoming)
+                        
+                        Spacer()
+                        
+                        TabBarText( viewRouter: viewRouter, title: "Present", width: geomerty.size.width/5, height: geomerty.size.height/150, assignedTab: .present)
+                        
+                        Spacer()
+                        
+                        TabBarText( viewRouter: viewRouter, title: "Past", width: geomerty.size.width/5, height: geomerty.size.height/150, assignedTab: .past)
+                    }
+                    .padding(.horizontal)
+                    .frame(width: geomerty.size.width, height: geomerty.size.height/8)
+                }.background(Color.white.shadow(radius: 2))
+
+                
+
+                
+//                Spacer()
+//                switch viewRouter.currentTab {
+//                case .upcoming:
+//                    Text("Upcoming")
+//                        .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
+//                        .onLeftSwipe {
+//                            withAnimation {
+//                                viewRouter.currentTab = .present
+//                            }
+//                        }
+//                    
+//                case .present:
+//                    Text("Present")
+//                        .transition(.opacity)
+//                        .onHorizontalSwipe(
+//                            onLeft: {
+//                                withAnimation {
+//                                    viewRouter.currentTab = .past
+//                                }
+//                            },
+//                            onRight: {
+//                                withAnimation {
+//                                    viewRouter.currentTab = .upcoming
+//                                }
+//                            })
+//                    
+//                case .past:
+//                    Text("Past")
+//                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
+//                        .onRightSwipe {
+//                            viewRouter.currentTab = .present
+//                        }
+//                }
+//                Spacer()
                 
                 
-            }
+            
         }
     }
 }
 
-struct MaterialTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        MaterialTabView(viewRouter: MaterialTabViewRouter())
-    }
-}
+
 
 struct TabBarText: View {
     
-    @Binding var isSelected: Bool
     @StateObject var viewRouter: MaterialTabViewRouter
     let title: String
     let width, height: CGFloat
@@ -97,8 +107,6 @@ struct TabBarText: View {
                 .frame(width: width, height: height)
                 .transition(.offset(x: 5, y: 0))
             
-        }.onTapGesture {
-            viewRouter.currentTab = assignedTab
         }
     }
 }

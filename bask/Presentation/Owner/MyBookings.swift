@@ -10,6 +10,8 @@ import SwiftUI
 struct MyBookings: View {
     
     @State var value: Float = 0.50
+    @StateObject var viewRouter = MaterialTabViewRouter()
+    
     var body: some View {
         VStack(spacing:0){
             
@@ -27,52 +29,77 @@ struct MyBookings: View {
                     .padding(.horizontal)
             }
             
-
+            VStack {
+                
+                
+                //                MaterialTabView(viewRouter: viewRouter, title: "My Bookings", titleSize: 14)
+                
+                VStack(alignment: .leading) {
+                    Text("My Bookings")
+                        .font(Font.custom("Poppins-Medium", size: 14, relativeTo: .body))
+                        .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
+                        .padding(.vertical, 8)
+                        .padding(.leading)
+                        
+                    
+                    HStack{
+                        TabBarText(viewRouter: viewRouter, title: "Upcoming", width: UIScreen.main.bounds.width / 5, height: 3, assignedTab: .upcoming)
+                        
+                        Spacer()
+                        
+                        TabBarText(viewRouter: viewRouter, title: "Present", width: UIScreen.main.bounds.width / 5, height: 3, assignedTab: .present)
+                        
+                        Spacer()
+                        
+                        TabBarText(viewRouter: viewRouter, title: "Past", width: UIScreen.main.bounds.width / 5, height: 3, assignedTab: .past)
+                    }.padding(.horizontal)
+                        .padding(.bottom, 4)
+                        
+                }.background(Color.white.shadow(radius: 4))
 
                 
-            
-            HStack {
-
                 Spacer()
-
-                Text("Upcoming")
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                    .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .body))
-
-
-                Spacer()
-
-                Text("Present")
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                    .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .body))
-
-                Spacer()
-
-                Text("Past")
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                    .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .body))
-
+                switch viewRouter.currentTab {
+                case .upcoming:
+                    UpcomingBookings()
+                        .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
+                        .onLeftSwipe {
+                            withAnimation {
+                                viewRouter.currentTab = .present
+                            }
+                        }
+                    
+                case .present:
+                    Text("Present")
+                        .transition(.opacity)
+                        .onHorizontalSwipe(
+                            onLeft: {
+                                withAnimation {
+                                    viewRouter.currentTab = .past
+                                }
+                            },
+                            onRight: {
+                                withAnimation {
+                                    viewRouter.currentTab = .upcoming
+                                }
+                            })
+                    
+                case .past:
+                    Text("Past")
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
+                        .onRightSwipe {
+                            viewRouter.currentTab = .present
+                        }
+                }
+                
+                
                 Spacer()
             }
-
-            .padding(.vertical)
-            .background(Rectangle().fill(Color(AppColor.BACKGROUND))
-                            .shadow(color: .gray, radius: 4, x: 0, y: 3))
             
-            Spacer()
-//
-//
-//            TabView{
-//                Text("Upcoming")
-//
-//                Text("Present")
-//
-//                Text("Past")
-//
-//            }.tabViewStyle(PageTabViewStyle())
+            
+            
+            
         }
-                
-        
     }
 }
 

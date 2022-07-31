@@ -134,6 +134,7 @@ struct MyBookings: View {
             
             
         }.background(Color.white)
+        
     }
 }
 

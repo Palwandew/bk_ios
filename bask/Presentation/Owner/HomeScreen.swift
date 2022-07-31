@@ -15,74 +15,87 @@ struct HomeScreen: View {
     
     var body: some View {
         
-        GeometryReader{ geometry in
-            TabView{
-                
-                //MARK: - My Bookings
-                
-                MyBookings()
-                    .tabItem {
-                        Label("Home", systemImage: "house.fill")
-                    }
-                    .onAppear {
-                        //showAlertDialog.toggle()
-                        print("onAppear() -> MyBookings")
-                    }
-                    .onDisappear {
-                        print("onDisappear() -> MyBookings")
-                    }
-                
-                
-                //MARK: - Calendar
-                
-                Text("Calendar")
-                    .onAppear(perform: {
-                        print("onAppear() -> Calendar")
-                    })
-                    .onDisappear {
-                        print("onDisappear() -> Calendar")
-                    }
-                    .tabItem {
-                        Label("Calendar", systemImage: "calendar")
-                    }
-                
-                
-                //MARK: - My Adds
-                
-                Text("My Adds")
-                    .tabItem {
-                        Label("My Adds", systemImage: "music.note.house.fill")
-                    }
-                
-                
-                //MARK: - Messages
-                
-                Text("Messages")
-                    .tabItem {
-                        Label("Messages", systemImage: "message.fill")
-                    }
-                
-                
-                //MARK: - Profile
-                
-                Text("Profile")
-                    .tabItem {
-                        Label("Profile", systemImage: "person.circle")
-                    }
-                
-            }
-            .frame(width: geometry.size.width, height: geometry.size.height)
-            .accentColor(Color(AppColor.ACCENT_GREEN))
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
-            
-            //MARK: - Alert Dialog
-            .alertDialog(isShowing: $showAlertDialog, cornerRadius: 16.0) {
-                Text("Loading")
-                    .frame(width: 70, height: 70).padding()
+        NavigationView {
+            GeometryReader{ geometry in
+                TabView{
                     
-            }
-        }.ignoresSafeArea(.all)
+                    //MARK: - My Bookings
+                    
+                    MyBookings()
+                        .tabItem {
+                            Label("Home", systemImage: "house.fill")
+                        }
+                        .onAppear {
+                            //showAlertDialog.toggle()
+                            print("onAppear() -> MyBookings")
+                        }
+                        .onDisappear {
+                            print("onDisappear() -> MyBookings")
+                            
+                        }
+                        .navigationTitle("")
+                        .navigationBarHidden(true)
+                    
+                    
+                    //MARK: - Calendar
+                    
+                    Text("Calendar")
+                        .onAppear(perform: {
+                            print("onAppear() -> Calendar")
+                        })
+                        .onDisappear {
+                            print("onDisappear() -> Calendar")
+                        }
+                        .tabItem {
+                            Label("Calendar", systemImage: "calendar")
+                        }
+                        .navigationTitle("")
+                        .navigationBarHidden(true)
+                    
+                    
+                    //MARK: - My Adds
+                    
+                    MyAddsScreen()
+                        .tabItem {
+                            Label("My Adds", systemImage: "music.note.house.fill")
+                        }
+                        .navigationTitle("")
+                        .navigationBarHidden(true)
+                    
+                    
+                    //MARK: - Messages
+                    
+                    Text("Messages")
+                        .tabItem {
+                            Label("Messages", systemImage: "message.fill")
+                        }
+                        .navigationTitle("")
+                        .navigationBarHidden(true)
+                    
+                    
+                    //MARK: - Profile
+                    
+                    Text("Profile")
+                        .tabItem {
+                            Label("Profile", systemImage: "person.circle")
+                        }
+                        .navigationTitle("")
+                        .navigationBarHidden(true)
+                    
+                }
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .accentColor(Color(AppColor.ACCENT_GREEN))
+                .navigationBarHidden(true)
+                .navigationBarBackButtonHidden(true)
+                
+                //MARK: - Alert Dialog
+                .alertDialog(isShowing: $showAlertDialog, cornerRadius: 16.0) {
+                    Text("Loading")
+                        .frame(width: 70, height: 70).padding()
+                        
+                }
+            }.ignoresSafeArea(.all)
+        }
     }
 }
 

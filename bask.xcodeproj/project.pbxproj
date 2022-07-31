@@ -38,6 +38,9 @@
 		C48268262896E8860072147F /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48268252896E8860072147F /* EmptyState.swift */; };
 		C48268292896EDAF0072147F /* PresentBookings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48268282896EDAF0072147F /* PresentBookings.swift */; };
 		C482682B289700BB0072147F /* PastBookings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482682A289700BB0072147F /* PastBookings.swift */; };
+		C482682E28970EC90072147F /* MyAddsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482682D28970EC90072147F /* MyAddsScreen.swift */; };
+		C4826830289727B10072147F /* CancellationPolicyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482682F289727B10072147F /* CancellationPolicyScreen.swift */; };
+		C482683428973BF00072147F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683328973BF00072147F /* RadioButton.swift */; };
 		C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC82823833E00343032 /* Endpoint.swift */; };
 		C4AF9B172828216600EBB141 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACA282385B000343032 /* RequestError.swift */; };
 		C4AF9B182828216600EBB141 /* HttpClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACC2823904B00343032 /* HttpClientProtocol.swift */; };
@@ -131,6 +134,9 @@
 		C48268252896E8860072147F /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 		C48268282896EDAF0072147F /* PresentBookings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentBookings.swift; sourceTree = "<group>"; };
 		C482682A289700BB0072147F /* PastBookings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastBookings.swift; sourceTree = "<group>"; };
+		C482682D28970EC90072147F /* MyAddsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAddsScreen.swift; sourceTree = "<group>"; };
+		C482682F289727B10072147F /* CancellationPolicyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellationPolicyScreen.swift; sourceTree = "<group>"; };
+		C482683328973BF00072147F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		C492059D2827BF5700EB1112 /* PostEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEndpoint.swift; sourceTree = "<group>"; };
 		C4A2B840282809C9006E8C11 /* LoginDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDomainRepoProtocol.swift; sourceTree = "<group>"; };
 		C4A2B84228280A20006E8C11 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
@@ -210,6 +216,7 @@
 		C40310062894590E0046B645 /* Owner */ = {
 			isa = PBXGroup;
 			children = (
+				C482682C28970EB00072147F /* MyAdds */,
 				C48268272896ED550072147F /* MyBookings */,
 				C4031007289459280046B645 /* HomeScreen.swift */,
 			);
@@ -263,6 +270,15 @@
 				C482682A289700BB0072147F /* PastBookings.swift */,
 			);
 			path = MyBookings;
+			sourceTree = "<group>";
+		};
+		C482682C28970EB00072147F /* MyAdds */ = {
+			isa = PBXGroup;
+			children = (
+				C482682D28970EC90072147F /* MyAddsScreen.swift */,
+				C482682F289727B10072147F /* CancellationPolicyScreen.swift */,
+			);
+			path = MyAdds;
 			sourceTree = "<group>";
 		};
 		C49205A32827E4FD00EB1112 /* Login */ = {
@@ -507,6 +523,7 @@
 				C403101C2894BC340046B645 /* FacilityCard.swift */,
 				C48268232896E47D0072147F /* Spinner.swift */,
 				C48268252896E8860072147F /* EmptyState.swift */,
+				C482683328973BF00072147F /* RadioButton.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -685,7 +702,9 @@
 				C46BD76628290DB9006AC587 /* UserTypeSelectionScreen.swift in Sources */,
 				C46BD78A28295FA0006AC587 /* ColorExtension.swift in Sources */,
 				C4AF9B1E2828216600EBB141 /* LoginEndpoint.swift in Sources */,
+				C482683428973BF00072147F /* RadioButton.swift in Sources */,
 				C403100E289482B10046B645 /* MaterialTabView.swift in Sources */,
+				C4826830289727B10072147F /* CancellationPolicyScreen.swift in Sources */,
 				C403101D2894BC340046B645 /* FacilityCard.swift in Sources */,
 				C48268242896E47E0072147F /* Spinner.swift in Sources */,
 				C4AF9B1F2828216600EBB141 /* PostRepositoryImp.swift in Sources */,
@@ -705,6 +724,7 @@
 				C4AF9B252828216600EBB141 /* ContentView.swift in Sources */,
 				C4AF9B262828216600EBB141 /* PostDomainRepoProtocol.swift in Sources */,
 				C4AF9B272828216600EBB141 /* LoginDomainRepoProtocol.swift in Sources */,
+				C482682E28970EC90072147F /* MyAddsScreen.swift in Sources */,
 				C4AF9B282828216600EBB141 /* PostUseCase.swift in Sources */,
 				C47FEB132896A874008BC4C2 /* MyBookingsViewModel.swift in Sources */,
 				C4AF9B292828216600EBB141 /* LoginUseCase.swift in Sources */,

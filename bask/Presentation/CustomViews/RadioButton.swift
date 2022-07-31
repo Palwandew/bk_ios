@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RadioButton: View {
     
-    @Binding var checked: Bool
+    var checked: Bool
     
     var body: some View {
         

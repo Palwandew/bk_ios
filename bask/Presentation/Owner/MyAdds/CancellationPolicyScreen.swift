@@ -10,6 +10,8 @@ import SwiftUI
 struct CancellationPolicyScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
+    @StateObject var cancellationPolicyViewModel: CancellationPolicyViewModel = CancellationPolicyViewModel()
+    
     @State var isChecked: Bool = true
     
     var body: some View {
@@ -26,11 +28,20 @@ struct CancellationPolicyScreen: View {
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
             
             
-            CancellationPolicyItem(checked: $isChecked, label: "Anytime", description: "User can cancel booking anytime without loosing money")
+            CancellationPolicyItem(checked: isChecked, label: "Anytime", description: "User can cancel booking anytime without loosing money", assignedPolicy: .anytime, onRadioButtonTapped: {
+                cancellationPolicyViewModel.policy = .anytime
+            })
+                .environmentObject(cancellationPolicyViewModel)
             
-            CancellationPolicyItem(checked: $isChecked, label: "72 hours before booking time -20% of the booking price", description: "User can cancel for free until 72 hours before the booking time, then he should pay you 20 % of the price")
+            CancellationPolicyItem(checked: isChecked, label: "72 hours before booking time -20% of the booking price", description: "User can cancel for free until 72 hours before the booking time, then he should pay you 20 % of the price", assignedPolicy: .threeDays, onRadioButtonTapped: {
+                cancellationPolicyViewModel.policy = .threeDays
+            })
+                .environmentObject(cancellationPolicyViewModel)
             
-            CancellationPolicyItem(checked: $isChecked, label: "A week before booking time -20% of the booking price", description: "User can cancel for free untill a week before the booking time, then he should pay you 20 % of the price")
+            CancellationPolicyItem(checked: isChecked, label: "A week before booking time -20% of the booking price", description: "User can cancel for free untill a week before the booking time, then he should pay you 20 % of the price", assignedPolicy: .week, onRadioButtonTapped: {
+                cancellationPolicyViewModel.policy = .week
+            })
+                .environmentObject(cancellationPolicyViewModel)
             
             Spacer()
             
@@ -60,10 +71,13 @@ struct CancellationPolicyScreen_Previews: PreviewProvider {
 
 struct CancellationPolicyItem: View {
     
-    @Binding var checked: Bool
+    @EnvironmentObject var cancellationViewModel: CancellationPolicyViewModel
+    
+    var checked: Bool
     let label: String
     let description: String
-
+    let assignedPolicy: CancellationPolicy
+    let onRadioButtonTapped: () -> Void
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -75,7 +89,18 @@ struct CancellationPolicyItem: View {
                 
                 Spacer()
                 
-                RadioButton(checked: $checked)
+                if assignedPolicy == cancellationViewModel.policy {
+                    RadioButton(checked: true)
+                        .onTapGesture {
+                            onRadioButtonTapped()
+                        }
+                } else {
+                    RadioButton(checked: false)
+                        .onTapGesture {
+                            onRadioButtonTapped()
+                        }
+                }
+
             }
             
             Text(description) .font(Font.custom("Poppins-Light", size: 14, relativeTo: .title))

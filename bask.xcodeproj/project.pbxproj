@@ -41,6 +41,7 @@
 		C482682E28970EC90072147F /* MyAddsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482682D28970EC90072147F /* MyAddsScreen.swift */; };
 		C4826830289727B10072147F /* CancellationPolicyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482682F289727B10072147F /* CancellationPolicyScreen.swift */; };
 		C482683428973BF00072147F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683328973BF00072147F /* RadioButton.swift */; };
+		C48268362897454C0072147F /* CancellationPolicyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48268352897454C0072147F /* CancellationPolicyViewModel.swift */; };
 		C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC82823833E00343032 /* Endpoint.swift */; };
 		C4AF9B172828216600EBB141 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACA282385B000343032 /* RequestError.swift */; };
 		C4AF9B182828216600EBB141 /* HttpClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACC2823904B00343032 /* HttpClientProtocol.swift */; };
@@ -137,6 +138,7 @@
 		C482682D28970EC90072147F /* MyAddsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAddsScreen.swift; sourceTree = "<group>"; };
 		C482682F289727B10072147F /* CancellationPolicyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellationPolicyScreen.swift; sourceTree = "<group>"; };
 		C482683328973BF00072147F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		C48268352897454C0072147F /* CancellationPolicyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellationPolicyViewModel.swift; sourceTree = "<group>"; };
 		C492059D2827BF5700EB1112 /* PostEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEndpoint.swift; sourceTree = "<group>"; };
 		C4A2B840282809C9006E8C11 /* LoginDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDomainRepoProtocol.swift; sourceTree = "<group>"; };
 		C4A2B84228280A20006E8C11 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				C40310182894A9060046B645 /* HorizontalSwipe.swift */,
 				C403101E2894C71F0046B645 /* SpecifiRoundCorner.swift */,
 				C47FEB102896962B008BC4C2 /* CustomAlertDialog.swift */,
+				C48268352897454C0072147F /* CancellationPolicyViewModel.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -733,6 +736,7 @@
 				C4AF9B2A2828216600EBB141 /* Post.swift in Sources */,
 				C4D659AE282B0B8B00FAE1D1 /* CustomInputField.swift in Sources */,
 				C4BB006B2890F602000D2E47 /* MaterialPhoneNumberField.swift in Sources */,
+				C48268362897454C0072147F /* CancellationPolicyViewModel.swift in Sources */,
 				C46BD7612828FBD2006AC587 /* User.swift in Sources */,
 				C4BB00692890F504000D2E47 /* VerifyPhoneNumberScreen.swift in Sources */,
 				C4057859282E199400C7D67A /* EmailCredentialsScreen.swift in Sources */,

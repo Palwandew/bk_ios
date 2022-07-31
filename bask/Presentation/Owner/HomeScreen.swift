@@ -76,6 +76,7 @@ struct HomeScreen: View {
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
             
+            //MARK: - Alert Dialog
             .alertDialog(isShowing: $showAlertDialog, cornerRadius: 16.0) {
                 Text("Loading")
                     .frame(width: 70, height: 70).padding()

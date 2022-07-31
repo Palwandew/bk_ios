@@ -71,13 +71,19 @@ struct MyBookings: View {
                         }
                         .onAppear {
                             print("onAppear() -> Upcoming bookings")
-                            myBookingsViewModel.screenState = .loading
+//                            myBookingsViewModel.screenState = .loading
+                            myBookingsViewModel.updateState()
+                        }
+                        .onDisappear {
+                            print("onDisappear() -> Upcoming bookings")
+                            //myBookingsViewModel.screenState = .loading
                         }
                         
                     
                 case .present:
-                    Text("Present")
-                        .transition(.opacity)
+                    PresentBookings()
+                        .environmentObject(myBookingsViewModel)
+                        .transition(.asymmetric(insertion: .opacity, removal: .opacity))
                         .onHorizontalSwipe(
                             onLeft: {
                                 withAnimation {
@@ -89,12 +95,34 @@ struct MyBookings: View {
                                     viewRouter.currentTab = .upcoming
                                 }
                             })
+                        .onAppear {
+                            print("onAppear() -> Present bookings")
+                            myBookingsViewModel.updateState()
+                        }
+                        .onDisappear {
+                            print("onDisappear() -> Present bookings")
+                            //myBookingsViewModel.screenState = .loading
+                        }
                     
                 case .past:
-                    Text("Past")
+                    PastBookings()
+                        .environmentObject(myBookingsViewModel)
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
                         .onRightSwipe {
-                            viewRouter.currentTab = .present
+                            withAnimation {
+                                viewRouter.currentTab = .present
+                            }
+
+                        }
+                        .onAppear {
+                            print("onAppear() -> Past bookings")
+                            //myBookingsViewModel.updateState()
+                            myBookingsViewModel.screenState = .loading
+                            myBookingsViewModel.updateState()
+                        }
+                        .onDisappear {
+                            print("onDisappear() -> Past bookings")
+                            //myBookingsViewModel.screenState = .loading
                         }
                 }
                 
@@ -105,7 +133,7 @@ struct MyBookings: View {
             
             
             
-        }
+        }.background(Color.white)
     }
 }
 

@@ -34,6 +34,10 @@
 		C46BD78C2829627D006AC587 /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78B2829627D006AC587 /* OutlinedButton.swift */; };
 		C47FEB112896962B008BC4C2 /* CustomAlertDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47FEB102896962B008BC4C2 /* CustomAlertDialog.swift */; };
 		C47FEB132896A874008BC4C2 /* MyBookingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47FEB122896A873008BC4C2 /* MyBookingsViewModel.swift */; };
+		C48268242896E47E0072147F /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48268232896E47D0072147F /* Spinner.swift */; };
+		C48268262896E8860072147F /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48268252896E8860072147F /* EmptyState.swift */; };
+		C48268292896EDAF0072147F /* PresentBookings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48268282896EDAF0072147F /* PresentBookings.swift */; };
+		C482682B289700BB0072147F /* PastBookings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482682A289700BB0072147F /* PastBookings.swift */; };
 		C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC82823833E00343032 /* Endpoint.swift */; };
 		C4AF9B172828216600EBB141 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACA282385B000343032 /* RequestError.swift */; };
 		C4AF9B182828216600EBB141 /* HttpClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACC2823904B00343032 /* HttpClientProtocol.swift */; };
@@ -123,6 +127,10 @@
 		C46BD78B2829627D006AC587 /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
 		C47FEB102896962B008BC4C2 /* CustomAlertDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertDialog.swift; sourceTree = "<group>"; };
 		C47FEB122896A873008BC4C2 /* MyBookingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookingsViewModel.swift; sourceTree = "<group>"; };
+		C48268232896E47D0072147F /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
+		C48268252896E8860072147F /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
+		C48268282896EDAF0072147F /* PresentBookings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentBookings.swift; sourceTree = "<group>"; };
+		C482682A289700BB0072147F /* PastBookings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastBookings.swift; sourceTree = "<group>"; };
 		C492059D2827BF5700EB1112 /* PostEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEndpoint.swift; sourceTree = "<group>"; };
 		C4A2B840282809C9006E8C11 /* LoginDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDomainRepoProtocol.swift; sourceTree = "<group>"; };
 		C4A2B84228280A20006E8C11 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
@@ -202,9 +210,8 @@
 		C40310062894590E0046B645 /* Owner */ = {
 			isa = PBXGroup;
 			children = (
+				C48268272896ED550072147F /* MyBookings */,
 				C4031007289459280046B645 /* HomeScreen.swift */,
-				C403100928945D8D0046B645 /* MyBookings.swift */,
-				C403101A2894BBF10046B645 /* UpcomingBookings.swift */,
 			);
 			path = Owner;
 			sourceTree = "<group>";
@@ -245,6 +252,17 @@
 				C46BD78928295FA0006AC587 /* ColorExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C48268272896ED550072147F /* MyBookings */ = {
+			isa = PBXGroup;
+			children = (
+				C403100928945D8D0046B645 /* MyBookings.swift */,
+				C403101A2894BBF10046B645 /* UpcomingBookings.swift */,
+				C48268282896EDAF0072147F /* PresentBookings.swift */,
+				C482682A289700BB0072147F /* PastBookings.swift */,
+			);
+			path = MyBookings;
 			sourceTree = "<group>";
 		};
 		C49205A32827E4FD00EB1112 /* Login */ = {
@@ -487,6 +505,8 @@
 				C403100B289466210046B645 /* RentCollectionIndicator.swift */,
 				C403100D289482B10046B645 /* MaterialTabView.swift */,
 				C403101C2894BC340046B645 /* FacilityCard.swift */,
+				C48268232896E47D0072147F /* Spinner.swift */,
+				C48268252896E8860072147F /* EmptyState.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -651,8 +671,10 @@
 				C4AF9B1A2828216600EBB141 /* baskApp.swift in Sources */,
 				C4D659B4282B5A8900FAE1D1 /* LinearProgressBar.swift in Sources */,
 				C4BB005B2890AB89000D2E47 /* MaterialTextField.swift in Sources */,
+				C48268292896EDAF0072147F /* PresentBookings.swift in Sources */,
 				C46BD78228292161006AC587 /* FilledButton.swift in Sources */,
 				C4031010289494B30046B645 /* MaterialTabViewRouter.swift in Sources */,
+				C48268262896E8860072147F /* EmptyState.swift in Sources */,
 				C4AF9B1B2828216600EBB141 /* PostDI.swift in Sources */,
 				C4BB0076289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift in Sources */,
 				C4D0872E289326B400DCEACF /* OTPInput.swift in Sources */,
@@ -665,6 +687,7 @@
 				C4AF9B1E2828216600EBB141 /* LoginEndpoint.swift in Sources */,
 				C403100E289482B10046B645 /* MaterialTabView.swift in Sources */,
 				C403101D2894BC340046B645 /* FacilityCard.swift in Sources */,
+				C48268242896E47E0072147F /* Spinner.swift in Sources */,
 				C4AF9B1F2828216600EBB141 /* PostRepositoryImp.swift in Sources */,
 				C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */,
 				C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */,
@@ -672,6 +695,7 @@
 				C4BB007F28913C7E000D2E47 /* FirstResponderTextField.swift in Sources */,
 				C4AF9B212828216600EBB141 /* PostModel.swift in Sources */,
 				C47FEB112896962B008BC4C2 /* CustomAlertDialog.swift in Sources */,
+				C482682B289700BB0072147F /* PastBookings.swift in Sources */,
 				C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */,
 				C4AF9B222828216600EBB141 /* PostEndpoint.swift in Sources */,
 				C4D659B2282B4F5000FAE1D1 /* SignupViewModel.swift in Sources */,

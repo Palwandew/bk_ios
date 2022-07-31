@@ -16,8 +16,19 @@ class MyBookingsViewModel: ObservableObject {
     }
     
     func updateState() {
-
-        changeState(state: .success)
+        print("updating state")
+        if screenState == .success {
+            //changeState(state: .loading)
+            print("sccuss state")
+        }
+        
+        if screenState == .loading {
+            print("loading state")
+            changeState(state: .success)
+        }
+//        else {
+//        changeState(state: .success)
+//        }
         //changeState(state: .failed)
     }
     

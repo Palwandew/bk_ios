@@ -26,7 +26,6 @@ struct FacilityCard: View {
             HStack(alignment: .top){
                     Image("sample_resort")
                         .resizable()
-                        
                         .frame(width: geometry.size.width * 0.40, height: geometry.size.height)
                         .cornerRadius(6)
                         .padding([.top, .leading, .bottom], 4)
@@ -40,6 +39,7 @@ struct FacilityCard: View {
                         
                         Text(name)
                             .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .body))
+                            .lineLimit(2)
                             .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
                         
                         Spacer()

@@ -14,21 +14,16 @@ struct UpcomingBookings: View {
         
         switch myBookingsViewModel.screenState {
         case .loading:
-            Text("Loading")
+            Spinner()
         case .success:
             if upComingBookings.isEmpty {
-                VStack{
-                    Image("empty_my_bookings")
-                    Text("Unfortunately, there are no upcoming bookings yet.")
-                        .multilineTextAlignment(.center)
-                        .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .body))
-                        .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
-                        .padding(.horizontal)
-                }
+                
+                EmptyState(illustration: "empty_my_bookings", message: "Unfortunately, there are no upcoming bookings yet.")
+                
             } else {
                 ScrollView{
                     LazyVStack(alignment: .leading){
-                        ForEach(0...6, id:\.self) { _ in
+                        ForEach(0...upComingBookings.count, id:\.self) { _ in
                             
                             FacilityCard(price: "1600 SAR", name: "Sunny House", bookingDates: "15 Jun - 16 May, 2021; 3 AM", bannerText: "3h : 20m", bannerColor: Color(AppColor.LIGHT_VOILET))
                                 .frame(height: UIScreen.main.bounds.height * 0.15)
@@ -36,7 +31,7 @@ struct UpcomingBookings: View {
                             
                         }
                     }
-                }
+                }.background(Color.white)
             }
             
         case .failed:

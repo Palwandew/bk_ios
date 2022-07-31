@@ -13,7 +13,7 @@ struct RightSwipe: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+            .gesture(DragGesture(minimumDistance: 30, coordinateSpace: .local)
                         .onEnded({ value in
                 if value.translation.width > 0 {
                     // right

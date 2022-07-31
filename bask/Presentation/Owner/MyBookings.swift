@@ -11,6 +11,9 @@ struct MyBookings: View {
     
     @State var value: Float = 0.50
     @StateObject var viewRouter = MaterialTabViewRouter()
+    @ObservedObject var myBookingsViewModel = MyBookingsViewModel()
+    @State var showAlertDialog: Bool = false
+    
     
     var body: some View {
         VStack(spacing:0){
@@ -30,9 +33,6 @@ struct MyBookings: View {
             }
             
             VStack {
-                
-                
-                //                MaterialTabView(viewRouter: viewRouter, title: "My Bookings", titleSize: 14)
                 
                 VStack(alignment: .leading) {
                     Text("My Bookings")
@@ -62,12 +62,18 @@ struct MyBookings: View {
                 switch viewRouter.currentTab {
                 case .upcoming:
                     UpcomingBookings()
+                        .environmentObject(myBookingsViewModel)
                         .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
                         .onLeftSwipe {
                             withAnimation {
                                 viewRouter.currentTab = .present
                             }
                         }
+                        .onAppear {
+                            print("onAppear() -> Upcoming bookings")
+                            myBookingsViewModel.screenState = .loading
+                        }
+                        
                     
                 case .present:
                     Text("Present")

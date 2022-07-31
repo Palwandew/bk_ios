@@ -32,6 +32,8 @@
 		C46BD78728295CCB006AC587 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78628295CCA006AC587 /* AppColor.swift */; };
 		C46BD78A28295FA0006AC587 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78928295FA0006AC587 /* ColorExtension.swift */; };
 		C46BD78C2829627D006AC587 /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78B2829627D006AC587 /* OutlinedButton.swift */; };
+		C47FEB112896962B008BC4C2 /* CustomAlertDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47FEB102896962B008BC4C2 /* CustomAlertDialog.swift */; };
+		C47FEB132896A874008BC4C2 /* MyBookingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47FEB122896A873008BC4C2 /* MyBookingsViewModel.swift */; };
 		C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC82823833E00343032 /* Endpoint.swift */; };
 		C4AF9B172828216600EBB141 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACA282385B000343032 /* RequestError.swift */; };
 		C4AF9B182828216600EBB141 /* HttpClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACC2823904B00343032 /* HttpClientProtocol.swift */; };
@@ -119,6 +121,8 @@
 		C46BD78628295CCA006AC587 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		C46BD78928295FA0006AC587 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		C46BD78B2829627D006AC587 /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
+		C47FEB102896962B008BC4C2 /* CustomAlertDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertDialog.swift; sourceTree = "<group>"; };
+		C47FEB122896A873008BC4C2 /* MyBookingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookingsViewModel.swift; sourceTree = "<group>"; };
 		C492059D2827BF5700EB1112 /* PostEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEndpoint.swift; sourceTree = "<group>"; };
 		C4A2B840282809C9006E8C11 /* LoginDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDomainRepoProtocol.swift; sourceTree = "<group>"; };
 		C4A2B84228280A20006E8C11 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
@@ -212,6 +216,7 @@
 				C40310162894A6260046B645 /* RightSwipe.swift */,
 				C40310182894A9060046B645 /* HorizontalSwipe.swift */,
 				C403101E2894C71F0046B645 /* SpecifiRoundCorner.swift */,
+				C47FEB102896962B008BC4C2 /* CustomAlertDialog.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 			children = (
 				C4D659B1282B4F5000FAE1D1 /* SignupViewModel.swift */,
 				C403100F289494B30046B645 /* MaterialTabViewRouter.swift */,
+				C47FEB122896A873008BC4C2 /* MyBookingsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -665,6 +671,7 @@
 				C4AF9B202828216600EBB141 /* PostRemoteDataSource.swift in Sources */,
 				C4BB007F28913C7E000D2E47 /* FirstResponderTextField.swift in Sources */,
 				C4AF9B212828216600EBB141 /* PostModel.swift in Sources */,
+				C47FEB112896962B008BC4C2 /* CustomAlertDialog.swift in Sources */,
 				C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */,
 				C4AF9B222828216600EBB141 /* PostEndpoint.swift in Sources */,
 				C4D659B2282B4F5000FAE1D1 /* SignupViewModel.swift in Sources */,
@@ -675,6 +682,7 @@
 				C4AF9B262828216600EBB141 /* PostDomainRepoProtocol.swift in Sources */,
 				C4AF9B272828216600EBB141 /* LoginDomainRepoProtocol.swift in Sources */,
 				C4AF9B282828216600EBB141 /* PostUseCase.swift in Sources */,
+				C47FEB132896A874008BC4C2 /* MyBookingsViewModel.swift in Sources */,
 				C4AF9B292828216600EBB141 /* LoginUseCase.swift in Sources */,
 				C46BD78728295CCB006AC587 /* AppColor.swift in Sources */,
 				C403101F2894C71F0046B645 /* SpecifiRoundCorner.swift in Sources */,

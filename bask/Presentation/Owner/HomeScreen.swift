@@ -8,38 +8,80 @@
 import SwiftUI
 
 struct HomeScreen: View {
-    @StateObject var viewRouter = MaterialTabViewRouter()
+    
+    @State var showAlertDialog: Bool = false
+    //@StateObject var viewRouter = MaterialTabViewRouter()
+
+    
     var body: some View {
-        TabView{
-            
-            MyBookings()
-                .tabItem {
-                    Label("Home", systemImage: "house.fill")
-                }
+        
+        GeometryReader{ geometry in
+            TabView{
                 
-            Text("Calendar")
-                .tabItem {
-                    Label("Calendar", systemImage: "calendar")
-                }
-            
-            Text("My Adds")
-                .tabItem {
-                    Label("My Adds", systemImage: "music.note.house.fill")
-                }
-            
-            Text("Messages")
-                .tabItem {
-                    Label("Messages", systemImage: "message.fill")
-                }
-            
-            Text("Profile")
-                .tabItem {
-                    Label("Profile", systemImage: "person.circle")
-                }
-            
-        }.accentColor(Color(AppColor.ACCENT_GREEN))
+                //MARK: - My Bookings
+                
+                MyBookings()
+                    .tabItem {
+                        Label("Home", systemImage: "house.fill")
+                    }
+                    .onAppear {
+                        //showAlertDialog.toggle()
+                        print("onAppear() -> MyBookings")
+                    }
+                    .onDisappear {
+                        print("onDisappear() -> MyBookings")
+                    }
+                
+                
+                //MARK: - Calendar
+                
+                Text("Calendar")
+                    .onAppear(perform: {
+                        print("onAppear() -> Calendar")
+                    })
+                    .onDisappear {
+                        print("onDisappear() -> Calendar")
+                    }
+                    .tabItem {
+                        Label("Calendar", systemImage: "calendar")
+                    }
+                
+                
+                //MARK: - My Adds
+                
+                Text("My Adds")
+                    .tabItem {
+                        Label("My Adds", systemImage: "music.note.house.fill")
+                    }
+                
+                
+                //MARK: - Messages
+                
+                Text("Messages")
+                    .tabItem {
+                        Label("Messages", systemImage: "message.fill")
+                    }
+                
+                
+                //MARK: - Profile
+                
+                Text("Profile")
+                    .tabItem {
+                        Label("Profile", systemImage: "person.circle")
+                    }
+                
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .accentColor(Color(AppColor.ACCENT_GREEN))
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
+            
+            .alertDialog(isShowing: $showAlertDialog, cornerRadius: 16.0) {
+                Text("Loading")
+                    .frame(width: 70, height: 70).padding()
+                    
+            }
+        }.ignoresSafeArea(.all)
     }
 }
 

@@ -20,6 +20,8 @@
 		C403101F2894C71F0046B645 /* SpecifiRoundCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403101E2894C71F0046B645 /* SpecifiRoundCorner.swift */; };
 		C4057859282E199400C7D67A /* EmailCredentialsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4057858282E199400C7D67A /* EmailCredentialsScreen.swift */; };
 		C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405785A282E22A000C7D67A /* PasswordInputField.swift */; };
+		C40E7F6228984E7200788652 /* AmenityCounterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6128984E7200788652 /* AmenityCounterButton.swift */; };
+		C40E7F6428985BE700788652 /* AmenityCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6328985BE700788652 /* AmenityCounterView.swift */; };
 		C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */; };
 		C46BD7612828FBD2006AC587 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD7602828FBD2006AC587 /* User.swift */; };
 		C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD76228290A7E006AC587 /* HttpClient.swift */; };
@@ -122,6 +124,8 @@
 		C403101E2894C71F0046B645 /* SpecifiRoundCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifiRoundCorner.swift; sourceTree = "<group>"; };
 		C4057858282E199400C7D67A /* EmailCredentialsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCredentialsScreen.swift; sourceTree = "<group>"; };
 		C405785A282E22A000C7D67A /* PasswordInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputField.swift; sourceTree = "<group>"; };
+		C40E7F6128984E7200788652 /* AmenityCounterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterButton.swift; sourceTree = "<group>"; };
+		C40E7F6328985BE700788652 /* AmenityCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterView.swift; sourceTree = "<group>"; };
 		C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
 		C46BD7602828FBD2006AC587 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C46BD76228290A7E006AC587 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
@@ -547,6 +551,8 @@
 				C48268252896E8860072147F /* EmptyState.swift */,
 				C482683328973BF00072147F /* RadioButton.swift */,
 				C482683E28975DBF0072147F /* MaterialLengthField.swift */,
+				C40E7F6128984E7200788652 /* AmenityCounterButton.swift */,
+				C40E7F6328985BE700788652 /* AmenityCounterView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -766,8 +772,10 @@
 				C4BB007A2891162E000D2E47 /* CountriesCallingCodeScreen.swift in Sources */,
 				C4BB007128910797000D2E47 /* LocalDataSource.swift in Sources */,
 				C4BB007828910DCB000D2E47 /* LocalDataSourceDI.swift in Sources */,
+				C40E7F6428985BE700788652 /* AmenityCounterView.swift in Sources */,
 				C46BD78C2829627D006AC587 /* OutlinedButton.swift in Sources */,
 				C4BB007C28912D29000D2E47 /* EnterOTPScreen.swift in Sources */,
+				C40E7F6228984E7200788652 /* AmenityCounterButton.swift in Sources */,
 				C4D659AC282AFA7100FAE1D1 /* NameCredentialsScreen.swift in Sources */,
 				C40310172894A6260046B645 /* RightSwipe.swift in Sources */,
 				C482683928974C4B0072147F /* FacilityNameScreen.swift in Sources */,

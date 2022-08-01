@@ -30,19 +30,82 @@ struct FacilityRoomsScreen: View {
             
             RoomSizeView(length: $length, width: $length, validLength: $isValid, validWidth: $isValid)
             
-            Spacer()
-            
-
-            NavigationLink(destination:
-                            CancellationPolicyScreen(), isActive: $addNewUnitViewModel.willShowAddRoomsScreen) {
+            ScrollView{
+                
+                AmenityCounterView(counter: $addNewUnitViewModel.roomsCount, label: "Living rooms"){
+                    print("-")
+                    addNewUnitViewModel.removeRoom()
+                } onIncrease: {
+                    print("+")
+                    addNewUnitViewModel.addRoom()
+                }
+                
+                //if !addNewUnitViewModel.rooms.isEmpty {
+                ScrollView{
+                    LazyVStack(alignment: .leading){
+                        ForEach(0..<addNewUnitViewModel.rooms.count, id:\.self) { _ in
+                            
+                            RoomSizeView(length: $length, width: $length, validLength: $isValid, validWidth: $isValid)
+                            
+                                .padding(.bottom)
+                            
+                        }
+                    }
+                }        .background(Color(AppColor.BACKGROUND))
+                //}
+                
+                
+                
+                AmenityCounterView(counter: $addNewUnitViewModel.roomsCount, label: "Kitchen"){
+                    print("-")
+                    addNewUnitViewModel.removeRoom()
+                } onIncrease: {
+                    print("+")
+                    addNewUnitViewModel.addRoom()
+                }
+                
+                ScrollView{
+                    LazyVStack(alignment: .leading){
+                        ForEach(0..<addNewUnitViewModel.rooms.count, id:\.self) { _ in
+                            
+                            RoomSizeView(length: $length, width: $length, validLength: $isValid, validWidth: $isValid)
+                                .padding(.bottom)
+                            
+                        }
+                    }
+                }.background(Color(AppColor.BACKGROUND))
+                
+                AmenityCounterView(counter: $addNewUnitViewModel.roomsCount, label: "Bathroom") {
+                    print("Bathroom -")
+                } onIncrease: {
+                    print("Bathroom +")
+                }.padding(.bottom)
+                
+                AmenityCounterView(counter: $addNewUnitViewModel.roomsCount, label: "Shower") {
+                    print("Bathroom -")
+                } onIncrease: {
+                    print("Bathroom +")
+                }.padding(.bottom)
+                
+                AmenityCounterView(counter: $addNewUnitViewModel.roomsCount, label: "Capacity") {
+                    print("Bathroom -")
+                } onIncrease: {
+                    print("Bathroom +")
+                }.padding(.bottom)
+                
+                
+                NavigationLink(destination:
+                                CancellationPolicyScreen(), isActive: $addNewUnitViewModel.willShowAddRoomsScreen) {
                     EmptyView()
                 }
+                
+            }
             
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
                 print("tapped")
                 addNewUnitViewModel.isFacilityNameValid()
-
+                
                 
             }
             
@@ -60,15 +123,15 @@ struct FacilityRoomsScreen: View {
                         .foregroundColor(Color(AppColor.GREY))
                     
                 },
-        trailing: Button(action : {
-            print("Back button tapped")
-            self.presentationMode.wrappedValue.dismiss()
-        }){
-            Text("Exit")
-                .font(Font.custom("Poppins-Light", size: 16.0))
-                .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
-            
-        })
+            trailing: Button(action : {
+                print("Back button tapped")
+                self.presentationMode.wrappedValue.dismiss()
+            }){
+                Text("Exit")
+                    .font(Font.custom("Poppins-Light", size: 16.0))
+                    .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
+                
+            })
         .navigationBarTitleDisplayMode(.inline)
         .toolbar{
             ToolbarItem(placement: .principal){
@@ -80,6 +143,7 @@ struct FacilityRoomsScreen: View {
                 }
             }
         }
+        
     }
 }
 
@@ -95,7 +159,7 @@ struct RoomSizeView: View {
     @Binding var width: String
     @Binding var validLength: Bool
     @Binding var validWidth: Bool
-   
+    
     
     var body: some View {
         HStack {

@@ -42,6 +42,10 @@
 		C4826830289727B10072147F /* CancellationPolicyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482682F289727B10072147F /* CancellationPolicyScreen.swift */; };
 		C482683428973BF00072147F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683328973BF00072147F /* RadioButton.swift */; };
 		C48268362897454C0072147F /* CancellationPolicyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48268352897454C0072147F /* CancellationPolicyViewModel.swift */; };
+		C482683928974C4B0072147F /* FacilityNameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683828974C4B0072147F /* FacilityNameScreen.swift */; };
+		C482683B289751D70072147F /* AddNewUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683A289751D70072147F /* AddNewUnitViewModel.swift */; };
+		C482683D289759600072147F /* FacilityRoomsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683C289759600072147F /* FacilityRoomsScreen.swift */; };
+		C482683F28975DBF0072147F /* MaterialLengthField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683E28975DBF0072147F /* MaterialLengthField.swift */; };
 		C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC82823833E00343032 /* Endpoint.swift */; };
 		C4AF9B172828216600EBB141 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACA282385B000343032 /* RequestError.swift */; };
 		C4AF9B182828216600EBB141 /* HttpClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACC2823904B00343032 /* HttpClientProtocol.swift */; };
@@ -139,6 +143,10 @@
 		C482682F289727B10072147F /* CancellationPolicyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellationPolicyScreen.swift; sourceTree = "<group>"; };
 		C482683328973BF00072147F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		C48268352897454C0072147F /* CancellationPolicyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellationPolicyViewModel.swift; sourceTree = "<group>"; };
+		C482683828974C4B0072147F /* FacilityNameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityNameScreen.swift; sourceTree = "<group>"; };
+		C482683A289751D70072147F /* AddNewUnitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUnitViewModel.swift; sourceTree = "<group>"; };
+		C482683C289759600072147F /* FacilityRoomsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRoomsScreen.swift; sourceTree = "<group>"; };
+		C482683E28975DBF0072147F /* MaterialLengthField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialLengthField.swift; sourceTree = "<group>"; };
 		C492059D2827BF5700EB1112 /* PostEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEndpoint.swift; sourceTree = "<group>"; };
 		C4A2B840282809C9006E8C11 /* LoginDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDomainRepoProtocol.swift; sourceTree = "<group>"; };
 		C4A2B84228280A20006E8C11 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
@@ -279,9 +287,19 @@
 			isa = PBXGroup;
 			children = (
 				C482682D28970EC90072147F /* MyAddsScreen.swift */,
+				C482683728974C280072147F /* AddUnit */,
 				C482682F289727B10072147F /* CancellationPolicyScreen.swift */,
 			);
 			path = MyAdds;
+			sourceTree = "<group>";
+		};
+		C482683728974C280072147F /* AddUnit */ = {
+			isa = PBXGroup;
+			children = (
+				C482683828974C4B0072147F /* FacilityNameScreen.swift */,
+				C482683C289759600072147F /* FacilityRoomsScreen.swift */,
+			);
+			path = AddUnit;
 			sourceTree = "<group>";
 		};
 		C49205A32827E4FD00EB1112 /* Login */ = {
@@ -300,6 +318,7 @@
 				C4D659B1282B4F5000FAE1D1 /* SignupViewModel.swift */,
 				C403100F289494B30046B645 /* MaterialTabViewRouter.swift */,
 				C47FEB122896A873008BC4C2 /* MyBookingsViewModel.swift */,
+				C482683A289751D70072147F /* AddNewUnitViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -527,6 +546,7 @@
 				C48268232896E47D0072147F /* Spinner.swift */,
 				C48268252896E8860072147F /* EmptyState.swift */,
 				C482683328973BF00072147F /* RadioButton.swift */,
+				C482683E28975DBF0072147F /* MaterialLengthField.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -679,6 +699,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */,
+				C482683F28975DBF0072147F /* MaterialLengthField.swift in Sources */,
+				C482683D289759600072147F /* FacilityRoomsScreen.swift in Sources */,
 				C403100C289466210046B645 /* RentCollectionIndicator.swift in Sources */,
 				C40310132894A2FE0046B645 /* LeftSwipe.swift in Sources */,
 				C4AF9B172828216600EBB141 /* RequestError.swift in Sources */,
@@ -716,6 +738,7 @@
 				C4AF9B202828216600EBB141 /* PostRemoteDataSource.swift in Sources */,
 				C4BB007F28913C7E000D2E47 /* FirstResponderTextField.swift in Sources */,
 				C4AF9B212828216600EBB141 /* PostModel.swift in Sources */,
+				C482683B289751D70072147F /* AddNewUnitViewModel.swift in Sources */,
 				C47FEB112896962B008BC4C2 /* CustomAlertDialog.swift in Sources */,
 				C482682B289700BB0072147F /* PastBookings.swift in Sources */,
 				C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */,
@@ -747,6 +770,7 @@
 				C4BB007C28912D29000D2E47 /* EnterOTPScreen.swift in Sources */,
 				C4D659AC282AFA7100FAE1D1 /* NameCredentialsScreen.swift in Sources */,
 				C40310172894A6260046B645 /* RightSwipe.swift in Sources */,
+				C482683928974C4B0072147F /* FacilityNameScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

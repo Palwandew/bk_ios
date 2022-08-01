@@ -62,7 +62,7 @@ struct MaterialDesignTextField: View {
                         .background(Rectangle()
                                         .fill(Color(AppColor.BACKGROUND)))
                         .offset(x: 8, y: -8)
-                        .transition(.opacity)
+                        .transition(.move(edge: .trailing))
                 }
             }
             

@@ -19,11 +19,11 @@ struct MyAddsScreen: View {
             
             
             //MARK: - New Unit
-            
-            RowButton(title: "Add a new unit", icon: "plus.square.fill")
-                .onTapGesture {
-                    print("Add new unit")
-                }
+            NavigationLink{
+                FacilityNameScreen()
+            } label: {
+                RowButton(title: "Add a new unit", icon: "plus.square.fill")
+            }
             
             
             //MARK: - My Unit

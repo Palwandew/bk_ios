@@ -22,6 +22,8 @@
 		C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405785A282E22A000C7D67A /* PasswordInputField.swift */; };
 		C40E7F6228984E7200788652 /* AmenityCounterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6128984E7200788652 /* AmenityCounterButton.swift */; };
 		C40E7F6428985BE700788652 /* AmenityCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6328985BE700788652 /* AmenityCounterView.swift */; };
+		C40FBF07289A854B00557AEB /* AmenityDescriptionCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */; };
+		C40FBF09289A8DE300557AEB /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FBF08289A8DE300557AEB /* Checkbox.swift */; };
 		C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */; };
 		C46BD7612828FBD2006AC587 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD7602828FBD2006AC587 /* User.swift */; };
 		C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD76228290A7E006AC587 /* HttpClient.swift */; };
@@ -131,6 +133,8 @@
 		C405785A282E22A000C7D67A /* PasswordInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputField.swift; sourceTree = "<group>"; };
 		C40E7F6128984E7200788652 /* AmenityCounterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterButton.swift; sourceTree = "<group>"; };
 		C40E7F6328985BE700788652 /* AmenityCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterView.swift; sourceTree = "<group>"; };
+		C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityDescriptionCounter.swift; sourceTree = "<group>"; };
+		C40FBF08289A8DE300557AEB /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
 		C46BD7602828FBD2006AC587 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C46BD76228290A7E006AC587 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
@@ -258,6 +262,15 @@
 				C48268352897454C0072147F /* CancellationPolicyViewModel.swift */,
 			);
 			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		C40FBF0A289A94CC00557AEB /* ToggleStyles */ = {
+			isa = PBXGroup;
+			children = (
+				C4B538112899DE4A0067CC21 /* AccentGreen.swift */,
+				C40FBF08289A8DE300557AEB /* Checkbox.swift */,
+			);
+			path = ToggleStyles;
 			sourceTree = "<group>";
 		};
 		C46BD76428290D8A006AC587 /* Login */ = {
@@ -549,6 +562,7 @@
 		C4D0872C2893269000DCEACF /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				C40FBF0A289A94CC00557AEB /* ToggleStyles */,
 				C4BB006A2890F602000D2E47 /* MaterialPhoneNumberField.swift */,
 				C4BB005C2890C576000D2E47 /* MaterialSecureField.swift */,
 				C4BB005A2890AB89000D2E47 /* MaterialTextField.swift */,
@@ -567,7 +581,7 @@
 				C482683E28975DBF0072147F /* MaterialLengthField.swift */,
 				C40E7F6128984E7200788652 /* AmenityCounterButton.swift */,
 				C40E7F6328985BE700788652 /* AmenityCounterView.swift */,
-				C4B538112899DE4A0067CC21 /* AccentGreen.swift */,
+				C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -757,6 +771,7 @@
 				C48268242896E47E0072147F /* Spinner.swift in Sources */,
 				C4AF9B1F2828216600EBB141 /* PostRepositoryImp.swift in Sources */,
 				C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */,
+				C40FBF07289A854B00557AEB /* AmenityDescriptionCounter.swift in Sources */,
 				C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */,
 				C4AF9B202828216600EBB141 /* PostRemoteDataSource.swift in Sources */,
 				C4BB007F28913C7E000D2E47 /* FirstResponderTextField.swift in Sources */,
@@ -784,6 +799,7 @@
 				C4AF9B2A2828216600EBB141 /* Post.swift in Sources */,
 				C4D659AE282B0B8B00FAE1D1 /* CustomInputField.swift in Sources */,
 				C4BB006B2890F602000D2E47 /* MaterialPhoneNumberField.swift in Sources */,
+				C40FBF09289A8DE300557AEB /* Checkbox.swift in Sources */,
 				C48268362897454C0072147F /* CancellationPolicyViewModel.swift in Sources */,
 				C46BD7612828FBD2006AC587 /* User.swift in Sources */,
 				C4BB00692890F504000D2E47 /* VerifyPhoneNumberScreen.swift in Sources */,

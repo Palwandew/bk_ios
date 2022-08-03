@@ -10,13 +10,17 @@ import SwiftUI
 struct FacilityFreeAmenitiesScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
+    //@EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
+    @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel()
+    
     @State var progress: Float = 0.249 // total 12 steps therefore each one is 0.083
     @State var isWifiOn: Bool = false
     @State var isParkingOn: Bool = true
     @State var indoorSwimmingPools: Int = 0
     @State var length: String = ""
     @State var isValid: Bool = true
+    
+    @State var isOn: Bool = false
     var body: some View {
         VStack(alignment: .leading) {
             
@@ -80,7 +84,65 @@ struct FacilityFreeAmenitiesScreen: View {
                         
                     }
                 }
+                
+                Group {
+                    Toggle(isOn: $isOn) {
+                        Text("Outdoor sitting")
+                    }.toggleStyle(Checkbox())
+                    
+                    Toggle(isOn: $isOn) {
+                        Text("Barbeque area")
+                    }.toggleStyle(Checkbox())
+                    
+                    
+                    Toggle(isOn: $isOn) {
+                        Text("Gym")
+                    }.toggleStyle(Checkbox())
+                    
+                    Toggle(isOn: $isOn) {
+                        Text("Games room")
+                    }.toggleStyle(Checkbox())
+                    
+                    Toggle(isOn: $isOn) {
+                        Text("Garden")
+                    }.toggleStyle(Checkbox())
+                    
+                    Toggle(isOn: $isOn) {
+                        Text("Playing field")
+                    }.toggleStyle(Checkbox())
+                }
+                
+                
+                    
+
+                        
+//                        RoundedRectangle(cornerRadius: 5)
+//                            .fill(Color(AppColor.DARKEST_BLUE))
+//                            .frame(width: 24, height: 24)
+                        
+                        
+                    
+//                    RoundedRectangle(cornerRadius: 8)
+//                        .stroke(lineWidth: 2)
+//                        .frame(width: 20, height: 20)
+//                        .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
+                    
+//                    if configuration.isOn{
+//                        Circle()
+//                            .fill(Color(AppColor.ACCENT_GREEN))
+//                            .frame(width: 10, height: 10)
+//                    }
+                
             })
+            
+            FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
+                
+                print("tapped")
+                addNewUnitViewModel.onContinueTapped()
+                
+                
+            }//.padding(.top, -24)
+        
         }.padding(.horizontal)
             .background(Color(AppColor.BACKGROUND))
             .navigationBarBackButtonHidden(true)

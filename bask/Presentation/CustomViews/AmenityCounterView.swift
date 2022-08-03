@@ -17,7 +17,7 @@ struct AmenityCounterView: View {
         HStack{
             
             Text(label)
-                .font(Font.custom("Poppins-Medium", size: 16.0))
+                .font(Font.custom("Poppins-Regular", size: 16.0))
             
             Spacer()
             

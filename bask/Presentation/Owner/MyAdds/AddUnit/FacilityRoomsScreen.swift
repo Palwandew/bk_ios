@@ -17,20 +17,21 @@ struct FacilityRoomsScreen: View {
     
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 32.0){
+        VStack(alignment: .leading, spacing: 32.0) {
             
             Text("Rooms")
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
-            Text("Size of facility")
-                .font(Font.custom("Poppins-Medium", size: 16.0))
-                .padding(.bottom, -16)
+            //            Text("Size of facility")
+            //                .font(Font.custom("Poppins-Medium", size: 16.0))
+            //                .padding(.bottom, -16)
             
-            
-            RoomSizeView(length: $length, width: $length, validLength: $isValid, validWidth: $isValid)
-            
-            ScrollView{
+            ScrollView {
+                RoomSizeView(label: "Size of facility", length: $addNewUnitViewModel.facility.length, width: $addNewUnitViewModel.facility.width, validLength: $isValid, validWidth: $isValid)
+                    .padding(.horizontal, 1)
+                
+                
                 
                 AmenityCounterView(counter: $addNewUnitViewModel.roomsCount, label: "Living rooms"){
                     print("-")
@@ -41,62 +42,71 @@ struct FacilityRoomsScreen: View {
                 }
                 
                 //if !addNewUnitViewModel.rooms.isEmpty {
-                ScrollView{
-                    LazyVStack(alignment: .leading){
-                        ForEach(0..<addNewUnitViewModel.rooms.count, id:\.self) { _ in
-                            
-                            RoomSizeView(length: $length, width: $length, validLength: $isValid, validWidth: $isValid)
-                            
-                                .padding(.bottom)
-                            
-                        }
+                //ScrollView{
+                LazyVStack(alignment: .leading){
+                    ForEach(addNewUnitViewModel.rooms.indices, id:\.self) { index in
+                        
+                        RoomSizeView(label: "Living room \(index + 1)", length: $length, width: $length, validLength: $isValid, validWidth: $isValid)
+                            .padding([.top, .leading, .trailing], 2)
+                            .padding(.bottom)
+                        
                     }
-                }        .background(Color(AppColor.BACKGROUND))
+                }
+                //}        //.background(Color(AppColor.BACKGROUND))
                 //}
                 
                 
                 
-                AmenityCounterView(counter: $addNewUnitViewModel.roomsCount, label: "Kitchen"){
-                    print("-")
-                    addNewUnitViewModel.removeRoom()
+                AmenityCounterView(counter: $addNewUnitViewModel.facility.kitchen, label: "Kitchen") {
+                    addNewUnitViewModel.decreaseKitchenCount()
                 } onIncrease: {
-                    print("+")
-                    addNewUnitViewModel.addRoom()
-                }
+                    addNewUnitViewModel.increaseKitchenCount()
+                }.padding(.bottom)
                 
-                ScrollView{
-                    LazyVStack(alignment: .leading){
-                        ForEach(0..<addNewUnitViewModel.rooms.count, id:\.self) { _ in
-                            
-                            RoomSizeView(length: $length, width: $length, validLength: $isValid, validWidth: $isValid)
-                                .padding(.bottom)
-                            
-                        }
+                //ScrollView{
+                LazyVStack(alignment: .leading){
+                    ForEach(addNewUnitViewModel.kitchen.indices, id:\.self) { index in
+                        
+                        RoomSizeView(label: "Kitchen \(index)", length: $length, width: $length, validLength: $isValid, validWidth: $isValid)
+                            .padding([.top, .leading, .trailing], 2)
+                            .padding(.bottom)
+                        
                     }
-                }.background(Color(AppColor.BACKGROUND))
+                }
+                //}.background(Color(AppColor.BACKGROUND))
                 
-                AmenityCounterView(counter: $addNewUnitViewModel.roomsCount, label: "Bathroom") {
-                    print("Bathroom -")
+                AmenityCounterView(counter: $addNewUnitViewModel.facility.bathrooms, label: "Bathroom") {
+                    addNewUnitViewModel.decreaseBathroomCount()
                 } onIncrease: {
-                    print("Bathroom +")
+                    addNewUnitViewModel.increaseBathroomCount()
                 }.padding(.bottom)
                 
-                AmenityCounterView(counter: $addNewUnitViewModel.roomsCount, label: "Shower") {
-                    print("Bathroom -")
+                AmenityCounterView(counter: $addNewUnitViewModel.facility.showers, label: "Shower") {
+                    addNewUnitViewModel.decreaseShowersCount()
                 } onIncrease: {
-                    print("Bathroom +")
+                    addNewUnitViewModel.increaseShowersCount()
                 }.padding(.bottom)
                 
-                AmenityCounterView(counter: $addNewUnitViewModel.roomsCount, label: "Capacity") {
-                    print("Bathroom -")
+                AmenityCounterView(counter: $addNewUnitViewModel.facility.capacity, label: "Capacity") {
+                    addNewUnitViewModel.decreaseCapacityCount()
                 } onIncrease: {
-                    print("Bathroom +")
+                    addNewUnitViewModel.increaseCapacityCount()
                 }.padding(.bottom)
                 
                 
                 NavigationLink(destination:
-                                CancellationPolicyScreen(), isActive: $addNewUnitViewModel.willShowAddRoomsScreen) {
+                                FacilityFreeAmenitiesScreen()
+                                .environmentObject(addNewUnitViewModel), isActive: $addNewUnitViewModel.willShowFreeAmenitiesScreen) {
                     EmptyView()
+                }
+                
+                HStack {
+                    Text("How many peole can be\nhosted in a facility ")
+                    
+                        .font(Font.custom("Poppins-Regular", size: 14))
+                        .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                        .lineLimit(2)
+                    Spacer()
                 }
                 
             }
@@ -104,10 +114,10 @@ struct FacilityRoomsScreen: View {
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
                 print("tapped")
-                addNewUnitViewModel.isFacilityNameValid()
+                addNewUnitViewModel.onContinueTapped()
                 
                 
-            }
+            }.padding(.top, -24)
             
         }
         .padding(.horizontal)
@@ -155,6 +165,7 @@ struct FacilityRoomsScreen_Previews: PreviewProvider {
 
 struct RoomSizeView: View {
     
+    let label: String
     @Binding var length: String
     @Binding var width: String
     @Binding var validLength: Bool
@@ -162,12 +173,18 @@ struct RoomSizeView: View {
     
     
     var body: some View {
-        HStack {
-            MaterialLengthField(text: $length, isValid: $validLength, errorMessage: "valid_room_length", placeHolder: "x-meters")
+        VStack(alignment: .leading) {
             
-            Image(systemName: "multiply")
+            Text(label)
+                .font(Font.custom("Poppins-Regular", size: 16.0))
             
-            MaterialLengthField(text: $length, isValid: $validWidth, errorMessage: "valid_room_length", placeHolder: "y-meters")
+            HStack {
+                MaterialLengthField(text: $length, isValid: $validLength, errorMessage: "valid_room_length", placeHolder: "x-meters")
+                
+                Image(systemName: "multiply")
+                
+                MaterialLengthField(text: $width, isValid: $validWidth, errorMessage: "valid_room_length", placeHolder: "y-meters")
+            }
         }
     }
 }

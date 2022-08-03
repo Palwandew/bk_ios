@@ -16,10 +16,15 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var facilityName: String = ""
     @Published var isValidName: Bool = true
     @Published var willShowAddRoomsScreen: Bool = false
+    @Published var willShowFreeAmenitiesScreen: Bool = false
     
     @Published var roomsCount: Int = 0
+    @Published var kitchenCount: Int = 0
     
     @Published var rooms: [Int] = []
+    @Published var kitchen: [Int] = []
+    
+    @Published var facility: Facility = Facility(kitchen: 0, capacity: 0, bathrooms: 0, showers: 0)
     
     func isFacilityNameValid(){
         if facilityName.isEmpty || facilityName.count < 3 {
@@ -28,6 +33,11 @@ class AddNewUnitViewModel: ObservableObject {
             isValidName = true
             willShowAddRoomsScreen = true
         }
+    }
+    
+    func onContinueTapped(){
+        willShowFreeAmenitiesScreen = true
+        print("width \(self.facility.width) \n length \(self.facility.length)")
     }
     
     func addRoom() {
@@ -43,4 +53,42 @@ class AddNewUnitViewModel: ObservableObject {
         }
     }
     
+    
+    //MARK: - Kitchen Counter Manipulation
+    func increaseKitchenCount(){
+        facility.increaseCounterOf(.kitchen)
+    }
+    
+    func decreaseKitchenCount() {
+        facility.decreaseCounterOf(.kitchen)
+    }
+    
+    
+    // MARK: - Capacity Counter Manipulation
+    func increaseCapacityCount() {
+        facility.increaseCounterOf(.capacity)
+    }
+    
+    func decreaseCapacityCount() {
+        facility.decreaseCounterOf(.capacity)
+    }
+    
+    
+    // MARK: - Bathroom Counter Manipulation
+    func increaseBathroomCount() {
+        facility.increaseCounterOf(.bathroom)
+    }
+    
+    func decreaseBathroomCount() {
+        facility.decreaseCounterOf(.bathroom)
+    }
+    
+    // MARK: - Showers Counter Manipulation
+    func increaseShowersCount() {
+        facility.increaseCounterOf(.showers)
+    }
+    
+    func decreaseShowersCount() {
+        facility.decreaseCounterOf(.showers)
+    }
 }

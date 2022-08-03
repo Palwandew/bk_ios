@@ -1,5 +1,5 @@
 //
-//  FacilityFreeAmenitiesScreen.swift
+//  FacilityPaidAmenitiesScreen.swift
 //  bask
 //
 //  Created by TEHSEEN ABBAS on 03/08/2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FacilityFreeAmenitiesScreen: View {
+struct FacilityPaidAmenitiesScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     //@EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
@@ -28,7 +28,7 @@ struct FacilityFreeAmenitiesScreen: View {
             //MARK: - Title
             
             
-            Text("Amenities (free)")
+            Text("Amenities (paid)")
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
@@ -112,27 +112,7 @@ struct FacilityFreeAmenitiesScreen: View {
                         Text("Playing field")
                     }.toggleStyle(Checkbox())
                 }
-                
-                
-                    
-
-                        
-//                        RoundedRectangle(cornerRadius: 5)
-//                            .fill(Color(AppColor.DARKEST_BLUE))
-//                            .frame(width: 24, height: 24)
-                        
-                        
-                    
-//                    RoundedRectangle(cornerRadius: 8)
-//                        .stroke(lineWidth: 2)
-//                        .frame(width: 20, height: 20)
-//                        .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
-                    
-//                    if configuration.isOn{
-//                        Circle()
-//                            .fill(Color(AppColor.ACCENT_GREEN))
-//                            .frame(width: 10, height: 10)
-//                    }
+       
                 
             })
             
@@ -182,22 +162,8 @@ struct FacilityFreeAmenitiesScreen: View {
     }
 }
 
-struct FacilityFreeAmenitiesScreen_Previews: PreviewProvider {
-    
+struct FacilityPaidAmenitiesScreen_Previews: PreviewProvider {
     static var previews: some View {
-        FacilityFreeAmenitiesScreen()
-    }
-}
-
-struct AmenityToggle: View {
-    
-    @Binding var isOn: Bool
-    let label: String
-    var body: some View {
-        Toggle(isOn: $isOn) {
-            Text(label)
-                .font(Font.custom("Poppins-Regular", size: 16))
-                .fontWeight(.regular)
-        }.toggleStyle(AccentGreen())
+        FacilityPaidAmenitiesScreen()
     }
 }

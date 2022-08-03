@@ -36,6 +36,8 @@
 		C46BD78728295CCB006AC587 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78628295CCA006AC587 /* AppColor.swift */; };
 		C46BD78A28295FA0006AC587 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78928295FA0006AC587 /* ColorExtension.swift */; };
 		C46BD78C2829627D006AC587 /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78B2829627D006AC587 /* OutlinedButton.swift */; };
+		C47BE340289AABA900B91D69 /* FacilityPaidAmenitiesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47BE33F289AABA900B91D69 /* FacilityPaidAmenitiesScreen.swift */; };
+		C47BE342289AADD400B91D69 /* AmenityPaidCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47BE341289AADD400B91D69 /* AmenityPaidCounter.swift */; };
 		C47FEB112896962B008BC4C2 /* CustomAlertDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47FEB102896962B008BC4C2 /* CustomAlertDialog.swift */; };
 		C47FEB132896A874008BC4C2 /* MyBookingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47FEB122896A873008BC4C2 /* MyBookingsViewModel.swift */; };
 		C48268242896E47E0072147F /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48268232896E47D0072147F /* Spinner.swift */; };
@@ -146,6 +148,8 @@
 		C46BD78628295CCA006AC587 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		C46BD78928295FA0006AC587 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		C46BD78B2829627D006AC587 /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
+		C47BE33F289AABA900B91D69 /* FacilityPaidAmenitiesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPaidAmenitiesScreen.swift; sourceTree = "<group>"; };
+		C47BE341289AADD400B91D69 /* AmenityPaidCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityPaidCounter.swift; sourceTree = "<group>"; };
 		C47FEB102896962B008BC4C2 /* CustomAlertDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertDialog.swift; sourceTree = "<group>"; };
 		C47FEB122896A873008BC4C2 /* MyBookingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookingsViewModel.swift; sourceTree = "<group>"; };
 		C48268232896E47D0072147F /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
@@ -327,6 +331,7 @@
 				C482683828974C4B0072147F /* FacilityNameScreen.swift */,
 				C482683C289759600072147F /* FacilityRoomsScreen.swift */,
 				C4B5380F2899D0C70067CC21 /* FacilityFreeAmenitiesScreen.swift */,
+				C47BE33F289AABA900B91D69 /* FacilityPaidAmenitiesScreen.swift */,
 			);
 			path = AddUnit;
 			sourceTree = "<group>";
@@ -582,6 +587,7 @@
 				C40E7F6128984E7200788652 /* AmenityCounterButton.swift */,
 				C40E7F6328985BE700788652 /* AmenityCounterView.swift */,
 				C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */,
+				C47BE341289AADD400B91D69 /* AmenityPaidCounter.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -738,6 +744,7 @@
 				C482683F28975DBF0072147F /* MaterialLengthField.swift in Sources */,
 				C482683D289759600072147F /* FacilityRoomsScreen.swift in Sources */,
 				C403100C289466210046B645 /* RentCollectionIndicator.swift in Sources */,
+				C47BE342289AADD400B91D69 /* AmenityPaidCounter.swift in Sources */,
 				C40310132894A2FE0046B645 /* LeftSwipe.swift in Sources */,
 				C4AF9B172828216600EBB141 /* RequestError.swift in Sources */,
 				C4031008289459280046B645 /* HomeScreen.swift in Sources */,
@@ -764,6 +771,7 @@
 				C46BD76628290DB9006AC587 /* UserTypeSelectionScreen.swift in Sources */,
 				C46BD78A28295FA0006AC587 /* ColorExtension.swift in Sources */,
 				C4AF9B1E2828216600EBB141 /* LoginEndpoint.swift in Sources */,
+				C47BE340289AABA900B91D69 /* FacilityPaidAmenitiesScreen.swift in Sources */,
 				C482683428973BF00072147F /* RadioButton.swift in Sources */,
 				C403100E289482B10046B645 /* MaterialTabView.swift in Sources */,
 				C4826830289727B10072147F /* CancellationPolicyScreen.swift in Sources */,

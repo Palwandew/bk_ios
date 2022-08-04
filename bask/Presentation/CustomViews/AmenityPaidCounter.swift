@@ -9,26 +9,76 @@ import SwiftUI
 
 struct AmenityPaidCounter: View {
     
-    let label: String = "Wifi"
-    @State var counter: Int = 0
-    @State var valid: Bool = true
-    @State var text: String = "ho"
-    let error: LocalizedStringKey = "valid_description"
+    @State var text: String = ""
+    @State var isValid: Bool = true
+    @State var menuShowed: Bool = false
+    @State var selectedText: String = "day"
+
+    let errorMessage: LocalizedStringKey = "valid_description"
+    let type: AmenityDetail = .description
+    let menuItem: [String] = ["day", "item"]
     
     var body: some View {
         
-        VStack{
-            AmenityCounterView(counter: $counter, label: label) {
-                print("-")
-                counter -= 1
-            } onIncrease: {
-                print("+")
-                counter += 1
-            }//.padding(.bottom)
+        ZStack(alignment: .trailing) {
+            VStack{
+                
+                HStack {
+                    MaterialPriceField(text: $text, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Price")
+                    
+                    Text("per")
+                        .font(Font.custom("Poppins-Regular", size: 14))
+                        .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                    
+                    MaterialDropdown(menuShowed: $menuShowed, selectedText: $selectedText) {
+                        print("hee")
+                        menuShowed.toggle()
+                    }.frame(height: 57)
+                }
+                
+                MaterialTextField(text: $text, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Description (Optional)")
+            }
             
-            MaterialTextField(text: $text, isValid: $valid, errorMessage: (error), placeHolder: "Description (Optional)")
+            VStack{
+                if menuShowed {
+                    
+                    VStack(spacing: 16) {
+                        ForEach(menuItem.indices, id:\.self) { index in
+                            
+                            if selectedText != menuItem[index]{
+                                HStack {
+                                    Text(menuItem[index])
+                                        .font(Font.custom("Poppins-Regular", size: 16))
+                                        .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                                    
+                                    Spacer()
+                                    
+                                }.contentShape(Rectangle())
+                                    .onTapGesture {
+                                        
+                                        
+                                        selectedText = menuItem[index]
+                                        withAnimation{
+                                            menuShowed.toggle()
+                                        }
+                                    }
+                            }
+                        }
+                    }
+                    .padding()
+                    .frame(width: UIScreen.main.bounds.width * 0.40)
+                    .background(RoundedRectangle(cornerRadius: 8).fill(.white).shadow(radius: 3))
+                    .transition(.opacity)
+                }
+            }
+            .offset(x: 0, y: 25)
         }
     }
+}
+
+enum AmenityDetail {
+    case description
+    case area
 }
 
 struct AmenityPaidCounter_Previews: PreviewProvider {
@@ -37,28 +87,41 @@ struct AmenityPaidCounter_Previews: PreviewProvider {
     }
 }
 
-struct PricePerUnit: View {
+
+struct MaterialDropdown: View {
     
-    let label: String
-    @Binding var length: String
-    @Binding var width: String
-    @Binding var validLength: Bool
-    @Binding var validWidth: Bool
+    private let color: Color = Color(red: 0.404, green: 0.424, blue: 0.561)
     
+    @Binding var menuShowed: Bool
+    @Binding var selectedText: String
+    let onTapped: () -> Void
     
     var body: some View {
-        VStack(alignment: .leading) {
-            
-            Text(label)
-                .font(Font.custom("Poppins-Regular", size: 16.0))
-            
-            HStack {
-                MaterialLengthField(text: $length, isValid: $validLength, errorMessage: "valid_room_length", placeHolder: "x-meters")
+        
+        GeometryReader { geomerty in
+            ZStack() {
                 
-                Image(systemName: "multiply")
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(menuShowed ? Color(AppColor.LIGHT_VOILET) : Color(AppColor.GREY), lineWidth: menuShowed ? 2 : 1)
                 
-                MaterialLengthField(text: $width, isValid: $validWidth, errorMessage: "valid_room_length", placeHolder: "y-meters")
-            }
+                HStack{
+                    
+                    Text(selectedText)
+                        .font(Font.custom("Poppins-Regular", size: 16))
+                        .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                    
+                    Spacer()
+                    
+                    Image(systemName: menuShowed ? "chevron.up" : "chevron.down")
+                        .foregroundColor(color)
+                    
+                }
+                .contentShape(Rectangle())
+                .padding(.horizontal)
+                .onTapGesture {
+                    onTapped()
+                }
+            }.frame(width: geomerty.size.width, height: geomerty.size.height)
         }
     }
 }

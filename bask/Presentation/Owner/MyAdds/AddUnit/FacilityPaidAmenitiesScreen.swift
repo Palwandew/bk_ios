@@ -39,11 +39,18 @@ struct FacilityPaidAmenitiesScreen: View {
                 
                 AmenityToggle(isOn: $isWifiOn, label: "Wifi")
                 
+                if isWifiOn {
+                    AmenityPaidCounter()
+                }
+                
                 
                 //MARK: - Parking
                 
                 AmenityToggle(isOn: $isParkingOn, label: "Parking")
                 
+                if isParkingOn {
+                    AmenityPaidCounter()
+                }
                 
                 //MARK: - Indoor Pools
                 
@@ -112,7 +119,8 @@ struct FacilityPaidAmenitiesScreen: View {
                         Text("Playing field")
                     }.toggleStyle(Checkbox())
                 }
-       
+                
+                AmenityPaidCounter()
                 
             })
             

@@ -19,7 +19,7 @@ struct FacilityFreeAmenitiesScreen: View {
     @State var indoorSwimmingPools: Int = 0
     @State var length: String = ""
     @State var isValid: Bool = true
-    
+    @State var showPaid: Bool = false
     @State var isOn: Bool = false
     var body: some View {
         VStack(alignment: .leading) {
@@ -134,12 +134,17 @@ struct FacilityFreeAmenitiesScreen: View {
 //                            .frame(width: 10, height: 10)
 //                    }
                 
+                NavigationLink(destination:
+                                FacilityPaidAmenitiesScreen(), isActive: $showPaid) {
+                    EmptyView()
+                }
+                
             })
             
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
                 print("tapped")
-                addNewUnitViewModel.onContinueTapped()
+                showPaid.toggle()
                 
                 
             }//.padding(.top, -24)

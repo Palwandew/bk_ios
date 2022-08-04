@@ -141,6 +141,8 @@ struct FacilityFreeAmenitiesScreen: View {
                 
             })
             
+            //MARK: - Continue Button
+            
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
                 print("tapped")

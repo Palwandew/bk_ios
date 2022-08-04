@@ -20,8 +20,10 @@ struct FacilityPaidAmenitiesScreen: View {
     @State var outdoorSwimmingPools: Int = 0
     @State var length: String = ""
     @State var isValid: Bool = true
-    
     @State var isOn: Bool = false
+    
+    @State var showRules: Bool = false 
+    
     var body: some View {
         VStack(alignment: .leading) {
             
@@ -125,6 +127,10 @@ struct FacilityPaidAmenitiesScreen: View {
                 }.padding(.trailing, 1)
                 
                 //AmenityPaidCounter()
+                NavigationLink(destination:
+                                FacilityRulesScreen(), isActive: $showRules) {
+                    EmptyView()
+                }
                 
             })
             
@@ -133,7 +139,7 @@ struct FacilityPaidAmenitiesScreen: View {
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
                 print("tapped")
-                addNewUnitViewModel.onContinueTapped()
+                showRules.toggle()
                 
                 
             }//.padding(.top, -24)

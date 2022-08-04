@@ -17,6 +17,7 @@ struct FacilityPaidAmenitiesScreen: View {
     @State var isWifiOn: Bool = false
     @State var isParkingOn: Bool = true
     @State var indoorSwimmingPools: Int = 0
+    @State var outdoorSwimmingPools: Int = 0
     @State var length: String = ""
     @State var isValid: Bool = true
     
@@ -40,7 +41,7 @@ struct FacilityPaidAmenitiesScreen: View {
                 AmenityToggle(isOn: $isWifiOn, label: "Wifi")
                 
                 if isWifiOn {
-                    AmenityPaidCounter()
+                    AmenityPriceDecriptionInputView()
                 }
                 
                 
@@ -49,7 +50,7 @@ struct FacilityPaidAmenitiesScreen: View {
                 AmenityToggle(isOn: $isParkingOn, label: "Parking")
                 
                 if isParkingOn {
-                    AmenityPaidCounter()
+                    AmenityPriceDecriptionInputView()
                 }
                 
                 //MARK: - Indoor Pools
@@ -63,11 +64,9 @@ struct FacilityPaidAmenitiesScreen: View {
                 }
                 
                 LazyVStack(alignment: .leading){
-                    ForEach(addNewUnitViewModel.rooms.indices, id:\.self) { index in
+                    ForEach(0..<indoorSwimmingPools, id:\.self) { index in
                         
-                        RoomSizeView(label: "Indoor swimming pool \(index + 1)", length: $length, width: $length, validLength: $isValid, validWidth: $isValid)
-                            .padding([.top, .leading, .trailing], 2)
-                            .padding(.bottom)
+                        AmenityPriceLengthInputView()
                         
                     }
                 }
@@ -75,55 +74,62 @@ struct FacilityPaidAmenitiesScreen: View {
                 
                 //MARK: - Outdoor Pools
                 
-                AmenityCounterView(counter: $indoorSwimmingPools, label: "Outdoor swimming pool") {
-                    if indoorSwimmingPools > 0 {
-                        indoorSwimmingPools -= 1
+                AmenityCounterView(counter: $outdoorSwimmingPools, label: "Outdoor swimming pool") {
+                    if outdoorSwimmingPools > 0 {
+                        outdoorSwimmingPools -= 1
                     }
                 } onIncrease: {
-                    indoorSwimmingPools += 1
+                    outdoorSwimmingPools += 1
                 }
                 
                 LazyVStack(alignment: .leading){
-                    ForEach(addNewUnitViewModel.rooms.indices, id:\.self) { index in
+                    ForEach(0..<outdoorSwimmingPools, id:\.self) { index in
                         
-                        RoomSizeView(label: "Outdoor swimming pool \(index + 1)", length: $length, width: $length, validLength: $isValid, validWidth: $isValid)
-                            .padding([.top, .leading, .trailing], 2)
-                            .padding(.bottom)
+                        AmenityPriceLengthInputView()
                         
                     }
                 }
                 
+                
+                //MARK: - Outdoor Sitting
                 Group {
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facility.outdoorSitting) {
                         Text("Outdoor sitting")
                     }.toggleStyle(Checkbox())
                     
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facility.bbq) {
                         Text("Barbeque area")
                     }.toggleStyle(Checkbox())
                     
                     
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facility.gym) {
                         Text("Gym")
                     }.toggleStyle(Checkbox())
                     
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facility.gamesRoom) {
                         Text("Games room")
                     }.toggleStyle(Checkbox())
                     
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facility.garden) {
                         Text("Garden")
                     }.toggleStyle(Checkbox())
                     
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facility.playingField) {
                         Text("Playing field")
                     }.toggleStyle(Checkbox())
-                }
+                    
+                    if addNewUnitViewModel.facility.playingField {
+                        AmenityPriceLengthInputView()
+                            .padding(.bottom, 2)
+                    }
+                }.padding(.trailing, 1)
                 
-                AmenityPaidCounter()
+                //AmenityPaidCounter()
                 
             })
             
+            
+            //MARK: - Continue Button
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
                 print("tapped")

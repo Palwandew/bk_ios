@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AmenityPaidCounter: View {
+struct AmenityPriceDecriptionInputView: View {
     
     @State var text: String = ""
     @State var isValid: Bool = true
@@ -71,8 +71,9 @@ struct AmenityPaidCounter: View {
                     .transition(.opacity)
                 }
             }
+            
             .offset(x: 0, y: 25)
-        }
+        }.padding(.horizontal, 1)
     }
 }
 
@@ -83,7 +84,7 @@ enum AmenityDetail {
 
 struct AmenityPaidCounter_Previews: PreviewProvider {
     static var previews: some View {
-        AmenityPaidCounter()
+        AmenityPriceDecriptionInputView()
     }
 }
 

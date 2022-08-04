@@ -15,6 +15,12 @@ struct Facility {
     var capacity: Int
     var bathrooms: Int
     var showers: Int
+    var outdoorSitting: Bool = false
+    var bbq: Bool = true
+    var gym: Bool = false
+    var gamesRoom: Bool = false
+    var garden: Bool = false
+    var playingField: Bool = false
     let room_status: Int = 1
     
     mutating func increaseCounterOf(_ amenity: Amenity) {

@@ -16,7 +16,7 @@ struct FacilityLocationScreen: View {
     @State var text: String = ""
     @State var valid: Bool = true
     let errorMsg: LocalizedStringKey = "valid_description"
-    
+    @State var showMap: Bool = false 
     
     var body: some View {
         
@@ -51,21 +51,30 @@ struct FacilityLocationScreen: View {
             
             //}
             
-            //MARK: - Street
+            //MARK: - Address
             
             MaterialTextField(text: $text, isValid: $valid, errorMessage: errorMsg, placeHolder: "Address")
                 .padding([.top, .horizontal], 1)
             
             Spacer()
             
+            
+            NavigationLink(destination:
+                            FacilityMapScreen(), isActive: $showMap) {
+                EmptyView()
+            }
+            
             //MARK: - Continue Button
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
                 print("tapped")
-                //showRules.toggle()
+                showMap.toggle()
                 
                 
             }//.padding(.top, -24)
+            
+            
+        //MARK: - Navigation bar item
             
             
         }.padding(.horizontal)

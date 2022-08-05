@@ -21,6 +21,7 @@
 		C4057859282E199400C7D67A /* EmailCredentialsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4057858282E199400C7D67A /* EmailCredentialsScreen.swift */; };
 		C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405785A282E22A000C7D67A /* PasswordInputField.swift */; };
 		C4082844289D29D300C1B51B /* FacilityLocationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4082843289D29D300C1B51B /* FacilityLocationScreen.swift */; };
+		C4082846289D2E3300C1B51B /* FacilityMapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4082845289D2E3300C1B51B /* FacilityMapScreen.swift */; };
 		C40E7F6228984E7200788652 /* AmenityCounterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6128984E7200788652 /* AmenityCounterButton.swift */; };
 		C40E7F6428985BE700788652 /* AmenityCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6328985BE700788652 /* AmenityCounterView.swift */; };
 		C40FBF07289A854B00557AEB /* AmenityDescriptionCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */; };
@@ -139,6 +140,7 @@
 		C4057858282E199400C7D67A /* EmailCredentialsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCredentialsScreen.swift; sourceTree = "<group>"; };
 		C405785A282E22A000C7D67A /* PasswordInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputField.swift; sourceTree = "<group>"; };
 		C4082843289D29D300C1B51B /* FacilityLocationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityLocationScreen.swift; sourceTree = "<group>"; };
+		C4082845289D2E3300C1B51B /* FacilityMapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityMapScreen.swift; sourceTree = "<group>"; };
 		C40E7F6128984E7200788652 /* AmenityCounterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterButton.swift; sourceTree = "<group>"; };
 		C40E7F6328985BE700788652 /* AmenityCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterView.swift; sourceTree = "<group>"; };
 		C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityDescriptionCounter.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				C47BE33F289AABA900B91D69 /* FacilityPaidAmenitiesScreen.swift */,
 				C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */,
 				C4082843289D29D300C1B51B /* FacilityLocationScreen.swift */,
+				C4082845289D2E3300C1B51B /* FacilityMapScreen.swift */,
 			);
 			path = AddUnit;
 			sourceTree = "<group>";
@@ -805,6 +808,7 @@
 				C4AF9B212828216600EBB141 /* PostModel.swift in Sources */,
 				C482683B289751D70072147F /* AddNewUnitViewModel.swift in Sources */,
 				C47FEB112896962B008BC4C2 /* CustomAlertDialog.swift in Sources */,
+				C4082846289D2E3300C1B51B /* FacilityMapScreen.swift in Sources */,
 				C482682B289700BB0072147F /* PastBookings.swift in Sources */,
 				C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */,
 				C4AF9B222828216600EBB141 /* PostEndpoint.swift in Sources */,

@@ -20,6 +20,7 @@
 		C403101F2894C71F0046B645 /* SpecifiRoundCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403101E2894C71F0046B645 /* SpecifiRoundCorner.swift */; };
 		C4057859282E199400C7D67A /* EmailCredentialsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4057858282E199400C7D67A /* EmailCredentialsScreen.swift */; };
 		C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405785A282E22A000C7D67A /* PasswordInputField.swift */; };
+		C4082844289D29D300C1B51B /* FacilityLocationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4082843289D29D300C1B51B /* FacilityLocationScreen.swift */; };
 		C40E7F6228984E7200788652 /* AmenityCounterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6128984E7200788652 /* AmenityCounterButton.swift */; };
 		C40E7F6428985BE700788652 /* AmenityCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6328985BE700788652 /* AmenityCounterView.swift */; };
 		C40FBF07289A854B00557AEB /* AmenityDescriptionCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */; };
@@ -137,6 +138,7 @@
 		C403101E2894C71F0046B645 /* SpecifiRoundCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifiRoundCorner.swift; sourceTree = "<group>"; };
 		C4057858282E199400C7D67A /* EmailCredentialsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCredentialsScreen.swift; sourceTree = "<group>"; };
 		C405785A282E22A000C7D67A /* PasswordInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputField.swift; sourceTree = "<group>"; };
+		C4082843289D29D300C1B51B /* FacilityLocationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityLocationScreen.swift; sourceTree = "<group>"; };
 		C40E7F6128984E7200788652 /* AmenityCounterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterButton.swift; sourceTree = "<group>"; };
 		C40E7F6328985BE700788652 /* AmenityCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterView.swift; sourceTree = "<group>"; };
 		C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityDescriptionCounter.swift; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 				C4B5380F2899D0C70067CC21 /* FacilityFreeAmenitiesScreen.swift */,
 				C47BE33F289AABA900B91D69 /* FacilityPaidAmenitiesScreen.swift */,
 				C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */,
+				C4082843289D29D300C1B51B /* FacilityLocationScreen.swift */,
 			);
 			path = AddUnit;
 			sourceTree = "<group>";
@@ -773,6 +776,7 @@
 				C4031010289494B30046B645 /* MaterialTabViewRouter.swift in Sources */,
 				C48268262896E8860072147F /* EmptyState.swift in Sources */,
 				C4AF9B1B2828216600EBB141 /* PostDI.swift in Sources */,
+				C4082844289D29D300C1B51B /* FacilityLocationScreen.swift in Sources */,
 				C4BB0076289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift in Sources */,
 				C4D0872E289326B400DCEACF /* OTPInput.swift in Sources */,
 				C4B538102899D0C70067CC21 /* FacilityFreeAmenitiesScreen.swift in Sources */,

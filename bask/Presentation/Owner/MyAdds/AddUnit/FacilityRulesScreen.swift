@@ -18,6 +18,8 @@ struct FacilityRulesScreen: View {
     let errorMsg: LocalizedStringKey = "valid_description"
     
     
+    @State var showLocation: Bool = false
+    
     var body: some View {
         
         //MARK: - Title
@@ -88,14 +90,20 @@ struct FacilityRulesScreen: View {
                     MaterialTextField(text: $text, isValid: $valid, errorMessage: errorMsg, placeHolder: "Additional rules")
                         .padding(.horizontal, 1)
                 }
+                
+                NavigationLink(destination:
+                                FacilityLocationScreen(), isActive: $showLocation) {
+                    EmptyView()
+                }
             }
             
             //MARK: - Continue Button
+            
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
                 print("tapped")
                 //showRules.toggle()
-                
+                showLocation.toggle()
                 
             }//.padding(.top, -24)
             

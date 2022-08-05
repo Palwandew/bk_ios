@@ -16,7 +16,8 @@ struct FacilityLocationScreen: View {
     @State var text: String = ""
     @State var valid: Bool = true
     let errorMsg: LocalizedStringKey = "valid_description"
-    @State var showMap: Bool = false 
+    @State var showMap: Bool = false
+    @State var showCountries: Bool = false
     
     var body: some View {
         
@@ -68,50 +69,54 @@ struct FacilityLocationScreen: View {
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
                 print("tapped")
-                showMap.toggle()
-                
+                //showMap.toggle()
+                showCountries.toggle()
                 
             }//.padding(.top, -24)
             
             
-        //MARK: - Navigation bar item
+            //MARK: - Navigation bar item
             
             
-        }.padding(.horizontal)
-            .background(Color.white)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(
-                leading:
-                    Button(action : {
-                        print("Back button tapped")
-                        //self.dismiss.callAsFunction()
-                        self.presentationMode.wrappedValue.dismiss()
-                    }){
-                        Image(systemName: "chevron.backward")
-                            .foregroundColor(Color(AppColor.GREY))
-                        
-                    },
-                trailing: Button(action : {
+        }
+        .fullScreenCover(isPresented: $showCountries, content: {
+            CountriesListScreen()
+        })
+        .padding(.horizontal)
+        .background(Color.white)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(
+            leading:
+                Button(action : {
                     print("Back button tapped")
+                    //self.dismiss.callAsFunction()
                     self.presentationMode.wrappedValue.dismiss()
-                    //                    self.dismiss.callAsFunction()
                 }){
-                    Text("Exit")
-                        .font(Font.custom("Poppins-Light", size: 16.0))
-                        .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
+                    Image(systemName: "chevron.backward")
+                        .foregroundColor(Color(AppColor.GREY))
                     
-                })
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar{
-                ToolbarItem(placement: .principal){
-                    HStack{
-                        
-                        LinearProgressBar(value: $progress)
-                            .frame(width: UIScreen.main.bounds.width/2,height: UIScreen.main.bounds.height/100)
-                        
-                    }
+                },
+            trailing: Button(action : {
+                print("Back button tapped")
+                self.presentationMode.wrappedValue.dismiss()
+                //                    self.dismiss.callAsFunction()
+            }){
+                Text("Exit")
+                    .font(Font.custom("Poppins-Light", size: 16.0))
+                    .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
+                
+            })
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar{
+            ToolbarItem(placement: .principal){
+                HStack{
+                    
+                    LinearProgressBar(value: $progress)
+                        .frame(width: UIScreen.main.bounds.width/2,height: UIScreen.main.bounds.height/100)
+                    
                 }
             }
+        }
     }
 }
 

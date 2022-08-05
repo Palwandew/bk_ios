@@ -14,10 +14,9 @@ struct FacilityMapScreen: View {
     @State var progress: Float = 0.332
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
     
-    
     var body: some View {
         
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
             
             //MARK: - Title
             
@@ -46,7 +45,9 @@ struct FacilityMapScreen: View {
                     FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                         
                         print("tapped")
-                        print(region.center)
+                        //print(region.center)
+                        //showCountries.toggle()
+                        
                         
                     }.padding([.horizontal, .top])
                         .padding(.bottom, 42)

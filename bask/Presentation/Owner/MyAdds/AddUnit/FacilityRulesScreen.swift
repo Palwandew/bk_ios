@@ -13,49 +13,93 @@ struct FacilityRulesScreen: View {
     @State var progress: Float = 0.332
     @State var isPetsAllowed: Bool = true
     
+    @State var text: String = ""
+    @State var valid: Bool = true
+    let errorMsg: LocalizedStringKey = "valid_description"
+    
+    
     var body: some View {
+        
         //MARK: - Title
         
+        
         VStack(alignment: .leading, spacing: 24){
+            
             Text("Rules of house")
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
-            AmenityToggle(isOn: $isPetsAllowed, label: "Pets")
             
-            if isPetsAllowed {
-                Group {
-                    Toggle(isOn: $isPetsAllowed) {
-                        Text("All pets allowed")
-                    }.toggleStyle(Checkbox())
-                    
-                    Toggle(isOn: $isPetsAllowed) {
-                        Text("Cats")
-                    }.toggleStyle(Checkbox())
-                    
-                    Toggle(isOn: $isPetsAllowed) {
-                        Text("Dogs")
-                    }.toggleStyle(Checkbox())
-                    
-                    Toggle(isOn: $isPetsAllowed) {
-                        Text("Rodents")
-                    }.toggleStyle(Checkbox())
-                    
-                    Toggle(isOn: $isPetsAllowed) {
-                        Text("Reptile")
-                    }.toggleStyle(Checkbox())
-                    
-                    Toggle(isOn: $isPetsAllowed) {
-                        Text("Big Animals")
-                    }.toggleStyle(Checkbox())
+            ScrollView {
+                AmenityToggle(isOn: $isPetsAllowed, label: "Pets")
+                
+                if isPetsAllowed {
+                    Group {
+                        Toggle(isOn: $isPetsAllowed) {
+                            Text("All pets allowed")
+                        }.toggleStyle(Checkbox())
+                        
+                        Toggle(isOn: $isPetsAllowed) {
+                            Text("Cats")
+                        }.toggleStyle(Checkbox())
+                        
+                        Toggle(isOn: $isPetsAllowed) {
+                            Text("Dogs")
+                        }.toggleStyle(Checkbox())
+                        
+                        VStack(alignment: .leading) {
+                            Toggle(isOn: $isPetsAllowed) {
+                                Text("Rodents")
+                            }.toggleStyle(Checkbox())
+                            
+                            Text("Rabbits, hamsters, rats, etc")
+                                .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
+                                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            Toggle(isOn: $isPetsAllowed) {
+                                Text("Reptile")
+                            }.toggleStyle(Checkbox())
+                            
+                            Text("Snakes, iguanas, chameleon, etc   ")
+                                .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
+                                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            
+                            Toggle(isOn: $isPetsAllowed) {
+                                Text("Big Animals")
+                            }.toggleStyle(Checkbox())
+                            
+                            Text("Horses, camels, cows, etc")
+                                .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
+                                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                        }
+                    }
+                }
+                
+                AmenityToggle(isOn: $isPetsAllowed, label: "Allowed to smoke")
+                
+                AmenityToggle(isOn: $isPetsAllowed, label: "Addtional rules")
+                
+                if isPetsAllowed {
+                    MaterialTextField(text: $text, isValid: $valid, errorMessage: errorMsg, placeHolder: "Additional rules")
+                        .padding(.horizontal, 1)
                 }
             }
             
-            AmenityToggle(isOn: $isPetsAllowed, label: "Allowed to smoke")
+            //MARK: - Continue Button
+            FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
+                
+                print("tapped")
+                //showRules.toggle()
+                
+                
+            }//.padding(.top, -24)
             
-            AmenityToggle(isOn: $isPetsAllowed, label: "Addtional rules")
             
-            Spacer()
         }.padding(.horizontal)
             .background(Color.white)
             .navigationBarBackButtonHidden(true)

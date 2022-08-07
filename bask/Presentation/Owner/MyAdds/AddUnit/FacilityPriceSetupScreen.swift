@@ -1,13 +1,13 @@
 //
-//  FacilityTimeScreen.swift
+//  FacilityPriceSetupScreen.swift
 //  bask
 //
-//  Created by TEHSEEN ABBAS on 07/08/2022.
+//  Created by TEHSEEN ABBAS on 08/08/2022.
 //
 
 import SwiftUI
 
-struct FacilityTimeScreen: View {
+struct FacilityPriceSetupScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     @State var progress: Float = 0.332
@@ -16,7 +16,11 @@ struct FacilityTimeScreen: View {
     @State var checkInBefore: String = "02:00 PM"
     @State var checkOutBefore: String = ""
     
-    @State var showPriceSetup: Bool = false 
+    // ppn
+    @State var pricePerNight: String = ""
+    @State var isValid: Bool = true
+    var errorMessage: LocalizedStringKey = "valid_description"
+    
     @State var showTimePicker: Bool = false
     
     var body: some View {
@@ -26,50 +30,42 @@ struct FacilityTimeScreen: View {
             //MARK: - Title
             
             
-            Text("Check-in and\ncheck-out time")
+            Text("Set up price")
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
-            Text("Please enter check-in time when a guest can arrive into the facility")
-                .lineLimit(2)
+            Text("Price per night")
+                .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .title))
+                .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                .padding(.top)
+                .padding(.bottom, 1)
+            
+            Text("Set up the price per night. This price will be the default, if you want to change the price for some days you can do it in the calendar.")
                 .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
-                .padding(.top, -16)
                 .padding(.bottom, 32)
             
             
-            Group {
-                MaterialTextSelector(text: $checkInAfter, placeHolder: "Check-in after")
-                    .frame(height: 60)
-                    .onTapGesture {
-                        print("hi")
-                        showTimePicker.toggle()
-                    }
-                
-                
-                MaterialTextSelector(text: $checkInBefore, placeHolder: "Check-in before")
-                    .frame(height: 60)
-                
-                MaterialTextSelector(text: $checkOutBefore, placeHolder: "Check-out before")
-                    .frame(height: 60)
-            }.padding(.bottom)
+            MaterialPriceField(text: $pricePerNight, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Price per night")
             
+            Text("Deposit")
+                .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .title))
+                .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                .padding(.top)
+                .padding(.bottom, 1)
             
-            //MARK: - Continue Button
+            Text("This amount will be withdrawn and frozen from the guest's account till the time you prove that everything is ok with your unit. Insurance is for all staying periods. Set deposit amount wise - big sum can influence on guest`s decision")
+                .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
+                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                .padding(.bottom, 32)
             
-            NavigationLink(destination:
-                            FacilityPriceSetupScreen(), isActive: $showPriceSetup) {
-                EmptyView()
-            }
+            MaterialPriceField(text: $pricePerNight, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Deposit")
                 
                 Spacer()
                 
                 FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                     
                     print("tapped")
-                    //print(region.center)
-                    //showCountries.toggle()
-                    showPriceSetup.toggle()
                     
                     
                 }.padding(.top)
@@ -79,9 +75,6 @@ struct FacilityTimeScreen: View {
         
             
         }
-        .sheet(isPresented: $showTimePicker, content: {
-            MaterialTimePicker()
-        })
         .padding(.horizontal)
         .background(Color.white)
         .navigationBarBackButtonHidden(true)
@@ -119,8 +112,8 @@ struct FacilityTimeScreen: View {
     }
 }
 
-struct FacilityTimeScreen_Previews: PreviewProvider {
+struct FacilityPriceSetupScreen_Previews: PreviewProvider {
     static var previews: some View {
-        FacilityTimeScreen()
+        FacilityPriceSetupScreen()
     }
 }

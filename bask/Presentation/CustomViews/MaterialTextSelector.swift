@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MaterialTextSelector: View {
     
+    @Binding var text: String
     let placeHolder: String
     var body: some View {
         GeometryReader { geomerty in
@@ -20,9 +21,9 @@ struct MaterialTextSelector: View {
                 
                 HStack{
                     
-                    Text(placeHolder)
+                    Text(text.isEmpty ? placeHolder : text)
                         .font(Font.custom("Poppins-Regular", size: 16))
-                        .foregroundColor(Color(AppColor.GREY))
+                        .foregroundColor(text.isEmpty ? Color(AppColor.GREY) : Color(AppColor.DARKEST_BLUE))
                     
                     Spacer()
                     

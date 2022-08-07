@@ -1,20 +1,18 @@
 //
-//  FacilityMapScreen.swift
+//  FacilityTimeScreen.swift
 //  bask
 //
-//  Created by TEHSEEN ABBAS on 05/08/2022.
+//  Created by TEHSEEN ABBAS on 07/08/2022.
 //
 
 import SwiftUI
-import MapKit
 
-struct FacilityMapScreen: View {
+struct FacilityTimeScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     @State var progress: Float = 0.332
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
     
-    @State var showCheckIn: Bool = false 
+    @State var showTimePicker: Bool = false
     
     var body: some View {
         
@@ -23,48 +21,59 @@ struct FacilityMapScreen: View {
             //MARK: - Title
             
             
-            Text("Confirm location")
+            Text("Check-in and\ncheck-out time")
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                .padding(.leading)
             
-            //MARK: - Map
+            Text("Please enter check-in time when a guest can arrive into the facility")
+                .lineLimit(2)
+                .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
+                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                .padding(.top, -16)
+                .padding(.bottom, 32)
             
-            ZStack {
-                Map(coordinateRegion: $region, interactionModes: [.zoom])
-                
-                Image("map_pin")
-                    .resizable()
-                    .frame(width: 35, height: 41)
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                
-            //MARK: - Continue Button
-                
-                VStack {
-                    
-                    NavigationLink(destination:
-                                    FacilityTimeScreen(), isActive: $showCheckIn) {
-                        EmptyView()
+            
+            Group {
+                MaterialTextSelector(placeHolder: "Check-in after")
+                    .frame(height: 60)
+                    .onTapGesture {
+                        print("hi")
+                        showTimePicker.toggle()
                     }
+                
+                
+                MaterialTextSelector(placeHolder: "Check-in before")
+                    .frame(height: 60)
+                
+                MaterialTextSelector(placeHolder: "Check-out before")
+                    .frame(height: 60)
+            }.padding(.bottom)
+            
+            
+            //MARK: - Continue Button
+            
+           
+                
+                Spacer()
+                
+                FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                     
-                    Spacer()
-                    
-                    FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
-                        
-                        print("tapped")
-                        //print(region.center)
-                        showCheckIn.toggle()
-                        
-                        
-                    }.padding([.horizontal, .top])
-                        .padding(.bottom, 42)
-                        .background(Rectangle().fill(Color.white.opacity(0.5)))
+                    print("tapped")
+                    //print(region.center)
+                    //showCountries.toggle()
                     
                     
-                }
-            }.ignoresSafeArea(.all, edges: .bottom)
+                }.padding(.top)
+                    .background(Rectangle().fill(Color.white.opacity(0.5)))
+                
+                
+        
             
         }
+        .sheet(isPresented: $showTimePicker, content: {
+            MaterialTimePicker()
+        })
+        .padding(.horizontal)
         .background(Color.white)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
@@ -101,8 +110,8 @@ struct FacilityMapScreen: View {
     }
 }
 
-struct FacilityMapScreen_Previews: PreviewProvider {
+struct FacilityTimeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        FacilityMapScreen()
+        FacilityTimeScreen()
     }
 }

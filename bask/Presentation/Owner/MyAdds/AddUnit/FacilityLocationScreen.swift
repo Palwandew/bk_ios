@@ -30,7 +30,7 @@ struct FacilityLocationScreen: View {
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
-            Text("Before booking, users can't see your exact address")
+            Text("Before booking, guests can't see your exact address")
                 .lineLimit(2)
                 .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
@@ -69,8 +69,8 @@ struct FacilityLocationScreen: View {
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
                 print("tapped")
-                //showMap.toggle()
-                showCountries.toggle()
+                showMap.toggle()
+                //showCountries.toggle()
                 
             }//.padding(.top, -24)
             

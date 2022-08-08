@@ -12,16 +12,15 @@ struct FacilityPriceSetupScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @State var progress: Float = 0.332
     
-    @State var checkInAfter: String = ""
-    @State var checkInBefore: String = "02:00 PM"
-    @State var checkOutBefore: String = ""
     
     // ppn
     @State var pricePerNight: String = ""
     @State var isValid: Bool = true
     var errorMessage: LocalizedStringKey = "valid_description"
     
-    @State var showTimePicker: Bool = false
+    @State var showDescription: Bool = false
+    
+    
     
     var body: some View {
         
@@ -33,6 +32,9 @@ struct FacilityPriceSetupScreen: View {
             Text("Set up price")
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
+            
+            
+            //MARK: - Price per night
             
             Text("Price per night")
                 .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .title))
@@ -48,31 +50,42 @@ struct FacilityPriceSetupScreen: View {
             
             MaterialPriceField(text: $pricePerNight, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Price per night")
             
+            
+            //MARK: - Deposit
+            
             Text("Deposit")
                 .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
                 .padding(.top)
                 .padding(.bottom, 1)
             
-            Text("This amount will be withdrawn and frozen from the guest's account till the time you prove that everything is ok with your unit. Insurance is for all staying periods. Set deposit amount wise - big sum can influence on guest`s decision")
+            Text("This amount will be withdrawn and frozen from the guest's account till the time you prove that everything is ok with your unit. Insurance is for all staying periods. Set deposit amount wise - big sum can influence on guest`s decision.")
                 .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                 .padding(.bottom, 32)
             
             MaterialPriceField(text: $pricePerNight, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Deposit")
+            
+            Spacer()
+            
+            
+            //MARK: - Continue Button
+            
+            FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
-                Spacer()
-                
-                FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
-                    
-                    print("tapped")
-                    
-                    
-                }.padding(.top)
-                    .background(Rectangle().fill(Color.white.opacity(0.5)))
+                print("tapped")
+                showDescription.toggle()
                 
                 
-        
+            }.padding(.top)
+                .background(Rectangle().fill(Color.white.opacity(0.5)))
+            
+            //MARK: - Navigation Link
+            
+            NavigationLink(destination:
+                            FacilityDescriptionScreen(), isActive: $showDescription) {
+                EmptyView()
+            }
             
         }
         .padding(.horizontal)

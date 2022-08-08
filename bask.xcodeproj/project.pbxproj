@@ -58,6 +58,9 @@
 		C482683B289751D70072147F /* AddNewUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683A289751D70072147F /* AddNewUnitViewModel.swift */; };
 		C482683D289759600072147F /* FacilityRoomsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683C289759600072147F /* FacilityRoomsScreen.swift */; };
 		C482683F28975DBF0072147F /* MaterialLengthField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683E28975DBF0072147F /* MaterialLengthField.swift */; };
+		C4918D6128A19A9900A8777D /* FacilityPicturesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4918D6028A19A9900A8777D /* FacilityPicturesScreen.swift */; };
+		C4918D6328A19DBC00A8777D /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4918D6228A19DBC00A8777D /* Gallery.swift */; };
+		C4918D6528A1B74900A8777D /* PictureSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4918D6428A1B74900A8777D /* PictureSliderView.swift */; };
 		C49FB52D28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FB52C28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift */; };
 		C49FB52F28A087D900A54D7D /* FacilityDescriptionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FB52E28A087D900A54D7D /* FacilityDescriptionScreen.swift */; };
 		C4A00E3F289B1D6D00D78640 /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A00E3E289B1D6D00D78640 /* Dropdown.swift */; };
@@ -182,6 +185,9 @@
 		C482683A289751D70072147F /* AddNewUnitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUnitViewModel.swift; sourceTree = "<group>"; };
 		C482683C289759600072147F /* FacilityRoomsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRoomsScreen.swift; sourceTree = "<group>"; };
 		C482683E28975DBF0072147F /* MaterialLengthField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialLengthField.swift; sourceTree = "<group>"; };
+		C4918D6028A19A9900A8777D /* FacilityPicturesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPicturesScreen.swift; sourceTree = "<group>"; };
+		C4918D6228A19DBC00A8777D /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
+		C4918D6428A1B74900A8777D /* PictureSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureSliderView.swift; sourceTree = "<group>"; };
 		C492059D2827BF5700EB1112 /* PostEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEndpoint.swift; sourceTree = "<group>"; };
 		C49FB52C28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPriceSetupScreen.swift; sourceTree = "<group>"; };
 		C49FB52E28A087D900A54D7D /* FacilityDescriptionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDescriptionScreen.swift; sourceTree = "<group>"; };
@@ -364,6 +370,8 @@
 				C4A5C57C289F3DD9006AF774 /* FacilityTimeScreen.swift */,
 				C49FB52C28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift */,
 				C49FB52E28A087D900A54D7D /* FacilityDescriptionScreen.swift */,
+				C4918D6028A19A9900A8777D /* FacilityPicturesScreen.swift */,
+				C4918D6228A19DBC00A8777D /* Gallery.swift */,
 			);
 			path = AddUnit;
 			sourceTree = "<group>";
@@ -624,6 +632,7 @@
 				C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */,
 				C4A5C57E289F3EFB006AF774 /* MaterialTextSelector.swift */,
 				C4A5C580289F4697006AF774 /* MaterialTimePicker.swift */,
+				C4918D6428A1B74900A8777D /* PictureSliderView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -803,6 +812,7 @@
 				C4BB0076289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift in Sources */,
 				C4D0872E289326B400DCEACF /* OTPInput.swift in Sources */,
 				C4B538102899D0C70067CC21 /* FacilityFreeAmenitiesScreen.swift in Sources */,
+				C4918D6128A19A9900A8777D /* FacilityPicturesScreen.swift in Sources */,
 				C403101B2894BBF10046B645 /* UpcomingBookings.swift in Sources */,
 				C40310192894A9060046B645 /* HorizontalSwipe.swift in Sources */,
 				C41A26AF289C79810057F3FE /* FacilityRulesScreen.swift in Sources */,
@@ -823,6 +833,7 @@
 				C4AF9B1F2828216600EBB141 /* PostRepositoryImp.swift in Sources */,
 				C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */,
 				C40FBF07289A854B00557AEB /* AmenityDescriptionCounter.swift in Sources */,
+				C4918D6528A1B74900A8777D /* PictureSliderView.swift in Sources */,
 				C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */,
 				C4AF9B202828216600EBB141 /* PostRemoteDataSource.swift in Sources */,
 				C4BB007F28913C7E000D2E47 /* FirstResponderTextField.swift in Sources */,
@@ -843,6 +854,7 @@
 				C4AF9B262828216600EBB141 /* PostDomainRepoProtocol.swift in Sources */,
 				C4AF9B272828216600EBB141 /* LoginDomainRepoProtocol.swift in Sources */,
 				C482682E28970EC90072147F /* MyAddsScreen.swift in Sources */,
+				C4918D6328A19DBC00A8777D /* Gallery.swift in Sources */,
 				C4AF9B282828216600EBB141 /* PostUseCase.swift in Sources */,
 				C47FEB132896A874008BC4C2 /* MyBookingsViewModel.swift in Sources */,
 				C4AF9B292828216600EBB141 /* LoginUseCase.swift in Sources */,

@@ -15,6 +15,7 @@ struct FacilityDescriptionScreen: View {
     @State var description: String = ""
     @State var isValid: Bool = true 
     let errorMessage: LocalizedStringKey = "valid_description"
+    @State var showPicturesScreen: Bool = false
     
     var body: some View {
         
@@ -40,17 +41,17 @@ struct FacilityDescriptionScreen: View {
             
             //MARK: - Continue Button
             
-//            NavigationLink(destination:
-//                            FacilityPriceSetupScreen(), isActive: $showPriceSetup) {
-//                EmptyView()
-//            }
+            NavigationLink(destination:
+                            FacilityPicturesScreen(), isActive: $showPicturesScreen) {
+                EmptyView()
+            }
                 
                 Spacer()
                 
                 FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                     
                     print("tapped")
-                    
+                    showPicturesScreen.toggle()
                     
                 }.padding(.top)
                     .background(Rectangle().fill(Color.white.opacity(0.5)))

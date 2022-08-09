@@ -63,6 +63,11 @@
 		C4918D6728A1D0C000A8777D /* GalleryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4918D6628A1D0C000A8777D /* GalleryImage.swift */; };
 		C4918D6928A1D66100A8777D /* FacilityPublishChecklistScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4918D6828A1D66100A8777D /* FacilityPublishChecklistScreen.swift */; };
 		C4918D6B28A1DBBB00A8777D /* PublishFacilityScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4918D6A28A1DBBB00A8777D /* PublishFacilityScreen.swift */; };
+		C49191BC28A2D42700C03743 /* ArabicTextInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49191BB28A2D42700C03743 /* ArabicTextInputField.swift */; };
+		C49191BE28A2F92700C03743 /* CreateFacilityDomainRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49191BD28A2F92700C03743 /* CreateFacilityDomainRepoProtocol.swift */; };
+		C49191C028A2FAB000C03743 /* CreateFacilityRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49191BF28A2FAB000C03743 /* CreateFacilityRepositoryImpl.swift */; };
+		C49191C228A301C100C03743 /* FacilityCreateName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49191C128A301C100C03743 /* FacilityCreateName.swift */; };
+		C49191C728A3061D00C03743 /* CreateFacilityUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49191C628A3061D00C03743 /* CreateFacilityUseCase.swift */; };
 		C49FB52D28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FB52C28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift */; };
 		C49FB52F28A087D900A54D7D /* FacilityDescriptionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FB52E28A087D900A54D7D /* FacilityDescriptionScreen.swift */; };
 		C4A00E3F289B1D6D00D78640 /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A00E3E289B1D6D00D78640 /* Dropdown.swift */; };
@@ -192,6 +197,11 @@
 		C4918D6628A1D0C000A8777D /* GalleryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImage.swift; sourceTree = "<group>"; };
 		C4918D6828A1D66100A8777D /* FacilityPublishChecklistScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPublishChecklistScreen.swift; sourceTree = "<group>"; };
 		C4918D6A28A1DBBB00A8777D /* PublishFacilityScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishFacilityScreen.swift; sourceTree = "<group>"; };
+		C49191BB28A2D42700C03743 /* ArabicTextInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArabicTextInputField.swift; sourceTree = "<group>"; };
+		C49191BD28A2F92700C03743 /* CreateFacilityDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFacilityDomainRepoProtocol.swift; sourceTree = "<group>"; };
+		C49191BF28A2FAB000C03743 /* CreateFacilityRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFacilityRepositoryImpl.swift; sourceTree = "<group>"; };
+		C49191C128A301C100C03743 /* FacilityCreateName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityCreateName.swift; sourceTree = "<group>"; };
+		C49191C628A3061D00C03743 /* CreateFacilityUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFacilityUseCase.swift; sourceTree = "<group>"; };
 		C492059D2827BF5700EB1112 /* PostEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEndpoint.swift; sourceTree = "<group>"; };
 		C49FB52C28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPriceSetupScreen.swift; sourceTree = "<group>"; };
 		C49FB52E28A087D900A54D7D /* FacilityDescriptionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDescriptionScreen.swift; sourceTree = "<group>"; };
@@ -381,6 +391,30 @@
 			path = AddUnit;
 			sourceTree = "<group>";
 		};
+		C49191C328A3025600C03743 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				C49191BF28A2FAB000C03743 /* CreateFacilityRepositoryImpl.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		C49191C428A305F100C03743 /* Owner */ = {
+			isa = PBXGroup;
+			children = (
+				C49191C528A305FC00C03743 /* CreateFacility */,
+			);
+			path = Owner;
+			sourceTree = "<group>";
+		};
+		C49191C528A305FC00C03743 /* CreateFacility */ = {
+			isa = PBXGroup;
+			children = (
+				C49191C628A3061D00C03743 /* CreateFacilityUseCase.swift */,
+			);
+			path = CreateFacility;
+			sourceTree = "<group>";
+		};
 		C49205A32827E4FD00EB1112 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +441,7 @@
 			children = (
 				C4BB006E289106A0000D2E47 /* CountryCode.swift */,
 				C4B5380D2899B0820067CC21 /* FacilityServiceRooms.swift */,
+				C49191C128A301C100C03743 /* FacilityCreateName.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -416,6 +451,7 @@
 			children = (
 				C4918D6228A19DBC00A8777D /* Gallery.swift */,
 				C4BB007E28913C7E000D2E47 /* FirstResponderTextField.swift */,
+				C49191BB28A2D42700C03743 /* ArabicTextInputField.swift */,
 			);
 			path = UIKitViews;
 			sourceTree = "<group>";
@@ -512,6 +548,7 @@
 		C4C63AA92823572500343032 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				C49191C328A3025600C03743 /* Repositories */,
 				C4BB0072289107A7000D2E47 /* Models */,
 				C4BB006C28910657000D2E47 /* countries_code.json */,
 				C49205A32827E4FD00EB1112 /* Login */,
@@ -545,6 +582,7 @@
 		C4C63AAC28235B8200343032 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				C49191C428A305F100C03743 /* Owner */,
 				C4C63AB228235E7800343032 /* PostUseCase.swift */,
 				C4A2B84228280A20006E8C11 /* LoginUseCase.swift */,
 				C4BB0075289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift */,
@@ -558,6 +596,7 @@
 				C4C63AB028235D4900343032 /* PostDomainRepoProtocol.swift */,
 				C4A2B840282809C9006E8C11 /* LoginDomainRepoProtocol.swift */,
 				C4BB007328910802000D2E47 /* CountryCallingCodeRepoProtocol.swift */,
+				C49191BD28A2F92700C03743 /* CreateFacilityDomainRepoProtocol.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -836,9 +875,11 @@
 				C4A00E3F289B1D6D00D78640 /* Dropdown.swift in Sources */,
 				C4826830289727B10072147F /* CancellationPolicyScreen.swift in Sources */,
 				C403101D2894BC340046B645 /* FacilityCard.swift in Sources */,
+				C49191C228A301C100C03743 /* FacilityCreateName.swift in Sources */,
 				C48268242896E47E0072147F /* Spinner.swift in Sources */,
 				C4918D6928A1D66100A8777D /* FacilityPublishChecklistScreen.swift in Sources */,
 				C4AF9B1F2828216600EBB141 /* PostRepositoryImp.swift in Sources */,
+				C49191BC28A2D42700C03743 /* ArabicTextInputField.swift in Sources */,
 				C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */,
 				C40FBF07289A854B00557AEB /* AmenityDescriptionCounter.swift in Sources */,
 				C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */,
@@ -854,6 +895,7 @@
 				C482682B289700BB0072147F /* PastBookings.swift in Sources */,
 				C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */,
 				C4AF9B222828216600EBB141 /* PostEndpoint.swift in Sources */,
+				C49191BE28A2F92700C03743 /* CreateFacilityDomainRepoProtocol.swift in Sources */,
 				C4D659B2282B4F5000FAE1D1 /* SignupViewModel.swift in Sources */,
 				C4AF9B232828216600EBB141 /* PostViewModel.swift in Sources */,
 				C4BB005D2890C576000D2E47 /* MaterialSecureField.swift in Sources */,
@@ -868,6 +910,7 @@
 				C4AF9B292828216600EBB141 /* LoginUseCase.swift in Sources */,
 				C46BD78728295CCB006AC587 /* AppColor.swift in Sources */,
 				C403101F2894C71F0046B645 /* SpecifiRoundCorner.swift in Sources */,
+				C49191C728A3061D00C03743 /* CreateFacilityUseCase.swift in Sources */,
 				C4B5380A289953A00067CC21 /* Facility.swift in Sources */,
 				C41A26AD289C6DB30057F3FE /* AmenityPriceLengthInputView.swift in Sources */,
 				C4AF9B2A2828216600EBB141 /* Post.swift in Sources */,
@@ -890,6 +933,7 @@
 				C40E7F6228984E7200788652 /* AmenityCounterButton.swift in Sources */,
 				C4D659AC282AFA7100FAE1D1 /* NameCredentialsScreen.swift in Sources */,
 				C40310172894A6260046B645 /* RightSwipe.swift in Sources */,
+				C49191C028A2FAB000C03743 /* CreateFacilityRepositoryImpl.swift in Sources */,
 				C482683928974C4B0072147F /* FacilityNameScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

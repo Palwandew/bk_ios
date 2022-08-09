@@ -10,7 +10,7 @@ import SwiftUI
 struct FacilityRoomsScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel()
+    @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     @State var progress: Float = 0.166 // total 12 steps therefore each one is 0.083
     @State var length: String = ""
     @State var isValid: Bool = true

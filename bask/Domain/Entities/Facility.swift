@@ -9,6 +9,9 @@ import Foundation
 
 
 struct Facility {
+    var id: String? = nil 
+    var englishName: String = ""
+    var arabicName: String = ""
     var length: String = ""
     var width: String = ""
     var kitchen: Int
@@ -21,7 +24,23 @@ struct Facility {
     var gamesRoom: Bool = false
     var garden: Bool = false
     var playingField: Bool = false
+    let nameStatus: Int = 1
     let room_status: Int = 1
+    
+    func validateName() throws  {
+        
+        if englishName.isEmpty || englishName.count < 3 {
+            throw FacilityErrors.invalidEnglishName
+        } else if arabicName.isEmpty || arabicName.count < 3 {
+            throw FacilityErrors.invalidArabicName
+        }
+       // return true
+
+    }
+    
+    func prepareRequestBodyWith(ownerID: String) -> FacilityNameBodyData {
+        return FacilityNameBodyData(arabicName: self.arabicName, englishName: self.englishName, ownerID: ownerID)
+    }
     
     mutating func increaseCounterOf(_ amenity: Amenity) {
         switch amenity {
@@ -56,13 +75,6 @@ struct Facility {
             }
         }
     }
-    
-//    private func checkAmenityCount(_ amenity: Int) -> Bool {
-//        if amenity >= 0 {
-//
-//            return
-//        }
-//    }
 }
 
 enum Amenity {
@@ -70,4 +82,25 @@ enum Amenity {
     case capacity
     case bathroom
     case showers
+}
+
+
+enum FacilityErrors: Error {
+    case invalidEnglishName
+    case invalidArabicName
+}
+
+
+// MARK: - FacilityNameData
+struct FacilityNameBodyData: Codable {
+    let arabicName, englishName, ownerID: String
+    let status: String = "unpublished"
+    let nameStatus: Int = 1
+
+    enum CodingKeys: String, CodingKey {
+        case arabicName, englishName
+        case ownerID = "ownerId"
+        case status
+        case nameStatus = "name_status"
+    }
 }

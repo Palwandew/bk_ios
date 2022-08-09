@@ -65,7 +65,7 @@ struct PublishFacilityScreen: View {
         
                 
                 
-            FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
+            FilledButton(label: "Publish", color: Color(AppColor.DARKEST_BLUE)) {
                 
                 print("tapped")
                 //showPicturesScreen.toggle()

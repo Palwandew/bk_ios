@@ -13,7 +13,7 @@ extension URLSession{
         endpoint: String,
         requestType: RequestMethod,
         headers: [String : String]?,
-        body: [String : String]?,
+        body: Data?,//[String : String]?,
         responseModel: T.Type,
         complete completion: @escaping (Result<T, RequestError>) -> Void) {
             
@@ -23,11 +23,12 @@ extension URLSession{
             }
             
             var request = URLRequest(url: url)
+            
             request.httpMethod = requestType.rawValue
             request.allHTTPHeaderFields = headers
             
             if let body = body {
-                request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
+                request.httpBody = body//try? JSONSerialization.data(withJSONObject: body, options: [])
             }
             
             URLSession.shared.dataTask(with: request) { data, response, error in

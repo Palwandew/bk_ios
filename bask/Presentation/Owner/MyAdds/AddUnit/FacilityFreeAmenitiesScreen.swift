@@ -11,7 +11,7 @@ struct FacilityFreeAmenitiesScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     //@EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
-    @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel()
+    @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     
     @State var progress: Float = 0.249 // total 12 steps therefore each one is 0.083
     @State var isWifiOn: Bool = false

@@ -10,27 +10,41 @@ import SwiftUI
 struct FacilityNameScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel()
+    @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     @State var progress: Float = 0.083 // total 12 steps therefore each one is 0.083
-    
+    @State var arabicName: String = ""
     
     var body: some View {
         VStack(alignment: .leading, spacing: 32.0){
+            
+            
+            //MARK: - Title
             
             Text("Name of the facility")
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
+            
+            //MARK: - English Name
             VStack(alignment: .trailing) {
-                MaterialTextField(text: $addNewUnitViewModel.facilityName, isValid: $addNewUnitViewModel.isValidName, errorMessage: "Please enter a name", placeHolder: "Name").keyboardType(.default)
+                MaterialTextField(text: $addNewUnitViewModel.facility.englishName, isValid: $addNewUnitViewModel.isValidEnglishName, errorMessage: "Please enter a name", placeHolder: "Name").keyboardType(.default)
                 
                 Text("\(addNewUnitViewModel.facilityName.count) / 50")
                     .font(Font.custom("Poppins-Light", size: 12.0))
                     .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
             }
             
+            //MARK: - Arabic Name
+            
+            ArabicTextInputField(text: $addNewUnitViewModel.facility.arabicName)
+                .frame(height: 25)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 10).stroke(.gray, lineWidth: 1))
+            
             Spacer()
             
+            
+            //MARK: - Continue Button 
             NavigationLink(destination:
                             FacilityRoomsScreen(), isActive: $addNewUnitViewModel.willShowAddRoomsScreen) {
                     EmptyView()

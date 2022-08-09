@@ -60,7 +60,9 @@
 		C482683F28975DBF0072147F /* MaterialLengthField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683E28975DBF0072147F /* MaterialLengthField.swift */; };
 		C4918D6128A19A9900A8777D /* FacilityPicturesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4918D6028A19A9900A8777D /* FacilityPicturesScreen.swift */; };
 		C4918D6328A19DBC00A8777D /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4918D6228A19DBC00A8777D /* Gallery.swift */; };
-		C4918D6528A1B74900A8777D /* PictureSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4918D6428A1B74900A8777D /* PictureSliderView.swift */; };
+		C4918D6728A1D0C000A8777D /* GalleryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4918D6628A1D0C000A8777D /* GalleryImage.swift */; };
+		C4918D6928A1D66100A8777D /* FacilityPublishChecklistScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4918D6828A1D66100A8777D /* FacilityPublishChecklistScreen.swift */; };
+		C4918D6B28A1DBBB00A8777D /* PublishFacilityScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4918D6A28A1DBBB00A8777D /* PublishFacilityScreen.swift */; };
 		C49FB52D28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FB52C28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift */; };
 		C49FB52F28A087D900A54D7D /* FacilityDescriptionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FB52E28A087D900A54D7D /* FacilityDescriptionScreen.swift */; };
 		C4A00E3F289B1D6D00D78640 /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A00E3E289B1D6D00D78640 /* Dropdown.swift */; };
@@ -187,7 +189,9 @@
 		C482683E28975DBF0072147F /* MaterialLengthField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialLengthField.swift; sourceTree = "<group>"; };
 		C4918D6028A19A9900A8777D /* FacilityPicturesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPicturesScreen.swift; sourceTree = "<group>"; };
 		C4918D6228A19DBC00A8777D /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
-		C4918D6428A1B74900A8777D /* PictureSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureSliderView.swift; sourceTree = "<group>"; };
+		C4918D6628A1D0C000A8777D /* GalleryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImage.swift; sourceTree = "<group>"; };
+		C4918D6828A1D66100A8777D /* FacilityPublishChecklistScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPublishChecklistScreen.swift; sourceTree = "<group>"; };
+		C4918D6A28A1DBBB00A8777D /* PublishFacilityScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishFacilityScreen.swift; sourceTree = "<group>"; };
 		C492059D2827BF5700EB1112 /* PostEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEndpoint.swift; sourceTree = "<group>"; };
 		C49FB52C28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPriceSetupScreen.swift; sourceTree = "<group>"; };
 		C49FB52E28A087D900A54D7D /* FacilityDescriptionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDescriptionScreen.swift; sourceTree = "<group>"; };
@@ -371,7 +375,8 @@
 				C49FB52C28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift */,
 				C49FB52E28A087D900A54D7D /* FacilityDescriptionScreen.swift */,
 				C4918D6028A19A9900A8777D /* FacilityPicturesScreen.swift */,
-				C4918D6228A19DBC00A8777D /* Gallery.swift */,
+				C4918D6828A1D66100A8777D /* FacilityPublishChecklistScreen.swift */,
+				C4918D6A28A1DBBB00A8777D /* PublishFacilityScreen.swift */,
 			);
 			path = AddUnit;
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 		C4BB007D28913C41000D2E47 /* UIKitViews */ = {
 			isa = PBXGroup;
 			children = (
+				C4918D6228A19DBC00A8777D /* Gallery.swift */,
 				C4BB007E28913C7E000D2E47 /* FirstResponderTextField.swift */,
 			);
 			path = UIKitViews;
@@ -632,7 +638,7 @@
 				C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */,
 				C4A5C57E289F3EFB006AF774 /* MaterialTextSelector.swift */,
 				C4A5C580289F4697006AF774 /* MaterialTimePicker.swift */,
-				C4918D6428A1B74900A8777D /* PictureSliderView.swift */,
+				C4918D6628A1D0C000A8777D /* GalleryImage.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -817,6 +823,7 @@
 				C40310192894A9060046B645 /* HorizontalSwipe.swift in Sources */,
 				C41A26AF289C79810057F3FE /* FacilityRulesScreen.swift in Sources */,
 				C49FB52D28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift in Sources */,
+				C4918D6728A1D0C000A8777D /* GalleryImage.swift in Sources */,
 				C4AF9B1C2828216600EBB141 /* AppDI.swift in Sources */,
 				C4AF9B1D2828216600EBB141 /* LoginRepositoryImp.swift in Sources */,
 				C4082848289D455B00C1B51B /* CountriesListScreen.swift in Sources */,
@@ -830,14 +837,15 @@
 				C4826830289727B10072147F /* CancellationPolicyScreen.swift in Sources */,
 				C403101D2894BC340046B645 /* FacilityCard.swift in Sources */,
 				C48268242896E47E0072147F /* Spinner.swift in Sources */,
+				C4918D6928A1D66100A8777D /* FacilityPublishChecklistScreen.swift in Sources */,
 				C4AF9B1F2828216600EBB141 /* PostRepositoryImp.swift in Sources */,
 				C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */,
 				C40FBF07289A854B00557AEB /* AmenityDescriptionCounter.swift in Sources */,
-				C4918D6528A1B74900A8777D /* PictureSliderView.swift in Sources */,
 				C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */,
 				C4AF9B202828216600EBB141 /* PostRemoteDataSource.swift in Sources */,
 				C4BB007F28913C7E000D2E47 /* FirstResponderTextField.swift in Sources */,
 				C4B5380E2899B0820067CC21 /* FacilityServiceRooms.swift in Sources */,
+				C4918D6B28A1DBBB00A8777D /* PublishFacilityScreen.swift in Sources */,
 				C4AF9B212828216600EBB141 /* PostModel.swift in Sources */,
 				C482683B289751D70072147F /* AddNewUnitViewModel.swift in Sources */,
 				C47FEB112896962B008BC4C2 /* CustomAlertDialog.swift in Sources */,

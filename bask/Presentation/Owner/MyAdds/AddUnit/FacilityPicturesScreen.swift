@@ -14,7 +14,7 @@ struct FacilityPicturesScreen: View {
     @State var showGallery: Bool = false
     @State var pickerResult: [UIImage] = []
     
-    
+    @State var showChecklist: Bool = false
     
     var body: some View {
         
@@ -49,56 +49,56 @@ struct FacilityPicturesScreen: View {
                     .padding(8)
                     .background(RoundedRectangle(cornerRadius: 8).fill(Color(AppColor.DARKEST_BLUE)))
             }
-
-  
+            
+            
             if !pickerResult.isEmpty {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack{
-                        ForEach(0..<pickerResult.count, id:\.self){ image in
-                            Image(uiImage: pickerResult[image])
-                                .resizable()
+                        ForEach($pickerResult, id:\.self){ image in
+                            GalleryImage(image: image)
                                 .frame(width: UIScreen.main.bounds.width * 0.90, height: 250)
                         }
                     }
                 }
                 
                 //List {
-                    //PictureSliderView(images: $pickerResult)
-                      //  .frame(height: 300)
-                        
-               // }
+                //PictureSliderView(images: $pickerResult)
+                //  .frame(height: 300)
+                
+                // }
             }
-//            ScrollView {
-//                    ForEach(pickerResult, id: \.self) { uiImage in
-//                        Image(uiImage: uiImage)
-//                            .resizable()
-//
-//                            .frame(width: 300, height: 300)
-//                    }
-//                    .padding()
-//                  }
-//            .frame(width: UIScreen.main.bounds.width * 0.90)
+            //            ScrollView {
+            //                    ForEach(pickerResult, id: \.self) { uiImage in
+            //                        Image(uiImage: uiImage)
+            //                            .resizable()
+            //
+            //                            .frame(width: 300, height: 300)
+            //                    }
+            //                    .padding()
+            //                  }
+            //            .frame(width: UIScreen.main.bounds.width * 0.90)
             
             
             //MARK: - Continue Button
             
-//            NavigationLink(destination:
-//                            FacilityPicturesScreen(), isActive: $showPicturesScreen) {
-//                EmptyView()
-//            }
+                        NavigationLink(destination:
+                                        FacilityPublishChecklistScreen(), isActive: $showChecklist) {
+                            EmptyView()
+                        }
+            
+            Spacer()
+            
+            FilledButton(label: "Add photos later", color: Color(AppColor.DARKEST_BLUE)) {
                 
-                Spacer()
+                print("tapped")
+                showChecklist.toggle()
                 
-                FilledButton(label: "Add photos later", color: Color(AppColor.DARKEST_BLUE)) {
-                    
-                    print("tapped")
-                    
-                }.padding(.top)
-                    .background(Rectangle().fill(Color.white.opacity(0.5)))
-                
-                
-        
+            }.padding(.top)
+                .background(Rectangle().fill(Color.white.opacity(0.5)))
+            
+            
+            
             
         }
         .sheet(isPresented: $showGallery, content: {

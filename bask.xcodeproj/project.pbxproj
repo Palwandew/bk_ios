@@ -68,6 +68,7 @@
 		C49191C028A2FAB000C03743 /* CreateFacilityRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49191BF28A2FAB000C03743 /* CreateFacilityRepositoryImpl.swift */; };
 		C49191C228A301C100C03743 /* FacilityCreateName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49191C128A301C100C03743 /* FacilityCreateName.swift */; };
 		C49191C728A3061D00C03743 /* CreateFacilityUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49191C628A3061D00C03743 /* CreateFacilityUseCase.swift */; };
+		C49191C928A319B900C03743 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49191C828A319B900C03743 /* Room.swift */; };
 		C49FB52D28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FB52C28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift */; };
 		C49FB52F28A087D900A54D7D /* FacilityDescriptionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FB52E28A087D900A54D7D /* FacilityDescriptionScreen.swift */; };
 		C4A00E3F289B1D6D00D78640 /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A00E3E289B1D6D00D78640 /* Dropdown.swift */; };
@@ -202,6 +203,7 @@
 		C49191BF28A2FAB000C03743 /* CreateFacilityRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFacilityRepositoryImpl.swift; sourceTree = "<group>"; };
 		C49191C128A301C100C03743 /* FacilityCreateName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityCreateName.swift; sourceTree = "<group>"; };
 		C49191C628A3061D00C03743 /* CreateFacilityUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFacilityUseCase.swift; sourceTree = "<group>"; };
+		C49191C828A319B900C03743 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		C492059D2827BF5700EB1112 /* PostEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEndpoint.swift; sourceTree = "<group>"; };
 		C49FB52C28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPriceSetupScreen.swift; sourceTree = "<group>"; };
 		C49FB52E28A087D900A54D7D /* FacilityDescriptionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDescriptionScreen.swift; sourceTree = "<group>"; };
@@ -575,6 +577,7 @@
 				C4C63AAE28235C1200343032 /* Post.swift */,
 				C46BD7602828FBD2006AC587 /* User.swift */,
 				C4B53809289953A00067CC21 /* Facility.swift */,
+				C49191C828A319B900C03743 /* Room.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -902,6 +905,7 @@
 				C4AF9B242828216600EBB141 /* PostView.swift in Sources */,
 				C4AF9B252828216600EBB141 /* ContentView.swift in Sources */,
 				C4AF9B262828216600EBB141 /* PostDomainRepoProtocol.swift in Sources */,
+				C49191C928A319B900C03743 /* Room.swift in Sources */,
 				C4AF9B272828216600EBB141 /* LoginDomainRepoProtocol.swift in Sources */,
 				C482682E28970EC90072147F /* MyAddsScreen.swift in Sources */,
 				C4918D6328A19DBC00A8777D /* Gallery.swift in Sources */,

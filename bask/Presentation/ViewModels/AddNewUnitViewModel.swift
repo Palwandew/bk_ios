@@ -9,9 +9,12 @@ import Foundation
 
 class AddNewUnitViewModel: ObservableObject {
     
+    //MARK: - Usecase
     
     private let createFacilityUseCase: CreateFacilityUseCase
-    //MARK: - Properties for step - 1
+    
+    
+    //MARK: - Properties
     
     private let ownerId = "7ae267e8-65cc-4c6d-948a-5518a8bfeb36"
     @Published var facilityName: String = ""
@@ -23,14 +26,17 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var roomsCount: Int = 0
     @Published var kitchenCount: Int = 0
     
-    @Published var rooms: [Int] = []
+    @Published var rooms: [Room] = []
     @Published var kitchen: [Int] = []
     
-    @Published var facility: Facility = Facility(kitchen: 0, capacity: 0, bathrooms: 0, showers: 0)
+    @Published var facility: Facility = Facility()
     
     init(useCase: CreateFacilityUseCase){
         createFacilityUseCase = useCase
     }
+    
+    //MARK: - Step - 1 Validation
+    
     
     func isFacilityNameValid(){
         do {
@@ -68,22 +74,50 @@ class AddNewUnitViewModel: ObservableObject {
         }
     }
     
+    
+    //MARK: - Step - 2
+    
     func onContinueTapped(){
-        willShowFreeAmenitiesScreen = true
-        print("width \(self.facility.width) \n length \(self.facility.length)")
+//        willShowFreeAmenitiesScreen = true
+//        print("width \(self.facility.width) \n length \(self.facility.length)")
+        
+        guard let roomWithoutDimensions = rooms.first(where: { $0.length.isEmpty || $0.width.isEmpty}) else {
+            return
+        }
+        
+        print("invalid room -> \(roomWithoutDimensions.validLength)")
+        if roomWithoutDimensions.length.isEmpty {
+            roomWithoutDimensions.validLength = false
+        } else {
+            roomWithoutDimensions.validWidth = false 
+        }
+        
+
+        //let all = rooms.allSatisfy { $0.length != "" && $0.width != ""}
+        //print("test \(all)")
+        
     }
     
     func addRoom() {
-        roomsCount += 1
-        rooms.append(1)
+        
+        let newRoom = Room()
+        rooms.append(newRoom)
+        roomsCount = rooms.count
+        
     }
     
     func removeRoom() {
-        
-        if !rooms.isEmpty{
-            roomsCount -= 1
-            rooms.removeLast()
+        print("Array size \(rooms.count)")
+        if !rooms.isEmpty {
+            print("\(rooms)")
+            //let count = rooms.count
+            rooms.removeLast(1)
+            roomsCount = rooms.count
         }
+//        if !rooms.isEmpty{
+//            rooms.removeLast()
+//            roomsCount = rooms.count
+//        }
     }
     
     

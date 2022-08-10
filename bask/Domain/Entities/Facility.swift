@@ -14,10 +14,10 @@ struct Facility {
     var arabicName: String = ""
     var length: String = ""
     var width: String = ""
-    var kitchen: Int
-    var capacity: Int
-    var bathrooms: Int
-    var showers: Int
+    var kitchen: Int = 0
+    var capacity: Int = 0
+    var bathrooms: Int = 0
+    var showers: Int = 0
     var outdoorSitting: Bool = false
     var bbq: Bool = true
     var gym: Bool = false
@@ -36,6 +36,14 @@ struct Facility {
         }
        // return true
 
+    }
+    
+    func validateArea() throws {
+        if length.isEmpty || Int(length) ?? 0 <= 0 {
+            throw FacilityErrors.invalidLength
+        } else if width.isEmpty || Int(width) ?? 0 <= 0 {
+            throw FacilityErrors.invalidWidth
+        }
     }
     
     func prepareRequestBodyWith(ownerID: String) -> FacilityNameBodyData {
@@ -88,6 +96,9 @@ enum Amenity {
 enum FacilityErrors: Error {
     case invalidEnglishName
     case invalidArabicName
+    case invalidLength
+    case invalidWidth
+    case zero
 }
 
 

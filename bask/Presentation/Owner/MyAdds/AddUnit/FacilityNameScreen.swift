@@ -46,7 +46,7 @@ struct FacilityNameScreen: View {
             
             //MARK: - Continue Button 
             NavigationLink(destination:
-                            FacilityRoomsScreen(), isActive: $addNewUnitViewModel.willShowAddRoomsScreen) {
+                            FacilityRoomsScreen().environmentObject(addNewUnitViewModel), isActive: $addNewUnitViewModel.willShowAddRoomsScreen) {
                     EmptyView()
                 }
             

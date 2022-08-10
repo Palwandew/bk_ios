@@ -10,7 +10,8 @@ import SwiftUI
 struct FacilityRoomsScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
+    @EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
+//    = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     @State var progress: Float = 0.166 // total 12 steps therefore each one is 0.083
     @State var length: String = ""
     @State var isValid: Bool = true
@@ -23,9 +24,7 @@ struct FacilityRoomsScreen: View {
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
-            //            Text("Size of facility")
-            //                .font(Font.custom("Poppins-Medium", size: 16.0))
-            //                .padding(.bottom, -16)
+          
             
             ScrollView {
                 RoomSizeView(label: "Size of facility", length: $addNewUnitViewModel.facility.length, width: $addNewUnitViewModel.facility.width, validLength: $isValid, validWidth: $isValid)
@@ -34,10 +33,8 @@ struct FacilityRoomsScreen: View {
                 
                 
                 AmenityCounterView(counter: $addNewUnitViewModel.roomsCount, label: "Living rooms"){
-                    print("-")
                     addNewUnitViewModel.removeRoom()
                 } onIncrease: {
-                    print("+")
                     addNewUnitViewModel.addRoom()
                 }
                 
@@ -46,7 +43,7 @@ struct FacilityRoomsScreen: View {
                 LazyVStack(alignment: .leading){
                     ForEach(addNewUnitViewModel.rooms.indices, id:\.self) { index in
                         
-                        RoomSizeView(label: "Living room \(index + 1)", length: $length, width: $length, validLength: $isValid, validWidth: $isValid)
+                        RoomSizeView(label: "Living room \(index + 1)", length: $addNewUnitViewModel.rooms[index].length, width: $addNewUnitViewModel.rooms[index].width, validLength: $addNewUnitViewModel.rooms[index].validLength, validWidth: $addNewUnitViewModel.rooms[index].validWidth)
                             .padding([.top, .leading, .trailing], 2)
                             .padding(.bottom)
                         

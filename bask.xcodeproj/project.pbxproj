@@ -30,6 +30,7 @@
 		C41A26AB289C345E0057F3FE /* MaterialPriceField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AA289C345E0057F3FE /* MaterialPriceField.swift */; };
 		C41A26AD289C6DB30057F3FE /* AmenityPriceLengthInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */; };
 		C41A26AF289C79810057F3FE /* FacilityRulesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */; };
+		C441FF5A28A456FD00AAC00C /* UIApplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441FF5928A456FD00AAC00C /* UIApplicationHelper.swift */; };
 		C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */; };
 		C46BD7612828FBD2006AC587 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD7602828FBD2006AC587 /* User.swift */; };
 		C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD76228290A7E006AC587 /* HttpClient.swift */; };
@@ -166,6 +167,7 @@
 		C41A26AA289C345E0057F3FE /* MaterialPriceField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialPriceField.swift; sourceTree = "<group>"; };
 		C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityPriceLengthInputView.swift; sourceTree = "<group>"; };
 		C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRulesScreen.swift; sourceTree = "<group>"; };
+		C441FF5928A456FD00AAC00C /* UIApplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationHelper.swift; sourceTree = "<group>"; };
 		C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
 		C46BD7602828FBD2006AC587 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C46BD76228290A7E006AC587 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 				C4C63AC22823723C00343032 /* PostDI.swift */,
 				C4C63AC42823741800343032 /* AppDI.swift */,
 				C4BB007728910DCB000D2E47 /* LocalDataSourceDI.swift */,
+				C441FF5928A456FD00AAC00C /* UIApplicationHelper.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -874,6 +877,7 @@
 				C4AF9B1E2828216600EBB141 /* LoginEndpoint.swift in Sources */,
 				C47BE340289AABA900B91D69 /* FacilityPaidAmenitiesScreen.swift in Sources */,
 				C482683428973BF00072147F /* RadioButton.swift in Sources */,
+				C441FF5A28A456FD00AAC00C /* UIApplicationHelper.swift in Sources */,
 				C403100E289482B10046B645 /* MaterialTabView.swift in Sources */,
 				C4A00E3F289B1D6D00D78640 /* Dropdown.swift in Sources */,
 				C4826830289727B10072147F /* CancellationPolicyScreen.swift in Sources */,

@@ -28,7 +28,8 @@ class AddNewUnitViewModel: ObservableObject {
     
     @Published var rooms: [Room] = []
     @Published var kitchen: [Int] = []
-    
+    @Published var isValidLength: Bool = true
+    @Published var isValidWidth: Bool = true
     @Published var facility: Facility = Facility()
     
     init(useCase: CreateFacilityUseCase){
@@ -38,7 +39,7 @@ class AddNewUnitViewModel: ObservableObject {
     //MARK: - Step - 1 Validation
     
     
-    func isFacilityNameValid(){
+    func isFacilityNameValid() {
         do {
             try facility.validateName()
             isValidEnglishName = true
@@ -55,7 +56,7 @@ class AddNewUnitViewModel: ObservableObject {
                         print("\(error)")
                     case .success(let id):
                         print(id)
-                        self?.willShowAddRoomsScreen = true 
+                        self?.willShowAddRoomsScreen = true
                     }
                 }
             } catch {
@@ -63,7 +64,7 @@ class AddNewUnitViewModel: ObservableObject {
             }
             
             
-        
+            
         } catch FacilityErrors.invalidEnglishName {
             print("English name is invalid")
             isValidEnglishName = false
@@ -78,23 +79,79 @@ class AddNewUnitViewModel: ObservableObject {
     //MARK: - Step - 2
     
     func onContinueTapped(){
-//        willShowFreeAmenitiesScreen = true
-//        print("width \(self.facility.width) \n length \(self.facility.length)")
         
-        guard let roomWithoutDimensions = rooms.first(where: { $0.length.isEmpty || $0.width.isEmpty}) else {
-            return
+        do {
+            try facility.validateArea()
+            
+            isValidWidth = true
+            isValidLength = true
+            
+            
+            
+            if let room = rooms.first(where: { $0.length.isEmpty || $0.width.isEmpty}) {
+                print("invalid room -> \(room.validLength)")
+                
+                if room.length.isEmpty && room.width.isEmpty {
+                    room.validLength = false
+                    room.validWidth = false
+                    
+                } else if room.length.isEmpty {
+                    room.validLength = false
+                    
+                } else {
+                    room.validWidth = false
+                    
+                }
+                
+                // Explicitly telling self to send the changed value to the subscriber.
+                // The reason for this is that Room is of reference type (Class) therefore,
+                // it's not telling the view to re-render itself with the latest value of the room instance.
+                
+                self.objectWillChange.send()
+            } else {
+                print("\(rooms)")
+                _ = rooms.map {
+                    $0.validLength = true
+                    $0.validWidth = true
+                }
+                self.objectWillChange.send()
+    //            for room in rooms {
+    //                print("\(room.validWidth) == \(room.validLength)")
+    //            }
+            }
+            
+            let data = facility.prepareRequestBody()
+            
+            createFacilityUseCase.updateFacility(for: .two, with: data) { result  in
+                switch result {
+                case .success(let message):
+                    print("\(message)")
+                    
+                case .failure(let error):
+                    print("\(error)")
+                }
+            }
+            
+//            do {
+//                let requestBody = try JSONEncoder().encode(data)
+//
+//
+//            } catch {print("step-2")}
+            
+            //print("\(data.)")
+            
+            
+        } catch FacilityErrors.invalidWidth {
+            isValidWidth = false
+        } catch FacilityErrors.invalidLength {
+            isValidLength = false
+        } catch FacilityErrors.emptyArea {
+            isValidWidth = false
+            isValidLength = false
+        } catch {
+            print("error")
         }
         
-        print("invalid room -> \(roomWithoutDimensions.validLength)")
-        if roomWithoutDimensions.length.isEmpty {
-            roomWithoutDimensions.validLength = false
-        } else {
-            roomWithoutDimensions.validWidth = false 
-        }
-        
-
-        //let all = rooms.allSatisfy { $0.length != "" && $0.width != ""}
-        //print("test \(all)")
         
     }
     
@@ -114,10 +171,10 @@ class AddNewUnitViewModel: ObservableObject {
             rooms.removeLast(1)
             roomsCount = rooms.count
         }
-//        if !rooms.isEmpty{
-//            rooms.removeLast()
-//            roomsCount = rooms.count
-//        }
+        //        if !rooms.isEmpty{
+        //            rooms.removeLast()
+        //            roomsCount = rooms.count
+        //        }
     }
     
     
@@ -158,4 +215,17 @@ class AddNewUnitViewModel: ObservableObject {
     func decreaseShowersCount() {
         facility.decreaseCounterOf(.showers)
     }
+}
+
+
+enum FacilityCreationStep {
+    //case one
+    case two
+//    case three
+//    case fourth
+//    case fifth
+//    case sixth
+//    case seventh
+//    case eight
+//    case ninth
 }

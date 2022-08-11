@@ -14,8 +14,9 @@ struct Facility {
     var arabicName: String = ""
     var length: String = ""
     var width: String = ""
+    var livingRooms: [Room] = []
     var kitchen: Int = 0
-    var capacity: Int = 0
+    var capacity: Int = 8
     var bathrooms: Int = 0
     var showers: Int = 0
     var outdoorSitting: Bool = false
@@ -39,7 +40,9 @@ struct Facility {
     }
     
     func validateArea() throws {
-        if length.isEmpty || Int(length) ?? 0 <= 0 {
+        if length.isEmpty && width.isEmpty {
+            throw FacilityErrors.emptyArea
+        } else if length.isEmpty || Int(length) ?? 0 <= 0 {
             throw FacilityErrors.invalidLength
         } else if width.isEmpty || Int(width) ?? 0 <= 0 {
             throw FacilityErrors.invalidWidth
@@ -48,6 +51,15 @@ struct Facility {
     
     func prepareRequestBodyWith(ownerID: String) -> FacilityNameBodyData {
         return FacilityNameBodyData(arabicName: self.arabicName, englishName: self.englishName, ownerID: ownerID)
+    }
+    
+    func prepareRequestBody() -> FacilityAreaBodyData {
+        
+            
+            let data = FacilityAreaBodyData(length: Int(self.length) ?? 0, width: Int(self.width) ?? 0, capacity: self.capacity, noOfShowers: self.showers, noOfBathRooms: self.bathrooms)
+            
+            return data
+     
     }
     
     mutating func increaseCounterOf(_ amenity: Amenity) {
@@ -98,6 +110,7 @@ enum FacilityErrors: Error {
     case invalidArabicName
     case invalidLength
     case invalidWidth
+    case emptyArea
     case zero
 }
 
@@ -113,5 +126,18 @@ struct FacilityNameBodyData: Codable {
         case ownerID = "ownerId"
         case status
         case nameStatus = "name_status"
+    }
+}
+
+
+// MARK: - FacilityAreaBodyData
+struct FacilityAreaBodyData: Codable {
+    let length, width, capacity: Int
+    let noOfShowers, noOfBathRooms: Int
+    let roomsStatus: Int = 1
+
+    enum CodingKeys: String, CodingKey {
+        case length, width, capacity, noOfBathRooms, noOfShowers
+        case roomsStatus = "rooms_status"
     }
 }

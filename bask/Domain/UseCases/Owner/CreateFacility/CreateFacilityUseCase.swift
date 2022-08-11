@@ -15,23 +15,36 @@ class CreateFacilityUseCase {
         createFacilityRepo = repository
     }
     
-//    func login(completion: @escaping (User?) -> ()){
-//        loginRepository.login(with: "tehseen.absaly@gmail.com", password: "Pakistan2022^", completion: { (user) in
-//            completion(user)
-//        })
-//    }
-    
     func createFacility(_ facility: Data, completion: @escaping (Result<String, Error>) -> Void) {
         
         completion(.success("dummyId"))
-//        createFacilityRepo.addFacilityName(facility) { result in
-//            switch result {
-//            case .success(let facilityID):
-//                completion(.success(facilityID))
-//
-//            case .failure(let error):
-//                completion(.failure(error))
-//            }
-//        }
+        //        createFacilityRepo.addFacilityName(facility) { result in
+        //            switch result {
+        //            case .success(let facilityID):
+        //                completion(.success(facilityID))
+        //
+        //            case .failure(let error):
+        //                completion(.failure(error))
+        //            }
+        //        }
+    }
+    
+    
+    func updateFacility(for step: FacilityCreationStep, with data: Encodable, completion: @escaping (Result<String, Error>) -> Void) {
+        
+        switch step {
+        case .two:
+            let test = data as! FacilityAreaBodyData
+            
+            //print("hee haa \(test.capacity)")
+            createFacilityRepo.addFacilityRooms(test) { result in
+                switch result {
+                case .success(let message):
+                    completion(.success(message))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        }
     }
 }

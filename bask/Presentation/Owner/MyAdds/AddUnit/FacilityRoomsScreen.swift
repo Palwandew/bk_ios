@@ -11,56 +11,56 @@ struct FacilityRoomsScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
-//    = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
+    
     @State var progress: Float = 0.166 // total 12 steps therefore each one is 0.083
     @State var length: String = ""
     @State var isValid: Bool = true
     
+    @State var moving: Bool = false
     
     var body: some View {
+        
+        
         VStack(alignment: .leading, spacing: 32.0) {
             
             Text("Rooms")
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
-          
+            
             
             ScrollView {
-                RoomSizeView(label: "Size of facility", length: $addNewUnitViewModel.facility.length, width: $addNewUnitViewModel.facility.width, validLength: $isValid, validWidth: $isValid)
+                RoomSizeView(label: "Size of facility", length: $addNewUnitViewModel.facility.length, width: $addNewUnitViewModel.facility.width, validLength: $addNewUnitViewModel.isValidLength, validWidth: $addNewUnitViewModel.isValidWidth)
                     .padding(.horizontal, 1)
+                    .offset(x: moving ? 5 : 0)
+                    .animation(.interpolatingSpring(stiffness: 5000, damping: 20), value: moving)
                 
                 
                 
                 AmenityCounterView(counter: $addNewUnitViewModel.roomsCount, label: "Living rooms"){
+                    UIApplicationHelper.dimissKeyboard()
                     addNewUnitViewModel.removeRoom()
                 } onIncrease: {
                     addNewUnitViewModel.addRoom()
                 }
                 
-                //if !addNewUnitViewModel.rooms.isEmpty {
-                //ScrollView{
                 LazyVStack(alignment: .leading){
-                    ForEach(addNewUnitViewModel.rooms.indices, id:\.self) { index in
+                    ForEach($addNewUnitViewModel.rooms) { $room in
                         
-                        RoomSizeView(label: "Living room \(index + 1)", length: $addNewUnitViewModel.rooms[index].length, width: $addNewUnitViewModel.rooms[index].width, validLength: $addNewUnitViewModel.rooms[index].validLength, validWidth: $addNewUnitViewModel.rooms[index].validWidth)
+                        RoomSizeView(label: "Living room", length: $room.length, width: $room.width, validLength: $room.validLength, validWidth: $room.validWidth)
                             .padding([.top, .leading, .trailing], 2)
                             .padding(.bottom)
                         
+                        
                     }
                 }
-                //}        //.background(Color(AppColor.BACKGROUND))
-                //}
-                
-                
-                
+               
                 AmenityCounterView(counter: $addNewUnitViewModel.facility.kitchen, label: "Kitchen") {
                     addNewUnitViewModel.decreaseKitchenCount()
                 } onIncrease: {
                     addNewUnitViewModel.increaseKitchenCount()
                 }.padding(.bottom)
                 
-                //ScrollView{
                 LazyVStack(alignment: .leading){
                     ForEach(addNewUnitViewModel.kitchen.indices, id:\.self) { index in
                         
@@ -70,7 +70,6 @@ struct FacilityRoomsScreen: View {
                         
                     }
                 }
-                //}.background(Color(AppColor.BACKGROUND))
                 
                 AmenityCounterView(counter: $addNewUnitViewModel.facility.bathrooms, label: "Bathroom") {
                     addNewUnitViewModel.decreaseBathroomCount()
@@ -89,6 +88,8 @@ struct FacilityRoomsScreen: View {
                 } onIncrease: {
                     addNewUnitViewModel.increaseCapacityCount()
                 }.padding(.bottom)
+                    .offset(x: moving ? 5 : 0)
+                    .animation(.interpolatingSpring(stiffness: 5000, damping: 20), value: moving)
                 
                 
                 NavigationLink(destination:
@@ -111,8 +112,15 @@ struct FacilityRoomsScreen: View {
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
                 print("tapped")
+                withAnimation {
+                    moving.toggle()
+                }
                 addNewUnitViewModel.onContinueTapped()
-                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    withAnimation {
+                        moving.toggle()
+                    }
+                }
                 
             }.padding(.top, -24)
             
@@ -167,7 +175,7 @@ struct RoomSizeView: View {
     @Binding var width: String
     @Binding var validLength: Bool
     @Binding var validWidth: Bool
-    
+    let errorMessage: LocalizedStringKey = "valid_description"
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -176,11 +184,11 @@ struct RoomSizeView: View {
                 .font(Font.custom("Poppins-Regular", size: 16.0))
             
             HStack {
-                MaterialLengthField(text: $length, isValid: $validLength, errorMessage: "valid_room_length", placeHolder: "x-meters")
+                MaterialLengthField(text: $length, isValid: $validLength, errorMessage: errorMessage, placeHolder: "x-meters")
                 
                 Image(systemName: "multiply")
                 
-                MaterialLengthField(text: $width, isValid: $validWidth, errorMessage: "valid_room_length", placeHolder: "y-meters")
+                MaterialLengthField(text: $width, isValid: $validWidth, errorMessage: errorMessage, placeHolder: "y-meters")
             }
         }
     }

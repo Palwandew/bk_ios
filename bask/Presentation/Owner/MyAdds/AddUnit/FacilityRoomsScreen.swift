@@ -15,7 +15,6 @@ struct FacilityRoomsScreen: View {
     @State var progress: Float = 0.166 // total 12 steps therefore each one is 0.083
     @State var length: String = ""
     @State var isValid: Bool = true
-    
     @State var moving: Bool = false
     
     var body: some View {
@@ -45,7 +44,7 @@ struct FacilityRoomsScreen: View {
                 }
                 
                 LazyVStack(alignment: .leading){
-                    ForEach($addNewUnitViewModel.rooms) { $room in
+                    ForEach($addNewUnitViewModel.facility.livingRooms) { $room in
                         
                         RoomSizeView(label: "Living room", length: $room.length, width: $room.width, validLength: $room.validLength, validWidth: $room.validWidth)
                             .padding([.top, .leading, .trailing], 2)
@@ -127,6 +126,10 @@ struct FacilityRoomsScreen: View {
         }
         .padding(.horizontal)
         .background(Color(AppColor.BACKGROUND))
+//        .alertDialog(isShowing: $addNewUnitViewModel.showAlert) {
+//            Text("Working")
+//                .padding()
+//        }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading:
@@ -162,11 +165,11 @@ struct FacilityRoomsScreen: View {
     }
 }
 
-struct FacilityRoomsScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        FacilityRoomsScreen()
-    }
-}
+//struct FacilityRoomsScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FacilityRoomsScreen()
+//    }
+//}
 
 struct RoomSizeView: View {
     

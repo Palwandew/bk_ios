@@ -31,6 +31,7 @@
 		C41A26AD289C6DB30057F3FE /* AmenityPriceLengthInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */; };
 		C41A26AF289C79810057F3FE /* FacilityRulesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */; };
 		C441FF5A28A456FD00AAC00C /* UIApplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441FF5928A456FD00AAC00C /* UIApplicationHelper.swift */; };
+		C441FF5C28A4CE3C00AAC00C /* Amenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441FF5B28A4CE3C00AAC00C /* Amenity.swift */; };
 		C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */; };
 		C46BD7612828FBD2006AC587 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD7602828FBD2006AC587 /* User.swift */; };
 		C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD76228290A7E006AC587 /* HttpClient.swift */; };
@@ -168,6 +169,7 @@
 		C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityPriceLengthInputView.swift; sourceTree = "<group>"; };
 		C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRulesScreen.swift; sourceTree = "<group>"; };
 		C441FF5928A456FD00AAC00C /* UIApplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationHelper.swift; sourceTree = "<group>"; };
+		C441FF5B28A4CE3C00AAC00C /* Amenity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amenity.swift; sourceTree = "<group>"; };
 		C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
 		C46BD7602828FBD2006AC587 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C46BD76228290A7E006AC587 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
@@ -581,6 +583,7 @@
 				C46BD7602828FBD2006AC587 /* User.swift */,
 				C4B53809289953A00067CC21 /* Facility.swift */,
 				C49191C828A319B900C03743 /* Room.swift */,
+				C441FF5B28A4CE3C00AAC00C /* Amenity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -847,6 +850,7 @@
 				C4BB007428910802000D2E47 /* CountryCallingCodeRepoProtocol.swift in Sources */,
 				C4AF9B182828216600EBB141 /* HttpClientProtocol.swift in Sources */,
 				C4BB006F289106A0000D2E47 /* CountryCode.swift in Sources */,
+				C441FF5C28A4CE3C00AAC00C /* Amenity.swift in Sources */,
 				C4AF9B192828216600EBB141 /* RequestMethod.swift in Sources */,
 				C403100A28945D8D0046B645 /* MyBookings.swift in Sources */,
 				C4AF9B1A2828216600EBB141 /* baskApp.swift in Sources */,

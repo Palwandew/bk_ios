@@ -31,6 +31,7 @@ struct CustomAlertDialog<DialogContent: View>: ViewModifier {
         // wrap the view being modified in a ZStack and render dialog on top of it
         ZStack {
             content
+                
             if isShowing {
                 // the semi-transparent overlay
                 Rectangle().foregroundColor(Color.black.opacity(0.6))

@@ -7,8 +7,11 @@
 
 import Foundation
 
-
+//MARK: - Facility Entity
 struct Facility {
+    
+    //MARK: - Properties
+    
     var id: String? = nil 
     var englishName: String = ""
     var arabicName: String = ""
@@ -19,8 +22,12 @@ struct Facility {
     var capacity: Int = 8
     var bathrooms: Int = 0
     var showers: Int = 0
+    var wifi: Bool = true 
+    var parking: Bool = true
+    var freeIndoorSwimmingPools: [AmenityFree] = []
+    var freeOutdoorSwimmingPools: [AmenityFree] = []
     var outdoorSitting: Bool = false
-    var bbq: Bool = true
+    var bbq: Bool = false 
     var gym: Bool = false
     var gamesRoom: Bool = false
     var garden: Bool = false
@@ -28,6 +35,8 @@ struct Facility {
     let nameStatus: Int = 1
     let room_status: Int = 1
     
+    
+    //MARK: - Name validation
     func validateName() throws  {
         
         if englishName.isEmpty || englishName.count < 3 {
@@ -39,6 +48,7 @@ struct Facility {
 
     }
     
+    //MARK: - Area validation
     func validateArea() throws {
         if length.isEmpty && width.isEmpty {
             throw FacilityErrors.emptyArea
@@ -49,10 +59,42 @@ struct Facility {
         }
     }
     
+    
+    //MARK: - Living Rooms Validation
+    func hasValidLivingRooms() -> Bool {
+        if let room = livingRooms.first(where: { $0.length.isEmpty || $0.width.isEmpty}) {
+            
+            if room.length.isEmpty && room.width.isEmpty {
+                room.validLength = false
+                room.validWidth = false
+                
+            } else if room.length.isEmpty {
+                room.validLength = false
+                
+            } else {
+                room.validWidth = false
+                
+            }
+            
+            return false
+        } else {
+            _ = livingRooms.map {
+                $0.validLength = true
+                $0.validWidth = true
+            }
+            
+            return true
+        }
+    }
+    
+    
+    //MARK: - Step-1 Request body
     func prepareRequestBodyWith(ownerID: String) -> FacilityNameBodyData {
         return FacilityNameBodyData(arabicName: self.arabicName, englishName: self.englishName, ownerID: ownerID)
     }
     
+    
+    //MARK: - Step-2 Request body
     func prepareRequestBody() -> FacilityAreaBodyData {
         
             
@@ -62,8 +104,44 @@ struct Facility {
      
     }
     
-    mutating func increaseCounterOf(_ amenity: Amenity) {
-        switch amenity {
+    
+    //MARK: - Mutating functions
+    mutating func addRoom(){
+        let room = Room()
+        livingRooms.append(room)
+    }
+    
+    mutating func removeRoom(){
+        if !livingRooms.isEmpty {
+            livingRooms.removeLast(1)
+        }
+    }
+    
+    
+    mutating func addIndoorSwimmingPool(){
+        let pool = AmenityFree(serviceTypeId: 5)
+        freeIndoorSwimmingPools.append(pool)
+    }
+    
+    mutating func removeIndoorSwimmingPool(){
+        if !freeIndoorSwimmingPools.isEmpty {
+            freeIndoorSwimmingPools.removeLast(1)
+        }
+    }
+    
+    mutating func addOutdoorSwimmingPool(){
+        let pool = AmenityFree(serviceTypeId: 6)
+        freeOutdoorSwimmingPools.append(pool)
+    }
+    
+    mutating func removeOutdoorSwimmingPool(){
+        if !freeOutdoorSwimmingPools.isEmpty {
+            freeOutdoorSwimmingPools.removeLast(1)
+        }
+    }
+    
+    mutating func increaseCounterOf(_ counter: Counter) {
+        switch counter {
         case .capacity:
             capacity += 1
         case .bathroom:
@@ -75,8 +153,8 @@ struct Facility {
         }
     }
     
-    mutating func decreaseCounterOf(_ amenity: Amenity) {
-        switch amenity {
+    mutating func decreaseCounterOf(_ counter: Counter) {
+        switch counter {
         case .capacity:
             if capacity > 0 {
                 capacity -= 1
@@ -97,7 +175,7 @@ struct Facility {
     }
 }
 
-enum Amenity {
+enum Counter {
     case kitchen
     case capacity
     case bathroom

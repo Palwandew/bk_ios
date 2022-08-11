@@ -33,11 +33,11 @@ class CreateFacilityUseCase {
     func updateFacility(for step: FacilityCreationStep, with data: Encodable, completion: @escaping (Result<String, Error>) -> Void) {
         
         switch step {
-        case .two:
+        case .stepTwo:
             let test = data as! FacilityAreaBodyData
             
             //print("hee haa \(test.capacity)")
-            createFacilityRepo.addFacilityRooms(test) { result in
+            createFacilityRepo.updateFacilityDimensions(test) { result in
                 switch result {
                 case .success(let message):
                     completion(.success(message))

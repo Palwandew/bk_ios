@@ -37,28 +37,26 @@ struct FacilityFreeAmenitiesScreen: View {
                 
                 //MARK: - Wifi
                 
-                AmenityToggle(isOn: $isWifiOn, label: "Wifi")
+                AmenityToggle(isOn: $addNewUnitViewModel.facility.wifi, label: "Wifi")
                 
                 
                 //MARK: - Parking
                 
-                AmenityToggle(isOn: $isParkingOn, label: "Parking")
+                AmenityToggle(isOn: $addNewUnitViewModel.facility.parking, label: "Parking")
                 
                 
                 //MARK: - Indoor Pools
                 
                 AmenityCounterView(counter: $indoorSwimmingPools, label: "Indoor swimming pool") {
-                    if indoorSwimmingPools > 0 {
-                        indoorSwimmingPools -= 1
-                    }
+                    addNewUnitViewModel.removeIndoorSwimmingPool()
                 } onIncrease: {
-                    indoorSwimmingPools += 1
+                    addNewUnitViewModel.addIndoorSwimmingPool()
                 }
                 
                 LazyVStack(alignment: .leading){
-                    ForEach(addNewUnitViewModel.rooms.indices, id:\.self) { index in
+                    ForEach($addNewUnitViewModel.facility.freeIndoorSwimmingPools) { $pool in
                         
-                        RoomSizeView(label: "Indoor swimming pool \(index + 1)", length: $length, width: $length, validLength: $isValid, validWidth: $isValid)
+                        RoomSizeView(label: "Indoor pool", length: $pool.length, width: $pool.width, validLength: $pool.validLength, validWidth: $pool.validWidth)
                             .padding([.top, .leading, .trailing], 2)
                             .padding(.bottom)
                         
@@ -69,17 +67,15 @@ struct FacilityFreeAmenitiesScreen: View {
                 //MARK: - Outdoor Pools
                 
                 AmenityCounterView(counter: $indoorSwimmingPools, label: "Outdoor swimming pool") {
-                    if indoorSwimmingPools > 0 {
-                        indoorSwimmingPools -= 1
-                    }
+                    addNewUnitViewModel.removeOutdoorSwimmingPool()
                 } onIncrease: {
-                    indoorSwimmingPools += 1
+                    addNewUnitViewModel.addOutdoorSwimmingPool()
                 }
                 
                 LazyVStack(alignment: .leading){
-                    ForEach(addNewUnitViewModel.rooms.indices, id:\.self) { index in
+                    ForEach($addNewUnitViewModel.facility.freeOutdoorSwimmingPools) { $pool in
                         
-                        RoomSizeView(label: "Outdoor swimming pool \(index + 1)", length: $length, width: $length, validLength: $isValid, validWidth: $isValid)
+                        RoomSizeView(label: "Outdoor pool", length: $pool.length, width: $pool.width, validLength: $pool.validLength, validWidth: $pool.validWidth)
                             .padding([.top, .leading, .trailing], 2)
                             .padding(.bottom)
                         
@@ -90,6 +86,7 @@ struct FacilityFreeAmenitiesScreen: View {
                     Toggle(isOn: $isOn) {
                         Text("Outdoor sitting")
                     }.toggleStyle(Checkbox())
+                        
                     
                     Toggle(isOn: $isOn) {
                         Text("Barbeque area")
@@ -111,7 +108,8 @@ struct FacilityFreeAmenitiesScreen: View {
                     Toggle(isOn: $isOn) {
                         Text("Playing field")
                     }.toggleStyle(Checkbox())
-                }
+                }.padding(.trailing, 1)
+                    .padding(.bottom)
                 
                 
                     

@@ -32,6 +32,8 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var isValidWidth: Bool = true
     @Published var facility: Facility = Facility()
     
+    @Published var showAlert: Bool = false 
+    
     init(useCase: CreateFacilityUseCase){
         createFacilityUseCase = useCase
     }
@@ -56,6 +58,7 @@ class AddNewUnitViewModel: ObservableObject {
                         print("\(error)")
                     case .success(let id):
                         print(id)
+                        
                         self?.willShowAddRoomsScreen = true
                     }
                 }
@@ -79,104 +82,74 @@ class AddNewUnitViewModel: ObservableObject {
     //MARK: - Step - 2
     
     func onContinueTapped(){
-        
-        do {
-            try facility.validateArea()
-            
-            isValidWidth = true
-            isValidLength = true
-            
-            
-            
-            if let room = rooms.first(where: { $0.length.isEmpty || $0.width.isEmpty}) {
-                print("invalid room -> \(room.validLength)")
-                
-                if room.length.isEmpty && room.width.isEmpty {
-                    room.validLength = false
-                    room.validWidth = false
-                    
-                } else if room.length.isEmpty {
-                    room.validLength = false
-                    
-                } else {
-                    room.validWidth = false
-                    
-                }
-                
-                // Explicitly telling self to send the changed value to the subscriber.
-                // The reason for this is that Room is of reference type (Class) therefore,
-                // it's not telling the view to re-render itself with the latest value of the room instance.
-                
-                self.objectWillChange.send()
-            } else {
-                print("\(rooms)")
-                _ = rooms.map {
-                    $0.validLength = true
-                    $0.validWidth = true
-                }
-                self.objectWillChange.send()
-    //            for room in rooms {
-    //                print("\(room.validWidth) == \(room.validLength)")
-    //            }
-            }
-            
-            let data = facility.prepareRequestBody()
-            
-            createFacilityUseCase.updateFacility(for: .two, with: data) { result  in
-                switch result {
-                case .success(let message):
-                    print("\(message)")
-                    
-                case .failure(let error):
-                    print("\(error)")
-                }
-            }
-            
-//            do {
-//                let requestBody = try JSONEncoder().encode(data)
+        self.willShowFreeAmenitiesScreen = true 
+//        do {
+//            try facility.validateArea()
+//
+//            isValidWidth = true
+//            isValidLength = true
+//
+//            if facility.hasValidLivingRooms() {
+//                self.objectWillChange.send()
+//
+//                //showAlert.toggle()
+//
+//                let data = facility.prepareRequestBody()
+//
+//                createFacilityUseCase.updateFacility(for: .stepTwo, with: data) { result  in
+//                    switch result {
+//                    case .success(let message):
+//                        print("Ho hoi ho hoi\(message)")
+//                        DispatchQueue.main.async {
+//                            //self.showAlert.toggle()
+//                            self.willShowFreeAmenitiesScreen = true
+//                        }
+//
+//                    case .failure(let error):
+//                        print("\(error)")
+//                    }
+//                }
+//            }
 //
 //
-//            } catch {print("step-2")}
-            
-            //print("\(data.)")
-            
-            
-        } catch FacilityErrors.invalidWidth {
-            isValidWidth = false
-        } catch FacilityErrors.invalidLength {
-            isValidLength = false
-        } catch FacilityErrors.emptyArea {
-            isValidWidth = false
-            isValidLength = false
-        } catch {
-            print("error")
-        }
-        
-        
+//        } catch FacilityErrors.invalidWidth {
+//            isValidWidth = false
+//        } catch FacilityErrors.invalidLength {
+//            isValidLength = false
+//        } catch FacilityErrors.emptyArea {
+//            isValidWidth = false
+//            isValidLength = false
+//        } catch {
+//            print("error")
+//        }
     }
     
     func addRoom() {
         
-        let newRoom = Room()
-        rooms.append(newRoom)
-        roomsCount = rooms.count
+        facility.addRoom()
         
     }
     
     func removeRoom() {
         print("Array size \(rooms.count)")
-        if !rooms.isEmpty {
-            print("\(rooms)")
-            //let count = rooms.count
-            rooms.removeLast(1)
-            roomsCount = rooms.count
-        }
-        //        if !rooms.isEmpty{
-        //            rooms.removeLast()
-        //            roomsCount = rooms.count
-        //        }
+        facility.removeRoom()
     }
     
+    func addIndoorSwimmingPool(){
+        facility.addIndoorSwimmingPool()
+    }
+    
+    func removeIndoorSwimmingPool(){
+        facility.removeIndoorSwimmingPool()
+    }
+    
+    func addOutdoorSwimmingPool(){
+        facility.addOutdoorSwimmingPool()
+    }
+    
+    func removeOutdoorSwimmingPool(){
+        facility.removeOutdoorSwimmingPool()
+    }
     
     //MARK: - Kitchen Counter Manipulation
     func increaseKitchenCount(){
@@ -220,12 +193,12 @@ class AddNewUnitViewModel: ObservableObject {
 
 enum FacilityCreationStep {
     //case one
-    case two
-//    case three
-//    case fourth
-//    case fifth
-//    case sixth
-//    case seventh
-//    case eight
-//    case ninth
+    case stepTwo
+    //    case three
+    //    case fourth
+    //    case fifth
+    //    case sixth
+    //    case seventh
+    //    case eight
+    //    case ninth
 }

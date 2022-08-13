@@ -58,15 +58,13 @@ struct FacilityPaidAmenitiesScreen: View {
                 //MARK: - Indoor Pools
                 
                 AmenityCounterView(counter: $indoorSwimmingPools, label: "Indoor swimming pool") {
-                    if indoorSwimmingPools > 0 {
-                        indoorSwimmingPools -= 1
-                    }
+                    addNewUnitViewModel.removePaidIndoorSwimmingPool()
                 } onIncrease: {
-                    indoorSwimmingPools += 1
+                    addNewUnitViewModel.addPaidIndoorSwimmingPool()
                 }
                 
                 LazyVStack(alignment: .leading){
-                    ForEach(0..<indoorSwimmingPools, id:\.self) { index in
+                    ForEach($addNewUnitViewModel.facility.paidAmenities.indoorSwimmingPools) { $pool in
                         
                         AmenityPriceLengthInputView()
                         

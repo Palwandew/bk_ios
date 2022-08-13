@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PaidService {
+struct PaidService {
     
     //MARK: - Properties
     var wifi: Bool = false 
@@ -23,18 +23,6 @@ class PaidService {
     var garden: Bool = false
     var playingField: Bool = false
     
-    
-    //MARK: - Mutating functions
-//    mutating func addAmenity(){
-//        let room = Room()
-//        livingRooms.append(room)
-//    }
-    
-//    mutating func removeAmenity(){
-//        if !livingRooms.isEmpty {
-//            livingRooms.removeLast(1)
-//        }
-//    }
     
     func validateWifiPrice() {
         if wifi {
@@ -55,4 +43,36 @@ class PaidService {
             }
         }
     }
+    
+    //MARK: - Mutating functions
+    mutating func addPool(_ type: SwimmingPool){
+        switch type {
+        case .indoor:
+            let indoorPool = AmenityPaid(serviceTypeId: 5)
+            indoorSwimmingPools.append(indoorPool)
+        case .outdoor:
+            let outdoorPool = AmenityPaid(serviceTypeId: 5)
+            outdoorSwimmingPools.append(outdoorPool)
+        }
+
+    }
+    
+    mutating func removePool(_ type: SwimmingPool){
+        
+        switch type {
+        case .indoor:
+            if !indoorSwimmingPools.isEmpty {
+                indoorSwimmingPools.removeLast(1)
+            }
+        case .outdoor:
+            if !outdoorSwimmingPools.isEmpty {
+                outdoorSwimmingPools.removeLast(1)
+            }
+        }
+    }
+}
+
+enum SwimmingPool{
+    case indoor
+    case outdoor
 }

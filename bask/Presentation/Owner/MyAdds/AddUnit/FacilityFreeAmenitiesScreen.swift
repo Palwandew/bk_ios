@@ -82,6 +82,9 @@ struct FacilityFreeAmenitiesScreen: View {
                     }
                 }
                 
+                
+                //MARK: - Checkboxes
+                
                 Group {
                     Toggle(isOn: $isOn) {
                         Text("Outdoor sitting")
@@ -111,27 +114,6 @@ struct FacilityFreeAmenitiesScreen: View {
                 }.padding(.trailing, 1)
                     .padding(.bottom)
                 
-                
-                    
-
-                        
-//                        RoundedRectangle(cornerRadius: 5)
-//                            .fill(Color(AppColor.DARKEST_BLUE))
-//                            .frame(width: 24, height: 24)
-                        
-                        
-                    
-//                    RoundedRectangle(cornerRadius: 8)
-//                        .stroke(lineWidth: 2)
-//                        .frame(width: 20, height: 20)
-//                        .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
-                    
-//                    if configuration.isOn{
-//                        Circle()
-//                            .fill(Color(AppColor.ACCENT_GREEN))
-//                            .frame(width: 10, height: 10)
-//                    }
-                
                 NavigationLink(destination:
                                 FacilityPaidAmenitiesScreen(), isActive: $showPaid) {
                     EmptyView()
@@ -143,8 +125,9 @@ struct FacilityFreeAmenitiesScreen: View {
             
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
-                print("tapped")
-                showPaid.toggle()
+//                print("tapped")
+//                showPaid.toggle()
+                addNewUnitViewModel.validateFreeAmenities()
                 
                 
             }//.padding(.top, -24)

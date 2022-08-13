@@ -45,6 +45,18 @@ class CreateFacilityUseCase {
                     completion(.failure(error))
                 }
             }
+            
+        case .stepThree:
+            let stepThreeRequestData = data as! FacilityFreeAmenitiesRequestBody
+            
+            createFacilityRepo.updateFacilityFreeAmenities(stepThreeRequestData) { result in
+                switch result {
+                case .success(let message):
+                    completion(.success(message))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         }
     }
 }

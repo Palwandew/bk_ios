@@ -16,4 +16,7 @@ protocol CreateFacilityDomainRepoProtocol {
     
     //MARK: - Step - 2
     func updateFacilityDimensions(_ data: FacilityAreaBodyData, completion: @escaping (Result<String, Error>) -> Void)
+    
+    //MARK: - Step - 3
+    func updateFacilityFreeAmenities(_ data: FacilityFreeAmenitiesRequestBody, completion: @escaping (Result<String, Error>) -> Void)
 }

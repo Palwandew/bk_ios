@@ -12,7 +12,7 @@ struct Facility {
     
     //MARK: - Properties
     
-    var id: String? = nil 
+    var id: String? = "nil"
     var englishName: String = ""
     var arabicName: String = ""
     var length: String = ""
@@ -88,6 +88,33 @@ struct Facility {
     }
     
     
+    //MARK: - Free Amenities Validation
+    func hasValidFreeAmenities() -> Bool {
+        if let indoorPool = freeIndoorSwimmingPools.first(where: { $0.length.isEmpty || $0.width.isEmpty}) {
+            
+            if indoorPool.length.isEmpty && indoorPool.width.isEmpty {
+                indoorPool.validLength = false
+                indoorPool.validWidth = false
+                
+            } else if indoorPool.length.isEmpty {
+                indoorPool.validLength = false
+                
+            } else {
+                indoorPool.validWidth = false
+                
+            }
+            
+            return false
+        } else {
+            _ = freeIndoorSwimmingPools.map {
+                $0.validLength = true
+                $0.validWidth = true
+            }
+            
+            return true
+        }
+    }
+    
     //MARK: - Step-1 Request body
     func prepareRequestBodyWith(ownerID: String) -> FacilityNameBodyData {
         return FacilityNameBodyData(arabicName: self.arabicName, englishName: self.englishName, ownerID: ownerID)
@@ -104,6 +131,39 @@ struct Facility {
      
     }
     
+    
+    //MARK: - Step-3 Request body
+    func prepareFreeServicesRequestBody() -> FacilityFreeAmenitiesRequestBody {
+        
+        var services: [Facilityservice] = []
+        
+        if !freeIndoorSwimmingPools.isEmpty {
+            for indoorPool in freeIndoorSwimmingPools {
+                let freeIndoorPool = Facilityservice(facilityID: id!, serviceTypeID: indoorPool.serviceTypeId, facilityServiceDescription: nil, length: Int(indoorPool.length), width: Int(indoorPool.width))
+                services.append(freeIndoorPool)
+            }
+            
+        }
+        
+        if !freeOutdoorSwimmingPools.isEmpty {
+            for outdoorPool in freeIndoorSwimmingPools {
+                let freeOutdoorPool = Facilityservice(facilityID: id!, serviceTypeID: outdoorPool.serviceTypeId, facilityServiceDescription: nil, length: Int(outdoorPool.length), width: Int(outdoorPool.width))
+                services.append(freeOutdoorPool)
+            }
+        }
+        
+        if wifi {
+            let wifiService = Facilityservice(facilityID: id!, serviceTypeID: 3, facilityServiceDescription: nil, length: nil, width: nil)
+            services.append(wifiService)
+        }
+        
+        if parking {
+            let parkingService = Facilityservice(facilityID: id!, serviceTypeID: 4, facilityServiceDescription: nil, length: nil, width: nil)
+            services.append(parkingService)
+        }
+        
+        return FacilityFreeAmenitiesRequestBody(facilityservices: services, facilityID: id ?? "")
+    }
     
     //MARK: - Mutating functions
     mutating func addRoom(){
@@ -217,5 +277,32 @@ struct FacilityAreaBodyData: Codable {
     enum CodingKeys: String, CodingKey {
         case length, width, capacity, noOfBathRooms, noOfShowers
         case roomsStatus = "rooms_status"
+    }
+}
+
+
+// MARK: - FacilityFreeAmenities
+struct FacilityFreeAmenitiesRequestBody: Codable {
+    let facilityservices: [Facilityservice]
+    let facilityID: String
+
+    enum CodingKeys: String, CodingKey {
+        case facilityservices
+        case facilityID = "facilityId"
+    }
+}
+
+// MARK: - Facilityservice
+struct Facilityservice: Codable {
+    let facilityID: String
+    let serviceTypeID: Int
+    let facilityServiceDescription: String?
+    let length, width: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case facilityID = "facilityId"
+        case serviceTypeID = "serviceTypeId"
+        case facilityServiceDescription = "description"
+        case length, width
     }
 }

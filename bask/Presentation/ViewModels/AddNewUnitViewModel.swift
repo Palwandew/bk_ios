@@ -124,6 +124,30 @@ class AddNewUnitViewModel: ObservableObject {
 //        }
     }
     
+    
+    //MARK: - Step - 3
+    
+    func validateFreeAmenities() {
+        self.objectWillChange.send()
+        if facility.hasValidFreeAmenities() {
+            print("Valid free amenity")
+            let data = facility.prepareFreeServicesRequestBody()
+            
+            createFacilityUseCase.updateFacility(for: .stepThree, with: data) { result in
+                switch result {
+                case .failure(let error):
+                    print("error \(error)")
+                    
+                case .success(let success):
+                    print("success \(success)")
+                }
+            }
+
+        } else {
+            print("Invalid free amenity")
+        }
+    }
+    
     func addRoom() {
         
         facility.addRoom()
@@ -194,7 +218,7 @@ class AddNewUnitViewModel: ObservableObject {
 enum FacilityCreationStep {
     //case one
     case stepTwo
-    //    case three
+    case stepThree
     //    case fourth
     //    case fifth
     //    case sixth

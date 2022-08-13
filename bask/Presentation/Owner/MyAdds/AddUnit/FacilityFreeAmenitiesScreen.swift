@@ -115,7 +115,7 @@ struct FacilityFreeAmenitiesScreen: View {
                     .padding(.bottom)
                 
                 NavigationLink(destination:
-                                FacilityPaidAmenitiesScreen(), isActive: $showPaid) {
+                                FacilityPaidAmenitiesScreen(), isActive: $addNewUnitViewModel.willShowPaidAmenitiesScreen) {
                     EmptyView()
                 }
                 

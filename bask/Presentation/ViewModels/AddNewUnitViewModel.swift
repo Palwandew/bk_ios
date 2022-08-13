@@ -22,6 +22,7 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var isValidArabicName: Bool = true
     @Published var willShowAddRoomsScreen: Bool = false
     @Published var willShowFreeAmenitiesScreen: Bool = false
+    @Published var willShowPaidAmenitiesScreen: Bool = false 
     
     @Published var roomsCount: Int = 0
     @Published var kitchenCount: Int = 0
@@ -133,13 +134,16 @@ class AddNewUnitViewModel: ObservableObject {
             print("Valid free amenity")
             let data = facility.prepareFreeServicesRequestBody()
             
-            createFacilityUseCase.updateFacility(for: .stepThree, with: data) { result in
+            createFacilityUseCase.updateFacility(for: .stepThree, with: data) { [weak self] result in
                 switch result {
                 case .failure(let error):
                     print("error \(error)")
                     
                 case .success(let success):
                     print("success \(success)")
+                    DispatchQueue.main.async {
+                        self?.willShowPaidAmenitiesScreen = true
+                    }
                 }
             }
 

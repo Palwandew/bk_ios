@@ -9,11 +9,12 @@ import SwiftUI
 
 struct AmenityPriceDecriptionInputView: View {
     
-    @State var text: String = ""
-    @State var isValid: Bool = true
+    @Binding var text: String
+    @Binding var isValid: Bool
+    @Binding var description: String
     @State var menuShowed: Bool = false
     @State var selectedText: String = "day"
-
+    @State private var validDescription: Bool = true
     let errorMessage: LocalizedStringKey = "valid_description"
     let type: AmenityDetail = .description
     let menuItem: [String] = ["day", "item"]
@@ -36,7 +37,7 @@ struct AmenityPriceDecriptionInputView: View {
                     }.frame(height: 57)
                 }
                 
-                MaterialTextField(text: $text, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Description (Optional)")
+                MaterialTextField(text: $description, isValid: $validDescription, errorMessage: errorMessage, placeHolder: "Description (Optional)")
             }
             
             VStack{
@@ -82,11 +83,11 @@ enum AmenityDetail {
     case area
 }
 
-struct AmenityPaidCounter_Previews: PreviewProvider {
-    static var previews: some View {
-        AmenityPriceDecriptionInputView()
-    }
-}
+//struct AmenityPaidCounter_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AmenityPriceDecriptionInputView()
+//    }
+//}
 
 
 struct MaterialDropdown: View {

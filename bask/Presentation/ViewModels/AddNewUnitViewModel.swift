@@ -129,27 +129,37 @@ class AddNewUnitViewModel: ObservableObject {
     //MARK: - Step - 3
     
     func validateFreeAmenities() {
+        willShowPaidAmenitiesScreen = true
+//        self.objectWillChange.send()
+//        if facility.hasValidFreeAmenities() {
+//            print("Valid free amenity")
+//            let data = facility.prepareFreeServicesRequestBody()
+//
+//            createFacilityUseCase.updateFacility(for: .stepThree, with: data) { [weak self] result in
+//                switch result {
+//                case .failure(let error):
+//                    print("error \(error)")
+//
+//                case .success(let success):
+//                    print("success \(success)")
+//                    DispatchQueue.main.async {
+//                        self?.willShowPaidAmenitiesScreen = true
+//                    }
+//                }
+//            }
+//
+//        } else {
+//            print("Invalid free amenity")
+//        }
+    }
+    
+    
+    //MARK: - Step - 4
+    
+    func validatePaidAmenities(){
+        facility.paidAmenities.validateWifiPrice()
+        facility.paidAmenities.validateParkingPrice()
         self.objectWillChange.send()
-        if facility.hasValidFreeAmenities() {
-            print("Valid free amenity")
-            let data = facility.prepareFreeServicesRequestBody()
-            
-            createFacilityUseCase.updateFacility(for: .stepThree, with: data) { [weak self] result in
-                switch result {
-                case .failure(let error):
-                    print("error \(error)")
-                    
-                case .success(let success):
-                    print("success \(success)")
-                    DispatchQueue.main.async {
-                        self?.willShowPaidAmenitiesScreen = true
-                    }
-                }
-            }
-
-        } else {
-            print("Invalid free amenity")
-        }
     }
     
     func addRoom() {

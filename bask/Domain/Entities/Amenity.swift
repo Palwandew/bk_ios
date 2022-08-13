@@ -42,9 +42,13 @@ class AmenityFree: Amenity {
 }
 
 class AmenityPaid: Amenity {
-    let isFree: Bool = false
-    var description: String = ""
+
     let priceUnit: String = "Day"
+    let isFree: Bool = false
+    var price: String = ""
+    var validPrice: Bool = true 
+    var description: String = ""
+    let validDescription: Bool = true 
     
     override init(serviceTypeId: Int) {
         super.init(serviceTypeId: serviceTypeId)

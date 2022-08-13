@@ -10,9 +10,9 @@ import SwiftUI
 struct FacilityPaidAmenitiesScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
-    //@EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
-    @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
-    
+    @EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
+//    @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
+
     @State var progress: Float = 0.249 // total 12 steps therefore each one is 0.083
     @State var isWifiOn: Bool = false
     @State var isParkingOn: Bool = true
@@ -40,19 +40,19 @@ struct FacilityPaidAmenitiesScreen: View {
                 
                 //MARK: - Wifi
                 
-                AmenityToggle(isOn: $isWifiOn, label: "Wifi")
+                AmenityToggle(isOn: $addNewUnitViewModel.facility.paidAmenities.wifi, label: "Wifi")
                 
-                if isWifiOn {
-                    AmenityPriceDecriptionInputView()
+                if addNewUnitViewModel.facility.paidAmenities.wifi {
+                    AmenityPriceDecriptionInputView(text: $addNewUnitViewModel.facility.paidAmenities.wifiPrice.price, isValid: $addNewUnitViewModel.facility.paidAmenities.wifiPrice.validPrice, description: $addNewUnitViewModel.facility.paidAmenities.wifiPrice.description)
                 }
                 
                 
                 //MARK: - Parking
                 
-                AmenityToggle(isOn: $isParkingOn, label: "Parking")
+                AmenityToggle(isOn: $addNewUnitViewModel.facility.paidAmenities.parking, label: "Parking")
                 
-                if isParkingOn {
-                    AmenityPriceDecriptionInputView()
+                if addNewUnitViewModel.facility.paidAmenities.parking {
+                    AmenityPriceDecriptionInputView(text: $addNewUnitViewModel.facility.paidAmenities.parkingPrice.price, isValid: $addNewUnitViewModel.facility.paidAmenities.parkingPrice.validPrice, description: $addNewUnitViewModel.facility.paidAmenities.parkingPrice.description)
                 }
                 
                 //MARK: - Indoor Pools
@@ -138,8 +138,9 @@ struct FacilityPaidAmenitiesScreen: View {
             //MARK: - Continue Button
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
-                print("tapped")
-                showRules.toggle()
+//                print("tapped")
+//                showRules.toggle()
+                addNewUnitViewModel.validatePaidAmenities()
                 
                 
             }//.padding(.top, -24)

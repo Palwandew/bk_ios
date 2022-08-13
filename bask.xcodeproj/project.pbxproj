@@ -32,6 +32,8 @@
 		C41A26AF289C79810057F3FE /* FacilityRulesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */; };
 		C441FF5A28A456FD00AAC00C /* UIApplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441FF5928A456FD00AAC00C /* UIApplicationHelper.swift */; };
 		C441FF5C28A4CE3C00AAC00C /* Amenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441FF5B28A4CE3C00AAC00C /* Amenity.swift */; };
+		C450F44428A7CE260083AB86 /* FreeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450F44328A7CE260083AB86 /* FreeService.swift */; };
+		C450F44628A7CE440083AB86 /* PaidService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450F44528A7CE440083AB86 /* PaidService.swift */; };
 		C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */; };
 		C46BD7612828FBD2006AC587 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD7602828FBD2006AC587 /* User.swift */; };
 		C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD76228290A7E006AC587 /* HttpClient.swift */; };
@@ -170,6 +172,8 @@
 		C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRulesScreen.swift; sourceTree = "<group>"; };
 		C441FF5928A456FD00AAC00C /* UIApplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationHelper.swift; sourceTree = "<group>"; };
 		C441FF5B28A4CE3C00AAC00C /* Amenity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amenity.swift; sourceTree = "<group>"; };
+		C450F44328A7CE260083AB86 /* FreeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeService.swift; sourceTree = "<group>"; };
+		C450F44528A7CE440083AB86 /* PaidService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidService.swift; sourceTree = "<group>"; };
 		C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
 		C46BD7602828FBD2006AC587 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C46BD76228290A7E006AC587 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
@@ -584,6 +588,8 @@
 				C4B53809289953A00067CC21 /* Facility.swift */,
 				C49191C828A319B900C03743 /* Room.swift */,
 				C441FF5B28A4CE3C00AAC00C /* Amenity.swift */,
+				C450F44328A7CE260083AB86 /* FreeService.swift */,
+				C450F44528A7CE440083AB86 /* PaidService.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -862,6 +868,7 @@
 				C4A5C57D289F3DD9006AF774 /* FacilityTimeScreen.swift in Sources */,
 				C4031010289494B30046B645 /* MaterialTabViewRouter.swift in Sources */,
 				C48268262896E8860072147F /* EmptyState.swift in Sources */,
+				C450F44628A7CE440083AB86 /* PaidService.swift in Sources */,
 				C4AF9B1B2828216600EBB141 /* PostDI.swift in Sources */,
 				C4082844289D29D300C1B51B /* FacilityLocationScreen.swift in Sources */,
 				C4BB0076289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift in Sources */,
@@ -881,6 +888,7 @@
 				C4AF9B1E2828216600EBB141 /* LoginEndpoint.swift in Sources */,
 				C47BE340289AABA900B91D69 /* FacilityPaidAmenitiesScreen.swift in Sources */,
 				C482683428973BF00072147F /* RadioButton.swift in Sources */,
+				C450F44428A7CE260083AB86 /* FreeService.swift in Sources */,
 				C441FF5A28A456FD00AAC00C /* UIApplicationHelper.swift in Sources */,
 				C403100E289482B10046B645 /* MaterialTabView.swift in Sources */,
 				C4A00E3F289B1D6D00D78640 /* Dropdown.swift in Sources */,

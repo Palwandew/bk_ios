@@ -22,6 +22,7 @@ struct Facility {
     var capacity: Int = 8
     var bathrooms: Int = 0
     var showers: Int = 0
+    // Free Amenities
     var wifi: Bool = true 
     var parking: Bool = true
     var freeIndoorSwimmingPools: [AmenityFree] = []
@@ -32,6 +33,8 @@ struct Facility {
     var gamesRoom: Bool = false
     var garden: Bool = false
     var playingField: Bool = false
+    // Paid Amenities
+    var paidAmenities: PaidService = PaidService()
     let nameStatus: Int = 1
     let room_status: Int = 1
     
@@ -114,6 +117,8 @@ struct Facility {
             return true
         }
     }
+    
+    
     
     //MARK: - Step-1 Request body
     func prepareRequestBodyWith(ownerID: String) -> FacilityNameBodyData {
@@ -306,3 +311,8 @@ struct Facilityservice: Codable {
         case length, width
     }
 }
+
+
+//
+// Add free services and paid services to the facility class. This will ease the
+// process of validation and adding logic.

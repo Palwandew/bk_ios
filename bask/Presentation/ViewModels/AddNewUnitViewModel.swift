@@ -157,8 +157,13 @@ class AddNewUnitViewModel: ObservableObject {
     //MARK: - Step - 4
     
     func validatePaidAmenities(){
-        facility.paidAmenities.validateWifiPrice()
-        facility.paidAmenities.validateParkingPrice()
+//        facility.paidAmenities.validateWifiPrice()
+//        facility.paidAmenities.validateParkingPrice()
+        if facility.hasValidPaidSwimmingPools() {
+            print("Valid pools")
+        } else {
+            print("Invalid pools")
+        }
         self.objectWillChange.send()
     }
     

@@ -66,7 +66,7 @@ struct FacilityPaidAmenitiesScreen: View {
                 LazyVStack(alignment: .leading){
                     ForEach($addNewUnitViewModel.facility.paidAmenities.indoorSwimmingPools) { $pool in
                         
-                        AmenityPriceLengthInputView()
+                        AmenityPriceLengthInputView(text: $pool.price, isValid: $pool.validPrice, length: $pool.length, width: $pool.width, validLength: $pool.validLength, validWidth: $pool.validWidth)
                         
                     }
                 }
@@ -83,9 +83,9 @@ struct FacilityPaidAmenitiesScreen: View {
                 }
                 
                 LazyVStack(alignment: .leading){
-                    ForEach(0..<outdoorSwimmingPools, id:\.self) { index in
+                    ForEach($addNewUnitViewModel.facility.paidAmenities.outdoorSwimmingPools) { $pool in
                         
-                        AmenityPriceLengthInputView()
+                        AmenityPriceLengthInputView(text: $pool.price, isValid: $pool.validPrice, length: $pool.length, width: $pool.width, validLength: $pool.validLength, validWidth: $pool.validWidth)
                         
                     }
                 }
@@ -118,10 +118,10 @@ struct FacilityPaidAmenitiesScreen: View {
                         Text("Playing field")
                     }.toggleStyle(Checkbox())
                     
-                    if addNewUnitViewModel.facility.playingField {
-                        AmenityPriceLengthInputView()
-                            .padding(.bottom, 2)
-                    }
+//                    if addNewUnitViewModel.facility.playingField {
+//                        AmenityPriceLengthInputView()
+//                            .padding(.bottom, 2)
+//                    }
                 }.padding(.trailing, 1)
                 
                 //AmenityPaidCounter()

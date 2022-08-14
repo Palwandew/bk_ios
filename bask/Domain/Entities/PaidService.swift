@@ -10,6 +10,7 @@ import Foundation
 struct PaidService {
     
     //MARK: - Properties
+    
     var wifi: Bool = false 
     var wifiPrice: AmenityPaid = AmenityPaid(serviceTypeId: 3)
     var parking: Bool = false
@@ -24,34 +25,89 @@ struct PaidService {
     var playingField: Bool = false
     
     
-    func validateWifiPrice() {
+    //MARK: - Wifi price validation
+    
+    func validateWifiPrice() -> Bool {
         if wifi {
             if wifiPrice.price.isEmpty {
                 wifiPrice.validPrice = false
+                
             } else {
                 wifiPrice.validPrice = true 
             }
+            
+            return wifiPrice.validPrice
+        } else {
+            return true
         }
     }
     
-    func validateParkingPrice() {
+    
+    //MARK: - Parking price validation
+    
+    func validateParkingPrice() -> Bool {
         if parking {
             if parkingPrice.price.isEmpty {
                 parkingPrice.validPrice = false
             } else {
                 parkingPrice.validPrice = true
             }
+            return parkingPrice.validPrice
+        } else {
+            return true
+        }
+    }
+    
+    
+    //MARK: - Validate swimming pools
+    
+    func hasValidPools(_ type: SwimmingPool) -> Bool {
+        
+        switch type {
+        case .indoor:
+            return isInvalidPool(in: indoorSwimmingPools)
+        case .outdoor:
+            return isInvalidPool(in: outdoorSwimmingPools)
+        }
+        
+    }
+    
+    private func isInvalidPool(in list: [AmenityPaid]) -> Bool {
+        if let pool = list.first(where: { $0.length.isEmpty || $0.width.isEmpty || $0.price.isEmpty}) {
+            
+            if pool.price.isEmpty {
+                pool.validPrice = false
+            }
+            
+            if pool.length.isEmpty {
+                pool.validLength = false
+            }
+            
+            if pool.width.isEmpty {
+                pool.validWidth = false
+            }
+            
+            return false
+        } else {
+            _ = list.map {
+                $0.validPrice = true
+                $0.validLength = true
+                $0.validWidth = true
+            }
+            
+            return true
         }
     }
     
     //MARK: - Mutating functions
+    
     mutating func addPool(_ type: SwimmingPool){
         switch type {
         case .indoor:
             let indoorPool = AmenityPaid(serviceTypeId: 5)
             indoorSwimmingPools.append(indoorPool)
         case .outdoor:
-            let outdoorPool = AmenityPaid(serviceTypeId: 5)
+            let outdoorPool = AmenityPaid(serviceTypeId: 6)
             outdoorSwimmingPools.append(outdoorPool)
         }
 

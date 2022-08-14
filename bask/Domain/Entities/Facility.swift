@@ -118,7 +118,17 @@ struct Facility {
         }
     }
     
+    func hasValidPaidIndoorPools() -> Bool {
+        return paidAmenities.hasValidPools(.indoor)
+    }
     
+    func hasValidPaidOutdoorPools() -> Bool {
+        return paidAmenities.hasValidPools(.outdoor)
+    }
+    
+    func hasValidPaidSwimmingPools() -> Bool {
+        return paidAmenities.hasValidPools(.indoor) && paidAmenities.hasValidPools(.outdoor)
+    }
     
     //MARK: - Step-1 Request body
     func prepareRequestBodyWith(ownerID: String) -> FacilityNameBodyData {

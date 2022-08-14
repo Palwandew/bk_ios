@@ -17,6 +17,8 @@ struct PaidService {
     var parkingPrice: AmenityPaid = AmenityPaid(serviceTypeId: 4)
     var indoorSwimmingPools: [AmenityPaid] = []
     var outdoorSwimmingPools: [AmenityPaid] = []
+    var indoorPools: Int = 0
+    var outdoorPools: Int = 0
     var outdoorSitting: Bool = false
     var bbq: Bool = false
     var gym: Bool = false
@@ -106,9 +108,11 @@ struct PaidService {
         case .indoor:
             let indoorPool = AmenityPaid(serviceTypeId: 5)
             indoorSwimmingPools.append(indoorPool)
+            indoorPools += 1
         case .outdoor:
             let outdoorPool = AmenityPaid(serviceTypeId: 6)
             outdoorSwimmingPools.append(outdoorPool)
+            outdoorPools += 1
         }
 
     }
@@ -119,10 +123,12 @@ struct PaidService {
         case .indoor:
             if !indoorSwimmingPools.isEmpty {
                 indoorSwimmingPools.removeLast(1)
+                indoorPools -= 1
             }
         case .outdoor:
             if !outdoorSwimmingPools.isEmpty {
                 outdoorSwimmingPools.removeLast(1)
+                outdoorPools -= 1
             }
         }
     }

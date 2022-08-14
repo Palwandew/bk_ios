@@ -57,8 +57,10 @@ struct FacilityPaidAmenitiesScreen: View {
                 
                 //MARK: - Indoor Pools
                 
-                AmenityCounterView(counter: $indoorSwimmingPools, label: "Indoor swimming pool") {
+                AmenityCounterView(counter: $addNewUnitViewModel.facility.paidAmenities.indoorPools, label: "Indoor swimming pool") {
+                    UIApplicationHelper.dimissKeyboard()
                     addNewUnitViewModel.removePaidIndoorSwimmingPool()
+                    
                 } onIncrease: {
                     addNewUnitViewModel.addPaidIndoorSwimmingPool()
                 }
@@ -67,6 +69,7 @@ struct FacilityPaidAmenitiesScreen: View {
                     ForEach($addNewUnitViewModel.facility.paidAmenities.indoorSwimmingPools) { $pool in
                         
                         AmenityPriceLengthInputView(text: $pool.price, isValid: $pool.validPrice, length: $pool.length, width: $pool.width, validLength: $pool.validLength, validWidth: $pool.validWidth)
+                            .padding(.trailing, 1)
                         
                     }
                 }
@@ -74,18 +77,19 @@ struct FacilityPaidAmenitiesScreen: View {
                 
                 //MARK: - Outdoor Pools
                 
-                AmenityCounterView(counter: $outdoorSwimmingPools, label: "Outdoor swimming pool") {
-                    if outdoorSwimmingPools > 0 {
-                        outdoorSwimmingPools -= 1
-                    }
+                AmenityCounterView(counter: $addNewUnitViewModel.facility.paidAmenities.outdoorPools, label: "Outdoor swimming pool") {
+                    UIApplicationHelper.dimissKeyboard()
+                    addNewUnitViewModel.removePaidOutdoorSwimmingPool()
                 } onIncrease: {
-                    outdoorSwimmingPools += 1
+                    addNewUnitViewModel.addPaidOutdoorSwimmingPool()
                 }
                 
                 LazyVStack(alignment: .leading){
                     ForEach($addNewUnitViewModel.facility.paidAmenities.outdoorSwimmingPools) { $pool in
                         
                         AmenityPriceLengthInputView(text: $pool.price, isValid: $pool.validPrice, length: $pool.length, width: $pool.width, validLength: $pool.validLength, validWidth: $pool.validWidth)
+                            .padding(.trailing, 1)
+                        
                         
                     }
                 }

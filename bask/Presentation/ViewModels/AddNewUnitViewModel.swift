@@ -198,6 +198,18 @@ class AddNewUnitViewModel: ObservableObject {
         facility.paidAmenities.removePool(.indoor)
     }
     
+    //MARK: - Add paid Outdoor swimming pool
+    func addPaidOutdoorSwimmingPool(){
+        facility.paidAmenities.addPool(.outdoor)
+        //self.objectWillChange.send()
+    }
+    
+    
+    //MARK: - Remove paid Outdoor swimming pool
+    func removePaidOutdoorSwimmingPool(){
+        facility.paidAmenities.removePool(.outdoor)
+    }
+    
     
     func addOutdoorSwimmingPool(){
         facility.addOutdoorSwimmingPool()

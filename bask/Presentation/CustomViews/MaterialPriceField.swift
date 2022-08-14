@@ -70,6 +70,8 @@ struct MaterialPriceField: View {
                         .transition(.opacity)
                 }
             }
+        }.onAppear {
+            updateBorder()
         }
     }
     

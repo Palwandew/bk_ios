@@ -70,6 +70,8 @@ struct MaterialLengthField: View {
                         .transition(.opacity)
                 }
             }
+        }.onAppear {
+            updateBorder()
         }
     }
     

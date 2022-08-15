@@ -10,8 +10,8 @@ import SwiftUI
 struct FacilityPaidAmenitiesScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
-//    @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
+    //@EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
+    @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
 
     @State var progress: Float = 0.249 // total 12 steps therefore each one is 0.083
     @State var isWifiOn: Bool = false
@@ -94,57 +94,75 @@ struct FacilityPaidAmenitiesScreen: View {
                     }
                 }
                 
+                //MARK: - Pets
                 
-                //MARK: - Outdoor Sitting
-                Group {
-                    Toggle(isOn: $addNewUnitViewModel.facility.outdoorSitting) {
-                        Text("Outdoor sitting")
-                    }.toggleStyle(Checkbox())
-                    
-                    Toggle(isOn: $addNewUnitViewModel.facility.bbq) {
-                        Text("Barbeque area")
-                    }.toggleStyle(Checkbox())
-                    
-                    
-                    Toggle(isOn: $addNewUnitViewModel.facility.gym) {
-                        Text("Gym")
-                    }.toggleStyle(Checkbox())
-                    
-                    Toggle(isOn: $addNewUnitViewModel.facility.gamesRoom) {
-                        Text("Games room")
-                    }.toggleStyle(Checkbox())
-                    
-                    Toggle(isOn: $addNewUnitViewModel.facility.garden) {
-                        Text("Garden")
-                    }.toggleStyle(Checkbox())
-                    
-                    Toggle(isOn: $addNewUnitViewModel.facility.playingField) {
-                        Text("Playing field")
-                    }.toggleStyle(Checkbox())
-                    
-//                    if addNewUnitViewModel.facility.playingField {
-//                        AmenityPriceLengthInputView()
-//                            .padding(.bottom, 2)
-//                    }
-                }.padding(.trailing, 1)
+                AmenityToggle(isOn: $addNewUnitViewModel.facility.paidAmenities.pets, label: "Pets")
+
+                if addNewUnitViewModel.facility.paidAmenities.pets {
+                    Group {
+                        
+                        Toggle(isOn: $addNewUnitViewModel.facility.paidAmenities.cats) {
+                            Text("Cats")
+                        }.toggleStyle(Checkbox())
+                        
+                        Toggle(isOn: $addNewUnitViewModel.facility.paidAmenities.dogs) {
+                            Text("Dogs")
+                        }.toggleStyle(Checkbox())
+                        
+                        VStack(alignment: .leading) {
+                            Toggle(isOn: $addNewUnitViewModel.facility.paidAmenities.rodents) {
+                                Text("Rodents")
+                            }.toggleStyle(Checkbox())
+                            
+                            Text("Rabbits, hamsters, rats, etc")
+                                .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
+                                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            Toggle(isOn: $addNewUnitViewModel.facility.paidAmenities.reptiles) {
+                                Text("Reptile")
+                            }.toggleStyle(Checkbox())
+                            
+                            Text("Snakes, iguanas, chameleon, etc   ")
+                                .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
+                                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            
+                            Toggle(isOn: $addNewUnitViewModel.facility.paidAmenities.bigAnimals) {
+                                Text("Big Animals")
+                            }.toggleStyle(Checkbox())
+                            
+                            Text("Horses, camels, cows, etc")
+                                .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
+                                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                        }
+                    }
+                }
                 
                 //AmenityPaidCounter()
-                NavigationLink(destination:
-                                FacilityRulesScreen(), isActive: $showRules) {
-                    EmptyView()
-                }
+                
                 
             })
             
             
             //MARK: - Continue Button
-            FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
+            VStack {
+                NavigationLink(destination:
+                                FacilityRulesScreen(), isActive: $showRules) {
+                    EmptyView()
+                }
                 
-//                print("tapped")
-//                showRules.toggle()
-                addNewUnitViewModel.validatePaidAmenities()
-                
-                
+                FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
+                    
+    //                print("tapped")
+    //                showRules.toggle()
+                    addNewUnitViewModel.validatePaidAmenities()
+                    
+                    
+                }
             }//.padding(.top, -24)
         
         }.padding(.horizontal)

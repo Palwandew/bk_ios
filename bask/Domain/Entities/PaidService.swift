@@ -11,7 +11,7 @@ struct PaidService {
     
     //MARK: - Properties
     
-    var wifi: Bool = false 
+    var wifi: Bool = false
     var wifiPrice: AmenityPaid = AmenityPaid(serviceTypeId: 3)
     var parking: Bool = false
     var parkingPrice: AmenityPaid = AmenityPaid(serviceTypeId: 4)
@@ -19,12 +19,13 @@ struct PaidService {
     var outdoorSwimmingPools: [AmenityPaid] = []
     var indoorPools: Int = 0
     var outdoorPools: Int = 0
-    var outdoorSitting: Bool = false
-    var bbq: Bool = false
-    var gym: Bool = false
-    var gamesRoom: Bool = false
-    var garden: Bool = false
-    var playingField: Bool = false
+    var pets: Bool = true
+    var cats: Bool = false
+    var dogs: Bool = false
+    var rodents: Bool = false
+    var reptiles: Bool = false
+    var bigAnimals: Bool = false
+    
     
     
     //MARK: - Wifi price validation
@@ -35,7 +36,7 @@ struct PaidService {
                 wifiPrice.validPrice = false
                 
             } else {
-                wifiPrice.validPrice = true 
+                wifiPrice.validPrice = true
             }
             
             return wifiPrice.validPrice
@@ -114,7 +115,7 @@ struct PaidService {
             outdoorSwimmingPools.append(outdoorPool)
             outdoorPools += 1
         }
-
+        
     }
     
     mutating func removePool(_ type: SwimmingPool){

@@ -24,6 +24,8 @@ struct FacilityPaidAmenitiesScreen: View {
     
     @State var showRules: Bool = false 
     
+    
+    
     var body: some View {
         VStack(alignment: .leading) {
             
@@ -43,7 +45,7 @@ struct FacilityPaidAmenitiesScreen: View {
                 AmenityToggle(isOn: $addNewUnitViewModel.facility.paidAmenities.wifi, label: "Wifi")
                 
                 if addNewUnitViewModel.facility.paidAmenities.wifi {
-                    AmenityPriceDecriptionInputView(text: $addNewUnitViewModel.facility.paidAmenities.wifiPrice.price, isValid: $addNewUnitViewModel.facility.paidAmenities.wifiPrice.validPrice, description: $addNewUnitViewModel.facility.paidAmenities.wifiPrice.description)
+                    AmenityPriceDecriptionInputView(text: $addNewUnitViewModel.facility.paidAmenities.wifiService.price, isValid: $addNewUnitViewModel.facility.paidAmenities.wifiService.validPrice, description: $addNewUnitViewModel.facility.paidAmenities.wifiService.description)
                 }
                 
                 
@@ -52,7 +54,7 @@ struct FacilityPaidAmenitiesScreen: View {
                 AmenityToggle(isOn: $addNewUnitViewModel.facility.paidAmenities.parking, label: "Parking")
                 
                 if addNewUnitViewModel.facility.paidAmenities.parking {
-                    AmenityPriceDecriptionInputView(text: $addNewUnitViewModel.facility.paidAmenities.parkingPrice.price, isValid: $addNewUnitViewModel.facility.paidAmenities.parkingPrice.validPrice, description: $addNewUnitViewModel.facility.paidAmenities.parkingPrice.description)
+                    AmenityPriceDecriptionInputView(text: $addNewUnitViewModel.facility.paidAmenities.parkingService.price, isValid: $addNewUnitViewModel.facility.paidAmenities.parkingService.validPrice, description: $addNewUnitViewModel.facility.paidAmenities.parkingService.description)
                 }
                 
                 //MARK: - Indoor Pools
@@ -105,9 +107,18 @@ struct FacilityPaidAmenitiesScreen: View {
                             Text("Cats")
                         }.toggleStyle(Checkbox())
                         
+                        if addNewUnitViewModel.facility.paidAmenities.cats{
+                            AmenityPriceDecriptionInputView(text: $addNewUnitViewModel.facility.paidAmenities.catsService.price, isValid: $addNewUnitViewModel.facility.paidAmenities.catsService.validPrice, description: $addNewUnitViewModel.facility.paidAmenities.catsService.description)
+                        }
+                        
+                        
                         Toggle(isOn: $addNewUnitViewModel.facility.paidAmenities.dogs) {
                             Text("Dogs")
                         }.toggleStyle(Checkbox())
+                        
+                        if addNewUnitViewModel.facility.paidAmenities.dogs{
+                            AmenityPriceDecriptionInputView(text: $addNewUnitViewModel.facility.paidAmenities.dogsService.price, isValid: $addNewUnitViewModel.facility.paidAmenities.dogsService.validPrice, description: $addNewUnitViewModel.facility.paidAmenities.dogsService.description)
+                        }
                         
                         VStack(alignment: .leading) {
                             Toggle(isOn: $addNewUnitViewModel.facility.paidAmenities.rodents) {
@@ -117,6 +128,10 @@ struct FacilityPaidAmenitiesScreen: View {
                             Text("Rabbits, hamsters, rats, etc")
                                 .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
                                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                            
+                            if addNewUnitViewModel.facility.paidAmenities.rodents{
+                                AmenityPriceDecriptionInputView(text: $addNewUnitViewModel.facility.paidAmenities.rodentsService.price, isValid: $addNewUnitViewModel.facility.paidAmenities.rodentsService.validPrice, description: $addNewUnitViewModel.facility.paidAmenities.rodentsService.description)
+                            }
                         }
                         
                         VStack(alignment: .leading) {
@@ -127,6 +142,10 @@ struct FacilityPaidAmenitiesScreen: View {
                             Text("Snakes, iguanas, chameleon, etc   ")
                                 .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
                                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                            
+                            if addNewUnitViewModel.facility.paidAmenities.reptiles{
+                                AmenityPriceDecriptionInputView(text: $addNewUnitViewModel.facility.paidAmenities.reptilesService.price, isValid: $addNewUnitViewModel.facility.paidAmenities.reptilesService.validPrice, description: $addNewUnitViewModel.facility.paidAmenities.reptilesService.description)
+                            }
                         }
                         
                         VStack(alignment: .leading) {
@@ -138,6 +157,10 @@ struct FacilityPaidAmenitiesScreen: View {
                             Text("Horses, camels, cows, etc")
                                 .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
                                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                            
+                            if addNewUnitViewModel.facility.paidAmenities.bigAnimals{
+                                AmenityPriceDecriptionInputView(text: $addNewUnitViewModel.facility.paidAmenities.bigAnimalsService.price, isValid: $addNewUnitViewModel.facility.paidAmenities.bigAnimalsService.validPrice, description: $addNewUnitViewModel.facility.paidAmenities.bigAnimalsService.description).padding(.bottom)
+                            }
                         }
                     }
                 }

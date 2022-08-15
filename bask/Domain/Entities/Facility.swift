@@ -118,16 +118,9 @@ struct Facility {
         }
     }
     
-    func hasValidPaidIndoorPools() -> Bool {
-        return paidAmenities.hasValidPools(.indoor)
-    }
-    
-    func hasValidPaidOutdoorPools() -> Bool {
-        return paidAmenities.hasValidPools(.outdoor)
-    }
-    
-    func hasValidPaidSwimmingPools() -> Bool {
-        return paidAmenities.hasValidPools(.indoor) && paidAmenities.hasValidPools(.outdoor)
+    func hasValidPaidAmenities() -> Bool {
+        return paidAmenities.valid()
+        
     }
     
     //MARK: - Step-1 Request body
@@ -150,11 +143,11 @@ struct Facility {
     //MARK: - Step-3 Request body
     func prepareFreeServicesRequestBody() -> FacilityFreeAmenitiesRequestBody {
         
-        var services: [Facilityservice] = []
+        var services: [FacilityFreeService] = []
         
         if !freeIndoorSwimmingPools.isEmpty {
             for indoorPool in freeIndoorSwimmingPools {
-                let freeIndoorPool = Facilityservice(facilityID: id!, serviceTypeID: indoorPool.serviceTypeId, facilityServiceDescription: nil, length: Int(indoorPool.length), width: Int(indoorPool.width))
+                let freeIndoorPool = FacilityFreeService(facilityID: id!, serviceTypeID: indoorPool.serviceTypeId, facilityServiceDescription: nil, length: Int(indoorPool.length), width: Int(indoorPool.width))
                 services.append(freeIndoorPool)
             }
             
@@ -162,22 +155,33 @@ struct Facility {
         
         if !freeOutdoorSwimmingPools.isEmpty {
             for outdoorPool in freeIndoorSwimmingPools {
-                let freeOutdoorPool = Facilityservice(facilityID: id!, serviceTypeID: outdoorPool.serviceTypeId, facilityServiceDescription: nil, length: Int(outdoorPool.length), width: Int(outdoorPool.width))
+                let freeOutdoorPool = FacilityFreeService(facilityID: id!, serviceTypeID: outdoorPool.serviceTypeId, facilityServiceDescription: nil, length: Int(outdoorPool.length), width: Int(outdoorPool.width))
                 services.append(freeOutdoorPool)
             }
         }
         
         if wifi {
-            let wifiService = Facilityservice(facilityID: id!, serviceTypeID: 3, facilityServiceDescription: nil, length: nil, width: nil)
+            let wifiService = FacilityFreeService(facilityID: id!, serviceTypeID: 3, facilityServiceDescription: nil, length: nil, width: nil)
             services.append(wifiService)
         }
         
         if parking {
-            let parkingService = Facilityservice(facilityID: id!, serviceTypeID: 4, facilityServiceDescription: nil, length: nil, width: nil)
+            let parkingService = FacilityFreeService(facilityID: id!, serviceTypeID: 4, facilityServiceDescription: nil, length: nil, width: nil)
             services.append(parkingService)
         }
         
         return FacilityFreeAmenitiesRequestBody(facilityservices: services, facilityID: id ?? "")
+    }
+    
+    
+    //MARK: - Step-4 Request body
+    
+    func preparePaidServicesRequestBody() -> FacilityPaidAmenitiesRequestBody{
+        
+        let services = paidAmenities.preparePaidServices(for: id ?? "")
+        
+        return FacilityPaidAmenitiesRequestBody(facilityservices: services, facilityID: id ?? "")
+        
     }
     
     //MARK: - Mutating functions
@@ -298,7 +302,7 @@ struct FacilityAreaBodyData: Codable {
 
 // MARK: - FacilityFreeAmenities
 struct FacilityFreeAmenitiesRequestBody: Codable {
-    let facilityservices: [Facilityservice]
+    let facilityservices: [FacilityFreeService]
     let facilityID: String
 
     enum CodingKeys: String, CodingKey {
@@ -308,7 +312,7 @@ struct FacilityFreeAmenitiesRequestBody: Codable {
 }
 
 // MARK: - Facilityservice
-struct Facilityservice: Codable {
+struct FacilityFreeService: Codable {
     let facilityID: String
     let serviceTypeID: Int
     let facilityServiceDescription: String?

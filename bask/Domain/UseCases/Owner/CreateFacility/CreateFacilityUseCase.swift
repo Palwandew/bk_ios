@@ -33,23 +33,37 @@ class CreateFacilityUseCase {
     func updateFacility(for step: FacilityCreationStep, with data: Encodable, completion: @escaping (Result<String, Error>) -> Void) {
         
         switch step {
+            
         case .stepTwo:
-            let test = data as! FacilityAreaBodyData
+            //let test = data as! FacilityAreaBodyData
             
             //print("hee haa \(test.capacity)")
-            createFacilityRepo.updateFacilityDimensions(test) { result in
-                switch result {
-                case .success(let message):
-                    completion(.success(message))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
+//            createFacilityRepo.updateFacilityDimensions(test) { result in
+//                switch result {
+//                case .success(let message):
+//                    completion(.success(message))
+//                case .failure(let error):
+//                    completion(.failure(error))
+//                }
+//            }
+            completion(.success("step two"))
             
         case .stepThree:
-            let stepThreeRequestData = data as! FacilityFreeAmenitiesRequestBody
-            
-            createFacilityRepo.updateFacilityFreeAmenities(stepThreeRequestData) { result in
+//            let stepThreeRequestData = data as! FacilityFreeAmenitiesRequestBody
+//
+//            createFacilityRepo.updateFacilityFreeAmenities(stepThreeRequestData) { result in
+//                switch result {
+//                case .success(let message):
+//                    completion(.success(message))
+//                case .failure(let error):
+//                    completion(.failure(error))
+//                }
+//            }
+            completion(.success("step three"))
+        case .stepFour:
+            let stepFourRequestData = data as! FacilityPaidAmenitiesRequestBody
+            print("\(stepFourRequestData.facilityservices)")
+            createFacilityRepo.updateFacilityPaidAmenities(stepFourRequestData) { result in
                 switch result {
                 case .success(let message):
                     completion(.success(message))
@@ -57,6 +71,7 @@ class CreateFacilityUseCase {
                     completion(.failure(error))
                 }
             }
+            
         }
     }
 }

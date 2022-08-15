@@ -19,4 +19,7 @@ protocol CreateFacilityDomainRepoProtocol {
     
     //MARK: - Step - 3
     func updateFacilityFreeAmenities(_ data: FacilityFreeAmenitiesRequestBody, completion: @escaping (Result<String, Error>) -> Void)
+    
+    //MARK: - Step - 4
+    func updateFacilityPaidAmenities(_ data: FacilityPaidAmenitiesRequestBody, completion: @escaping (Result<String, Error>) -> Void)
 }

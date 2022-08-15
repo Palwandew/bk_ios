@@ -11,6 +11,8 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
     
     
     
+    
+    
     // Don't forget to change access-token
     let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2MDE3NzIxNywiZXhwIjoxNjYwNjA5MjE3fQ.nQDhr2WGDqctOuOurX5EuD-p8bViC1dnJU4ib0mhyhE"
     
@@ -66,5 +68,21 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
                 completion(.failure(error))
             }
         }
+    }
+    
+    func updateFacilityPaidAmenities(_ data: FacilityPaidAmenitiesRequestBody, completion: @escaping (Result<String, Error>) -> Void) {
+        let url = "https://api.baskapp.co/api/v1/facilityservice/amenitiesextra"
+        
+        URLSession.shared.sendUpdateRequest(endpoint: url, requestType: .post, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: data) { result in
+            switch result {
+                
+            case .success(let success):
+                completion(.success(success))
+                
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+        
     }
 }

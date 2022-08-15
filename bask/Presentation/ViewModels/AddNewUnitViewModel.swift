@@ -22,7 +22,7 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var isValidArabicName: Bool = true
     @Published var willShowAddRoomsScreen: Bool = false
     @Published var willShowFreeAmenitiesScreen: Bool = false
-    @Published var willShowPaidAmenitiesScreen: Bool = false 
+    @Published var willShowPaidAmenitiesScreen: Bool = false
     
     @Published var roomsCount: Int = 0
     @Published var kitchenCount: Int = 0
@@ -33,7 +33,7 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var isValidWidth: Bool = true
     @Published var facility: Facility = Facility()
     
-    @Published var showAlert: Bool = false 
+    @Published var showAlert: Bool = false
     
     init(useCase: CreateFacilityUseCase){
         createFacilityUseCase = useCase
@@ -83,46 +83,46 @@ class AddNewUnitViewModel: ObservableObject {
     //MARK: - Step - 2
     
     func onContinueTapped(){
-        self.willShowFreeAmenitiesScreen = true 
-//        do {
-//            try facility.validateArea()
-//
-//            isValidWidth = true
-//            isValidLength = true
-//
-//            if facility.hasValidLivingRooms() {
-//                self.objectWillChange.send()
-//
-//                //showAlert.toggle()
-//
-//                let data = facility.prepareRequestBody()
-//
-//                createFacilityUseCase.updateFacility(for: .stepTwo, with: data) { result  in
-//                    switch result {
-//                    case .success(let message):
-//                        print("Ho hoi ho hoi\(message)")
-//                        DispatchQueue.main.async {
-//                            //self.showAlert.toggle()
-//                            self.willShowFreeAmenitiesScreen = true
-//                        }
-//
-//                    case .failure(let error):
-//                        print("\(error)")
-//                    }
-//                }
-//            }
-//
-//
-//        } catch FacilityErrors.invalidWidth {
-//            isValidWidth = false
-//        } catch FacilityErrors.invalidLength {
-//            isValidLength = false
-//        } catch FacilityErrors.emptyArea {
-//            isValidWidth = false
-//            isValidLength = false
-//        } catch {
-//            print("error")
-//        }
+        self.willShowFreeAmenitiesScreen = true
+        //        do {
+        //            try facility.validateArea()
+        //
+        //            isValidWidth = true
+        //            isValidLength = true
+        //
+        //            if facility.hasValidLivingRooms() {
+        //                self.objectWillChange.send()
+        //
+        //                //showAlert.toggle()
+        //
+        //                let data = facility.prepareRequestBody()
+        //
+        //                createFacilityUseCase.updateFacility(for: .stepTwo, with: data) { result  in
+        //                    switch result {
+        //                    case .success(let message):
+        //                        print("Ho hoi ho hoi\(message)")
+        //                        DispatchQueue.main.async {
+        //                            //self.showAlert.toggle()
+        //                            self.willShowFreeAmenitiesScreen = true
+        //                        }
+        //
+        //                    case .failure(let error):
+        //                        print("\(error)")
+        //                    }
+        //                }
+        //            }
+        //
+        //
+        //        } catch FacilityErrors.invalidWidth {
+        //            isValidWidth = false
+        //        } catch FacilityErrors.invalidLength {
+        //            isValidLength = false
+        //        } catch FacilityErrors.emptyArea {
+        //            isValidWidth = false
+        //            isValidLength = false
+        //        } catch {
+        //            print("error")
+        //        }
     }
     
     
@@ -130,42 +130,58 @@ class AddNewUnitViewModel: ObservableObject {
     
     func validateFreeAmenities() {
         willShowPaidAmenitiesScreen = true
-//        self.objectWillChange.send()
-//        if facility.hasValidFreeAmenities() {
-//            print("Valid free amenity")
-//            let data = facility.prepareFreeServicesRequestBody()
-//
-//            createFacilityUseCase.updateFacility(for: .stepThree, with: data) { [weak self] result in
-//                switch result {
-//                case .failure(let error):
-//                    print("error \(error)")
-//
-//                case .success(let success):
-//                    print("success \(success)")
-//                    DispatchQueue.main.async {
-//                        self?.willShowPaidAmenitiesScreen = true
-//                    }
-//                }
-//            }
-//
-//        } else {
-//            print("Invalid free amenity")
-//        }
+        //        self.objectWillChange.send()
+        //        if facility.hasValidFreeAmenities() {
+        //            print("Valid free amenity")
+        //            let data = facility.prepareFreeServicesRequestBody()
+        //
+        //            createFacilityUseCase.updateFacility(for: .stepThree, with: data) { [weak self] result in
+        //                switch result {
+        //                case .failure(let error):
+        //                    print("error \(error)")
+        //
+        //                case .success(let success):
+        //                    print("success \(success)")
+        //                    DispatchQueue.main.async {
+        //                        self?.willShowPaidAmenitiesScreen = true
+        //                    }
+        //                }
+        //            }
+        //
+        //        } else {
+        //            print("Invalid free amenity")
+        //        }
     }
     
     
     //MARK: - Step - 4
     
     func validatePaidAmenities(){
-//        facility.paidAmenities.validateWifiPrice()
-//        facility.paidAmenities.validateParkingPrice()
+        //        facility.paidAmenities.validateWifiPrice()
+        //        facility.paidAmenities.validateParkingPrice()
         if facility.hasValidPaidAmenities() {
             print("Valid paid")
-        } else {
-            print("Invalid paid")
-        }
+                let data = facility.preparePaidServicesRequestBody()
+                
+                createFacilityUseCase.updateFacility(for: .stepFour, with: data) { [weak self] result in
+                    switch result {
+                    case .failure(let error):
+                        print("error \(error)")
+                        
+                    case .success(let success):
+                        print("success \(success)")
+                        DispatchQueue.main.async {
+                            self?.willShowPaidAmenitiesScreen = true
+                        }
+                    }
+                }
+                
+            } else {
+                print("Invalid paid amenity")
+            }
         self.objectWillChange.send()
-    }
+        }
+
     
     func addRoom() {
         
@@ -263,7 +279,7 @@ enum FacilityCreationStep {
     //case one
     case stepTwo
     case stepThree
-    //    case fourth
+    case stepFour
     //    case fifth
     //    case sixth
     //    case seventh

@@ -10,15 +10,11 @@ import SwiftUI
 struct FacilityRulesScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
+    //@EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
+    @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     @State var progress: Float = 0.332
-    @State var isPetsAllowed: Bool = true
-    
-    @State var text: String = ""
-    @State var valid: Bool = true
+    @State private var valid: Bool = true
     let errorMsg: LocalizedStringKey = "valid_description"
-    
-    
-    @State var showLocation: Bool = false
     
     var body: some View {
         
@@ -32,25 +28,35 @@ struct FacilityRulesScreen: View {
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
             
+            //MARK: - Pets
             ScrollView {
-                AmenityToggle(isOn: $isPetsAllowed, label: "Pets")
+                AmenityToggle(isOn: $viewModel.facility.rules.petsAllowed, label: "Pets")
                 
-                if isPetsAllowed {
+                if viewModel.facility.rules.petsAllowed {
                     Group {
-                        Toggle(isOn: $isPetsAllowed) {
+                        
+                        
+                        //MARK: - All pets
+                        Toggle(isOn: $viewModel.facility.rules.petsAllAllowed) {
                             Text("All pets allowed")
                         }.toggleStyle(Checkbox())
                         
-                        Toggle(isOn: $isPetsAllowed) {
+                        
+                        //MARK: - Cats
+                        Toggle(isOn: $viewModel.facility.rules.petsCatsAllowed) {
                             Text("Cats")
                         }.toggleStyle(Checkbox())
                         
-                        Toggle(isOn: $isPetsAllowed) {
+                        
+                        //MARK: - Dogs
+                        Toggle(isOn: $viewModel.facility.rules.petsDogsAllowed) {
                             Text("Dogs")
                         }.toggleStyle(Checkbox())
                         
+                        
+                        //MARK: - Rodents
                         VStack(alignment: .leading) {
-                            Toggle(isOn: $isPetsAllowed) {
+                            Toggle(isOn: $viewModel.facility.rules.petsRodentsAllowed) {
                                 Text("Rodents")
                             }.toggleStyle(Checkbox())
                             
@@ -59,8 +65,10 @@ struct FacilityRulesScreen: View {
                                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                         }
                         
+                        
+                        //MARK: - Reptile
                         VStack(alignment: .leading) {
-                            Toggle(isOn: $isPetsAllowed) {
+                            Toggle(isOn: $viewModel.facility.rules.petsReptileAllowed) {
                                 Text("Reptile")
                             }.toggleStyle(Checkbox())
                             
@@ -69,9 +77,11 @@ struct FacilityRulesScreen: View {
                                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                         }
                         
+                        
+                        //MARK: - Big Animals
                         VStack(alignment: .leading) {
                             
-                            Toggle(isOn: $isPetsAllowed) {
+                            Toggle(isOn: $viewModel.facility.rules.petsBigAnimalAllowed) {
                                 Text("Big Animals")
                             }.toggleStyle(Checkbox())
                             
@@ -79,34 +89,34 @@ struct FacilityRulesScreen: View {
                                 .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
                                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                         }
-                    }
+                    }.padding(.trailing, 1)
                 }
                 
-                AmenityToggle(isOn: $isPetsAllowed, label: "Allowed to smoke")
                 
-                AmenityToggle(isOn: $isPetsAllowed, label: "Addtional rules")
+                //MARK: - Smoke
+                AmenityToggle(isOn: $viewModel.facility.rules.smokingAllowed, label: "Allowed to smoke")
                 
-                if isPetsAllowed {
-                    MaterialTextField(text: $text, isValid: $valid, errorMessage: errorMsg, placeHolder: "Additional rules")
+                
+                //MARK: - Additional Rules
+                AmenityToggle(isOn: $viewModel.facility.rules.additionalRules, label: "Addtional rules")
+                
+                if viewModel.facility.rules.additionalRules {
+                    MaterialTextField(text: $viewModel.facility.rules.additionalRulesDescription, isValid: $valid, errorMessage: errorMsg, placeHolder: "Additional rules")
                         .padding(.horizontal, 1)
                 }
                 
                 NavigationLink(destination:
-                                FacilityLocationScreen(), isActive: $showLocation) {
+                                FacilityLocationScreen(), isActive: $viewModel.willShowLocationScreen) {
                     EmptyView()
                 }
             }
             
+            
             //MARK: - Continue Button
             
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
-                
-                print("tapped")
-                //showRules.toggle()
-                showLocation.toggle()
-                
-            }//.padding(.top, -24)
-            
+                viewModel.updateFacilityRules()
+            }
             
         }.padding(.horizontal)
             .background(Color.white)

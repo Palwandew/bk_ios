@@ -23,12 +23,12 @@ struct Facility {
     var bathrooms: Int = 0
     var showers: Int = 0
     // Free Amenities
-    var wifi: Bool = true 
+    var wifi: Bool = true
     var parking: Bool = true
     var freeIndoorSwimmingPools: [AmenityFree] = []
     var freeOutdoorSwimmingPools: [AmenityFree] = []
     var outdoorSitting: Bool = false
-    var bbq: Bool = false 
+    var bbq: Bool = false
     var gym: Bool = false
     var gamesRoom: Bool = false
     var garden: Bool = false
@@ -37,7 +37,8 @@ struct Facility {
     var paidAmenities: PaidService = PaidService()
     let nameStatus: Int = 1
     let room_status: Int = 1
-    
+    // Rules
+    var rules: Rules = Rules()
     
     //MARK: - Name validation
     func validateName() throws  {
@@ -47,8 +48,8 @@ struct Facility {
         } else if arabicName.isEmpty || arabicName.count < 3 {
             throw FacilityErrors.invalidArabicName
         }
-       // return true
-
+        // return true
+        
     }
     
     //MARK: - Area validation
@@ -132,11 +133,11 @@ struct Facility {
     //MARK: - Step-2 Request body
     func prepareRequestBody() -> FacilityAreaBodyData {
         
-            
-            let data = FacilityAreaBodyData(length: Int(self.length) ?? 0, width: Int(self.width) ?? 0, capacity: self.capacity, noOfShowers: self.showers, noOfBathRooms: self.bathrooms)
-            
-            return data
-     
+        
+        let data = FacilityAreaBodyData(length: Int(self.length) ?? 0, width: Int(self.width) ?? 0, capacity: self.capacity, noOfShowers: self.showers, noOfBathRooms: self.bathrooms)
+        
+        return data
+        
     }
     
     
@@ -183,6 +184,14 @@ struct Facility {
         return FacilityPaidAmenitiesRequestBody(facilityservices: services, facilityID: id ?? "")
         
     }
+    
+    
+    //MARK: - Step-5 Request body
+    
+    func prepareRulesRequestBody() -> FacilityRulesRequestBody {
+        return rules.toRequestBodyModel()
+    }
+    
     
     //MARK: - Mutating functions
     mutating func addRoom(){
@@ -277,7 +286,7 @@ struct FacilityNameBodyData: Codable {
     let arabicName, englishName, ownerID: String
     let status: String = "unpublished"
     let nameStatus: Int = 1
-
+    
     enum CodingKeys: String, CodingKey {
         case arabicName, englishName
         case ownerID = "ownerId"
@@ -292,7 +301,7 @@ struct FacilityAreaBodyData: Codable {
     let length, width, capacity: Int
     let noOfShowers, noOfBathRooms: Int
     let roomsStatus: Int = 1
-
+    
     enum CodingKeys: String, CodingKey {
         case length, width, capacity, noOfBathRooms, noOfShowers
         case roomsStatus = "rooms_status"
@@ -304,7 +313,7 @@ struct FacilityAreaBodyData: Codable {
 struct FacilityFreeAmenitiesRequestBody: Codable {
     let facilityservices: [FacilityFreeService]
     let facilityID: String
-
+    
     enum CodingKeys: String, CodingKey {
         case facilityservices
         case facilityID = "facilityId"
@@ -317,7 +326,7 @@ struct FacilityFreeService: Codable {
     let serviceTypeID: Int
     let facilityServiceDescription: String?
     let length, width: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case facilityID = "facilityId"
         case serviceTypeID = "serviceTypeId"
@@ -326,7 +335,18 @@ struct FacilityFreeService: Codable {
     }
 }
 
+// MARK: - FacilityRulesRequestBody
+struct FacilityRulesRequestBody: Codable {
+    let petsAllowed, petsAllAllowed, petsCatsAllowed, petsDogsAllowed: Bool
+    let petsRodentsAllowed, petsReptileAllowed, petsBigAnimalAllowed, smokingAllowed: Bool
+    let additionalRules: Bool
+    let additionalRulesDescription: String
+    let rulesStatus: Int
 
-//
-// Add free services and paid services to the facility class. This will ease the
-// process of validation and adding logic.
+    enum CodingKeys: String, CodingKey {
+        case petsAllowed, petsAllAllowed, petsCatsAllowed, petsDogsAllowed, petsRodentsAllowed, petsReptileAllowed, petsBigAnimalAllowed, smokingAllowed, additionalRules, additionalRulesDescription
+        case rulesStatus = "rules_status"
+    }
+}
+
+

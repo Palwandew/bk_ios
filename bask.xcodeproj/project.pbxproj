@@ -34,6 +34,7 @@
 		C441FF5C28A4CE3C00AAC00C /* Amenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441FF5B28A4CE3C00AAC00C /* Amenity.swift */; };
 		C450F44428A7CE260083AB86 /* FreeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450F44328A7CE260083AB86 /* FreeService.swift */; };
 		C450F44628A7CE440083AB86 /* PaidService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450F44528A7CE440083AB86 /* PaidService.swift */; };
+		C465D51328AB07F000CFDBC4 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = C465D51228AB07F000CFDBC4 /* Rules.swift */; };
 		C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */; };
 		C46BD7612828FBD2006AC587 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD7602828FBD2006AC587 /* User.swift */; };
 		C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD76228290A7E006AC587 /* HttpClient.swift */; };
@@ -174,6 +175,7 @@
 		C441FF5B28A4CE3C00AAC00C /* Amenity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amenity.swift; sourceTree = "<group>"; };
 		C450F44328A7CE260083AB86 /* FreeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeService.swift; sourceTree = "<group>"; };
 		C450F44528A7CE440083AB86 /* PaidService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidService.swift; sourceTree = "<group>"; };
+		C465D51228AB07F000CFDBC4 /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 		C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
 		C46BD7602828FBD2006AC587 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C46BD76228290A7E006AC587 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
@@ -590,6 +592,7 @@
 				C441FF5B28A4CE3C00AAC00C /* Amenity.swift */,
 				C450F44328A7CE260083AB86 /* FreeService.swift */,
 				C450F44528A7CE440083AB86 /* PaidService.swift */,
+				C465D51228AB07F000CFDBC4 /* Rules.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -871,6 +874,7 @@
 				C450F44628A7CE440083AB86 /* PaidService.swift in Sources */,
 				C4AF9B1B2828216600EBB141 /* PostDI.swift in Sources */,
 				C4082844289D29D300C1B51B /* FacilityLocationScreen.swift in Sources */,
+				C465D51328AB07F000CFDBC4 /* Rules.swift in Sources */,
 				C4BB0076289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift in Sources */,
 				C4D0872E289326B400DCEACF /* OTPInput.swift in Sources */,
 				C4B538102899D0C70067CC21 /* FacilityFreeAmenitiesScreen.swift in Sources */,

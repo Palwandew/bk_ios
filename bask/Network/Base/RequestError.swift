@@ -13,7 +13,7 @@ enum RequestError: Error {
     case noResponse
     case unauthorized
     case unexpectedStatusCode
-    case unknown
+    case unknown(String)
     
     var customMessage: String {
         switch self {

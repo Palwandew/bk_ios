@@ -9,12 +9,8 @@ import Foundation
 
 class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
     
-    
-    
-    
-    
     // Don't forget to change access-token
-    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2MDE3NzIxNywiZXhwIjoxNjYwNjA5MjE3fQ.nQDhr2WGDqctOuOurX5EuD-p8bViC1dnJU4ib0mhyhE"
+    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2MDYxMjI3MSwiZXhwIjoxNjYxMDQ0MjcxfQ._Ordiw2OOjXxB21vjucSQRI5sjvOTEd27eFS8A6JmHo"
     
     
     
@@ -43,7 +39,7 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
         
         print("url -> \(url)")
         
-
+        
         
         URLSession.shared.sendUpdateRequest(endpoint: url, requestType: .patch, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: data) { result in
             switch result{
@@ -84,5 +80,22 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
             }
         }
         
+    }
+    
+    func updateFacilityRules(_ data: FacilityRulesRequestBody, completion: @escaping (Result<String, Error>) -> Void) {
+        
+        let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
+        let url = "https://api.baskapp.co/api/v1/facility/\(facilityID)"
+        
+        URLSession.shared.sendUpdateRequest(endpoint: url, requestType: .patch, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: data) { result in
+            switch result {
+                
+            case .success(let success):
+                completion(.success(success))
+                
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }

@@ -174,7 +174,7 @@ struct FacilityPaidAmenitiesScreen: View {
             //MARK: - Continue Button
             VStack {
                 NavigationLink(destination:
-                                FacilityRulesScreen(), isActive: $showRules) {
+                                FacilityRulesScreen(), isActive: $addNewUnitViewModel.willShowRulesScreen) {
                     EmptyView()
                 }
                 

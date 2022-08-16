@@ -38,32 +38,45 @@ class CreateFacilityUseCase {
             //let test = data as! FacilityAreaBodyData
             
             //print("hee haa \(test.capacity)")
-//            createFacilityRepo.updateFacilityDimensions(test) { result in
-//                switch result {
-//                case .success(let message):
-//                    completion(.success(message))
-//                case .failure(let error):
-//                    completion(.failure(error))
-//                }
-//            }
+            //            createFacilityRepo.updateFacilityDimensions(test) { result in
+            //                switch result {
+            //                case .success(let message):
+            //                    completion(.success(message))
+            //                case .failure(let error):
+            //                    completion(.failure(error))
+            //                }
+            //            }
             completion(.success("step two"))
             
         case .stepThree:
-//            let stepThreeRequestData = data as! FacilityFreeAmenitiesRequestBody
-//
-//            createFacilityRepo.updateFacilityFreeAmenities(stepThreeRequestData) { result in
-//                switch result {
-//                case .success(let message):
-//                    completion(.success(message))
-//                case .failure(let error):
-//                    completion(.failure(error))
-//                }
-//            }
+            //            let stepThreeRequestData = data as! FacilityFreeAmenitiesRequestBody
+            //
+            //            createFacilityRepo.updateFacilityFreeAmenities(stepThreeRequestData) { result in
+            //                switch result {
+            //                case .success(let message):
+            //                    completion(.success(message))
+            //                case .failure(let error):
+            //                    completion(.failure(error))
+            //                }
+            //            }
             completion(.success("step three"))
         case .stepFour:
-            let stepFourRequestData = data as! FacilityPaidAmenitiesRequestBody
-            print("\(stepFourRequestData.facilityservices)")
-            createFacilityRepo.updateFacilityPaidAmenities(stepFourRequestData) { result in
+            //            let stepFourRequestData = data as! FacilityPaidAmenitiesRequestBody
+            //            print("\(stepFourRequestData.facilityservices)")
+            //            createFacilityRepo.updateFacilityPaidAmenities(stepFourRequestData) { result in
+            //                switch result {
+            //                case .success(let message):
+            //                    completion(.success(message))
+            //                case .failure(let error):
+            //                    completion(.failure(error))
+            //                }
+            //            }
+            completion(.success("step four"))
+            
+        case .stepFive:
+            let stepFiveRequestData = data as! FacilityRulesRequestBody
+            
+            createFacilityRepo.updateFacilityRules(stepFiveRequestData) { result in
                 switch result {
                 case .success(let message):
                     completion(.success(message))
@@ -71,7 +84,6 @@ class CreateFacilityUseCase {
                     completion(.failure(error))
                 }
             }
-            
         }
     }
 }

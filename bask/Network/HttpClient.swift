@@ -90,8 +90,8 @@ extension URLSession{
             }
             
             URLSession.shared.dataTask(with: request) { data, response, error in
-                if let _ = error {
-                    completion(.failure(RequestError.unknown))
+                if let err = error {
+                    completion(.failure(RequestError.unknown(err.localizedDescription)))
                     return
                 }
                 

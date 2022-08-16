@@ -23,7 +23,8 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var willShowAddRoomsScreen: Bool = false
     @Published var willShowFreeAmenitiesScreen: Bool = false
     @Published var willShowPaidAmenitiesScreen: Bool = false
-    
+    @Published var willShowRulesScreen: Bool = false
+    @Published var willShowLocationScreen: Bool = false 
     @Published var roomsCount: Int = 0
     @Published var kitchenCount: Int = 0
     
@@ -171,7 +172,7 @@ class AddNewUnitViewModel: ObservableObject {
                     case .success(let success):
                         print("success \(success)")
                         DispatchQueue.main.async {
-                            self?.willShowPaidAmenitiesScreen = true
+                            self?.willShowRulesScreen = true
                         }
                     }
                 }
@@ -182,6 +183,25 @@ class AddNewUnitViewModel: ObservableObject {
         self.objectWillChange.send()
         }
 
+    
+    //MARK: - Step-5
+    
+    func updateFacilityRules() {
+        let data = facility.prepareRulesRequestBody()
+        
+        createFacilityUseCase.updateFacility(for: .stepFive, with: data) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("error \(error)")
+                
+            case .success(let success):
+                print("success \(success)")
+                DispatchQueue.main.async {
+                    self?.willShowLocationScreen = true
+                }
+            }
+        }
+    }
     
     func addRoom() {
         
@@ -280,7 +300,7 @@ enum FacilityCreationStep {
     case stepTwo
     case stepThree
     case stepFour
-    //    case fifth
+    case stepFive
     //    case sixth
     //    case seventh
     //    case eight

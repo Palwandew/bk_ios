@@ -48,7 +48,7 @@ struct FacilityMapScreen: View {
                 
                     
                     NavigationLink(destination:
-                                    FacilityTimeScreen(), isActive: $showCheckIn) {
+                                    FacilityTimeScreen(), isActive: $viewModel.willShowCheckInScreen) {
                         EmptyView()
                     }
                     

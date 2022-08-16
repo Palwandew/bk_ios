@@ -27,6 +27,7 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var willShowRulesScreen: Bool = false
     @Published var willShowLocationScreen: Bool = false
     @Published var willShowMapScreen: Bool = false
+    @Published var willShowCheckInScreen: Bool = false
     @Published var roomsCount: Int = 0
     @Published var kitchenCount: Int = 0
     
@@ -219,8 +220,8 @@ class AddNewUnitViewModel: ObservableObject {
         facility.location.latitude = coordinates.latitude
         facility.location.longitude = coordinates.longitude
         
-        print("loc --> \(facility.location)")
         let data = facility.prepareLocationRequestBody()
+        print("loc --> \(data)")
         createFacilityUseCase.updateFacility(for: .stepSix, with: data) { [weak self] result in
             switch result {
             case .failure(let error):
@@ -229,7 +230,7 @@ class AddNewUnitViewModel: ObservableObject {
             case .success(let success):
                 print("success \(success)")
                 DispatchQueue.main.async {
-                    self?.willShowRulesScreen = true
+                    self?.willShowCheckInScreen = true
                 }
             }
         }

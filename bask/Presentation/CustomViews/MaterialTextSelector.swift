@@ -16,7 +16,7 @@ struct MaterialTextSelector: View {
             ZStack() {
                 
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color(AppColor.GREY), lineWidth: 2)
+                    .stroke(Color.gray, lineWidth: 1)
                 //.stroke( lineWidth: 1)
                 
                 HStack{

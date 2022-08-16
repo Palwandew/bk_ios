@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class AddNewUnitViewModel: ObservableObject {
     
@@ -24,7 +25,8 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var willShowFreeAmenitiesScreen: Bool = false
     @Published var willShowPaidAmenitiesScreen: Bool = false
     @Published var willShowRulesScreen: Bool = false
-    @Published var willShowLocationScreen: Bool = false 
+    @Published var willShowLocationScreen: Bool = false
+    @Published var willShowMapScreen: Bool = false
     @Published var roomsCount: Int = 0
     @Published var kitchenCount: Int = 0
     
@@ -187,9 +189,39 @@ class AddNewUnitViewModel: ObservableObject {
     //MARK: - Step-5
     
     func updateFacilityRules() {
-        let data = facility.prepareRulesRequestBody()
+        willShowLocationScreen.toggle()
+//        let data = facility.prepareRulesRequestBody()
+//
+//        createFacilityUseCase.updateFacility(for: .stepFive, with: data) { [weak self] result in
+//            switch result {
+//            case .failure(let error):
+//                print("error \(error)")
+//
+//            case .success(let success):
+//                print("success \(success)")
+//                DispatchQueue.main.async {
+//                    self?.willShowLocationScreen = true
+//                }
+//            }
+//        }
+    }
+    
+    
+    //MARK: - Step-6.1
+    // Note: This is step-6 because photos selection has been moved last step.
+    func validateAddress() {
+        willShowMapScreen = facility.hasValidAddress()
+    }
+    
+    
+    //MARK: - Step-6.2
+    func updateFacilityLocation(with coordinates: CLLocationCoordinate2D) {
+        facility.location.latitude = coordinates.latitude
+        facility.location.longitude = coordinates.longitude
         
-        createFacilityUseCase.updateFacility(for: .stepFive, with: data) { [weak self] result in
+        print("loc --> \(facility.location)")
+        let data = facility.prepareLocationRequestBody()
+        createFacilityUseCase.updateFacility(for: .stepSix, with: data) { [weak self] result in
             switch result {
             case .failure(let error):
                 print("error \(error)")
@@ -197,7 +229,7 @@ class AddNewUnitViewModel: ObservableObject {
             case .success(let success):
                 print("success \(success)")
                 DispatchQueue.main.async {
-                    self?.willShowLocationScreen = true
+                    self?.willShowRulesScreen = true
                 }
             }
         }
@@ -301,7 +333,7 @@ enum FacilityCreationStep {
     case stepThree
     case stepFour
     case stepFive
-    //    case sixth
+    case stepSix
     //    case seventh
     //    case eight
     //    case ninth

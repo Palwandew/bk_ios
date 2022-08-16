@@ -84,6 +84,18 @@ class CreateFacilityUseCase {
                     completion(.failure(error))
                 }
             }
+            
+        case .stepSix:
+            let stepSixRequestData = data as! FacilityLocationRequestBody
+            
+            createFacilityRepo.updateFacilityLocation(stepSixRequestData) { result in
+                switch result {
+                case .success(let message):
+                    completion(.success(message))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         }
     }
 }

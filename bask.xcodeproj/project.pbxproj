@@ -35,6 +35,7 @@
 		C450F44428A7CE260083AB86 /* FreeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450F44328A7CE260083AB86 /* FreeService.swift */; };
 		C450F44628A7CE440083AB86 /* PaidService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450F44528A7CE440083AB86 /* PaidService.swift */; };
 		C465D51328AB07F000CFDBC4 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = C465D51228AB07F000CFDBC4 /* Rules.swift */; };
+		C465D51528AB41BE00CFDBC4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C465D51428AB41BE00CFDBC4 /* Location.swift */; };
 		C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */; };
 		C46BD7612828FBD2006AC587 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD7602828FBD2006AC587 /* User.swift */; };
 		C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD76228290A7E006AC587 /* HttpClient.swift */; };
@@ -176,6 +177,7 @@
 		C450F44328A7CE260083AB86 /* FreeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeService.swift; sourceTree = "<group>"; };
 		C450F44528A7CE440083AB86 /* PaidService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidService.swift; sourceTree = "<group>"; };
 		C465D51228AB07F000CFDBC4 /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
+		C465D51428AB41BE00CFDBC4 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
 		C46BD7602828FBD2006AC587 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C46BD76228290A7E006AC587 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
@@ -593,6 +595,7 @@
 				C450F44328A7CE260083AB86 /* FreeService.swift */,
 				C450F44528A7CE440083AB86 /* PaidService.swift */,
 				C465D51228AB07F000CFDBC4 /* Rules.swift */,
+				C465D51428AB41BE00CFDBC4 /* Location.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -882,6 +885,7 @@
 				C403101B2894BBF10046B645 /* UpcomingBookings.swift in Sources */,
 				C40310192894A9060046B645 /* HorizontalSwipe.swift in Sources */,
 				C41A26AF289C79810057F3FE /* FacilityRulesScreen.swift in Sources */,
+				C465D51528AB41BE00CFDBC4 /* Location.swift in Sources */,
 				C49FB52D28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift in Sources */,
 				C4918D6728A1D0C000A8777D /* GalleryImage.swift in Sources */,
 				C4AF9B1C2828216600EBB141 /* AppDI.swift in Sources */,

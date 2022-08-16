@@ -10,10 +10,12 @@ import SwiftUI
 struct FacilityLocationScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
+    //@EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
+    @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
+
     @State var progress: Float = 0.332
-    @State var isPetsAllowed: Bool = true
     
-    @State var text: String = ""
+    //@State var text: String = ""
     @State var valid: Bool = true
     let errorMsg: LocalizedStringKey = "valid_description"
     @State var showMap: Bool = false
@@ -41,42 +43,38 @@ struct FacilityLocationScreen: View {
             
             //MARK: - Country
             
-            MaterialTextField(text: $text, isValid: $valid, errorMessage: errorMsg, placeHolder: "Country")
-                .padding([.top, .horizontal], 1)
+            MaterialTextSelector(text: $viewModel.facility.location.country, placeHolder: "Country")
+                .frame(height: 55)
             
             
             //MARK: - City
             
-            MaterialTextField(text: $text, isValid: $valid, errorMessage: errorMsg, placeHolder: "City")
+            MaterialTextField(text: $viewModel.facility.location.city, isValid: $viewModel.facility.location.validCity, errorMessage: errorMsg, placeHolder: "City")
                 .padding([.top, .horizontal], 1)
             
             //}
             
             //MARK: - Address
             
-            MaterialTextField(text: $text, isValid: $valid, errorMessage: errorMsg, placeHolder: "Address")
+            MaterialTextField(text: $viewModel.facility.location.street, isValid: $viewModel.facility.location.validStreet, errorMessage: errorMsg, placeHolder: "Address")
                 .padding([.top, .horizontal], 1)
             
             Spacer()
             
             
             NavigationLink(destination:
-                            FacilityMapScreen(), isActive: $showMap) {
+                            FacilityMapScreen().environmentObject(viewModel), isActive: $viewModel.willShowMapScreen) {
                 EmptyView()
             }
             
             //MARK: - Continue Button
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
-                print("tapped")
-                showMap.toggle()
-                //showCountries.toggle()
-                
-            }//.padding(.top, -24)
+                viewModel.validateAddress()
+            }
             
             
             //MARK: - Navigation bar item
-            
             
         }
         .fullScreenCover(isPresented: $showCountries, content: {

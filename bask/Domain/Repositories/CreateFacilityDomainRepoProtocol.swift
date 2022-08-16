@@ -9,7 +9,7 @@ import Foundation
 
 
 protocol CreateFacilityDomainRepoProtocol {
-    
+
     
     //MARK: - Step - 1
     func addFacilityName(_ data: Data, completion: @escaping (Result<String, Error>) -> Void)
@@ -29,4 +29,8 @@ protocol CreateFacilityDomainRepoProtocol {
     
     //MARK: - Step - 5
     func updateFacilityRules(_ data: FacilityRulesRequestBody, completion: @escaping (Result<String, Error>) -> Void)
+    
+    
+    //MARK: - Step - 6
+    func updateFacilityLocation(_ data: FacilityLocationRequestBody, completion: @escaping (Result<String, Error>) -> Void)
 }

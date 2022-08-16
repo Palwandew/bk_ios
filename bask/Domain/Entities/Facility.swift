@@ -39,6 +39,8 @@ struct Facility {
     let room_status: Int = 1
     // Rules
     var rules: Rules = Rules()
+    // Location
+    var location: Location = Location()
     
     //MARK: - Name validation
     func validateName() throws  {
@@ -119,11 +121,18 @@ struct Facility {
         }
     }
     
+    
+    //MARK: - Paid Amenities Validation
     func hasValidPaidAmenities() -> Bool {
         return paidAmenities.valid()
         
     }
     
+    
+    //MARK: - Address Validation
+    mutating func hasValidAddress() -> Bool {
+        return location.validAddress()
+    }
     //MARK: - Step-1 Request body
     func prepareRequestBodyWith(ownerID: String) -> FacilityNameBodyData {
         return FacilityNameBodyData(arabicName: self.arabicName, englishName: self.englishName, ownerID: ownerID)
@@ -190,6 +199,13 @@ struct Facility {
     
     func prepareRulesRequestBody() -> FacilityRulesRequestBody {
         return rules.toRequestBodyModel()
+    }
+    
+    
+    //MARK: - Step-6 Request body
+    
+    func prepareLocationRequestBody() -> FacilityLocationRequestBody {
+        return location.toRequestBodyModel()
     }
     
     

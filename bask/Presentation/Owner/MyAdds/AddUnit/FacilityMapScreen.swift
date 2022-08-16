@@ -11,9 +11,12 @@ import MapKit
 struct FacilityMapScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModel: AddNewUnitViewModel
+//    @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
+
     @State var progress: Float = 0.332
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
-    
+    @State private var map = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 24.19970898091148, longitude: 45.11031652737802), span: MKCoordinateSpan(latitudeDelta: 8, longitudeDelta: 22))
+     
     @State var showCheckIn: Bool = false 
     
     var body: some View {
@@ -31,38 +34,37 @@ struct FacilityMapScreen: View {
             //MARK: - Map
             
             ZStack {
-                Map(coordinateRegion: $region, interactionModes: [.zoom])
+                Map(coordinateRegion: $map, interactionModes: [.zoom, .pan])
                 
                 Image("map_pin")
                     .resizable()
                     .frame(width: 35, height: 41)
                     .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                
+            }.ignoresSafeArea(.all, edges: .bottom)
+            
+            
             //MARK: - Continue Button
                 
-                VStack {
+                
                     
                     NavigationLink(destination:
                                     FacilityTimeScreen(), isActive: $showCheckIn) {
                         EmptyView()
                     }
                     
-                    Spacer()
                     
                     FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                         
-                        print("tapped")
-                        //print(region.center)
-                        showCheckIn.toggle()
+                        viewModel.updateFacilityLocation(with: map.center)
                         
                         
                     }.padding([.horizontal, .top])
-                        .padding(.bottom, 42)
+                        .padding(.bottom, 8)
                         .background(Rectangle().fill(Color.white.opacity(0.5)))
                     
                     
-                }
-            }.ignoresSafeArea(.all, edges: .bottom)
+            
+            
             
         }
         .background(Color.white)
@@ -101,8 +103,8 @@ struct FacilityMapScreen: View {
     }
 }
 
-struct FacilityMapScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        FacilityMapScreen()
-    }
-}
+//struct FacilityMapScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FacilityMapScreen()
+//    }
+//}

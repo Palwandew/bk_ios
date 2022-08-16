@@ -9,7 +9,10 @@ import SwiftUI
 
 struct MaterialTimePicker: View {
     
-    @StateObject var tpViewModel = TimePickerViewModel()
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var newUnitViewModel: AddNewUnitViewModel
+    @StateObject var timePickerViewModel = TimePickerViewModel()
+    let constraint: TimeConstraint
     
     var body: some View {
         //ZStack {
@@ -26,15 +29,15 @@ struct MaterialTimePicker: View {
             
             HStack {
                 
-                Text("\(tpViewModel.hour < 10 ? "0" : "")\(tpViewModel.hour)")
+                Text("\(timePickerViewModel.hour < 10 ? "0" : "")\(timePickerViewModel.hour)")
                     .font(Font.custom("Poppins-Regular", size: 64))
-                    .foregroundColor(tpViewModel.isSelectingHour ? Color(AppColor.DARKEST_BLUE) : .gray)
+                    .foregroundColor(timePickerViewModel.isSelectingHour ? Color(AppColor.DARKEST_BLUE) : .gray)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 8).fill(.blue.opacity(0.1)))
                 
                     .onTapGesture {
-                        tpViewModel.isSelectingHour = true
-                        tpViewModel.updateDegree()
+                        timePickerViewModel.isSelectingHour = true
+                        timePickerViewModel.updateDegree()
                     }
                 
                 Text(":")
@@ -42,34 +45,34 @@ struct MaterialTimePicker: View {
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                 
-                Text("\(tpViewModel.minutes < 10 ? "0" : "")\(tpViewModel.minutes)")
+                Text("\(timePickerViewModel.minutes < 10 ? "0" : "")\(timePickerViewModel.minutes)")
                     .font(Font.custom("Poppins-Regular", size: 64))
-                    .foregroundColor(tpViewModel.isSelectingHour ? .gray : Color(AppColor.DARKEST_BLUE))
+                    .foregroundColor(timePickerViewModel.isSelectingHour ? .gray : Color(AppColor.DARKEST_BLUE))
 //                    .fontWeight(tpViewModel.isSelectingHour ? .heavy : .bold)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 8).fill(.blue.opacity(0.1)))
                     .onTapGesture {
-                        tpViewModel.isSelectingHour = false
-                        tpViewModel.updateDegree()
+                        timePickerViewModel.isSelectingHour = false
+                        timePickerViewModel.updateDegree()
                         
                     }
                 
                 VStack{
                     Text("AM")
-                        .foregroundColor(tpViewModel.timePeriod == .AM ? .black : .gray)
-                        .font(tpViewModel.timePeriod == .AM ? Font.custom("Poppins-Medium", size: 18) : Font.custom("Poppins-Regular", size: 18))
+                        .foregroundColor(timePickerViewModel.timePeriod == .AM ? .black : .gray)
+                        .font(timePickerViewModel.timePeriod == .AM ? Font.custom("Poppins-Medium", size: 18) : Font.custom("Poppins-Regular", size: 18))
                         .padding(8)
                         .onTapGesture {
-                            tpViewModel.timePeriod = .AM
+                            timePickerViewModel.timePeriod = .AM
                         }
                     
                     
                     Text("PM")
-                        .foregroundColor(tpViewModel.timePeriod == .AM ? .gray : .black)
-                        .font(tpViewModel.timePeriod == .PM ? Font.custom("Poppins-Medium", size: 18) : Font.custom("Poppins-Regular", size: 18))
+                        .foregroundColor(timePickerViewModel.timePeriod == .AM ? .gray : .black)
+                        .font(timePickerViewModel.timePeriod == .PM ? Font.custom("Poppins-Medium", size: 18) : Font.custom("Poppins-Regular", size: 18))
                         .padding(8)
                         .onTapGesture {
-                            tpViewModel.timePeriod = .PM
+                            timePickerViewModel.timePeriod = .PM
                         }
                     
                     
@@ -81,17 +84,21 @@ struct MaterialTimePicker: View {
             }
             
             ClockView()
-                .environmentObject(tpViewModel)
-                .frame(width: 300, height: 300)
+                .environmentObject(timePickerViewModel)
+                .frame(width: 280, height: 280)
             
             Spacer()
             
+            //MARK: - Buttons
             HStack(spacing: 16.0){
                 
                 Spacer()
                 
+                
+                //MARK: - Cancel
                 Button {
                     print("Cancel")
+                    self.presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("Cancel")
                         .font(Font.custom("Poppins-Regular", size: 14))
@@ -99,8 +106,20 @@ struct MaterialTimePicker: View {
                         .padding(8)
                 }
                 
+                
+                //MARK: - Apply
                 Button {
-                    print("OK")
+                    print("Apply time")
+                    switch constraint {
+                    case .checkInAfter:
+//                        newUnitViewModel.facility.checkInAfter = timePickerViewModel.
+                        print("\(timePickerViewModel.hour):\(timePickerViewModel.minutes < 10 ? "0" : "")\(timePickerViewModel.minutes) \(timePickerViewModel.timePeriod.rawValue)")
+                    case .checkInBefore:
+                        print("\(timePickerViewModel.hour): \(timePickerViewModel.minutes)")
+                    case .checkOutBefore:
+                        print("\(timePickerViewModel.hour): \(timePickerViewModel.minutes)")
+                    }
+                    
                 } label: {
                     Text("Apply")
                         .font(Font.custom("Poppins-Regular", size: 14))
@@ -189,13 +208,17 @@ class TimePickerViewModel: ObservableObject {
         }
     }
     
-    public enum TimePeriod {
-        case PM
-        case AM
+    public enum TimePeriod: String {
+        case PM = "PM"
+        case AM = "AM"
     }
 }
 
-
+enum TimeConstraint {
+    case checkInAfter
+    case checkInBefore
+    case checkOutBefore
+}
 
 struct ClockView: View {
     
@@ -270,8 +293,8 @@ struct ClockView: View {
     }
 }
 
-struct MaterialTimePicker_Previews: PreviewProvider {
-    static var previews: some View {
-        MaterialTimePicker()
-    }
-}
+//struct MaterialTimePicker_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MaterialTimePicker()
+//    }
+//}

@@ -41,6 +41,10 @@ struct Facility {
     var rules: Rules = Rules()
     // Location
     var location: Location = Location()
+    // CheckIn
+    var checkInAfter: String = ""
+    var checkOutBefore: String = ""
+    var checkInBefore: String = ""
     
     //MARK: - Name validation
     func validateName() throws  {

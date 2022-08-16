@@ -10,6 +10,8 @@ import SwiftUI
 struct FacilityTimeScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
+    //@EnvironmentObject var viewModel: AddNewUnitViewModel
+    @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     @State var progress: Float = 0.332
     
     @State var checkInAfter: String = ""
@@ -18,6 +20,7 @@ struct FacilityTimeScreen: View {
     
     @State var showPriceSetup: Bool = false 
     @State var showTimePicker: Bool = false
+    @State var timeConstraint: TimeConstraint = .checkInAfter
     
     var body: some View {
         
@@ -43,15 +46,27 @@ struct FacilityTimeScreen: View {
                     .frame(height: 60)
                     .onTapGesture {
                         print("hi")
+                        timeConstraint = .checkInAfter
                         showTimePicker.toggle()
                     }
                 
                 
                 MaterialTextSelector(text: $checkInBefore, placeHolder: "Check-in before")
                     .frame(height: 60)
+                    .onTapGesture {
+                        print("hi")
+                        timeConstraint = .checkInBefore
+                        showTimePicker.toggle()
+                    }
                 
                 MaterialTextSelector(text: $checkOutBefore, placeHolder: "Check-out before")
                     .frame(height: 60)
+                    .onTapGesture {
+                        print("hi")
+                        timeConstraint = .checkOutBefore
+                        showTimePicker.toggle()
+                    }
+                
             }.padding(.bottom)
             
             
@@ -80,7 +95,7 @@ struct FacilityTimeScreen: View {
             
         }
         .sheet(isPresented: $showTimePicker, content: {
-            MaterialTimePicker()
+            MaterialTimePicker(constraint: timeConstraint)
         })
         .padding(.horizontal)
         .background(Color.white)

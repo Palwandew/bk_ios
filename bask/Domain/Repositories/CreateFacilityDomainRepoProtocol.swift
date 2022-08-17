@@ -33,4 +33,8 @@ protocol CreateFacilityDomainRepoProtocol {
     
     //MARK: - Step - 6
     func updateFacilityLocation(_ data: FacilityLocationRequestBody, completion: @escaping (Result<String, Error>) -> Void)
+    
+    
+    //MARK: - Step - 7
+    func updateFacilityCheckInTime(_ data: FacilityCheckInTimeRequestBody, completion: @escaping (Result<String, Error>) -> Void)
 }

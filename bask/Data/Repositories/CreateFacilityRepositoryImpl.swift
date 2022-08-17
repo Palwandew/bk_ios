@@ -114,4 +114,20 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
             }
         }
     }
+    
+    func updateFacilityCheckInTime(_ data: FacilityCheckInTimeRequestBody, completion: @escaping (Result<String, Error>) -> Void) {
+        let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
+        let url = "https://api.baskapp.co/api/v1/facility/\(facilityID)"
+        
+        URLSession.shared.sendUpdateRequest(endpoint: url, requestType: .patch, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: data) { result in
+            switch result {
+                
+            case .success(let success):
+                completion(.success(success))
+                
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

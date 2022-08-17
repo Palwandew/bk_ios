@@ -48,7 +48,7 @@ struct MaterialTimePicker: View {
                 Text("\(timePickerViewModel.minutes < 10 ? "0" : "")\(timePickerViewModel.minutes)")
                     .font(Font.custom("Poppins-Regular", size: 64))
                     .foregroundColor(timePickerViewModel.isSelectingHour ? .gray : Color(AppColor.DARKEST_BLUE))
-//                    .fontWeight(tpViewModel.isSelectingHour ? .heavy : .bold)
+                //                    .fontWeight(tpViewModel.isSelectingHour ? .heavy : .bold)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 8).fill(.blue.opacity(0.1)))
                     .onTapGesture {
@@ -109,16 +109,17 @@ struct MaterialTimePicker: View {
                 
                 //MARK: - Apply
                 Button {
-                    print("Apply time")
+                    
                     switch constraint {
                     case .checkInAfter:
-//                        newUnitViewModel.facility.checkInAfter = timePickerViewModel.
-                        print("\(timePickerViewModel.hour):\(timePickerViewModel.minutes < 10 ? "0" : "")\(timePickerViewModel.minutes) \(timePickerViewModel.timePeriod.rawValue)")
+                        newUnitViewModel.facility.checkInAfter = timePickerViewModel.getTime()
+                        
                     case .checkInBefore:
-                        print("\(timePickerViewModel.hour): \(timePickerViewModel.minutes)")
+                        newUnitViewModel.facility.checkInBefore = timePickerViewModel.getTime()
                     case .checkOutBefore:
-                        print("\(timePickerViewModel.hour): \(timePickerViewModel.minutes)")
+                        newUnitViewModel.facility.checkOutBefore = timePickerViewModel.getTime()
                     }
+                    self.presentationMode.wrappedValue.dismiss()
                     
                 } label: {
                     Text("Apply")
@@ -142,7 +143,7 @@ class TimePickerViewModel: ObservableObject {
     @Published var angle: Double = 0
     @Published var isSelectingHour: Bool = true
     @Published var timePeriod: TimePeriod = .AM
-   
+    
     
     func updateDegree(){
         withAnimation(.spring()) {
@@ -194,7 +195,7 @@ class TimePickerViewModel: ObservableObject {
             withAnimation(.spring(), {
                 
                 self.angle = Double(minutes * 6)
-               
+                
                 isSelectingHour = false
             })
             
@@ -206,6 +207,10 @@ class TimePickerViewModel: ObservableObject {
                 
             }
         }
+    }
+    
+    func getTime() -> String {
+        return ("\(hour):\(minutes < 10 ? "0" : "")\(minutes) \(timePeriod.rawValue)")
     }
     
     public enum TimePeriod: String {
@@ -280,7 +285,7 @@ struct ClockView: View {
                                 .rotationEffect(.init(degrees: Double(-index) * 30))
                         } else {
                             Text("\(index * 5)")
-                                
+                            
                                 .rotationEffect(.init(degrees: Double(-index) * 30))
                         }
                     }

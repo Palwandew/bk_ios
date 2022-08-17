@@ -45,7 +45,7 @@ struct Facility {
     var checkInAfter: String = ""
     var checkOutBefore: String = ""
     var checkInBefore: String = ""
-    
+    let checkInOutStatus: Int = 1
     //MARK: - Name validation
     func validateName() throws  {
         
@@ -137,6 +137,14 @@ struct Facility {
     mutating func hasValidAddress() -> Bool {
         return location.validAddress()
     }
+    
+    
+    //MARK: - Timing Validation
+    func hasValidCheckInTime() -> Bool {
+        return !checkInAfter.isEmpty && !checkInBefore.isEmpty && !checkOutBefore.isEmpty
+    }
+    
+    
     //MARK: - Step-1 Request body
     func prepareRequestBodyWith(ownerID: String) -> FacilityNameBodyData {
         return FacilityNameBodyData(arabicName: self.arabicName, englishName: self.englishName, ownerID: ownerID)
@@ -210,6 +218,13 @@ struct Facility {
     
     func prepareLocationRequestBody() -> FacilityLocationRequestBody {
         return location.toRequestBodyModel()
+    }
+    
+    
+    //MARK: - Step-7 Request body
+    
+    func prepareCheckInTimeRequestBody() -> FacilityCheckInTimeRequestBody {
+        return FacilityCheckInTimeRequestBody(checkInAfter: self.checkInAfter, checkInBefore: self.checkInBefore, checkOutBefore: self.checkOutBefore, checkInOutStatus: self.checkInOutStatus)
     }
     
     
@@ -369,4 +384,16 @@ struct FacilityRulesRequestBody: Codable {
     }
 }
 
+// MARK: - FacilityCheckInTimeRequestBody
+struct FacilityCheckInTimeRequestBody: Codable {
+    let checkInAfter, checkInBefore, checkOutBefore: String
+    let checkInOutStatus: Int
+
+    enum CodingKeys: String, CodingKey {
+        case checkInAfter = "check_in_after"
+        case checkInBefore = "check_in_before"
+        case checkOutBefore = "check_out_before"
+        case checkInOutStatus = "check_in_out_status"
+    }
+}
 

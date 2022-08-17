@@ -96,6 +96,20 @@ class CreateFacilityUseCase {
                     completion(.failure(error))
                 }
             }
+            
+        case .stepSeven:
+            guard let stepSevenRequestData = data as? FacilityCheckInTimeRequestBody else {
+                return
+            }
+            
+            createFacilityRepo.updateFacilityCheckInTime(stepSevenRequestData) { result in
+                switch result {
+                case .success(let message):
+                    completion(.success(message))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         }
     }
 }

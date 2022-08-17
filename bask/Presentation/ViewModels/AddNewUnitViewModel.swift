@@ -17,10 +17,7 @@ class AddNewUnitViewModel: ObservableObject {
     
     //MARK: - Properties
     
-    private let ownerId = "7ae267e8-65cc-4c6d-948a-5518a8bfeb36"
-    @Published var facilityName: String = ""
-    @Published var isValidEnglishName: Bool = true
-    @Published var isValidArabicName: Bool = true
+    //MARK: - Navigation indicators
     @Published var willShowAddRoomsScreen: Bool = false
     @Published var willShowFreeAmenitiesScreen: Bool = false
     @Published var willShowPaidAmenitiesScreen: Bool = false
@@ -28,6 +25,12 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var willShowLocationScreen: Bool = false
     @Published var willShowMapScreen: Bool = false
     @Published var willShowCheckInScreen: Bool = false
+    @Published var willShowPriceSetupScreen: Bool = false
+    
+    private let ownerId = "7ae267e8-65cc-4c6d-948a-5518a8bfeb36"
+    @Published var facilityName: String = ""
+    @Published var isValidEnglishName: Bool = true
+    @Published var isValidArabicName: Bool = true
     @Published var roomsCount: Int = 0
     @Published var kitchenCount: Int = 0
     
@@ -165,46 +168,46 @@ class AddNewUnitViewModel: ObservableObject {
         //        facility.paidAmenities.validateParkingPrice()
         if facility.hasValidPaidAmenities() {
             print("Valid paid")
-                let data = facility.preparePaidServicesRequestBody()
-                
-                createFacilityUseCase.updateFacility(for: .stepFour, with: data) { [weak self] result in
-                    switch result {
-                    case .failure(let error):
-                        print("error \(error)")
-                        
-                    case .success(let success):
-                        print("success \(success)")
-                        DispatchQueue.main.async {
-                            self?.willShowRulesScreen = true
-                        }
+            let data = facility.preparePaidServicesRequestBody()
+            
+            createFacilityUseCase.updateFacility(for: .stepFour, with: data) { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    print("error \(error)")
+                    
+                case .success(let success):
+                    print("success \(success)")
+                    DispatchQueue.main.async {
+                        self?.willShowRulesScreen = true
                     }
                 }
-                
-            } else {
-                print("Invalid paid amenity")
             }
-        self.objectWillChange.send()
+            
+        } else {
+            print("Invalid paid amenity")
         }
-
+        self.objectWillChange.send()
+    }
+    
     
     //MARK: - Step-5
     
     func updateFacilityRules() {
         willShowLocationScreen.toggle()
-//        let data = facility.prepareRulesRequestBody()
-//
-//        createFacilityUseCase.updateFacility(for: .stepFive, with: data) { [weak self] result in
-//            switch result {
-//            case .failure(let error):
-//                print("error \(error)")
-//
-//            case .success(let success):
-//                print("success \(success)")
-//                DispatchQueue.main.async {
-//                    self?.willShowLocationScreen = true
-//                }
-//            }
-//        }
+        //        let data = facility.prepareRulesRequestBody()
+        //
+        //        createFacilityUseCase.updateFacility(for: .stepFive, with: data) { [weak self] result in
+        //            switch result {
+        //            case .failure(let error):
+        //                print("error \(error)")
+        //
+        //            case .success(let success):
+        //                print("success \(success)")
+        //                DispatchQueue.main.async {
+        //                    self?.willShowLocationScreen = true
+        //                }
+        //            }
+        //        }
     }
     
     
@@ -217,22 +220,46 @@ class AddNewUnitViewModel: ObservableObject {
     
     //MARK: - Step-6.2
     func updateFacilityLocation(with coordinates: CLLocationCoordinate2D) {
-        facility.location.latitude = coordinates.latitude
-        facility.location.longitude = coordinates.longitude
-        
-        let data = facility.prepareLocationRequestBody()
-        print("loc --> \(data)")
-        createFacilityUseCase.updateFacility(for: .stepSix, with: data) { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print("error \(error)")
-                
-            case .success(let success):
-                print("success \(success)")
-                DispatchQueue.main.async {
-                    self?.willShowCheckInScreen = true
+        willShowCheckInScreen = true
+        //        facility.location.latitude = coordinates.latitude
+        //        facility.location.longitude = coordinates.longitude
+        //
+        //        let data = facility.prepareLocationRequestBody()
+        //        print("loc --> \(data)")
+        //        createFacilityUseCase.updateFacility(for: .stepSix, with: data) { [weak self] result in
+        //            switch result {
+        //            case .failure(let error):
+        //                print("error \(error)")
+        //
+        //            case .success(let success):
+        //                print("success \(success)")
+        //                DispatchQueue.main.async {
+        //                    self?.willShowCheckInScreen = true
+        //                }
+        //            }
+        //        }
+    }
+    
+    
+    //MARK: - Step-7
+    func validateCheckInCheckOutTimings() {
+        if facility.hasValidCheckInTime() {
+            
+            let data = facility.prepareCheckInTimeRequestBody()
+            
+            createFacilityUseCase.updateFacility(for: .stepSeven, with: data) { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    print("error \(error)")
+                    
+                case .success(let success):
+                    print("success \(success)")
+                    DispatchQueue.main.async {
+                        self?.willShowPriceSetupScreen = true
+                    }
                 }
             }
+            willShowPriceSetupScreen = true
         }
     }
     
@@ -335,7 +362,7 @@ enum FacilityCreationStep {
     case stepFour
     case stepFive
     case stepSix
-    //    case seventh
+    case stepSeven
     //    case eight
     //    case ninth
 }

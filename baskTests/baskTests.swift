@@ -10,17 +10,34 @@ import XCTest
 
 class baskTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    var sut: AddNewUnitViewModel!
+    var useCase: CreateFacilityUseCase!
+    var repo: CreateFacilityDomainRepoProtocol!
+    
+    override func setUp() {
+        super.setUp()
+        repo = CreateFacilityReopositoryImpl()
+        useCase = CreateFacilityUseCase(repository: repo)
+        sut = AddNewUnitViewModel(useCase: useCase)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    override func tearDown() {
+        super.tearDown()
+        useCase = nil
+        repo = nil
+        sut = nil
     }
 
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        //let time = sut.getTime()
+        //let showScreen = sut.willShowPriceSetupScreen
+        sut.validateCheckInCheckOutTimings()
+        let showScreen = sut.willShowPriceSetupScreen
+        XCTAssertEqual(showScreen, true)
+        
     }
 
     func testPerformanceExample() throws {

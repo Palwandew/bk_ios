@@ -42,7 +42,7 @@ struct FacilityTimeScreen: View {
             
             
             Group {
-                MaterialTextSelector(text: $checkInAfter, placeHolder: "Check-in after")
+                MaterialTextSelector(text: $viewModel.facility.checkInAfter, placeHolder: "Check-in after")
                     .frame(height: 60)
                     .onTapGesture {
                         print("hi")
@@ -51,7 +51,7 @@ struct FacilityTimeScreen: View {
                     }
                 
                 
-                MaterialTextSelector(text: $checkInBefore, placeHolder: "Check-in before")
+                MaterialTextSelector(text: $viewModel.facility.checkInBefore, placeHolder: "Check-in before")
                     .frame(height: 60)
                     .onTapGesture {
                         print("hi")
@@ -59,7 +59,7 @@ struct FacilityTimeScreen: View {
                         showTimePicker.toggle()
                     }
                 
-                MaterialTextSelector(text: $checkOutBefore, placeHolder: "Check-out before")
+                MaterialTextSelector(text: $viewModel.facility.checkOutBefore, placeHolder: "Check-out before")
                     .frame(height: 60)
                     .onTapGesture {
                         print("hi")
@@ -73,7 +73,7 @@ struct FacilityTimeScreen: View {
             //MARK: - Continue Button
             
             NavigationLink(destination:
-                            FacilityPriceSetupScreen(), isActive: $showPriceSetup) {
+                            FacilityPriceSetupScreen(), isActive: $viewModel.willShowPriceSetupScreen) {
                 EmptyView()
             }
                 
@@ -84,7 +84,7 @@ struct FacilityTimeScreen: View {
                     print("tapped")
                     //print(region.center)
                     //showCountries.toggle()
-                    showPriceSetup.toggle()
+                    viewModel.validateCheckInCheckOutTimings()
                     
                     
                 }.padding(.top)
@@ -96,6 +96,7 @@ struct FacilityTimeScreen: View {
         }
         .sheet(isPresented: $showTimePicker, content: {
             MaterialTimePicker(constraint: timeConstraint)
+                .environmentObject(viewModel)
         })
         .padding(.horizontal)
         .background(Color.white)

@@ -110,6 +110,20 @@ class CreateFacilityUseCase {
                     completion(.failure(error))
                 }
             }
+            
+        case .stepEight:
+            guard let stepEightRequestData = data as? FacilityPriceRequestBody else {
+                return
+            }
+            
+            createFacilityRepo.updateFacilityPrice(stepEightRequestData) { result in
+                switch result {
+                case .success(let message):
+                    completion(.success(message))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
         }
     }
 }

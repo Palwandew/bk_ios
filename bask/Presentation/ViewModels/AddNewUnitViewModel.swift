@@ -249,24 +249,24 @@ class AddNewUnitViewModel: ObservableObject {
     //MARK: - Step-7
     func validateCheckInCheckOutTimings() {
         willShowPriceSetupScreen = true
-//        if facility.hasValidCheckInTime() {
-//            
-//            let data = facility.prepareCheckInTimeRequestBody()
-//            
-//            createFacilityUseCase.updateFacility(for: .stepSeven, with: data) { [weak self] result in
-//                switch result {
-//                case .failure(let error):
-//                    print("error \(error)")
-//                    
-//                case .success(let success):
-//                    print("success \(success)")
-//                    DispatchQueue.main.async {
-//                        self?.willShowPriceSetupScreen = true
-//                    }
-//                }
-//            }
-//            willShowPriceSetupScreen = true //Don't forget to remove this
-//        }
+        //        if facility.hasValidCheckInTime() {
+        //
+        //            let data = facility.prepareCheckInTimeRequestBody()
+        //
+        //            createFacilityUseCase.updateFacility(for: .stepSeven, with: data) { [weak self] result in
+        //                switch result {
+        //                case .failure(let error):
+        //                    print("error \(error)")
+        //
+        //                case .success(let success):
+        //                    print("success \(success)")
+        //                    DispatchQueue.main.async {
+        //                        self?.willShowPriceSetupScreen = true
+        //                    }
+        //                }
+        //            }
+        //            willShowPriceSetupScreen = true //Don't forget to remove this
+        //        }
     }
     
     
@@ -274,7 +274,20 @@ class AddNewUnitViewModel: ObservableObject {
     func validateFaciltyPrice(){
         if facility.hasValidPrice() {
             print("Valid price")
-            willShowDescriptionScreen = true
+            let data = facility.preparePriceRequestBody()
+            
+            createFacilityUseCase.updateFacility(for: .stepEight, with: data) { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    print("error \(error)")
+                    
+                case .success(let success):
+                    print("success \(success)")
+                    DispatchQueue.main.async {
+                        self?.willShowDescriptionScreen = true
+                    }
+                }
+            }
         } else {
             print("invalid price")
         }
@@ -380,6 +393,6 @@ enum FacilityCreationStep {
     case stepFive
     case stepSix
     case stepSeven
-    //    case eight
+    case stepEight
     //    case ninth
 }

@@ -253,6 +253,17 @@ struct Facility {
     }
     
     
+    //MARK: - Step-8 Request Body
+    
+    func preparePriceRequestBody() -> FacilityPriceRequestBody? {
+        guard let price = Int(self.pricePerNight) , let deposit = Int(self.deposit) else {
+            print("Conversion from String to Int failed")
+            return nil
+        }
+        return FacilityPriceRequestBody(price: price, deposit: deposit, priceStatus: 1)
+    }
+    
+    
     //MARK: - Mutating functions
     mutating func addRoom(){
         let room = Room()
@@ -419,6 +430,16 @@ struct FacilityCheckInTimeRequestBody: Codable {
         case checkInBefore = "check_in_before"
         case checkOutBefore = "check_out_before"
         case checkInOutStatus = "check_in_out_status"
+    }
+}
+
+// MARK: - FacilityPriceRequestBody
+struct FacilityPriceRequestBody: Codable {
+    let price, deposit, priceStatus: Int
+
+    enum CodingKeys: String, CodingKey {
+        case price, deposit
+        case priceStatus = "price_status"
     }
 }
 

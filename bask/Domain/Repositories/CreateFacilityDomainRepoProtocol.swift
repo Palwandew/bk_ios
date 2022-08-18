@@ -40,4 +40,7 @@ protocol CreateFacilityDomainRepoProtocol {
     
     //MARK: - Step - 8
     func updateFacilityPrice(_ data: FacilityPriceRequestBody, completion: @escaping (Result<String, Error>) -> Void)
+    
+    //MARK: - Step - 9
+    func updateFacilityDescription(_ data: FacilityDescriptionRequestBody, completion: @escaping (Result<String, Error>) -> Void)
 }

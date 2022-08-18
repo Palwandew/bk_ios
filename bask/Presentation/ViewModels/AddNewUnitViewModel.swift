@@ -30,7 +30,7 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var willShowCheckInScreen: Bool = false
     @Published var willShowPriceSetupScreen: Bool = false
     @Published var willShowDescriptionScreen: Bool = false
-    
+    @Published var willShowPhotosScreen: Bool = false
     
     private let ownerId = "7ae267e8-65cc-4c6d-948a-5518a8bfeb36"
     @Published var facilityName: String = ""
@@ -293,6 +293,26 @@ class AddNewUnitViewModel: ObservableObject {
         }
     }
     
+    
+    //MARK: - Step-9
+    func onContineDescription(){
+        let data = facility.prepareDescriptionRequestBody()
+        
+        createFacilityUseCase.updateFacility(for: .stepNine, with: data) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("error \(error)")
+                
+            case .success(let success):
+                print("success description \(success)")
+                DispatchQueue.main.async {
+                    self?.willShowPhotosScreen = true
+                }
+            }
+        }
+    }
+    
+    
     func addRoom() {
         
         facility.addRoom()
@@ -394,5 +414,5 @@ enum FacilityCreationStep {
     case stepSix
     case stepSeven
     case stepEight
-    //    case ninth
+    case stepNine
 }

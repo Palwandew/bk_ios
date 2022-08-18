@@ -124,6 +124,20 @@ class CreateFacilityUseCase {
                     completion(.failure(error))
                 }
             }
+        case .stepNine:
+            guard let stepNineRequestData = data as? FacilityDescriptionRequestBody else {
+                print("error downcasting to Description body")
+                return
+            }
+            createFacilityRepo.updateFacilityDescription(stepNineRequestData) { result in
+                switch result {
+                case .success(let message):
+                    completion(.success(message))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+            
         }
     }
 }

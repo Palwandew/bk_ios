@@ -10,8 +10,9 @@ import SwiftUI
 struct FacilityDescriptionScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
+    //@EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
+    @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     @State var progress: Float = 0.332
-    
     @State var description: String = ""
     @State var isValid: Bool = true 
     let errorMessage: LocalizedStringKey = "valid_description"
@@ -36,13 +37,13 @@ struct FacilityDescriptionScreen: View {
                 .padding(.bottom, 32)
             
             
-            MaterialTextField(text: $description, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Description (Optional)")
+            MaterialTextField(text: $viewModel.facility.description, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Description (Optional)")
             
             
             //MARK: - Continue Button
             
             NavigationLink(destination:
-                            FacilityPicturesScreen(), isActive: $showPicturesScreen) {
+                            FacilityPicturesScreen(), isActive: $viewModel.willShowPhotosScreen) {
                 EmptyView()
             }
                 
@@ -50,8 +51,7 @@ struct FacilityDescriptionScreen: View {
                 
                 FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                     
-                    print("tapped")
-                    showPicturesScreen.toggle()
+                    viewModel.onContineDescription()
                     
                 }.padding(.top)
                     .background(Rectangle().fill(Color.white.opacity(0.5)))

@@ -51,6 +51,9 @@ struct Facility {
     var deposit: String = ""
     var validPrice: Bool = true
     var validDeposit: Bool = true
+    // Description
+    var description: String = ""
+    
     
     //MARK: - Name validation
     func validateName() throws  {
@@ -264,6 +267,12 @@ struct Facility {
     }
     
     
+    //MARK: - Step-9 Request Body
+    func prepareDescriptionRequestBody() -> FacilityDescriptionRequestBody {
+        return FacilityDescriptionRequestBody(facilityDescriptionRequestBodyDescription: self.description, descriptionStatus: 1)
+    }
+    
+    
     //MARK: - Mutating functions
     mutating func addRoom(){
         let room = Room()
@@ -442,4 +451,18 @@ struct FacilityPriceRequestBody: Codable {
         case priceStatus = "price_status"
     }
 }
+
+
+// MARK: - FacilityDescriptionRequestBody
+struct FacilityDescriptionRequestBody: Codable {
+    let facilityDescriptionRequestBodyDescription: String
+    let descriptionStatus: Int
+
+    enum CodingKeys: String, CodingKey {
+        case facilityDescriptionRequestBodyDescription = "description"
+        case descriptionStatus = "description_status"
+    }
+}
+
+
 

@@ -17,7 +17,10 @@ class AddNewUnitViewModel: ObservableObject {
     
     //MARK: - Properties
     
+    
+    
     //MARK: - Navigation indicators
+    
     @Published var willShowAddRoomsScreen: Bool = false
     @Published var willShowFreeAmenitiesScreen: Bool = false
     @Published var willShowPaidAmenitiesScreen: Bool = false
@@ -26,6 +29,8 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var willShowMapScreen: Bool = false
     @Published var willShowCheckInScreen: Bool = false
     @Published var willShowPriceSetupScreen: Bool = false
+    @Published var willShowDescriptionScreen: Bool = false
+    
     
     private let ownerId = "7ae267e8-65cc-4c6d-948a-5518a8bfeb36"
     @Published var facilityName: String = ""
@@ -243,23 +248,35 @@ class AddNewUnitViewModel: ObservableObject {
     
     //MARK: - Step-7
     func validateCheckInCheckOutTimings() {
-        if facility.hasValidCheckInTime() {
-            
-            let data = facility.prepareCheckInTimeRequestBody()
-            
-            createFacilityUseCase.updateFacility(for: .stepSeven, with: data) { [weak self] result in
-                switch result {
-                case .failure(let error):
-                    print("error \(error)")
-                    
-                case .success(let success):
-                    print("success \(success)")
-                    DispatchQueue.main.async {
-                        self?.willShowPriceSetupScreen = true
-                    }
-                }
-            }
-            willShowPriceSetupScreen = true
+        willShowPriceSetupScreen = true
+//        if facility.hasValidCheckInTime() {
+//            
+//            let data = facility.prepareCheckInTimeRequestBody()
+//            
+//            createFacilityUseCase.updateFacility(for: .stepSeven, with: data) { [weak self] result in
+//                switch result {
+//                case .failure(let error):
+//                    print("error \(error)")
+//                    
+//                case .success(let success):
+//                    print("success \(success)")
+//                    DispatchQueue.main.async {
+//                        self?.willShowPriceSetupScreen = true
+//                    }
+//                }
+//            }
+//            willShowPriceSetupScreen = true //Don't forget to remove this
+//        }
+    }
+    
+    
+    //MARK: - Step-8
+    func validateFaciltyPrice(){
+        if facility.hasValidPrice() {
+            print("Valid price")
+            willShowDescriptionScreen = true
+        } else {
+            print("invalid price")
         }
     }
     

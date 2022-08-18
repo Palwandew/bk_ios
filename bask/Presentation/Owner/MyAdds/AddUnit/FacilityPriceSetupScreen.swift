@@ -10,6 +10,9 @@ import SwiftUI
 struct FacilityPriceSetupScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
+    
+    //@EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
+    @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     @State var progress: Float = 0.332
     
     
@@ -48,7 +51,7 @@ struct FacilityPriceSetupScreen: View {
                 .padding(.bottom, 32)
             
             
-            MaterialPriceField(text: $pricePerNight, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Price per night")
+            MaterialPriceField(text: $viewModel.facility.pricePerNight, isValid: $viewModel.facility.validPrice, errorMessage: errorMessage, placeHolder: "Price per night")
             
             
             //MARK: - Deposit
@@ -64,7 +67,7 @@ struct FacilityPriceSetupScreen: View {
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                 .padding(.bottom, 32)
             
-            MaterialPriceField(text: $pricePerNight, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Deposit")
+            MaterialPriceField(text: $viewModel.facility.deposit, isValid: $viewModel.facility.validDeposit, errorMessage: errorMessage, placeHolder: "Deposit")
             
             Spacer()
             
@@ -73,8 +76,7 @@ struct FacilityPriceSetupScreen: View {
             
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
-                print("tapped")
-                showDescription.toggle()
+                viewModel.validateFaciltyPrice()
                 
                 
             }.padding(.top)
@@ -83,7 +85,7 @@ struct FacilityPriceSetupScreen: View {
             //MARK: - Navigation Link
             
             NavigationLink(destination:
-                            FacilityDescriptionScreen(), isActive: $showDescription) {
+                            FacilityDescriptionScreen(), isActive: $viewModel.willShowDescriptionScreen) {
                 EmptyView()
             }
             

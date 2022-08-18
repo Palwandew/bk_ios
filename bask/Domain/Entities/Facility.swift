@@ -46,6 +46,12 @@ struct Facility {
     var checkOutBefore: String = ""
     var checkInBefore: String = ""
     let checkInOutStatus: Int = 1
+    // Price
+    var pricePerNight: String = ""
+    var deposit: String = ""
+    var validPrice: Bool = true
+    var validDeposit: Bool = true
+    
     //MARK: - Name validation
     func validateName() throws  {
         
@@ -140,8 +146,27 @@ struct Facility {
     
     
     //MARK: - Timing Validation
+    /// Checks if the facility check-in, check-out timings have been added.
+    /// - Returns: True if the user has added check-in and check-out timings. False otherwise, if either of
+    /// timings is missing.
     func hasValidCheckInTime() -> Bool {
         return !checkInAfter.isEmpty && !checkInBefore.isEmpty && !checkOutBefore.isEmpty
+    }
+    
+    
+    //MARK: - Price Validation
+    mutating func hasValidPrice() -> Bool {
+        
+        if pricePerNight.isEmpty {
+            validPrice = false
+        }
+        else if deposit.isEmpty {
+            validDeposit = false
+        } else {
+            validPrice = true
+            validDeposit = true 
+        }
+        return !pricePerNight.isEmpty && !deposit.isEmpty
     }
     
     

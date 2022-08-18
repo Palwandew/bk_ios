@@ -13,7 +13,6 @@ struct FacilityPicturesScreen: View {
     @State var progress: Float = 0.332
     @State var showGallery: Bool = false
     @State var pickerResult: [UIImage] = []
-    
     @State var showChecklist: Bool = false
     
     var body: some View {
@@ -56,7 +55,10 @@ struct FacilityPicturesScreen: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack{
                         ForEach($pickerResult, id:\.self){ image in
-                            GalleryImage(image: image)
+                            GalleryImage(image: image, onDelete: {
+                                print("tapped")
+                                pickerResult.remove(at: 0)
+                            })
                                 .frame(width: UIScreen.main.bounds.width * 0.90, height: 250)
                         }
                     }

@@ -10,7 +10,7 @@ import SwiftUI
 struct GalleryImage: View {
     
     @Binding var image: UIImage
-    
+    let onDelete: () -> Void
     var body: some View {
         
         GeometryReader { geomerty in
@@ -19,17 +19,25 @@ struct GalleryImage: View {
                 
                 Image(uiImage: image)
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: geomerty.size.width, height: geomerty.size.height)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                 
+//                RoundedRectangle(cornerRadius: 10)
+//                    .fill(.gray)
+//                    .frame(width: geomerty.size.width, height: geomerty.size.height)
                 
+                    
                 Image(systemName: "trash")
                     .resizable()
                     .frame(width: 24, height: 24)
                     .foregroundColor(.white)
-                    .padding()
+                    .padding(12)
                     .background(RoundedRectangle(cornerRadius: 8).fill(Color(AppColor.DARKEST_BLUE).opacity(0.5)))
                     .padding()
+                    .onTapGesture {
+                        onDelete()
+                    }
                 
             }
         }

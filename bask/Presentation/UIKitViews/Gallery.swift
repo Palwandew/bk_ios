@@ -13,11 +13,13 @@ struct Gallery: UIViewControllerRepresentable {
     @Binding var isPresented: Bool
 
     func makeUIViewController(context: Context) -> PHPickerViewController {
-        var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
+        var config = PHPickerConfiguration()
 //        config.preferredAssetRepresentationMode = .automatic
+        
         config.filter = .images
         
         config.selectionLimit = 20
+        //config.selection = .ordered
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = context.coordinator
         return picker

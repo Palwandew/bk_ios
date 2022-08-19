@@ -162,4 +162,14 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
             }
         }
     }
+    
+    func getImageFromServer(completion: @escaping (Result<Data, Error>) -> Void) {
+        guard let url = URL(string: "https://iosacademy.io/assets/images/courses/tiktok.png") else { return }
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else { return }
+            
+            completion(.success(data))
+        }
+        task.resume()
+    }
 }

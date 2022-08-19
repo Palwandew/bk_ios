@@ -43,4 +43,7 @@ protocol CreateFacilityDomainRepoProtocol {
     
     //MARK: - Step - 9
     func updateFacilityDescription(_ data: FacilityDescriptionRequestBody, completion: @escaping (Result<String, Error>) -> Void)
+    
+    //MARK: - Step - 10
+    func getImageFromServer(completion: @escaping (Result<Data, Error>) -> Void)
 }

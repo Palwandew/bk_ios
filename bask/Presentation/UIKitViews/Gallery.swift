@@ -48,12 +48,14 @@ struct Gallery: UIViewControllerRepresentable {
               // unpack the selected items
               for image in results {
                 if image.itemProvider.canLoadObject(ofClass: UIImage.self) {
+                
                   image.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] newImage, error in
                     if let error = error {
                       print("Can't load image \(error.localizedDescription)")
                     } else if let image = newImage as? UIImage {
                       // Add new image and pass it back to the main view
                         print("adding image")
+                        
                       self?.parent.selectedImages.append(image)
                     }
                   }

@@ -272,25 +272,26 @@ class AddNewUnitViewModel: ObservableObject {
     
     //MARK: - Step-8
     func validateFaciltyPrice(){
-        if facility.hasValidPrice() {
-            print("Valid price")
-            let data = facility.preparePriceRequestBody()
-            
-            createFacilityUseCase.updateFacility(for: .stepEight, with: data) { [weak self] result in
-                switch result {
-                case .failure(let error):
-                    print("error \(error)")
-                    
-                case .success(let success):
-                    print("success \(success)")
-                    DispatchQueue.main.async {
-                        self?.willShowDescriptionScreen = true
-                    }
-                }
-            }
-        } else {
-            print("invalid price")
-        }
+        willShowDescriptionScreen = true
+//        if facility.hasValidPrice() {
+//            print("Valid price")
+//            let data = facility.preparePriceRequestBody()
+//            
+//            createFacilityUseCase.updateFacility(for: .stepEight, with: data) { [weak self] result in
+//                switch result {
+//                case .failure(let error):
+//                    print("error \(error)")
+//                    
+//                case .success(let success):
+//                    print("success \(success)")
+//                    DispatchQueue.main.async {
+//                        self?.willShowDescriptionScreen = true
+//                    }
+//                }
+//            }
+//        } else {
+//            print("invalid price")
+//        }
     }
     
     
@@ -402,6 +403,23 @@ class AddNewUnitViewModel: ObservableObject {
     func decreaseShowersCount() {
         facility.decreaseCounterOf(.showers)
     }
+    
+    
+    @Published var data = Data()
+    
+    func getImg() {
+        createFacilityUseCase.getImage { result in
+            switch result {
+            case .success(let daata):
+                DispatchQueue.main.async {
+                    self.data = daata
+                }
+                
+            case .failure(_):
+                print("fail")
+            }
+        }
+    }
 }
 
 
@@ -415,4 +433,5 @@ enum FacilityCreationStep {
     case stepSeven
     case stepEight
     case stepNine
+    case stepTen
 }

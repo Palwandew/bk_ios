@@ -138,6 +138,22 @@ class CreateFacilityUseCase {
                 }
             }
             
+        case .stepTen:
+            
+            print("ten stp")
+        }
+        
+    }
+    
+    func getImage(comp: @escaping (Result<Data, Error>) -> Void) {
+        createFacilityRepo.getImageFromServer { result in
+            switch result {
+            case .success(let data):
+                comp(.success(data))
+            case .failure(_):
+                print("fail")
+            }
         }
     }
+
 }

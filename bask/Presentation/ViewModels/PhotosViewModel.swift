@@ -8,6 +8,7 @@
 import Foundation
 import UserNotifications
 import ImageIO
+import QuickLookThumbnailing
 
 class UploadViewModel: ObservableObject {
     
@@ -96,4 +97,5 @@ class UploadViewModel: ObservableObject {
         }
         return thumbNail
     }
-}
+    
+    }

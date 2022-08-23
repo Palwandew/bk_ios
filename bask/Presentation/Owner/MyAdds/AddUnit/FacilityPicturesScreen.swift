@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import QuickLookThumbnailing
 
 struct FacilityPicturesScreen: View {
     
@@ -16,7 +17,7 @@ struct FacilityPicturesScreen: View {
     @State var showGallery: Bool = false
     @State var pickerResult: [UIImage] = []
     @State var showChecklist: Bool = false
-    @State var imageUrls: [URL] = []
+    
     
     @State var x: CGFloat = 0
     @State var count: CGFloat = 0
@@ -26,7 +27,6 @@ struct FacilityPicturesScreen: View {
     
     @State var image:UIImage = UIImage()
     
-    private var data: [Huh] = [Huh(id: 1, num: 4), Huh(id: 2, num: 4), Huh(id: 3, num: 2), Huh(id: 4, num: 4), Huh(id: 5, num: 4), Huh(id: 6, num: 2)]
     var body: some View {
         
         VStack(alignment: .leading) {
@@ -37,20 +37,7 @@ struct FacilityPicturesScreen: View {
             Text("Add photos")
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                .onTapGesture {
-                    print("Text tapped")
-                    print("URL --> \(imageUrls.count)")
-                    if !imageUrls.isEmpty{
-                        guard let cgImage = phViewModel.imageIo(url: imageUrls[0]) else {
-                            print("eror cgImage")
-                            return
-                            
-                        }
-                        
-                        let uiImage = UIImage(cgImage: cgImage)
-                        testImage = Image(uiImage: uiImage)
-                    }
-                }
+                
             
             Text("Overall photos")
                 .font(Font.custom("Poppins-Regular", size: 20, relativeTo: .title))
@@ -68,53 +55,53 @@ struct FacilityPicturesScreen: View {
                 .resizable()
                 .scaledToFit()
             
-            //            if !pickerResult.isEmpty {
-            //
-            //            //ScrollView(.horizontal, showsIndicators: false) {
-            //            LazyHStack(spacing: 15){
-            //                ForEach($imageUrls, id:\.self){ url in
-            ////                    GalleryImage(image: image, onDelete: {
-            ////                        print("tapped")
-            ////                        pickerResult.remove(at: 0)
-            ////                    }).frame(width: UIScreen.main.bounds.width - 30)
-            ////                        .shadow(radius: 4)
-            ////
-            ////                        .offset(x: self.x)
-            ////                    .highPriorityGesture(DragGesture()
-            ////                                            .onChanged({ value in
-            ////
-            ////                        if value.translation.width  > 0 {
-            ////                            self.x = value.location.x
-            ////                        } else {
-            ////                            self.x = value.location.x - self.screen
-            ////                        }
-            ////
-            ////                    })
-            ////                                            .onEnded({ value in
-            ////                        if value.translation.width > 0 {
-            ////                            if value.translation.width > ((screen - 80) / 2) && Int(self.count) != self.getMid() {
-            ////                                self.count += 1
-            ////                                self.x = (self.screen + 15) * self.count
-            ////                            } else {
-            ////                                self.x = (self.screen + 15) * self.count
-            ////                            }
-            ////                        } else {
-            ////                            if -value.translation.width > ((screen - 80) / 2) && -Int(self.count) != self.getMid() {
-            ////                                self.count -= 1
-            ////                                self.x = (self.screen + 15) * self.count
-            ////                            } else {
-            ////                                self.x = (self.screen + 15) * self.count
-            ////                            }
-            ////                        }
-            ////                    })
-            ////                    )
-            //                }
-            //            }
-            //
-            //            .frame(width: UIScreen.main.bounds.width - 30, alignment: .topLeading)
-            //            //.background(Color.blue.opacity(0.2).cornerRadius(24))
-            //            .animation(.spring())
-            //            }
+            if !pickerResult.isEmpty {
+                
+                //ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 15){
+                    ForEach($pickerResult, id:\.self){ image in
+                        GalleryImage(image: image, onDelete: {
+                            print("tapped")
+                            pickerResult.remove(at: 0)
+                        }).frame(width: UIScreen.main.bounds.width - 30)
+                            .shadow(radius: 4)
+                        
+                            .offset(x: self.x)
+                            .highPriorityGesture(DragGesture()
+                                                    .onChanged({ value in
+                                
+                                if value.translation.width  > 0 {
+                                    self.x = value.location.x
+                                } else {
+                                    self.x = value.location.x - self.screen
+                                }
+                                
+                            })
+                                                    .onEnded({ value in
+                                if value.translation.width > 0 {
+                                    if value.translation.width > ((screen - 80) / 2) && Int(self.count) != self.getMid() {
+                                        self.count += 1
+                                        self.x = (self.screen + 15) * self.count
+                                    } else {
+                                        self.x = (self.screen + 15) * self.count
+                                    }
+                                } else {
+                                    if -value.translation.width > ((screen - 80) / 2) && -Int(self.count) != self.getMid() {
+                                        self.count -= 1
+                                        self.x = (self.screen + 15) * self.count
+                                    } else {
+                                        self.x = (self.screen + 15) * self.count
+                                    }
+                                }
+                            })
+                            )
+                    }
+                }
+                
+                .frame(width: UIScreen.main.bounds.width - 30, alignment: .topLeading)
+                //.background(Color.blue.opacity(0.2).cornerRadius(24))
+                .animation(.spring())
+            }
             
             
             //MARK: - Continue Button
@@ -163,7 +150,7 @@ struct FacilityPicturesScreen: View {
             
         })
         .sheet(isPresented: $showGallery, content: {
-            Gallery(selectedImages: $pickerResult, isPresented: $showGallery, files: $imageUrls)
+            Gallery(selectedImages: $pickerResult, isPresented: $showGallery)
         })
         .padding(.horizontal)
         .background(Color.white)
@@ -203,6 +190,33 @@ struct FacilityPicturesScreen: View {
     
     func getMid() -> Int {
         return pickerResult.count / 2
+    }
+    
+    func generateThumbnail(url: URL, scale: CGFloat)  {
+        
+        let size: CGSize = CGSize(width: 60, height: 90)
+        
+        
+        // Creating request for thumbnail
+        let request = QLThumbnailGenerator.Request(fileAt: url, size: size, scale: scale, representationTypes: .all)
+        
+        let generator = QLThumbnailGenerator.shared
+        
+        generator.generateRepresentations(for: request) { (thumbnail, type, error) in
+            
+            DispatchQueue.main.async {
+                if thumbnail == nil || error != nil {
+                    // Handle the error case gracefully.
+                    print("erroro occured while creating thumbnail")
+                    print(error!.localizedDescription)
+                } else {
+                    // Display the thumbnail that you created.
+                    if let image = thumbnail?.uiImage {
+                        self.testImage = Image(uiImage: image)
+                    }
+                }
+            }
+        }
     }
 }
 

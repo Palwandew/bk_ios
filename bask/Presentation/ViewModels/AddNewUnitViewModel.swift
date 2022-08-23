@@ -297,20 +297,22 @@ class AddNewUnitViewModel: ObservableObject {
     
     //MARK: - Step-9
     func onContineDescription(){
-        let data = facility.prepareDescriptionRequestBody()
         
-        createFacilityUseCase.updateFacility(for: .stepNine, with: data) { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print("error \(error)")
-                
-            case .success(let success):
-                print("success description \(success)")
-                DispatchQueue.main.async {
-                    self?.willShowPhotosScreen = true
-                }
-            }
-        }
+        willShowPhotosScreen = true 
+//        let data = facility.prepareDescriptionRequestBody()
+//
+//        createFacilityUseCase.updateFacility(for: .stepNine, with: data) { [weak self] result in
+//            switch result {
+//            case .failure(let error):
+//                print("error \(error)")
+//
+//            case .success(let success):
+//                print("success description \(success)")
+//                DispatchQueue.main.async {
+//                    self?.willShowPhotosScreen = true
+//                }
+//            }
+//        }
     }
     
     

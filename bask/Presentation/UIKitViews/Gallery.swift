@@ -11,14 +11,18 @@ import PhotosUI
 struct Gallery: UIViewControllerRepresentable {
     @Binding var selectedImages: [UIImage]
     @Binding var isPresented: Bool
+    @Binding var files: [URL]
+
+    //var newSelection = [String: PHPickerResult]()
+    
 
     func makeUIViewController(context: Context) -> PHPickerViewController {
-        var config = PHPickerConfiguration()
+        var config = PHPickerConfiguration(photoLibrary: .shared())
 //        config.preferredAssetRepresentationMode = .automatic
         
         config.filter = .images
-        
         config.selectionLimit = 20
+        //config.preselectedAssetIdentifiers = selectedImages.
         //config.selection = .ordered
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = context.coordinator
@@ -45,24 +49,49 @@ struct Gallery: UIViewControllerRepresentable {
 
             parent.selectedImages.removeAll() // remove previous pictures from the main view
               
-              // unpack the selected items
-              for image in results {
-                if image.itemProvider.canLoadObject(ofClass: UIImage.self) {
-                
-                  image.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] newImage, error in
+            parent.files.removeAll()
+            // *** Thumbnail
+            
+            for image in results {
+                let jpeg = UTType.jpeg.identifier
+                let prov = image.itemProvider
+                prov.loadFileRepresentation(forTypeIdentifier: jpeg) { url, error in
                     if let error = error {
-                      print("Can't load image \(error.localizedDescription)")
-                    } else if let image = newImage as? UIImage {
-                      // Add new image and pass it back to the main view
-                        print("adding image")
-                        
-                      self?.parent.selectedImages.append(image)
+                        print("error occured \(error.localizedDescription)")
                     }
-                  }
-                } else {
-                  print("Can't load asset")
+                    guard let url = url else {
+                        return
+                    }
+                    print("URL: \(url)")
+                    
+                    self.parent.files.append(url)
                 }
-              }
+            }
+            
+            // Thumbnail ***
+            
+            
+              // unpack the selected items
+//              for image in results {
+//
+////                  let identifier = image.assetIdentifier!
+////                  newSelection[identifier] =
+//                if image.itemProvider.canLoadObject(ofClass: UIImage.self) {
+//
+//                  image.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] newImage, error in
+//                    if let error = error {
+//                      print("Can't load image \(error.localizedDescription)")
+//                    } else if let image = newImage as? UIImage {
+//                      // Add new image and pass it back to the main view
+//                        print("adding image")
+//
+//                      self?.parent.selectedImages.append(image)
+//                    }
+//                  }
+//                } else {
+//                  print("Can't load asset")
+//                }
+//              }
               
               // close the modal view
               parent.isPresented = false

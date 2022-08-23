@@ -10,20 +10,23 @@ import SwiftUI
 struct FacilityPicturesScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
+    
+    @StateObject var phViewModel = UploadViewModel()
     @State var progress: Float = 0.332
     @State var showGallery: Bool = false
     @State var pickerResult: [UIImage] = []
     @State var showChecklist: Bool = false
-    
+    @State var imageUrls: [URL] = []
     
     @State var x: CGFloat = 0
     @State var count: CGFloat = 0
     @State var screen = UIScreen.main.bounds.width - 30
     
+    @State var testImage: Image?
     
     @State var image:UIImage = UIImage()
     
-    private var data: [Huh] = [Huh(id: 1, num: 4)                               , Huh(id: 2, num: 4), Huh(id: 3, num: 2), Huh(id: 4, num: 4), Huh(id: 5, num: 4), Huh(id: 6, num: 2)]
+    private var data: [Huh] = [Huh(id: 1, num: 4), Huh(id: 2, num: 4), Huh(id: 3, num: 2), Huh(id: 4, num: 4), Huh(id: 5, num: 4), Huh(id: 6, num: 2)]
     var body: some View {
         
         VStack(alignment: .leading) {
@@ -34,6 +37,20 @@ struct FacilityPicturesScreen: View {
             Text("Add photos")
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                .onTapGesture {
+                    print("Text tapped")
+                    print("URL --> \(imageUrls.count)")
+                    if !imageUrls.isEmpty{
+                        guard let cgImage = phViewModel.imageIo(url: imageUrls[0]) else {
+                            print("eror cgImage")
+                            return
+                            
+                        }
+                        
+                        let uiImage = UIImage(cgImage: cgImage)
+                        testImage = Image(uiImage: uiImage)
+                    }
+                }
             
             Text("Overall photos")
                 .font(Font.custom("Poppins-Regular", size: 20, relativeTo: .title))
@@ -47,55 +64,57 @@ struct FacilityPicturesScreen: View {
                 .padding(.bottom, 16)
             
             
+            testImage?
+                .resizable()
+                .scaledToFit()
             
-            if !pickerResult.isEmpty {
-
-            //ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(spacing: 15){
-                ForEach($pickerResult, id:\.self){ image in
-
-
-                    GalleryImage(image: image, onDelete: {
-                        print("tapped")
-                        pickerResult.remove(at: 0)
-                    }).frame(width: UIScreen.main.bounds.width - 30)
-                        .shadow(radius: 4)
-                        .offset(x: self.x)
-                        .highPriorityGesture(DragGesture()
-                                                .onChanged({ value in
-
-                            if value.translation.width  > 0 {
-                                self.x = value.location.x
-                            } else {
-                                self.x = value.location.x - self.screen
-                            }
-
-                        })
-                                                .onEnded({ value in
-                            if value.translation.width > 0 {
-                                if value.translation.width > ((screen - 80) / 2) && Int(self.count) != self.getMid() {
-                                    self.count += 1
-                                    self.x = (self.screen + 15) * self.count
-                                } else {
-                                    self.x = (self.screen + 15) * self.count
-                                }
-                            } else {
-                                if -value.translation.width > ((screen - 80) / 2) && -Int(self.count) != self.getMid() {
-                                    self.count -= 1
-                                    self.x = (self.screen + 15) * self.count
-                                } else {
-                                    self.x = (self.screen + 15) * self.count
-                                }
-                            }
-                        })
-                        )
-                }
-            }
-
-            .frame(width: UIScreen.main.bounds.width - 30, alignment: .topLeading)
-            //.background(Color.blue.opacity(0.2).cornerRadius(24))
-            .animation(.spring())
-            }
+            //            if !pickerResult.isEmpty {
+            //
+            //            //ScrollView(.horizontal, showsIndicators: false) {
+            //            LazyHStack(spacing: 15){
+            //                ForEach($imageUrls, id:\.self){ url in
+            ////                    GalleryImage(image: image, onDelete: {
+            ////                        print("tapped")
+            ////                        pickerResult.remove(at: 0)
+            ////                    }).frame(width: UIScreen.main.bounds.width - 30)
+            ////                        .shadow(radius: 4)
+            ////
+            ////                        .offset(x: self.x)
+            ////                    .highPriorityGesture(DragGesture()
+            ////                                            .onChanged({ value in
+            ////
+            ////                        if value.translation.width  > 0 {
+            ////                            self.x = value.location.x
+            ////                        } else {
+            ////                            self.x = value.location.x - self.screen
+            ////                        }
+            ////
+            ////                    })
+            ////                                            .onEnded({ value in
+            ////                        if value.translation.width > 0 {
+            ////                            if value.translation.width > ((screen - 80) / 2) && Int(self.count) != self.getMid() {
+            ////                                self.count += 1
+            ////                                self.x = (self.screen + 15) * self.count
+            ////                            } else {
+            ////                                self.x = (self.screen + 15) * self.count
+            ////                            }
+            ////                        } else {
+            ////                            if -value.translation.width > ((screen - 80) / 2) && -Int(self.count) != self.getMid() {
+            ////                                self.count -= 1
+            ////                                self.x = (self.screen + 15) * self.count
+            ////                            } else {
+            ////                                self.x = (self.screen + 15) * self.count
+            ////                            }
+            ////                        }
+            ////                    })
+            ////                    )
+            //                }
+            //            }
+            //
+            //            .frame(width: UIScreen.main.bounds.width - 30, alignment: .topLeading)
+            //            //.background(Color.blue.opacity(0.2).cornerRadius(24))
+            //            .animation(.spring())
+            //            }
             
             
             //MARK: - Continue Button
@@ -127,8 +146,24 @@ struct FacilityPicturesScreen: View {
             
             
         }
+        .onAppear(perform: {
+            
+            print("On Appera --->")
+            //            if !imageUrls.isEmpty{
+            //                guard let cgImage = phViewModel.imageIo(url: imageUrls[0]) else {
+            //                    print("eror cgImage")
+            //                    return
+            //
+            //                }
+            //
+            //                let uiImage = UIImage(cgImage: cgImage)
+            //                testImage = Image(uiImage: uiImage)
+            //
+            //            }
+            
+        })
         .sheet(isPresented: $showGallery, content: {
-            Gallery(selectedImages: $pickerResult, isPresented: $showGallery)
+            Gallery(selectedImages: $pickerResult, isPresented: $showGallery, files: $imageUrls)
         })
         .padding(.horizontal)
         .background(Color.white)
@@ -171,11 +206,11 @@ struct FacilityPicturesScreen: View {
     }
 }
 
-struct FacilityPicturesScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        FacilityPicturesScreen()
-    }
-}
+//struct FacilityPicturesScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FacilityPicturesScreen()
+//    }
+//}
 
 
 struct Huh: Identifiable {

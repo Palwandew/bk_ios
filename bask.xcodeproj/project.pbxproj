@@ -27,6 +27,8 @@
 		C40E7F6428985BE700788652 /* AmenityCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6328985BE700788652 /* AmenityCounterView.swift */; };
 		C40FBF07289A854B00557AEB /* AmenityDescriptionCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */; };
 		C40FBF09289A8DE300557AEB /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FBF08289A8DE300557AEB /* Checkbox.swift */; };
+		C410D26428B4897000914D84 /* PhotoUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D26328B4897000914D84 /* PhotoUploadManager.swift */; };
+		C410D26628B48C4300914D84 /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D26528B48C4300914D84 /* PhotosViewModel.swift */; };
 		C41A26AB289C345E0057F3FE /* MaterialPriceField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AA289C345E0057F3FE /* MaterialPriceField.swift */; };
 		C41A26AD289C6DB30057F3FE /* AmenityPriceLengthInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */; };
 		C41A26AF289C79810057F3FE /* FacilityRulesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */; };
@@ -169,6 +171,8 @@
 		C40E7F6328985BE700788652 /* AmenityCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterView.swift; sourceTree = "<group>"; };
 		C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityDescriptionCounter.swift; sourceTree = "<group>"; };
 		C40FBF08289A8DE300557AEB /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		C410D26328B4897000914D84 /* PhotoUploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUploadManager.swift; sourceTree = "<group>"; };
+		C410D26528B48C4300914D84 /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
 		C41A26AA289C345E0057F3FE /* MaterialPriceField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialPriceField.swift; sourceTree = "<group>"; };
 		C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityPriceLengthInputView.swift; sourceTree = "<group>"; };
 		C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRulesScreen.swift; sourceTree = "<group>"; };
@@ -446,6 +450,7 @@
 				C403100F289494B30046B645 /* MaterialTabViewRouter.swift */,
 				C47FEB122896A873008BC4C2 /* MyBookingsViewModel.swift */,
 				C482683A289751D70072147F /* AddNewUnitViewModel.swift */,
+				C410D26528B48C4300914D84 /* PhotosViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -648,6 +653,7 @@
 				C4C63ACE28239D5B00343032 /* Endpoints */,
 				C4C63AC72823831600343032 /* Base */,
 				C46BD76228290A7E006AC587 /* HttpClient.swift */,
+				C410D26328B4897000914D84 /* PhotoUploadManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -950,6 +956,7 @@
 				C46BD7612828FBD2006AC587 /* User.swift in Sources */,
 				C4BB00692890F504000D2E47 /* VerifyPhoneNumberScreen.swift in Sources */,
 				C4057859282E199400C7D67A /* EmailCredentialsScreen.swift in Sources */,
+				C410D26428B4897000914D84 /* PhotoUploadManager.swift in Sources */,
 				C4B538122899DE4A0067CC21 /* AccentGreen.swift in Sources */,
 				C41A26AB289C345E0057F3FE /* MaterialPriceField.swift in Sources */,
 				C4BB007A2891162E000D2E47 /* CountriesCallingCodeScreen.swift in Sources */,
@@ -961,6 +968,7 @@
 				C40E7F6228984E7200788652 /* AmenityCounterButton.swift in Sources */,
 				C4D659AC282AFA7100FAE1D1 /* NameCredentialsScreen.swift in Sources */,
 				C40310172894A6260046B645 /* RightSwipe.swift in Sources */,
+				C410D26628B48C4300914D84 /* PhotosViewModel.swift in Sources */,
 				C49191C028A2FAB000C03743 /* CreateFacilityRepositoryImpl.swift in Sources */,
 				C482683928974C4B0072147F /* FacilityNameScreen.swift in Sources */,
 			);

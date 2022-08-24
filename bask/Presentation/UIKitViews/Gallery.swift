@@ -7,24 +7,19 @@
 
 import SwiftUI
 import PhotosUI
-import QuickLookThumbnailing
 
 struct Gallery: UIViewControllerRepresentable {
-    @Binding var selectedImages: [UIImage]
+    
+    @EnvironmentObject var viewModel: PhotosViewModel
+    @Binding var selectedImagesThumbnails: [Image]
     @Binding var isPresented: Bool
-    
-    
-    //var newSelection = [String: PHPickerResult]()
     
     
     func makeUIViewController(context: Context) -> PHPickerViewController {
         var config = PHPickerConfiguration(photoLibrary: .shared())
-        //        config.preferredAssetRepresentationMode = .automatic
         
         config.filter = .images
         config.selectionLimit = 20
-        //config.preselectedAssetIdentifiers = selectedImages.
-        //config.selection = .ordered
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = context.coordinator
         return picker
@@ -48,125 +43,80 @@ struct Gallery: UIViewControllerRepresentable {
         func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             
             
-            parent.selectedImages.removeAll() // remove previous pictures from the main view
-            
-           
-            // *** Thumbnail
+            parent.selectedImagesThumbnails.removeAll() // remove previous pictures from the main view
+            parent.viewModel.images.removeAll()
             
             for image in results {
-                
-                
-                
-                if image.itemProvider.canLoadObject(ofClass: UIImage.self) {
+                let jpeg = UTType.jpeg.identifier
+                let prov = image.itemProvider
+                prov.loadFileRepresentation(forTypeIdentifier: jpeg) { url, error in
                     
-                    image.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] newImage, error in
-                        if let error = error {
-                            print("Can't load image \(error.localizedDescription)")
-                        } else if let image = newImage as? UIImage {
-                            // Add new image and pass it back to the main view
-                            print("adding image")
-                            
-                            self?.parent.selectedImages.append(image)
-                        }
+                    if let error = error {
+                        print("Error: \(error.localizedDescription)")
                     }
-                } else {
-                    print("Can't load asset")
+                    guard let url = url else { return }
+                    
+                    let tempDir = FileManager.default.temporaryDirectory
+                    let imageId = UUID()
+                    let localURL = tempDir.appendingPathComponent(imageId.uuidString)
+                    
+                    do {
+                        try FileManager.default.copyItem(at: url, to: localURL)
+                    } catch {
+                        print("Error writing data to file")
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.parent.viewModel.addURL(localURL)
+                        let imageThumbnail = self.generateThumbnail(of: localURL)
+                        self.parent.selectedImagesThumbnails.append(imageThumbnail)
+                        
+                    }
+                    
+                    
                 }
-                
-                
-                
-//                let jpeg = UTType.jpeg.identifier
-//                let prov = image.itemProvider
-//                prov.loadFileRepresentation(forTypeIdentifier: jpeg) { [weak self] url, error in
-//                    if let error = error {
-//                        print("error occured \(error.localizedDescription)")
-//                    }
-//                    guard let url = url else {
-//                        return
-//                    }
-//
-//                    let tempDir = FileManager.default.temporaryDirectory
-//                    let fileId = UUID().uuidString
-//                    let localURL = tempDir.appendingPathComponent(fileId)
-//                    print("local url----> \(localURL)")
-//                    do {
-//                        try FileManager.default.copyItem(at: url, to: localURL)
-//
-//                        print("************* inside do")
-//
-//                        print("******** after generate")
-//                    } catch {
-//                        print("Error writing data to file")
-//                    }
-//                    print("outside do ***********")
-//
-//                    self?.generateThumbnail(url: localURL)
-//                    self?.parent.files.append(localURL)
-//
-//                }
             }
-            
-            
-            
-            
-            
-            // Thumbnail ***
-            
-            
-            // unpack the selected items
-            //              for image in results {
-            //
-            ////                  let identifier = image.assetIdentifier!
-            ////                  newSelection[identifier] =
-            //                if image.itemProvider.canLoadObject(ofClass: UIImage.self) {
-            //
-            //                  image.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] newImage, error in
-            //                    if let error = error {
-            //                      print("Can't load image \(error.localizedDescription)")
-            //                    } else if let image = newImage as? UIImage {
-            //                      // Add new image and pass it back to the main view
-            //                        print("adding image")
-            //
-            //                      self?.parent.selectedImages.append(image)
-            //                    }
-            //                  }
-            //                } else {
-            //                  print("Can't load asset")
-            //                }
-            //              }
-            
-            // close the modal view
             parent.isPresented = false
         }
         
-        func generateThumbnail(url: URL) {
-            let size: CGSize = CGSize(width: 60, height: 90)
-            let scale = UIScreen.main.scale
-            
-            
-            // Creating request for thumbnail
-            let request = QLThumbnailGenerator.Request(fileAt: url, size: size, scale: scale, representationTypes: .lowQualityThumbnail)
-            
-            let generator = QLThumbnailGenerator.shared
-            
-            generator.generateBestRepresentation(for: request) { [weak self] thumbnail, error in
+        func generateThumbnail(of url: URL) -> Image {
+            let url = url as CFURL
+            var thumbNail: Image? = nil
+            if let imageSource = CGImageSourceCreateWithURL(url, nil) {
+                let maxPixel: CFNumber = 600 as CFNumber
+                let createThumbnail: CFBoolean = kCFBooleanTrue
+                let options = [kCGImageSourceCreateThumbnailFromImageIfAbsent: createThumbnail, kCGImageSourceThumbnailMaxPixelSize: maxPixel] as CFDictionary
                 
-                if let error = error {
-                    
-                    print("erroro occured while creating thumbnail")
-                    print(error.localizedDescription)
+                guard let cgImg = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, options) else {
+                    return Image(systemName: "photo.fill")
                 }
-                guard let image = thumbnail else {
-                    return
-                }
-                self?.parent.selectedImages.append(image.uiImage)
+                
+                print("cgImage created")
+                
+                thumbNail = Image(decorative: cgImg, scale: 3.0)
             }
+            return thumbNail ?? Image(systemName: "photo.fill")
         }
     }
 }
 
-//struct Gallery_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Gallery()
+
+
+
+
+
+//if image.itemProvider.canLoadObject(ofClass: UIImage.self) {
+//
+//    image.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] newImage, error in
+//        if let error = error {
+//            print("Can't load image \(error.localizedDescription)")
+//        } else if let image = newImage as? UIImage {
+//            // Add new image and pass it back to the main view
+//            print("adding image")
+//
+//            self?.parent.selectedImages.append(image)
+//        }
 //    }
+//} else {
+//    print("Can't load asset")
 //}

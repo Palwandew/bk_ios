@@ -47,6 +47,8 @@ class AddNewUnitViewModel: ObservableObject {
     
     @Published var showAlert: Bool = false
     
+    @Published var checkList: Checklist = Checklist()
+    
     init(useCase: CreateFacilityUseCase){
         createFacilityUseCase = useCase
     }
@@ -313,6 +315,23 @@ class AddNewUnitViewModel: ObservableObject {
 //                }
 //            }
 //        }
+    }
+    
+    
+    //MARK: - Step-10
+    func getChecklist() {
+        createFacilityUseCase.getChecklist { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    print("Error getting checklis \(error.localizedDescription)")
+                    
+                case .success(let checkList):
+                    self?.checkList = checkList
+                }
+            }
+            
+        }
     }
     
     

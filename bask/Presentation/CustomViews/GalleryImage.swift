@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GalleryImage: View {
     
-    @Binding var image: UIImage
+    let image: Image
     let onDelete: () -> Void
     var body: some View {
         
@@ -17,7 +17,7 @@ struct GalleryImage: View {
             
             ZStack(alignment: .topTrailing){
                 
-                Image(uiImage: image)
+                image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: geomerty.size.width, height: geomerty.size.height)

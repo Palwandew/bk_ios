@@ -10,6 +10,7 @@ import Foundation
 
 protocol CreateFacilityDomainRepoProtocol {
 
+
     
     //MARK: - Step - 1
     func addFacilityName(_ data: Data, completion: @escaping (Result<String, Error>) -> Void)
@@ -46,4 +47,7 @@ protocol CreateFacilityDomainRepoProtocol {
     
     //MARK: - Step - 10
     func getImageFromServer(completion: @escaping (Result<Data, Error>) -> Void)
+    
+    //MARK: - Step -10-A
+    func getChecklist(completion: @escaping (Result<Checklist, Error>) -> Void)
 }

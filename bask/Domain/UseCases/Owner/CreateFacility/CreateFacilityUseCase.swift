@@ -155,5 +155,9 @@ class CreateFacilityUseCase {
             }
         }
     }
+    
+    func getChecklist(completion: @escaping (Result<Checklist, Error>) -> Void) {
+        createFacilityRepo.getChecklist(completion: completion)
+    }
 
 }

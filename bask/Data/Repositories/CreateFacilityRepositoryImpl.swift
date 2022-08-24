@@ -10,7 +10,7 @@ import Foundation
 class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
     
     // Don't forget to change access-token
-    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2MDYxMjI3MSwiZXhwIjoxNjYxMDQ0MjcxfQ._Ordiw2OOjXxB21vjucSQRI5sjvOTEd27eFS8A6JmHo"
+    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2MTE4MTI4MSwiZXhwIjoxNjYxNjEzMjgxfQ.zxWBF_ZT1oKdEMWJb-cd0bgHI-mpb4YbrRyGUAysrUc"
     
     
     
@@ -171,5 +171,18 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
             completion(.success(data))
         }
         task.resume()
+    }
+    
+    func getChecklist(completion: @escaping (Result<Checklist, Error>) -> Void) {
+        let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
+        let url = "https://api.baskapp.co/api/v1/facility/checklist/\(facilityID)"
+        URLSession.shared.sendRequest(endpoint: url, requestType: .get, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: nil, responseModel: FacilityChecklistModel.self) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let facilityChecklistModel):
+                completion(.success(facilityChecklistModel.dotCheclistEntity()))
+            }
+        }
     }
 }

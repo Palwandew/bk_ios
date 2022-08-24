@@ -11,106 +11,93 @@ struct FacilityPublishChecklistScreen: View {
     
     
     @Environment(\.presentationMode) var presentationMode
+    //@EnvironmentObject var viewModel: AddNewUnitViewModel
+    @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     @State var progress: Float = 0.332
-
-    private let checkList: [String] = ["Name", "Rooms", "Amenities", "Amenities (paid)", "Rules of house", "Facility Location", "Check-in", "Price", "Description", "Add photos"]
+    
+    private let checkList: [String] = ["Name", "Rooms", "Amenities", "Amenities (paid)", "Rules of house", "Facility Location", "Check-in", "Price", "Description", "Photos"]
     
     @State var showPublish: Bool = false
     
+    @State var showProgress: Bool = false
+    
     var body: some View {
         
-        VStack(alignment: .leading) {
-            
-            //MARK: - Title
-            
-            
-            Text("Publish your ad")
-                .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
-                .foregroundColor(Color(AppColor.DARKEST_BLUE))
-            
-        
-            //MARK: - List
-            
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack{
-                    ForEach(0..<10, id:\.self){ index in
-                        ChecklistRow(title: checkList[index], isCompleted: true)
-                            .padding(.bottom)
+        ZStack {
+            VStack(alignment: .leading) {
+                
+                //MARK: - Title
+                
+                
+                Text("Checklist")
+                    .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
+                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                
+                
+                //MARK: - List
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack{
+                        ForEach(viewModel.checkList.getChecklistForView().keys.sorted(), id:\.self){ key in
+                            ChecklistRow(title: key, isCompleted: value)
+                                .padding(.bottom)
+                        }
                     }
                 }
-            }
-            
-            //MARK: - Continue Button
-            
-            NavigationLink(destination:
-                            PublishFacilityScreen(), isActive: $showPublish) {
-                EmptyView()
-            }
-            
-            Spacer()
-            
-            FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
-                print("tapped")
-                showPublish.toggle()
+                //MARK: - Continue Button
                 
-            }.padding(.top)
-                .background(Rectangle().fill(Color.white.opacity(0.5)))
-            
-            
-            
-            
-        }
-        .padding(.horizontal)
-        .background(Color.white)
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(
-            leading:
-                Button(action : {
-                    print("Back button tapped")
-                    self.presentationMode.wrappedValue.dismiss()
-                }){
-                    Image(systemName: "chevron.backward")
-                        .foregroundColor(Color(AppColor.GREY))
-                    
-                },
-            trailing: Button(action : {
-                print("Back button tapped")
-                self.presentationMode.wrappedValue.dismiss()
-                //                    self.dismiss.callAsFunction()
-            }){
-                Text("Exit")
-                    .font(Font.custom("Poppins-Light", size: 16.0))
-                    .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
-                
-            })
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar{
-            ToolbarItem(placement: .principal){
-                HStack{
-                    
-                    LinearProgressBar(value: $progress)
-                        .frame(width: UIScreen.main.bounds.width/2,height: UIScreen.main.bounds.height/100)
-                    
+                NavigationLink(destination:
+                                PublishFacilityScreen(), isActive: $showPublish) {
+                    EmptyView()
                 }
+                
+                Spacer()
+                
+                
+                //MARK: - Create Add Btn
+                FilledButton(label: "Create", color: Color(AppColor.DARKEST_BLUE)) {
+                    
+                    //                    print("tapped")
+                    //                    showPublish.toggle()
+                    withAnimation {
+                        showProgress.toggle()
+                    }
+                    
+                    
+                }.padding(.top)
+                    .background(Rectangle().fill(Color.white.opacity(0.5)))
+                
+                
+                
+                
+            }
+            .padding(.horizontal)
+            .background(Color.white)
+            .navigationBarBackButtonHidden(true)
+            
+            
+            
+            if showProgress {
+                UploadProgressView()
             }
         }
     }
 }
-    
-    struct FacilityPublishChecklistScreen_Previews: PreviewProvider {
-        static var previews: some View {
-            FacilityPublishChecklistScreen()
 
-        }
+struct FacilityPublishChecklistScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        FacilityPublishChecklistScreen()
+        
     }
+}
 
 
 
 struct ChecklistRow: View {
     
     let title: String
-    let isCompleted: Bool
+    let isCompleted: Int
     
     var body: some View {
         
@@ -121,7 +108,7 @@ struct ChecklistRow: View {
             
             Spacer()
             
-            if isCompleted{
+            if isCompleted == 1{
                 Image(systemName: "checkmark")
                     .resizable()
                     .frame(width: 24, height: 24)

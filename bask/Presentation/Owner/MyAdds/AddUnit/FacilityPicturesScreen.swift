@@ -6,16 +6,16 @@
 //
 
 import SwiftUI
-import QuickLookThumbnailing
 
 struct FacilityPicturesScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    @StateObject var phViewModel = UploadViewModel()
+    @StateObject var phViewModel = PhotosViewModel()
+   
     @State var progress: Float = 0.332
     @State var showGallery: Bool = false
-    @State var pickerResult: [UIImage] = []
+    @State var pickerResult: [Image] = []
     @State var showChecklist: Bool = false
     
     
@@ -23,9 +23,7 @@ struct FacilityPicturesScreen: View {
     @State var count: CGFloat = 0
     @State var screen = UIScreen.main.bounds.width - 30
     
-    @State var testImage: Image?
-    
-    @State var image:UIImage = UIImage()
+    @State var test: Image?
     
     var body: some View {
         
@@ -37,45 +35,62 @@ struct FacilityPicturesScreen: View {
             Text("Add photos")
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                
-            
-            Text("Overall photos")
-                .font(Font.custom("Poppins-Regular", size: 20, relativeTo: .title))
-                .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                .padding(.top)
-                .padding(.bottom, 1)
+             
             
             Text("Make beautiful photos of your house. It significantly influences on guest`s interest. You can add maximum of 20 pictures.")
                 .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                 .padding(.bottom, 16)
+                .onTapGesture {
+                    
+//                    guard let cgImg = phViewModel.imageIo(url: phViewModel.images[0]) else {
+//                        print("Error cg image")
+//                        return
+//
+//                    }
+//                    test = Image(decorative: cgImg, scale: 3.0)
+                }
             
             
-            testImage?
-                .resizable()
-                .scaledToFit()
+//            test?
+//                .resizable()
+//                .scaledToFit()
+//
+//            if !phViewModel.images.isEmpty {
+//                ScrollView{
+//                    LazyVStack{
+//                    ForEach($phViewModel.images, id:\.self){ url in
+//
+//                        Text("URL \(url.wrappedValue.lastPathComponent)")
+//
+//                        }
+//                    }
+//                }
+//
+//            }
             
             if !pickerResult.isEmpty {
-                
+
                 //ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 15){
-                    ForEach($pickerResult, id:\.self){ image in
-                        GalleryImage(image: image, onDelete: {
+                    ForEach(0..<pickerResult.count, id:
+                                \.self){ image in
+                        GalleryImage(image: pickerResult[image], onDelete: {
                             print("tapped")
                             pickerResult.remove(at: 0)
                         }).frame(width: UIScreen.main.bounds.width - 30)
                             .shadow(radius: 4)
-                        
+
                             .offset(x: self.x)
                             .highPriorityGesture(DragGesture()
                                                     .onChanged({ value in
-                                
+
                                 if value.translation.width  > 0 {
                                     self.x = value.location.x
                                 } else {
                                     self.x = value.location.x - self.screen
                                 }
-                                
+
                             })
                                                     .onEnded({ value in
                                 if value.translation.width > 0 {
@@ -97,7 +112,7 @@ struct FacilityPicturesScreen: View {
                             )
                     }
                 }
-                
+
                 .frame(width: UIScreen.main.bounds.width - 30, alignment: .topLeading)
                 //.background(Color.blue.opacity(0.2).cornerRadius(24))
                 .animation(.spring())
@@ -115,7 +130,7 @@ struct FacilityPicturesScreen: View {
             
             FilledButton(label: "Open Gallery", color: Color(AppColor.LIGHT_VOILET)) {
                 
-                print("tapped")
+                
                 showGallery = true
                 
             }.padding(.top, 16)
@@ -123,7 +138,7 @@ struct FacilityPicturesScreen: View {
             
             FilledButton(label: pickerResult.isEmpty ? "Add photos later" : "Upload", color: Color(AppColor.DARKEST_BLUE)) {
                 
-                print("tapped")
+               
                 showChecklist.toggle()
                 
             }.padding(.top, 8)
@@ -133,24 +148,12 @@ struct FacilityPicturesScreen: View {
             
             
         }
-        .onAppear(perform: {
-            
-            print("On Appera --->")
-            //            if !imageUrls.isEmpty{
-            //                guard let cgImage = phViewModel.imageIo(url: imageUrls[0]) else {
-            //                    print("eror cgImage")
-            //                    return
-            //
-            //                }
-            //
-            //                let uiImage = UIImage(cgImage: cgImage)
-            //                testImage = Image(uiImage: uiImage)
-            //
-            //            }
-            
-        })
+        //MARK: - Gallery
+        
+        
         .sheet(isPresented: $showGallery, content: {
-            Gallery(selectedImages: $pickerResult, isPresented: $showGallery)
+            Gallery(selectedImagesThumbnails: $pickerResult, isPresented: $showGallery)
+                .environmentObject(phViewModel)
         })
         .padding(.horizontal)
         .background(Color.white)
@@ -191,33 +194,6 @@ struct FacilityPicturesScreen: View {
     func getMid() -> Int {
         return pickerResult.count / 2
     }
-    
-    func generateThumbnail(url: URL, scale: CGFloat)  {
-        
-        let size: CGSize = CGSize(width: 60, height: 90)
-        
-        
-        // Creating request for thumbnail
-        let request = QLThumbnailGenerator.Request(fileAt: url, size: size, scale: scale, representationTypes: .all)
-        
-        let generator = QLThumbnailGenerator.shared
-        
-        generator.generateRepresentations(for: request) { (thumbnail, type, error) in
-            
-            DispatchQueue.main.async {
-                if thumbnail == nil || error != nil {
-                    // Handle the error case gracefully.
-                    print("erroro occured while creating thumbnail")
-                    print(error!.localizedDescription)
-                } else {
-                    // Display the thumbnail that you created.
-                    if let image = thumbnail?.uiImage {
-                        self.testImage = Image(uiImage: image)
-                    }
-                }
-            }
-        }
-    }
 }
 
 //struct FacilityPicturesScreen_Previews: PreviewProvider {
@@ -227,7 +203,4 @@ struct FacilityPicturesScreen: View {
 //}
 
 
-struct Huh: Identifiable {
-    var id: Int
-    var num: Int
-}
+

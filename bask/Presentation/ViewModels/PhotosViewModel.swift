@@ -8,18 +8,14 @@
 import Foundation
 import UserNotifications
 import ImageIO
-import QuickLookThumbnailing
 
-class UploadViewModel: ObservableObject {
-    
-    var urlSession = URLSession.shared
-    
+class PhotosViewModel: ObservableObject {
     
     @Published var progress: Double = 0.0
     @Published var isUploading: Bool = false
+    @Published var images: [URL] = []
     
     private let manager = UploadManager()
-    
     
     func uploadPhotos(
         body: Data
@@ -88,14 +84,18 @@ class UploadViewModel: ObservableObject {
         let url = url as CFURL
         var thumbNail: CGImage? = nil
         if let imageSource = CGImageSourceCreateWithURL(url, nil) {
-            let maxPixel: CFNumber = 3 as CFNumber
+            //let maxPixel: CFNumber = 200 as CFNumber
             let createThumbnail: CFBoolean = kCFBooleanTrue
-            let options = [kCGImageSourceCreateThumbnailFromImageIfAbsent: createThumbnail,
-                                      kCGImageSourceThumbnailMaxPixelSize: maxPixel] as CFDictionary
+            let options = [kCGImageSourceCreateThumbnailFromImageIfAbsent: createThumbnail] as CFDictionary
             
             thumbNail = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, options)
         }
         return thumbNail
     }
     
+    func addURL(_ url: URL) {
+        
+        images.append(url)
+        
     }
+}

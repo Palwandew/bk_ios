@@ -11,44 +11,64 @@ import ImageIO
 
 class PhotosViewModel: ObservableObject {
     
+    private let useCase: PhotosUsecase
+    let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
+    
     @Published var progress: Double = 0.0
     @Published var isUploading: Bool = false
     @Published var images: [URL] = []
+    @Published var showPublishAdScreen: Bool = false
+
     
-    private let manager = UploadManager()
+    init(useCase: PhotosUsecase){
+        self.useCase = useCase
+        //manager = uploader
+    }
     
-    func uploadPhotos(
-        body: Data
-    ) {
-        
-        guard let uploadUrl = URL(string: "https://bask-static.s3.ap-south-1.amazonaws.com/0b69ddee-b105-4339-8911-b39f72a5a51a.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAV6EXK5DMDYAFPP45%2F20220822%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20220822T212542Z&X-Amz-Expires=36400&X-Amz-Signature=dcb8d64ae7064ad2a45844e3a83b57732e3039f34cd0ccafcbd3a1a527d60ad9&X-Amz-SignedHeaders=host") else {
-            print("error creating upload-url")
-            return
+    
+    func onCreateTapped(){
+        if photosAvailableToUpload() {
+            uploadPhotos()
+        } else {
+            showPublishAdScreen.toggle()
         }
-        isUploading.toggle()
-        
-        manager.uploadFile(with: body, to: uploadUrl) { progress in
-            print("progess -> \(progress)")
-            DispatchQueue.main.async {
-                self.progress = progress
-            }
-        } completionHandler: { result in
-            switch result {
-            case .success(let message):
-                print(message)
-                self.createNotification()
-                
-                DispatchQueue.main.async {
-                    self.isUploading.toggle()
-                }
-                
-            case .failure(let error):
-                print("error \(error.localizedDescription)")
-            }
-        }
-        
         
     }
+    
+    private func photosAvailableToUpload() -> Bool {
+        return !images.isEmpty
+    }
+    
+    private func uploadPhotos(){
+        for photoPathURL in images {
+            useCase.uploadPhoto(of: facilityID, from: photoPathURL) { progress in
+                print("Progress \(progress)")
+            } completion: { result in
+                switch result{
+                case .failure(let error):
+                    print("Error uploading picture \(error.localizedDescription)")
+                case .success(let message):
+                    print("Uploaded at: \(message)")
+                
+                }
+            }
+        }
+    }
+    
+    //    func uploadPhotos(
+    //        body: Data
+    //    ) {
+    //
+    //        guard let uploadUrl = URL(string: "https://bask-static.s3.ap-south-1.amazonaws.com/0b69ddee-b105-4339-8911-b39f72a5a51a.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAV6EXK5DMDYAFPP45%2F20220822%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20220822T212542Z&X-Amz-Expires=36400&X-Amz-Signature=dcb8d64ae7064ad2a45844e3a83b57732e3039f34cd0ccafcbd3a1a527d60ad9&X-Amz-SignedHeaders=host") else {
+    //            print("error creating upload-url")
+    //            return
+    //        }
+    //        isUploading.toggle()
+    //
+    //
+    //
+    //
+    //    }
     
     func askPermissionForNotification(){
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .sound]) { success, error in

@@ -107,14 +107,9 @@ extension URLSession{
                     return
                 }
                 
+                print("Data from server \(String(describing: data))")
                 completion(.success("Success"))
-//                do {
-//
-//
-//
-//                } catch {
-//                    completion(.failure(RequestError.decode))
-//                }
+
                 
             }.resume()
     }

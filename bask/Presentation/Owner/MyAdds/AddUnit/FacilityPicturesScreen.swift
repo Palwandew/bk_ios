@@ -11,7 +11,7 @@ struct FacilityPicturesScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    @StateObject var phViewModel = PhotosViewModel()
+    @StateObject var phViewModel = PhotosViewModel(useCase: PhotosUsecase(repo: PhotosRepositoryImpl(uploadManager: UploadManager())))
    
     @State var progress: Float = 0.332
     @State var showGallery: Bool = false
@@ -122,7 +122,8 @@ struct FacilityPicturesScreen: View {
             //MARK: - Continue Button
             
             NavigationLink(destination:
-                            FacilityPublishChecklistScreen(), isActive: $showChecklist) {
+                            FacilityPublishChecklistScreen()
+                            .environmentObject(phViewModel), isActive: $showChecklist) {
                 EmptyView()
             }
             

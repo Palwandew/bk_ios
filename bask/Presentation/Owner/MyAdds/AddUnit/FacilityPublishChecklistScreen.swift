@@ -11,11 +11,10 @@ struct FacilityPublishChecklistScreen: View {
     
     
     @Environment(\.presentationMode) var presentationMode
-    //@EnvironmentObject var viewModel: AddNewUnitViewModel
+    @EnvironmentObject var photosViewModel: PhotosViewModel
     @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     @State var progress: Float = 0.332
     
-    private let checkList: [String] = ["Name", "Rooms", "Amenities", "Amenities (paid)", "Rules of house", "Facility Location", "Check-in", "Price", "Description", "Photos"]
     
     @State var showPublish: Bool = false
     
@@ -38,9 +37,10 @@ struct FacilityPublishChecklistScreen: View {
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack{
-                        ForEach(viewModel.checkList.getChecklistForView().keys.sorted(), id:\.self){ key in
-                            ChecklistRow(title: key, isCompleted: value)
+                        ForEach($viewModel.checkList.items){ $item in
+                            ChecklistRow(title: item.title, isCompleted: item.status)
                                 .padding(.bottom)
+
                         }
                     }
                 }
@@ -50,7 +50,7 @@ struct FacilityPublishChecklistScreen: View {
                 NavigationLink(destination:
                                 PublishFacilityScreen(), isActive: $showPublish) {
                     EmptyView()
-                }
+                }.isDetailLink(false)
                 
                 Spacer()
                 
@@ -59,10 +59,11 @@ struct FacilityPublishChecklistScreen: View {
                 FilledButton(label: "Create", color: Color(AppColor.DARKEST_BLUE)) {
                     
                     //                    print("tapped")
-                    //                    showPublish.toggle()
-                    withAnimation {
-                        showProgress.toggle()
-                    }
+                                        //showPublish.toggle()
+//                    withAnimation {
+//                        showProgress.toggle()
+//                    }
+                    photosViewModel.onCreateTapped()
                     
                     
                 }.padding(.top)
@@ -74,13 +75,18 @@ struct FacilityPublishChecklistScreen: View {
             }
             .padding(.horizontal)
             .background(Color.white)
-            .navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(false)
             
             
             
             if showProgress {
                 UploadProgressView()
             }
+            
+        }.onAppear {
+            
+            print("on appear")
+            viewModel.getChecklist()
         }
     }
 }
@@ -97,7 +103,7 @@ struct FacilityPublishChecklistScreen_Previews: PreviewProvider {
 struct ChecklistRow: View {
     
     let title: String
-    let isCompleted: Int
+    let isCompleted: Int?
     
     var body: some View {
         
@@ -105,6 +111,7 @@ struct ChecklistRow: View {
             Text(title)
                 .font(Font.custom("Poppins-Regular", size: 16))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                .unredacted()
             
             Spacer()
             
@@ -119,7 +126,7 @@ struct ChecklistRow: View {
                     .font(Font.custom("Poppins-Medium", size: 14))
                     .foregroundColor(Color(AppColor.DARKEST_BLUE))
             }
-        }
+        }.redacted(reason: isCompleted == nil ? .placeholder : [])
         
     }
 }

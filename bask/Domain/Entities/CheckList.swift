@@ -8,29 +8,15 @@
 import Foundation
 
 struct Checklist {
-    private var nameStatus: Int = 1
-    private var roomsStatus: Int = 1
-    private var amenityFreeStatus: Int = 1
-    private var amenityExtraStatus: Int = 1
-    private var rulesStatus: Int = 1
-    private var photoStatus: Int = 1
-    private var locationStatus: Int = 1
-    private var checkInOutStatus: Int = 1
-    private var priceStatus: Int = 1
-    private var descriptionStatus: Int = 1
     
+    var items: [ChecklistItem] = []
+    private let titles: [String] = ["Name", "Rooms", "Amenities", "Amenities (paid)", "Rules of house", "Facility Location", "Check-in", "Price", "Description", "Photos"]
     
     init(){
-        nameStatus = 1
-        roomsStatus = 1
-        amenityFreeStatus  = 1
-        amenityExtraStatus = 1
-        rulesStatus = 1
-        photoStatus = 1
-        locationStatus = 1
-        checkInOutStatus = 1
-        priceStatus = 1
-        descriptionStatus = 1
+
+        for title in titles {
+            items.append(ChecklistItem(title: title, status: nil))
+        }
         
     }
     
@@ -39,31 +25,24 @@ struct Checklist {
          _ rulesStatus: Int, _ photosStatus: Int, _ locationStatus: Int,
          _ checkInStatus: Int, _ priceStatus: Int,
          _ descriptionStatus: Int){
-        self.nameStatus = nameStatus
-        self.roomsStatus = roomStatus
-        self.amenityFreeStatus = freeAmenityStatus
-        self.amenityExtraStatus = paidAmenityStatus
-        self.rulesStatus = rulesStatus
-        self.photoStatus = photosStatus
-        self.locationStatus = locationStatus
-        self.checkInOutStatus = checkInStatus
-        self.priceStatus = priceStatus
-        self.descriptionStatus = descriptionStatus
-    }
-    
-    func getChecklistForView() -> [String: Int] {
-        var dictionary = [String: Int]()
-        dictionary.updateValue(self.nameStatus, forKey: "Name")
-        dictionary.updateValue(self.roomsStatus, forKey: "Rooms")
-        dictionary.updateValue(self.amenityFreeStatus, forKey: "Amenities (free)")
-        dictionary.updateValue(self.amenityExtraStatus, forKey: "Amenities (with extra money)")
-        dictionary.updateValue(self.rulesStatus, forKey: "Rules of house")
-        dictionary.updateValue(self.locationStatus, forKey: "Facility location")
-        dictionary.updateValue(self.checkInOutStatus, forKey: "Check-in")
-        dictionary.updateValue(self.priceStatus, forKey: "Price")
-        dictionary.updateValue(self.descriptionStatus, forKey: "Description")
-        dictionary.updateValue(self.photoStatus, forKey: "Photos")
         
-        return dictionary
+        items.append(ChecklistItem(title: "Name", status: nameStatus))
+        items.append(ChecklistItem(title: "Rooms", status: roomStatus))
+        items.append(ChecklistItem(title: "Amenities", status: freeAmenityStatus))
+        items.append(ChecklistItem(title: "Amenities (paid)", status: paidAmenityStatus))
+        items.append(ChecklistItem(title: "Rules of house", status: rulesStatus))
+        items.append(ChecklistItem(title: "Facility Location", status: locationStatus))
+        items.append(ChecklistItem(title: "Check-in", status: checkInStatus))
+        items.append(ChecklistItem(title: "Price", status: priceStatus))
+        items.append(ChecklistItem(title: "Description", status: descriptionStatus))
+        items.append(ChecklistItem(title: "Photos", status: photosStatus))
+        
     }
+}
+
+struct ChecklistItem: Identifiable{
+    var id: UUID = UUID()
+    
+    let title: String
+    let status: Int?
 }

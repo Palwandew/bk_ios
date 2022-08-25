@@ -36,19 +36,19 @@ class UploadManager: NSObject {
     
     //private var subjectsByTaskID = [Int : Subject]()
     
-    func uploadFile(with data: Data,
+    func uploadFile(from pathURL: URL,
                     to targetURL: URL,
                     progressHandler: @escaping ProgressHandler,
                     completionHandler: @escaping CompletionHandler) {
         
-        let tempDir = FileManager.default.temporaryDirectory
-        let localURL = tempDir.appendingPathComponent("throwaway")
-        
-        do {
-            try data.write(to: localURL)
-        } catch {
-            print("Error writing data to file")
-        }
+//        let tempDir = FileManager.default.temporaryDirectory
+//        let localURL = tempDir.appendingPathComponent("throwaway")
+//
+//        do {
+//            try data.write(to: localURL)
+//        } catch {
+//            print("Error writing data to file")
+//        }
 
         
         var request = URLRequest(
@@ -66,7 +66,7 @@ class UploadManager: NSObject {
         
         let task = urlSession.uploadTask(
             with: request,
-            fromFile: localURL)
+            fromFile: pathURL)
         
         progressHandlersByTaskID[task.taskIdentifier] = progressHandler
         completionHadlerByTask[task.taskIdentifier] = completionHandler

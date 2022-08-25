@@ -12,7 +12,7 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
     // Don't forget to change access-token
     let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2MTE4MTI4MSwiZXhwIjoxNjYxNjEzMjgxfQ.zxWBF_ZT1oKdEMWJb-cd0bgHI-mpb4YbrRyGUAysrUc"
     
-    
+    let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
     
     func addFacilityName(_ data: Data, completion: @escaping (Result<String, Error>) -> Void) {
         

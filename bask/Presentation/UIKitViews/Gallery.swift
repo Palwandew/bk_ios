@@ -68,7 +68,7 @@ struct Gallery: UIViewControllerRepresentable {
                     
                     DispatchQueue.main.async {
                         self.parent.viewModel.addURL(localURL)
-                        let imageThumbnail = self.generateThumbnail(of: localURL)
+                        let imageThumbnail = self.generateThumbnail(of: localURL)/// move it to bg thread
                         self.parent.selectedImagesThumbnails.append(imageThumbnail)
                         
                     }

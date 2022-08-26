@@ -149,6 +149,9 @@ struct FacilityPicturesScreen: View {
             
             
         }
+        .onAppear(perform: {
+            print("picture screen is appearing")
+        })
         //MARK: - Gallery
         
         

@@ -18,7 +18,6 @@ struct FacilityPublishChecklistScreen: View {
     
     @State var showPublish: Bool = false
     
-    @State var showProgress: Bool = false
     
     var body: some View {
         
@@ -79,8 +78,8 @@ struct FacilityPublishChecklistScreen: View {
             
             
             
-            if showProgress {
-                UploadProgressView()
+            if photosViewModel.showProgress {
+                UploadProgressView(progress: $photosViewModel.progress, successful: $photosViewModel.uploadingCompleted)
             }
             
         }.onAppear {

@@ -71,6 +71,10 @@ class UploadManager: NSObject {
         progressHandlersByTaskID[task.taskIdentifier] = progressHandler
         completionHadlerByTask[task.taskIdentifier] = completionHandler
         task.resume()
+        //urlSession.finishTasksAndInvalidate()
+    }
+    
+    func finishUploadingTasksAndInvalidate(){
         urlSession.finishTasksAndInvalidate()
     }
 }

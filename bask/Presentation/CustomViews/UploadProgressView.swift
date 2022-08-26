@@ -9,9 +9,10 @@ import SwiftUI
 
 struct UploadProgressView: View {
     
-    @State var progress: Double = 0.2
+    @Binding var progress: Double
     
-    @State var successful: Bool = true
+    @Binding var successful: Bool
+    
     
     @State var degree: Double = 0
     
@@ -100,8 +101,8 @@ struct UploadProgressView: View {
     }
 }
 
-struct UploadProgressView_Previews: PreviewProvider {
-    static var previews: some View {
-        UploadProgressView()
-    }
-}
+//struct UploadProgressView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UploadProgressView()
+//    }
+//}

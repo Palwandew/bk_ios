@@ -11,17 +11,19 @@ import ImageIO
 
 class PhotosViewModel: ObservableObject {
     
-    private let useCase: PhotosUsecase
+    private let uploadPhotoUsecase: PhotosUsecase
     let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
     
     @Published var progress: Double = 0.0
+    @Published var showProgress: Bool = false 
     @Published var isUploading: Bool = false
+    @Published var uploadingCompleted: Bool = false 
     @Published var images: [URL] = []
     @Published var showPublishAdScreen: Bool = false
-
     
     init(useCase: PhotosUsecase){
-        self.useCase = useCase
+        print("PhotoViewModel ---> init()")
+        uploadPhotoUsecase = useCase
         //manager = uploader
     }
     
@@ -40,19 +42,46 @@ class PhotosViewModel: ObservableObject {
     }
     
     private func uploadPhotos(){
+        
+        self.showProgress = true
+        var image = 1
+
+                
         for photoPathURL in images {
-            useCase.uploadPhoto(of: facilityID, from: photoPathURL) { progress in
-                print("Progress \(progress)")
+
+            
+
+
+            //let semaphore = DispatchSemaphore(value: 0)
+
+
+            uploadPhotoUsecase.uploadPhoto(of: facilityID, from: photoPathURL) { progress in
+                //print("Progress \(progress)")
+                let test = Double(image) * progress / Double(self.images.count)
+                print("Testing ----> \(test)")
+                DispatchQueue.main.async {
+                    self.progress = Double(image) * progress / Double(self.images.count)
+                    //image += 1
+                }
             } completion: { result in
                 switch result{
                 case .failure(let error):
                     print("Error uploading picture \(error.localizedDescription)")
                 case .success(let message):
                     print("Uploaded at: \(message)")
-                
+                    image += 1
+//                    DispatchQueue.main.async {
+//                        self.progress = Double(1 / self.images.count)
+//                        image += 1
+//                    }
+
                 }
+                //semaphore.signal()
             }
+            //semaphore.wait()
         }
+//        
+        //showProgress.toggle()
     }
     
     //    func uploadPhotos(

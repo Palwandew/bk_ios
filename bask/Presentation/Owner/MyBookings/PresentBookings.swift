@@ -36,6 +36,8 @@ struct PresentBookings: View {
             
         case .failed:
             Text("error occured")
+        case .initial:
+            Text("hi")
         }
         
     }

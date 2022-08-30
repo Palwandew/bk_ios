@@ -45,24 +45,11 @@ class PhotosViewModel: ObservableObject {
         
         self.showProgress = true
         var image = 1
-
-                
-        for photoPathURL in images {
-
-            
-
-
-            //let semaphore = DispatchSemaphore(value: 0)
-
-
-            uploadPhotoUsecase.uploadPhoto(of: facilityID, from: photoPathURL) { progress in
-                //print("Progress \(progress)")
-                let test = Double(image) * progress / Double(self.images.count)
-                print("Testing ----> \(test)")
-                DispatchQueue.main.async {
-                    self.progress = Double(image) * progress / Double(self.images.count)
-                    //image += 1
-                }
+        let imagesURLToUpload = images
+        
+        if let imageURL = imagesURLToUpload.first {
+            self.uploadPhotoUsecase.uploadPhoto(of: self.facilityID, from: imageURL) { progress in
+                let _ = Double(image) * progress / Double(self.images.count)
             } completion: { result in
                 switch result{
                 case .failure(let error):
@@ -70,19 +57,50 @@ class PhotosViewModel: ObservableObject {
                 case .success(let message):
                     print("Uploaded at: \(message)")
                     image += 1
-//                    DispatchQueue.main.async {
-//                        self.progress = Double(1 / self.images.count)
+                }
+                print("Outside switch")
+            }
+
+        }
+            
+                
+//        let dispatchGroup = DispatchGroup()
+//
+//        for photoPathURL in images {
+//
+//            dispatchGroup.enter()
+//                print("Serial Queue task")
+//                self.uploadPhotoUsecase.uploadPhoto(of: self.facilityID, from: photoPathURL) { progress in
+//                    //print("Progress \(progress)")
+//                    let test = Double(image) * progress / Double(self.images.count)
+//                    print("Testing ----> \(test)")
+//                    dispatchGroup.notify(queue: .main){
+//
+//                    }
+////                    DispatchQueue.main.async {
+////                        self.progress = Double(image) * progress / Double(self.images.count)
+////                        print("Progress ---> \(self.progress)")
+////                        //image += 1
+////                    }
+//                } completion: { result in
+//                    switch result{
+//                    case .failure(let error):
+//                        print("Error uploading picture \(error.localizedDescription)")
+//                    case .success(let message):
+//                        print("Uploaded at: \(message)")
 //                        image += 1
 //                    }
-
-                }
-                //semaphore.signal()
-            }
-            //semaphore.wait()
+//                    print("Outside switch")
+//                    dispatchGroup.leave()
+//                }
+//
+//            dispatchGroup.wait()
+//            }
+        //dispatchGroup.leave()
         }
 //        
         //showProgress.toggle()
-    }
+    
     
     //    func uploadPhotos(
     //        body: Data

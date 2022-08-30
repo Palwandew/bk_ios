@@ -11,8 +11,9 @@ struct PublishFacilityScreen: View {
     
     
     @Environment(\.presentationMode) var presentationMode
+    private var facilityName: String = "Shul-e-Yal"
     @State var progress: Float = 1
-
+    @State var show: Bool = false
     
     var body: some View {
         
@@ -40,7 +41,7 @@ struct PublishFacilityScreen: View {
             
             //MARK: - Message
             
-            Text("Your ad “Sunny appartment with swimming pool” is ready to be published. You can change everything after publishing ")
+            Text("Your ad “\(facilityName)” is ready to be published. You can change everything after publishing.")
                 .multilineTextAlignment(.center)
                 .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
@@ -49,10 +50,10 @@ struct PublishFacilityScreen: View {
             
             //MARK: - Continue Button
             
-//            NavigationLink(destination:
-//                            FacilityPicturesScreen(), isActive: $showPicturesScreen) {
-//                EmptyView()
-//            }
+            NavigationLink(destination:
+                            FacilityPicturesScreen(), isActive: $show) {
+                EmptyView()
+            }.isDetailLink(false)
             
             Spacer()
             

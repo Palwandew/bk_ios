@@ -9,7 +9,7 @@ import Foundation
 
 class MyBookingsViewModel: ObservableObject {
     @Published var isLoadingAlertPresented: Bool = false
-    @Published var screenState: MyBookingsScreenState = .loading
+    @Published var screenState: ScreenState = .loading
     
     init(){
         print("MyBookingsViewModel -> init()")
@@ -32,7 +32,7 @@ class MyBookingsViewModel: ObservableObject {
         //changeState(state: .failed)
     }
     
-    private func changeState(state: MyBookingsScreenState) {
+    private func changeState(state: ScreenState) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.screenState = state
         }
@@ -43,8 +43,9 @@ class MyBookingsViewModel: ObservableObject {
     }
 }
 
-enum MyBookingsScreenState {
+enum ScreenState {
     case loading
     case success
     case failed
+    case initial
 }

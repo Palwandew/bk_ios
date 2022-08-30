@@ -159,5 +159,9 @@ class CreateFacilityUseCase {
     func getChecklist(completion: @escaping (Result<Checklist, Error>) -> Void) {
         createFacilityRepo.getChecklist(completion: completion)
     }
+    
+    func publishFacility(completion: @escaping (Result<String, Error>) -> Void) {
+        createFacilityRepo.publishFacility(completion: completion)
+    }
 
 }

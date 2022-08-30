@@ -47,7 +47,7 @@ struct FacilityPublishChecklistScreen: View {
                 //MARK: - Continue Button
                 
                 NavigationLink(destination:
-                                PublishFacilityScreen(), isActive: $showPublish) {
+                                PublishFacilityScreen().environmentObject(viewModel), isActive: $showPublish) {
                     EmptyView()
                 }.isDetailLink(false)
                 

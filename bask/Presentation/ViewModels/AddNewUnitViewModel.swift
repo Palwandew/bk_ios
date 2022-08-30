@@ -49,6 +49,8 @@ class AddNewUnitViewModel: ObservableObject {
     
     @Published var checkList: Checklist = Checklist()
     
+    @Published var showToast: Bool = false
+    
     init(useCase: CreateFacilityUseCase){
         createFacilityUseCase = useCase
     }
@@ -330,10 +332,27 @@ class AddNewUnitViewModel: ObservableObject {
                     self?.checkList = checkList
                 }
             }
-            
         }
     }
     
+    
+    //MARK: - Step-11
+    func publishFacility(){
+        createFacilityUseCase.publishFacility { result in
+            switch result {
+            case .success(let message):
+                print(message)
+                DispatchQueue.main.async {
+                    self.showToast = true
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                    UIApplicationHelper.popToRootView()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
     
     func addRoom() {
         

@@ -11,6 +11,8 @@ struct PublishFacilityScreen: View {
     
     
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModel: AddNewUnitViewModel
+    
     private var facilityName: String = "Shul-e-Yal"
     @State var progress: Float = 1
     @State var show: Bool = false
@@ -72,7 +74,8 @@ struct PublishFacilityScreen: View {
                 
                 print("tapped")
                 //showPicturesScreen.toggle()
-                UIApplicationHelper.popToRootView()
+                viewModel.publishFacility()
+                
             }.padding(.top)
                 .background(Rectangle().fill(Color.white.opacity(0.5)))
             
@@ -82,8 +85,9 @@ struct PublishFacilityScreen: View {
         }
         .padding(.horizontal)
         .background(Color.white)
-        .toast(isShowing: $toastShow, content: {
+        .toast(isShowing: $viewModel.showToast, content: {
             Toast(message: "Ad published")
+            
         })
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(

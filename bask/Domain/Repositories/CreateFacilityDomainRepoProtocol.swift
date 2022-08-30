@@ -50,4 +50,8 @@ protocol CreateFacilityDomainRepoProtocol {
     
     //MARK: - Step -10-A
     func getChecklist(completion: @escaping (Result<Checklist, Error>) -> Void)
+    
+    
+    //MARK: - Step - 11
+    func publishFacility(completion: @escaping (Result<String, Error>) -> Void)
 }

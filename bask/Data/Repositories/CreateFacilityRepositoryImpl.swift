@@ -185,4 +185,8 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
             }
         }
     }
+    
+    func publishFacility(completion: @escaping (Result<String, Error>) -> Void) {
+        completion(.success("Ad published."))
+    }
 }

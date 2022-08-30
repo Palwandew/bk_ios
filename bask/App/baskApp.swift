@@ -15,7 +15,7 @@ struct baskApp: App {
         WindowGroup {
 //            PostView(postVM: postViewModel)
 //            UserTypeSelectionScreen(signupViewModel: signUpViewModel)
-            PublishFacilityScreen()
+            HomeScreen()
         }
     }
 }

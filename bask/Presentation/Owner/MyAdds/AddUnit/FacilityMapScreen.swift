@@ -87,6 +87,9 @@ struct FacilityMapScreen: View {
                 Text("Exit")
                     .font(Font.custom("Poppins-Light", size: 16.0))
                     .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
+                    .onTapGesture {
+                        UIApplicationHelper.popToRootView()
+                    }
                 
             })
         .navigationBarTitleDisplayMode(.inline)

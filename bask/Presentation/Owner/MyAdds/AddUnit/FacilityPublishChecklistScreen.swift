@@ -62,7 +62,8 @@ struct FacilityPublishChecklistScreen: View {
 //                    withAnimation {
 //                        showProgress.toggle()
 //                    }
-                    photosViewModel.onCreateTapped()
+                    //photosViewModel.onCreateTapped()
+                    showPublish.toggle()
                     
                     
                 }.padding(.top)
@@ -85,7 +86,7 @@ struct FacilityPublishChecklistScreen: View {
         }.onAppear {
             
             print("on appear")
-            viewModel.getChecklist()
+            //viewModel.getChecklist()
         }
     }
 }

@@ -14,6 +14,8 @@ struct PublishFacilityScreen: View {
     private var facilityName: String = "Shul-e-Yal"
     @State var progress: Float = 1
     @State var show: Bool = false
+    @State var toastShow = false
+    
     
     var body: some View {
         
@@ -70,7 +72,7 @@ struct PublishFacilityScreen: View {
                 
                 print("tapped")
                 //showPicturesScreen.toggle()
-                
+                UIApplicationHelper.popToRootView()
             }.padding(.top)
                 .background(Rectangle().fill(Color.white.opacity(0.5)))
             
@@ -80,6 +82,9 @@ struct PublishFacilityScreen: View {
         }
         .padding(.horizontal)
         .background(Color.white)
+        .toast(isShowing: $toastShow, content: {
+            Toast(message: "Ad published")
+        })
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading:

@@ -32,6 +32,8 @@
 		C41A26AB289C345E0057F3FE /* MaterialPriceField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AA289C345E0057F3FE /* MaterialPriceField.swift */; };
 		C41A26AD289C6DB30057F3FE /* AmenityPriceLengthInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */; };
 		C41A26AF289C79810057F3FE /* FacilityRulesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */; };
+		C43DCEB728BDE254005FB7F4 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCEB628BDE254005FB7F4 /* ToastView.swift */; };
+		C43DCEB928BE0867005FB7F4 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCEB828BE0867005FB7F4 /* Toast.swift */; };
 		C441FF5A28A456FD00AAC00C /* UIApplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441FF5928A456FD00AAC00C /* UIApplicationHelper.swift */; };
 		C441FF5C28A4CE3C00AAC00C /* Amenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441FF5B28A4CE3C00AAC00C /* Amenity.swift */; };
 		C450F44428A7CE260083AB86 /* FreeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450F44328A7CE260083AB86 /* FreeService.swift */; };
@@ -184,6 +186,8 @@
 		C41A26AA289C345E0057F3FE /* MaterialPriceField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialPriceField.swift; sourceTree = "<group>"; };
 		C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityPriceLengthInputView.swift; sourceTree = "<group>"; };
 		C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRulesScreen.swift; sourceTree = "<group>"; };
+		C43DCEB628BDE254005FB7F4 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		C43DCEB828BE0867005FB7F4 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		C441FF5928A456FD00AAC00C /* UIApplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationHelper.swift; sourceTree = "<group>"; };
 		C441FF5B28A4CE3C00AAC00C /* Amenity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amenity.swift; sourceTree = "<group>"; };
 		C450F44328A7CE260083AB86 /* FreeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeService.swift; sourceTree = "<group>"; };
@@ -342,6 +346,7 @@
 				C403101E2894C71F0046B645 /* SpecifiRoundCorner.swift */,
 				C47FEB102896962B008BC4C2 /* CustomAlertDialog.swift */,
 				C48268352897454C0072147F /* CancellationPolicyViewModel.swift */,
+				C43DCEB628BDE254005FB7F4 /* ToastView.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -737,6 +742,7 @@
 				C4A5C580289F4697006AF774 /* MaterialTimePicker.swift */,
 				C4918D6628A1D0C000A8777D /* GalleryImage.swift */,
 				C4A921C928B5AA6700969EF1 /* UploadProgressView.swift */,
+				C43DCEB828BE0867005FB7F4 /* Toast.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -962,6 +968,7 @@
 				C4A5C581289F4697006AF774 /* MaterialTimePicker.swift in Sources */,
 				C482682B289700BB0072147F /* PastBookings.swift in Sources */,
 				C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */,
+				C43DCEB928BE0867005FB7F4 /* Toast.swift in Sources */,
 				C4AF9B222828216600EBB141 /* PostEndpoint.swift in Sources */,
 				C49191BE28A2F92700C03743 /* CreateFacilityDomainRepoProtocol.swift in Sources */,
 				C4D659B2282B4F5000FAE1D1 /* SignupViewModel.swift in Sources */,
@@ -995,6 +1002,7 @@
 				C46BD7612828FBD2006AC587 /* User.swift in Sources */,
 				C4BB00692890F504000D2E47 /* VerifyPhoneNumberScreen.swift in Sources */,
 				C4057859282E199400C7D67A /* EmailCredentialsScreen.swift in Sources */,
+				C43DCEB728BDE254005FB7F4 /* ToastView.swift in Sources */,
 				C45C84C628B7342C00646719 /* PhotosUseCase.swift in Sources */,
 				C410D26428B4897000914D84 /* PhotoUploadManager.swift in Sources */,
 				C4B538122899DE4A0067CC21 /* AccentGreen.swift in Sources */,

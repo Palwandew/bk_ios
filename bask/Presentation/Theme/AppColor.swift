@@ -25,5 +25,6 @@ struct AppColor{
     static let BACKGROUND: UInt = 0xFFF7FAFD
     static let SELECTION_GREY: UInt = 0xFFF2F5FE
     static let COUNTER_GREY: UInt = 0xFFF0F2FB
+    static let SUCCESS_GREEN: UInt = 0xFF0B5228
     
 }

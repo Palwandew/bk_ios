@@ -465,4 +465,10 @@ struct FacilityDescriptionRequestBody: Codable {
 }
 
 
+//MARK: - FacilityPublishRequestBody
+struct FacilityPublishRequestBody: Codable {
+    let status: String 
+}
+
+
 

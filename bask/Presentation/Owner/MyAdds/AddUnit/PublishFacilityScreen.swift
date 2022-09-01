@@ -65,6 +65,7 @@ struct PublishFacilityScreen: View {
                 
                 print("unpublished")
                 //showPicturesScreen.toggle()
+                viewModel.saveFacilityUnpublished()
                 
             }.padding(.top)
         
@@ -86,7 +87,7 @@ struct PublishFacilityScreen: View {
         .padding(.horizontal)
         .background(Color.white)
         .toast(isShowing: $viewModel.showToast, content: {
-            Toast(message: "Ad published")
+            Toast(message: "Ad published", style: viewModel.toastStyle)
             
         })
         .navigationBarBackButtonHidden(true)

@@ -11,6 +11,7 @@ class MyBookingsViewModel: ObservableObject {
     @Published var isLoadingAlertPresented: Bool = false
     @Published var screenState: ScreenState = .loading
     
+    
     init(){
         print("MyBookingsViewModel -> init()")
     }
@@ -49,3 +50,5 @@ enum ScreenState {
     case failed
     case initial
 }
+
+

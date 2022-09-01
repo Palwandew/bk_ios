@@ -10,7 +10,7 @@ import Foundation
 class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
     
     // Don't forget to change access-token
-    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2MTcxNDc3MiwiZXhwIjoxNjYyMTQ2NzcyfQ.qEOoXez7INgPyf6yjTi_rJZM-CJc5ZB12UNT4da6DYk"
+    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2MjAyMDU5OCwiZXhwIjoxNjYyNDUyNTk4fQ.6LuD4G3ieJoFSxhLcOYFj28X47z3s0knDdYEPFLNpDM"
     
     let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
     
@@ -187,6 +187,17 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
     }
     
     func publishFacility(completion: @escaping (Result<String, Error>) -> Void) {
-        completion(.success("Ad published."))
+        
+        let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
+        let url = "https://api.baskapp.co/api/v1/facility/\(facilityID)"
+        let requestBody = FacilityPublishRequestBody(status: "published")
+        URLSession.shared.sendUpdateRequest(endpoint: url, requestType: .patch, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: requestBody) { result in
+            switch result {
+            case .success(let message):
+                completion(.success(message))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }

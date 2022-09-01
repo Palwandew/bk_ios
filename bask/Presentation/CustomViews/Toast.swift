@@ -10,7 +10,7 @@ import SwiftUI
 struct Toast: View {
     
     let message: String
-    var style: ToastStyle = .success
+    var style: ToastStyle
     
     var body: some View {
         HStack {
@@ -34,14 +34,16 @@ struct Toast: View {
         .padding(.bottom, 64)
     }
     
-    enum ToastStyle{
-        case success
-        case failure
-    }
+    
+}
+
+enum ToastStyle{
+    case success
+    case failure
 }
 
 struct Toast_Previews: PreviewProvider {
     static var previews: some View {
-        Toast(message: "Testing message")
+        Toast(message: "Testing message",style: .failure)
     }
 }

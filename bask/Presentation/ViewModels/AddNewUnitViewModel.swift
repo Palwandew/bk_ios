@@ -50,6 +50,7 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var checkList: Checklist = Checklist()
     
     @Published var showToast: Bool = false
+    @Published var toastStyle: ToastStyle = .success
     
     init(useCase: CreateFacilityUseCase){
         createFacilityUseCase = useCase
@@ -336,7 +337,7 @@ class AddNewUnitViewModel: ObservableObject {
     }
     
     
-    //MARK: - Step-11
+    //MARK: - Step-11-A
     func publishFacility(){
         createFacilityUseCase.publishFacility { result in
             switch result {
@@ -344,16 +345,32 @@ class AddNewUnitViewModel: ObservableObject {
                 print(message)
                 DispatchQueue.main.async {
                     self.showToast = true
+                    self.toastStyle = .success
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                     UIApplicationHelper.popToRootView()
                 }
             case .failure(let error):
                 print(error.localizedDescription)
+                
+                DispatchQueue.main.async {
+                    self.showToast = true
+                    self.toastStyle = .failure
+                }
+                
             }
         }
     }
     
+    
+    //MARK: - Step-11-B
+    func saveFacilityUnpublished(){
+        self.showToast = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            UIApplicationHelper.popToRootView()
+        }
+    }
     func addRoom() {
         
         facility.addRoom()

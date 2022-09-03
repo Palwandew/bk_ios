@@ -10,8 +10,8 @@ import SwiftUI
 struct FacilityLocationScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
-    //@EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
-    @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
+    @EnvironmentObject var viewModel: AddNewUnitViewModel
+    //@StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
 
     @State var progress: Float = 0.332
     

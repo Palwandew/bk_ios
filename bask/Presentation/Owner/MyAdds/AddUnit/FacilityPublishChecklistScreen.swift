@@ -12,7 +12,8 @@ struct FacilityPublishChecklistScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var photosViewModel: PhotosViewModel
-    @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
+    @EnvironmentObject var viewModel: AddNewUnitViewModel
+//    = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     @State var progress: Float = 0.332
     
     
@@ -75,6 +76,10 @@ struct FacilityPublishChecklistScreen: View {
             }
             .padding(.horizontal)
             .background(Color.white)
+            .toast(isShowing: $viewModel.shallRetry, content: {
+                Toast(message: "An error occured. Please try again.", style: .failure)
+                
+            })
             .navigationBarBackButtonHidden(false)
             
             

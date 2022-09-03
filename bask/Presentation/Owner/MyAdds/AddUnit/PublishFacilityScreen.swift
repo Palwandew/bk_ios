@@ -87,7 +87,13 @@ struct PublishFacilityScreen: View {
         .padding(.horizontal)
         .background(Color.white)
         .toast(isShowing: $viewModel.showToast, content: {
-            Toast(message: "Ad published", style: viewModel.toastStyle)
+            
+            switch viewModel.toastStyle {
+            case .failure:
+                Toast(message: "An error occured while publishing your ad. Please try again.", style: .failure)
+            case .success:
+                Toast(message: "Your ad has been published successfully.", style: .success)
+            }
             
         })
         .navigationBarBackButtonHidden(true)

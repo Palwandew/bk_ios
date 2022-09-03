@@ -48,7 +48,7 @@ struct FacilityMapScreen: View {
                 
                     
                     NavigationLink(destination:
-                                    FacilityTimeScreen(), isActive: $viewModel.willShowCheckInScreen) {
+                                    FacilityTimeScreen().environmentObject(viewModel), isActive: $viewModel.willShowCheckInScreen) {
                         EmptyView()
                     }
                     
@@ -68,6 +68,10 @@ struct FacilityMapScreen: View {
             
         }
         .background(Color.white)
+        .toast(isShowing: $viewModel.shallRetry, content: {
+            Toast(message: "An error occured. Please try again.", style: .failure)
+            
+        })
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading:

@@ -36,10 +36,17 @@ struct FacilityNameScreen: View {
             
             //MARK: - Arabic Name
             
-            ArabicTextInputField(text: $addNewUnitViewModel.facility.arabicName)
-                .frame(height: 25)
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 10).stroke(.gray, lineWidth: 1))
+            VStack(alignment: .leading) {
+                ArabicTextInputField(text: $addNewUnitViewModel.facility.arabicName)
+                    .frame(height: 25)
+                    .padding()
+                .background(RoundedRectangle(cornerRadius: 10).stroke(addNewUnitViewModel.isValidArabicName ? .gray : .red, lineWidth: 1))
+                if !addNewUnitViewModel.isValidArabicName {
+                    Text("Please enter Arabic name")
+                        .foregroundColor(.red)
+                        .font(Font.custom("Poppins-Light", size: 12.0, relativeTo: .caption))
+                }
+            }
             
             Spacer()
             
@@ -52,7 +59,7 @@ struct FacilityNameScreen: View {
             
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
-                print("tapped")
+               
                 addNewUnitViewModel.isFacilityNameValid()
 
                 
@@ -61,6 +68,10 @@ struct FacilityNameScreen: View {
         }
         .padding(.horizontal)
         .background(Color(AppColor.BACKGROUND))
+        .toast(isShowing: $addNewUnitViewModel.shallRetry, content: {
+            Toast(message: "An error occured. Please try again.", style: .failure)
+            
+        })
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading:

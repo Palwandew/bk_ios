@@ -10,8 +10,8 @@ import SwiftUI
 struct FacilityPaidAmenitiesScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
-    //@EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
-    @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
+    @EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
+    //@StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
 
     @State var progress: Float = 0.249 // total 12 steps therefore each one is 0.083
     @State var isWifiOn: Bool = false
@@ -174,7 +174,7 @@ struct FacilityPaidAmenitiesScreen: View {
             //MARK: - Continue Button
             VStack {
                 NavigationLink(destination:
-                                FacilityRulesScreen(), isActive: $addNewUnitViewModel.willShowRulesScreen) {
+                                FacilityRulesScreen().environmentObject(addNewUnitViewModel), isActive: $addNewUnitViewModel.willShowRulesScreen) {
                     EmptyView()
                 }
                 
@@ -190,6 +190,10 @@ struct FacilityPaidAmenitiesScreen: View {
         
         }.padding(.horizontal)
             .background(Color(AppColor.BACKGROUND))
+            .toast(isShowing: $addNewUnitViewModel.shallRetry, content: {
+                Toast(message: "An error occured. Please try again.", style: .failure)
+                
+            })
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(
                 leading:

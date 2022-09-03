@@ -11,6 +11,7 @@ struct FacilityPicturesScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     
+    @EnvironmentObject var viewMode: AddNewUnitViewModel
     @StateObject var phViewModel = PhotosViewModel(useCase: PhotosUsecase(repo: PhotosRepositoryImpl(uploadManager: UploadManager())))
    
     @State var progress: Float = 0.332
@@ -123,6 +124,7 @@ struct FacilityPicturesScreen: View {
             
             NavigationLink(destination:
                             FacilityPublishChecklistScreen()
+                            .environmentObject(viewMode)
                             .environmentObject(phViewModel), isActive: $showChecklist) {
                 EmptyView()
             }

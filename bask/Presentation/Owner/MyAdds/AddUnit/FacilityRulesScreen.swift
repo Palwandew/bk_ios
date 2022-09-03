@@ -10,8 +10,8 @@ import SwiftUI
 struct FacilityRulesScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
-    //@EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
-    @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
+    @EnvironmentObject var viewModel: AddNewUnitViewModel
+    //@StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     @State var progress: Float = 0.332
     @State private var valid: Bool = true
     let errorMsg: LocalizedStringKey = "valid_description"
@@ -106,7 +106,7 @@ struct FacilityRulesScreen: View {
                 }
                 
                 NavigationLink(destination:
-                                FacilityLocationScreen(), isActive: $viewModel.willShowLocationScreen) {
+                                FacilityLocationScreen().environmentObject(viewModel), isActive: $viewModel.willShowLocationScreen) {
                     EmptyView()
                 }
             }
@@ -120,6 +120,10 @@ struct FacilityRulesScreen: View {
             
         }.padding(.horizontal)
             .background(Color.white)
+            .toast(isShowing: $viewModel.shallRetry, content: {
+                Toast(message: "An error occured. Please try again.", style: .failure)
+                
+            })
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(
                 leading:

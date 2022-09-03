@@ -12,7 +12,7 @@ struct Facility {
     
     //MARK: - Properties
     
-    var id: String? = "879605bb-766e-43bf-9e08-04900a7734eb" // Need to replace it with the actual facility id
+    var id: String? = nil // Need to replace it with the actual facility id
     var englishName: String = ""
     var arabicName: String = ""
     var length: String = ""

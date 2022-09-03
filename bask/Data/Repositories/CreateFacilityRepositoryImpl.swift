@@ -14,11 +14,13 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
     
     let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
     
-    func addFacilityName(_ data: Data, completion: @escaping (Result<String, Error>) -> Void) {
+    func addFacilityName(_ endpoint: Endpoints, _ data: Data, completion: @escaping (Result<String, Error>) -> Void) {
         
-        let url = "https://api.baskapp.co/api/v1/facility"
+        guard let url = endpoint.url else {
+            return completion(.failure(RequestError.invalidURL))
+        }
         
-        URLSession.shared.sendRequest(endpoint: url, requestType: .post, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: data, responseModel: FacilityCreateName.self) { result in
+        URLSession.shared.sendRequest(endpoint: url.absoluteString, requestType: .post, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: data, responseModel: FacilityCreateName.self) { result in
             switch result {
             case .failure(let error):
                 print("error occured \(error.localizedDescription)")
@@ -33,15 +35,13 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
     }
     
     
-    func updateFacilityDimensions(_ data: FacilityAreaBodyData, completion: @escaping (Result<String, Error>) -> Void) {
-        let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
-        let url = "https://api.baskapp.co/api/v1/facility/\(facilityID)"
+    func updateFacilityDimensions(_ endpoint: Endpoints, _ data: FacilityAreaBodyData, completion: @escaping (Result<String, Error>) -> Void) {
         
-        print("url -> \(url)")
+        guard let url = endpoint.url else {
+            return completion(.failure(RequestError.invalidURL))
+        }
         
-        
-        
-        URLSession.shared.sendUpdateRequest(endpoint: url, requestType: .patch, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: data) { result in
+        URLSession.shared.sendUpdateRequest(endpoint: url.absoluteString, requestType: .patch, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: data) { result in
             switch result{
             case .success(_):
                 completion(.success("Success"))
@@ -87,6 +87,7 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
         let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
         let url = "https://api.baskapp.co/api/v1/facility/\(facilityID)"
         
+        
         URLSession.shared.sendUpdateRequest(endpoint: url, requestType: .patch, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: data) { result in
             switch result {
                 
@@ -102,6 +103,8 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
     func updateFacilityLocation(_ data: FacilityLocationRequestBody, completion: @escaping (Result<String, Error>) -> Void) {
         let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
         let url = "https://api.baskapp.co/api/v1/facility/\(facilityID)"
+        
+        
         
         URLSession.shared.sendUpdateRequest(endpoint: url, requestType: .patch, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: data) { result in
             switch result {

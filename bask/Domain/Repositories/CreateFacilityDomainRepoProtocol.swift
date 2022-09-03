@@ -13,11 +13,11 @@ protocol CreateFacilityDomainRepoProtocol {
 
     
     //MARK: - Step - 1
-    func addFacilityName(_ data: Data, completion: @escaping (Result<String, Error>) -> Void)
+    func addFacilityName(_ endpoint: Endpoints, _ data: Data, completion: @escaping (Result<String, Error>) -> Void)
     
     
     //MARK: - Step - 2
-    func updateFacilityDimensions(_ data: FacilityAreaBodyData, completion: @escaping (Result<String, Error>) -> Void)
+    func updateFacilityDimensions(_ endpoint: Endpoints, _ data: FacilityAreaBodyData, completion: @escaping (Result<String, Error>) -> Void)
     
     
     //MARK: - Step - 3

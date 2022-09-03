@@ -10,8 +10,8 @@ import SwiftUI
 struct FacilityTimeScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
-    //@EnvironmentObject var viewModel: AddNewUnitViewModel
-    @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
+    @EnvironmentObject var viewModel: AddNewUnitViewModel
+   // @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     @State var progress: Float = 0.332
     
     @State var checkInAfter: String = ""
@@ -73,7 +73,7 @@ struct FacilityTimeScreen: View {
             //MARK: - Continue Button
             
             NavigationLink(destination:
-                            FacilityPriceSetupScreen(), isActive: $viewModel.willShowPriceSetupScreen) {
+                            FacilityPriceSetupScreen().environmentObject(viewModel), isActive: $viewModel.willShowPriceSetupScreen) {
                 EmptyView()
             }
                 
@@ -100,6 +100,10 @@ struct FacilityTimeScreen: View {
         })
         .padding(.horizontal)
         .background(Color.white)
+        .toast(isShowing: $viewModel.shallRetry, content: {
+            Toast(message: "An error occured. Please try again.", style: .failure)
+            
+        })
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading:

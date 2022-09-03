@@ -11,8 +11,8 @@ struct FacilityPriceSetupScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    //@EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
-    @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
+    @EnvironmentObject var viewModel: AddNewUnitViewModel
+    //@StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     @State var progress: Float = 0.332
     
     
@@ -85,13 +85,17 @@ struct FacilityPriceSetupScreen: View {
             //MARK: - Navigation Link
             
             NavigationLink(destination:
-                            FacilityDescriptionScreen(), isActive: $viewModel.willShowDescriptionScreen) {
+                            FacilityDescriptionScreen().environmentObject(viewModel), isActive: $viewModel.willShowDescriptionScreen) {
                 EmptyView()
             }
             
         }
         .padding(.horizontal)
         .background(Color.white)
+        .toast(isShowing: $viewModel.shallRetry, content: {
+            Toast(message: "An error occured. Please try again.", style: .failure)
+            
+        })
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading:

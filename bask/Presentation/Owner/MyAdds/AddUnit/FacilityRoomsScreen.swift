@@ -126,10 +126,10 @@ struct FacilityRoomsScreen: View {
         }
         .padding(.horizontal)
         .background(Color(AppColor.BACKGROUND))
-//        .alertDialog(isShowing: $addNewUnitViewModel.showAlert) {
-//            Text("Working")
-//                .padding()
-//        }
+        .toast(isShowing: $addNewUnitViewModel.shallRetry, content: {
+            Toast(message: "An error occured. Please try again.", style: .failure)
+            
+        })
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading:

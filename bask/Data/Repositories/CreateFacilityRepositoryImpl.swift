@@ -16,11 +16,8 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
     
     func addFacilityName(_ endpoint: Endpoints, _ data: Data, completion: @escaping (Result<String, Error>) -> Void) {
         
-        guard let url = endpoint.url else {
-            return completion(.failure(RequestError.invalidURL))
-        }
         
-        URLSession.shared.sendRequest(endpoint: url.absoluteString, requestType: .post, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: data, responseModel: FacilityCreateName.self) { result in
+        URLSession.shared.sendRequest(endpoint: endpoint, requestType: .post, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: data, responseModel: FacilityCreateName.self) { result in
             switch result {
             case .failure(let error):
                 print("error occured \(error.localizedDescription)")
@@ -177,16 +174,16 @@ class CreateFacilityReopositoryImpl: CreateFacilityDomainRepoProtocol {
     }
     
     func getChecklist(completion: @escaping (Result<Checklist, Error>) -> Void) {
-        let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
-        let url = "https://api.baskapp.co/api/v1/facility/checklist/\(facilityID)"
-        URLSession.shared.sendRequest(endpoint: url, requestType: .get, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: nil, responseModel: FacilityChecklistModel.self) { result in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let facilityChecklistModel):
-                completion(.success(facilityChecklistModel.dotCheclistEntity()))
-            }
-        }
+//        let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
+//        let url = "https://api.baskapp.co/api/v1/facility/checklist/\(facilityID)"
+//        URLSession.shared.sendRequest(endpoint: url, requestType: .get, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: nil, responseModel: FacilityChecklistModel.self) { result in
+//            switch result {
+//            case .failure(let error):
+//                completion(.failure(error))
+//            case .success(let facilityChecklistModel):
+//                completion(.success(facilityChecklistModel.dotCheclistEntity()))
+//            }
+//        }
     }
     
     func publishFacility(completion: @escaping (Result<String, Error>) -> Void) {

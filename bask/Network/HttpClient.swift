@@ -10,16 +10,15 @@ import Foundation
 extension URLSession{
     
     func sendRequest<T: Codable>(
-        endpoint: String,
+        endpoint: Endpoints,
         requestType: RequestMethod,
         headers: [String : String]?,
         body: Data?,//[String : String]?,
         responseModel: T.Type,
         complete completion: @escaping (Result<T, RequestError>) -> Void) {
             
-            guard let url = URL(string: endpoint) else {
-                completion(.failure(RequestError.invalidURL))
-                return
+            guard let url = endpoint.url else {
+                return completion(.failure(RequestError.invalidURL))
             }
             
             var request = URLRequest(url: url)
@@ -61,14 +60,14 @@ extension URLSession{
     
     
     func sendUpdateRequest<Value>(
-        endpoint: String,
+        endpoint: Endpoints,
         requestType: RequestMethod,
         headers: [String : String]?,
         body: Value?,//[String : String]?,
         //responseModel: T.Type,
         complete completion: @escaping (Result<String, RequestError>) -> Void) where Value : Encodable {
             
-            guard let url = URL(string: endpoint) else {
+            guard let url = endpoint.url else {
                 completion(.failure(RequestError.invalidURL))
                 return
             }

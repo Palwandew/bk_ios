@@ -21,11 +21,11 @@ class PhotosRepositoryImpl: PhotosDomainRepoProtocol {
         self.uploadManager = uploadManager
     }
     
-    private func getSignedUrl(completion: @escaping (Result<PhotoSignedURLDataClass, Error>) -> Void) {
+    private func getSignedUrl(queryItems: [URLQueryItem], completion: @escaping (Result<PhotoSignedURLDataClass, Error>) -> Void) {
         
-        let url = "https://api.baskapp.co/api/v1/files/getpresignedurl?facilityId=\(facilityID)&fileExtension=jpg"
+        let endpoint = Endpoints.GET_SIGNED_URL(with: queryItems)
         
-        URLSession.shared.sendRequest(endpoint: url, requestType: .get, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: nil, responseModel: PhotoSignedURLModel.self) { result in
+        URLSession.shared.sendRequest(endpoint: endpoint, requestType: .get, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: nil, responseModel: PhotoSignedURLModel.self) { result in
             switch result {
             case .failure(let error):
                 completion(.failure(error))
@@ -38,10 +38,11 @@ class PhotosRepositoryImpl: PhotosDomainRepoProtocol {
     
     
     
-    private func postImageLink(body: ImageLinkRequestBody, completion: @escaping (Result<String, Error>) -> Void) {
-        //
-        let url = "https://api.baskapp.co/api/v1/image"
-        URLSession.shared.sendUpdateRequest(endpoint: url, requestType: .post, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: body) { result in
+    private func postImageLink(with body: ImageLinkRequestBody, completion: @escaping (Result<String, Error>) -> Void) {
+    
+        let endpoint = Endpoints.CREATE_IMAGE_LINK
+        
+        URLSession.shared.sendUpdateRequest(endpoint: endpoint, requestType: .post, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: body) { result in
             switch result {
             case .failure(let error):
                 completion(.failure(error))
@@ -51,13 +52,14 @@ class PhotosRepositoryImpl: PhotosDomainRepoProtocol {
         }
     }
     
-    //(Percentage) -> Void
-    //typealias CompletionHandler = (Result<String, Error>) -> Void
     
     func uploadPhoto(of facilityID: String, from path: URL, progress: @escaping (Double) -> Void, completion: @escaping (Result<String, Error>) -> Void) {
-        //let url = "https://api.baskapp.co/api/v1/files/getpresignedurl?facilityId=\(facilityID)&fileExtension=jpg"
         
-        getSignedUrl { [weak self] result in
+        let facilityIDQueryItem = URLQueryItem(name: "facilityId", value: facilityID)
+        let fileExtensionQueryItem = URLQueryItem(name: "fileExtension", value: "jpg")
+        let queryItems = [facilityIDQueryItem, fileExtensionQueryItem]
+        
+        getSignedUrl(queryItems: queryItems) { [weak self] result in
             switch result {
             case .failure(let error):
                 completion(.failure(error))
@@ -72,7 +74,7 @@ class PhotosRepositoryImpl: PhotosDomainRepoProtocol {
                     case .failure(let error):
                         completion(.failure(error))
                     case .success(_):
-                        self?.postImageLink(body: ImageLinkRequestBody(facilityID: facilityID, photo: signedURL.filename, isPrimary: true), completion: completion)
+                        self?.postImageLink(with: ImageLinkRequestBody(facilityID: facilityID, photo: signedURL.filename, isPrimary: true), completion: completion)
                         
                     }
                 }

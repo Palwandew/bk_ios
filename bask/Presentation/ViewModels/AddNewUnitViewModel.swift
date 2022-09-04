@@ -568,30 +568,3 @@ enum FacilityCreationStep {
 }
 
 
-struct Endpoints{
-    private let apiVersion = "/api/v1/"
-    let path: String
-    let queryItems: [URLQueryItem]?
-}
-
-
-extension Endpoints{
-    var url: URL? {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "api.baskapp.co"
-        components.path = apiVersion + path
-        components.queryItems = queryItems
-        
-        return components.url
-    }
-}
-
-extension Endpoints{
-    
-    static let CREATE_FACILITY: Endpoints = Endpoints(path: "facility", queryItems: nil)
-    
-    static func UPDATE_FACILITY(_ facilityID: String) -> Endpoints {
-        return Endpoints(path: "facility/\(facilityID)", queryItems: nil)
-    }
-}

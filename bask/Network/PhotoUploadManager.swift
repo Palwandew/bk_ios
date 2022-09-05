@@ -86,7 +86,7 @@ extension UploadManager: URLSessionTaskDelegate {
         let completion = completionHadlerByTask[task.taskIdentifier]
         
         if let error = error {
-
+            print("error")
             completion?(.failure(error))
         }
         

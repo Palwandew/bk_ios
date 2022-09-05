@@ -10,7 +10,7 @@ import Foundation
 struct Endpoints{
     private let apiVersion = "/api/v1/"
     let path: String
-    let queryItems: [URLQueryItem]?
+    var queryItems: [URLQueryItem]? = nil
 }
 
 
@@ -30,6 +30,11 @@ extension Endpoints{
     
     static let CREATE_FACILITY: Endpoints = Endpoints(path: "facility", queryItems: nil)
     static let CREATE_IMAGE_LINK: Endpoints = Endpoints(path: "image", queryItems: nil)
+    static let ADD_FREE_AMENITIES: Endpoints = Endpoints(path: "facilityservice/amenitiesfree")
+    static let ADD_PAID_AMENITIES: Endpoints = Endpoints(path: "facilityservice/amenitiesextra")
+    static func GET_CHECKLIST(for facilityID: String) -> Endpoints {
+     return Endpoints(path: "facility/\(facilityID)")
+    }
     static func GET_SIGNED_URL(with query: [URLQueryItem]) -> Endpoints {
      return Endpoints(path: "files/getpresignedurl", queryItems: query)
     }

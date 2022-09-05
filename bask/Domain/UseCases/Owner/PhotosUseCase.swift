@@ -17,8 +17,8 @@ class PhotosUsecase {
     }
     
     func uploadPhoto(of facilityID: String, from path: URL, progress: @escaping (Double) -> Void, completion: @escaping (Result<String, Error>) -> Void){
-        //print
         
+        //completion(.success("uploaded.."))
         photosRepository.uploadPhoto(of: facilityID, from: path, progress: progress, completion: completion)
     }
     

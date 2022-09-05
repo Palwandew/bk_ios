@@ -12,7 +12,7 @@ import ImageIO
 class PhotosViewModel: ObservableObject {
     
     private let uploadPhotoUsecase: PhotosUsecase
-    let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
+    var facilityID: String? = nil
     
     @Published var progress: Double = 0.0
     @Published var showProgress: Bool = false 
@@ -28,7 +28,10 @@ class PhotosViewModel: ObservableObject {
     }
     
     
-    func onCreateTapped(){
+    func onCreateTapped(facilityID: String?){
+
+        self.facilityID = facilityID
+
         if photosAvailableToUpload() {
             uploadPhotos()
         } else {
@@ -43,62 +46,43 @@ class PhotosViewModel: ObservableObject {
     
     private func uploadPhotos(){
         
+        guard let facilityID = self.facilityID else {
+            return
+        }
+
+        
         self.showProgress = true
         var image = 1
-        let imagesURLToUpload = images
-        
-        if let imageURL = imagesURLToUpload.first {
-            self.uploadPhotoUsecase.uploadPhoto(of: self.facilityID, from: imageURL) { progress in
-                let _ = Double(image) * progress / Double(self.images.count)
-            } completion: { result in
-                switch result{
-                case .failure(let error):
-                    print("Error uploading picture \(error.localizedDescription)")
-                case .success(let message):
-                    print("Uploaded at: \(message)")
-                    image += 1
-                }
-                print("Outside switch")
-            }
+        var imagesToUpload = images
+    
 
-        }
-            
+        for photoURL in images {
                 
-//        let dispatchGroup = DispatchGroup()
-//
-//        for photoPathURL in images {
-//
-//            dispatchGroup.enter()
-//                print("Serial Queue task")
-//                self.uploadPhotoUsecase.uploadPhoto(of: self.facilityID, from: photoPathURL) { progress in
-//                    //print("Progress \(progress)")
-//                    let test = Double(image) * progress / Double(self.images.count)
-//                    print("Testing ----> \(test)")
-//                    dispatchGroup.notify(queue: .main){
-//
-//                    }
-////                    DispatchQueue.main.async {
-////                        self.progress = Double(image) * progress / Double(self.images.count)
-////                        print("Progress ---> \(self.progress)")
-////                        //image += 1
-////                    }
-//                } completion: { result in
-//                    switch result{
-//                    case .failure(let error):
-//                        print("Error uploading picture \(error.localizedDescription)")
-//                    case .success(let message):
-//                        print("Uploaded at: \(message)")
-//                        image += 1
-//                    }
-//                    print("Outside switch")
-//                    dispatchGroup.leave()
-//                }
-//
-//            dispatchGroup.wait()
-//            }
-        //dispatchGroup.leave()
+                self.uploadPhotoUsecase.uploadPhoto(of: facilityID, from: photoURL) { progress in
+                    
+                    
+                    let progressToShow = Float(progress) * 1 / Float(self.images.count) * Float(image)
+                    //let test = Double(image) * progress / Double(self.images.count)
+                    print("Progress to show ---> \(progressToShow)")
+                    print("Progress ---> \(self.progress)")
+                    DispatchQueue.main.async {
+                        self.progress = Double(progressToShow) * Double(image)
+                        
+                    }
+                } completion: { result in
+                    switch result{
+                    case .failure(let error):
+                        print("Error uploading picture \(error.localizedDescription)")
+                    case .success(let message):
+                        print("Uploaded at: \(message)")
+                        print("url that upload \(photoURL)")
+                        imagesToUpload.removeAll(where: {$0 == photoURL})
+                        image += 1
+                    }
+                }
         }
-//        
+    }
+//
         //showProgress.toggle()
     
     

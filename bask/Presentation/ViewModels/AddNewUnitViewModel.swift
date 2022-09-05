@@ -193,7 +193,7 @@ class AddNewUnitViewModel: ObservableObject {
             
             let data = facility.prepareFreeServicesRequestBody()
             
-            createFacilityUseCase.updateFacility(for: .stepThree, with: data) { [weak self] result in
+            createFacilityUseCase.updateFacility(with: facility.id, for: .stepThree, with: data) { [weak self] result in
                 switch result {
                 case .failure(let error):
                     print("error \(error)")
@@ -225,7 +225,7 @@ class AddNewUnitViewModel: ObservableObject {
             print("Valid paid")
             let data = facility.preparePaidServicesRequestBody()
             
-            createFacilityUseCase.updateFacility(for: .stepFour, with: data) { [weak self] result in
+            createFacilityUseCase.updateFacility(with: facility.id, for: .stepFour, with: data) { [weak self] result in
                 switch result {
                 case .failure(let error):
                     print("error \(error)")
@@ -255,7 +255,7 @@ class AddNewUnitViewModel: ObservableObject {
         willShowLocationScreen.toggle()
         let data = facility.prepareRulesRequestBody()
         
-        createFacilityUseCase.updateFacility(for: .stepFive, with: data) { [weak self] result in
+        createFacilityUseCase.updateFacility(with: facility.id, for: .stepFive, with: data) { [weak self] result in
             switch result {
             case .failure(let error):
                 print("error \(error)")
@@ -289,7 +289,7 @@ class AddNewUnitViewModel: ObservableObject {
         
         let data = facility.prepareLocationRequestBody()
         print("loc --> \(data)")
-        createFacilityUseCase.updateFacility(for: .stepSix, with: data) { [weak self] result in
+        createFacilityUseCase.updateFacility(with: facility.id, for: .stepSix, with: data) { [weak self] result in
             switch result {
             case .failure(let error):
                 print("error \(error)")
@@ -315,7 +315,7 @@ class AddNewUnitViewModel: ObservableObject {
             
             let data = facility.prepareCheckInTimeRequestBody()
             
-            createFacilityUseCase.updateFacility(for: .stepSeven, with: data) { [weak self] result in
+            createFacilityUseCase.updateFacility(with: facility.id, for: .stepSeven, with: data) { [weak self] result in
                 switch result {
                 case .failure(let error):
                     print("error \(error)")
@@ -342,7 +342,7 @@ class AddNewUnitViewModel: ObservableObject {
             
             let data = facility.preparePriceRequestBody()
             
-            createFacilityUseCase.updateFacility(for: .stepEight, with: data) { [weak self] result in
+            createFacilityUseCase.updateFacility(with: facility.id, for: .stepEight, with: data) { [weak self] result in
                 switch result {
                 case .failure(_):
                     
@@ -370,7 +370,7 @@ class AddNewUnitViewModel: ObservableObject {
         
         let data = facility.prepareDescriptionRequestBody()
         
-        createFacilityUseCase.updateFacility(for: .stepNine, with: data) { [weak self] result in
+        createFacilityUseCase.updateFacility(with: facility.id, for: .stepNine, with: data) { [weak self] result in
             switch result {
             case .failure(_):
                 
@@ -391,7 +391,7 @@ class AddNewUnitViewModel: ObservableObject {
     
     //MARK: - Step-10
     func getChecklist() {
-        createFacilityUseCase.getChecklist { [weak self] result in
+        createFacilityUseCase.getChecklist(for: facility.id) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                     
@@ -415,7 +415,7 @@ class AddNewUnitViewModel: ObservableObject {
     
     //MARK: - Step-11-A
     func publishFacility(){
-        createFacilityUseCase.publishFacility { result in
+        createFacilityUseCase.publishFacility(with: facility.id)  { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {

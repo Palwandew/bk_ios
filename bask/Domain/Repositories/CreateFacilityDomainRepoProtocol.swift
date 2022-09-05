@@ -29,29 +29,29 @@ protocol CreateFacilityDomainRepoProtocol {
     
     
     //MARK: - Step - 5
-    func updateFacilityRules(_ data: FacilityRulesRequestBody, completion: @escaping (Result<String, Error>) -> Void)
+    func updateFacilityRules(with facilityID: String, _ data: FacilityRulesRequestBody, completion: @escaping (Result<String, Error>) -> Void)
     
     
     //MARK: - Step - 6
-    func updateFacilityLocation(_ data: FacilityLocationRequestBody, completion: @escaping (Result<String, Error>) -> Void)
+    func updateFacilityLocation(with facilityID: String, _ data: FacilityLocationRequestBody, completion: @escaping (Result<String, Error>) -> Void)
     
     
     //MARK: - Step - 7
-    func updateFacilityCheckInTime(_ data: FacilityCheckInTimeRequestBody, completion: @escaping (Result<String, Error>) -> Void)
+    func updateFacilityCheckInTime(with facilityID: String, _ data: FacilityCheckInTimeRequestBody, completion: @escaping (Result<String, Error>) -> Void)
     
     //MARK: - Step - 8
-    func updateFacilityPrice(_ data: FacilityPriceRequestBody, completion: @escaping (Result<String, Error>) -> Void)
+    func updateFacilityPrice(with facilityID: String, _ data: FacilityPriceRequestBody, completion: @escaping (Result<String, Error>) -> Void)
     
     //MARK: - Step - 9
-    func updateFacilityDescription(_ data: FacilityDescriptionRequestBody, completion: @escaping (Result<String, Error>) -> Void)
+    func updateFacilityDescription(with facilityID: String, _ data: FacilityDescriptionRequestBody, completion: @escaping (Result<String, Error>) -> Void)
     
     //MARK: - Step - 10
     func getImageFromServer(completion: @escaping (Result<Data, Error>) -> Void)
     
     //MARK: - Step -10-A
-    func getChecklist(completion: @escaping (Result<Checklist, Error>) -> Void)
+    func getChecklist(for facilityID: String, completion: @escaping (Result<Checklist, Error>) -> Void)
     
     
     //MARK: - Step - 11
-    func publishFacility(completion: @escaping (Result<String, Error>) -> Void)
+    func publishFacility(with facilityID: String, completion: @escaping (Result<String, Error>) -> Void)
 }

@@ -27,7 +27,11 @@ class CreateFacilityUseCase {
         createFacilityRepo.updateFacilityDimensions(endpoint, facilityAreaRequestData, completion: completion)
     }
     
-    func updateFacility(for step: FacilityCreationStep, with data: Encodable, completion: @escaping (Result<String, Error>) -> Void) {
+    func updateFacility(with facilityID: String?, for step: FacilityCreationStep, with data: Encodable, completion: @escaping (Result<String, Error>) -> Void) {
+        
+        guard let facilityID = facilityID else {
+            return completion(.failure(RequestError.unknown("FacilityID not found.")))
+        }
         
         switch step {
             
@@ -47,33 +51,33 @@ class CreateFacilityUseCase {
         case .stepFive:
             let stepFiveRequestData = data as! FacilityRulesRequestBody
             
-            createFacilityRepo.updateFacilityRules(stepFiveRequestData, completion: completion)
+            createFacilityRepo.updateFacilityRules(with: facilityID, stepFiveRequestData, completion: completion)
             
         case .stepSix:
             let stepSixRequestData = data as! FacilityLocationRequestBody
             
-            createFacilityRepo.updateFacilityLocation(stepSixRequestData, completion: completion)
+            createFacilityRepo.updateFacilityLocation(with: facilityID, stepSixRequestData, completion: completion)
             
         case .stepSeven:
             guard let stepSevenRequestData = data as? FacilityCheckInTimeRequestBody else {
                 return
             }
             
-            createFacilityRepo.updateFacilityCheckInTime(stepSevenRequestData, completion: completion)
+            createFacilityRepo.updateFacilityCheckInTime(with: facilityID, stepSevenRequestData, completion: completion)
             
         case .stepEight:
             guard let stepEightRequestData = data as? FacilityPriceRequestBody else {
                 return
             }
             
-            createFacilityRepo.updateFacilityPrice(stepEightRequestData,completion: completion)
+            createFacilityRepo.updateFacilityPrice(with: facilityID, stepEightRequestData,completion: completion)
             
         case .stepNine:
             guard let stepNineRequestData = data as? FacilityDescriptionRequestBody else {
                 completion(.failure(RequestError.unknown("Unable to create request body.")))
                 return
             }
-            createFacilityRepo.updateFacilityDescription(stepNineRequestData, completion: completion)
+            createFacilityRepo.updateFacilityDescription(with: facilityID, stepNineRequestData, completion: completion)
             
         case .stepTen:
             
@@ -93,12 +97,20 @@ class CreateFacilityUseCase {
         }
     }
     
-    func getChecklist(completion: @escaping (Result<Checklist, Error>) -> Void) {
-        createFacilityRepo.getChecklist(completion: completion)
+    func getChecklist(for facilityID: String?, completion: @escaping (Result<Checklist, Error>) -> Void) {
+        
+        guard let facilityID = facilityID else {
+            return completion(.failure(RequestError.unknown("FacilityID not found.")))
+        }
+
+        createFacilityRepo.getChecklist(for: facilityID, completion: completion)
     }
     
-    func publishFacility(completion: @escaping (Result<String, Error>) -> Void) {
-        createFacilityRepo.publishFacility(completion: completion)
+    func publishFacility(with facilityID: String?, completion: @escaping (Result<String, Error>) -> Void) {
+        guard let facilityID = facilityID else {
+            return completion(.failure(RequestError.unknown("FacilityID not found.")))
+        }
+        createFacilityRepo.publishFacility(with: facilityID, completion: completion)
     }
     
 }

@@ -43,15 +43,15 @@ struct MyBookings: View {
                         
                     
                     HStack{
-                        TabBarText(viewRouter: viewRouter, title: "Upcoming", width: UIScreen.main.bounds.width / 5, height: 3, assignedTab: .upcoming)
+                        TabBarText(viewRouter: viewRouter, title: "Upcoming", width: UIScreen.main.bounds.width / 5, height: 3, assignedTab: .one)
                         
                         Spacer()
                         
-                        TabBarText(viewRouter: viewRouter, title: "Present", width: UIScreen.main.bounds.width / 5, height: 3, assignedTab: .present)
+                        TabBarText(viewRouter: viewRouter, title: "Present", width: UIScreen.main.bounds.width / 5, height: 3, assignedTab: .two)
                         
                         Spacer()
                         
-                        TabBarText(viewRouter: viewRouter, title: "Past", width: UIScreen.main.bounds.width / 5, height: 3, assignedTab: .past)
+                        TabBarText(viewRouter: viewRouter, title: "Past", width: UIScreen.main.bounds.width / 5, height: 3, assignedTab: .three)
                     }.padding(.horizontal)
                         .padding(.bottom, 4)
                         
@@ -60,13 +60,13 @@ struct MyBookings: View {
                 
                 Spacer()
                 switch viewRouter.currentTab {
-                case .upcoming:
+                case .one:
                     UpcomingBookings()
                         .environmentObject(myBookingsViewModel)
                         .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
                         .onLeftSwipe {
                             withAnimation {
-                                viewRouter.currentTab = .present
+                                viewRouter.currentTab = .two
                             }
                         }
                         .onAppear {
@@ -80,19 +80,19 @@ struct MyBookings: View {
                         }
                         
                     
-                case .present:
+                case .two:
                     PresentBookings()
                         .environmentObject(myBookingsViewModel)
                         .transition(.asymmetric(insertion: .opacity, removal: .opacity))
                         .onHorizontalSwipe(
                             onLeft: {
                                 withAnimation {
-                                    viewRouter.currentTab = .past
+                                    viewRouter.currentTab = .three
                                 }
                             },
                             onRight: {
                                 withAnimation {
-                                    viewRouter.currentTab = .upcoming
+                                    viewRouter.currentTab = .one
                                 }
                             })
                         .onAppear {
@@ -104,13 +104,13 @@ struct MyBookings: View {
                             //myBookingsViewModel.screenState = .loading
                         }
                     
-                case .past:
+                case .three:
                     PastBookings()
                         .environmentObject(myBookingsViewModel)
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
                         .onRightSwipe {
                             withAnimation {
-                                viewRouter.currentTab = .present
+                                viewRouter.currentTab = .two
                             }
 
                         }

@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import UserNotifications
 
 
 class UploadManager: NSObject {
@@ -16,11 +15,6 @@ class UploadManager: NSObject {
     typealias ProgressHandler = (Percentage) -> Void
     typealias CompletionHandler = (Result<String, Error>) -> Void
     
-    //    typealias Percentage = Double
-    //    typealias Publisher = AnyPublisher<Percentage, Error>
-    
-    // Notification center property
-    let userNotificationCenter = UNUserNotificationCenter.current()
     
     private typealias Subject = CurrentValueSubject<Percentage, Error>
     
@@ -40,15 +34,6 @@ class UploadManager: NSObject {
                     to targetURL: URL,
                     progressHandler: @escaping ProgressHandler,
                     completionHandler: @escaping CompletionHandler) {
-        
-//        let tempDir = FileManager.default.temporaryDirectory
-//        let localURL = tempDir.appendingPathComponent("throwaway")
-//
-//        do {
-//            try data.write(to: localURL)
-//        } catch {
-//            print("Error writing data to file")
-//        }
 
         
         var request = URLRequest(
@@ -59,11 +44,6 @@ class UploadManager: NSObject {
         request.httpMethod = "PUT"
         request.setValue("multipart/form-data", forHTTPHeaderField: "Content-Type")
         
-        //        let subject = Subject(0)
-        //        var removeSubject: (() -> Void)?
-        
-        
-        
         let task = urlSession.uploadTask(
             with: request,
             fromFile: pathURL)
@@ -71,7 +51,6 @@ class UploadManager: NSObject {
         progressHandlersByTaskID[task.taskIdentifier] = progressHandler
         completionHadlerByTask[task.taskIdentifier] = completionHandler
         task.resume()
-        //urlSession.finishTasksAndInvalidate()
     }
     
     func finishUploadingTasksAndInvalidate(){

@@ -8,11 +8,14 @@
 import SwiftUI
 
 class MaterialTabViewRouter: ObservableObject {
-    @Published var currentTab: MaterialTabViewPage = .upcoming
+    @Published var currentTab: MaterialTabViewPage = .one
 }
 
 enum MaterialTabViewPage {
-    case upcoming
-    case present
-    case past
+    case one
+    case two
+    case three
 }
+
+
+

@@ -26,12 +26,13 @@ struct MyAddsScreen: View {
             }
             
             
-            //MARK: - My Unit
-            
-            RowButton(title: "My Units", icon: "house.fill")
-                .onTapGesture {
-                    print("My Units")
-                }
+            //MARK: - My Units
+            NavigationLink{
+                MyUnitsScreen()
+            } label: {
+                RowButton(title: "My Units", icon: "house.fill")
+
+            }
             
             //MARK: - Guests
             

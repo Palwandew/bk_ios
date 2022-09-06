@@ -29,15 +29,15 @@ struct MaterialTabView: View {
                     
                     
                     HStack{
-                        TabBarText(viewRouter: viewRouter, title: "Upcoming", width: geomerty.size.width/5, height: geomerty.size.height/150, assignedTab: .upcoming)
+                        TabBarText(viewRouter: viewRouter, title: "Upcoming", width: geomerty.size.width/5, height: geomerty.size.height/150, assignedTab: .one)
                         
                         Spacer()
                         
-                        TabBarText( viewRouter: viewRouter, title: "Present", width: geomerty.size.width/5, height: geomerty.size.height/150, assignedTab: .present)
+                        TabBarText( viewRouter: viewRouter, title: "Present", width: geomerty.size.width/5, height: geomerty.size.height/150, assignedTab: .two)
                         
                         Spacer()
                         
-                        TabBarText( viewRouter: viewRouter, title: "Past", width: geomerty.size.width/5, height: geomerty.size.height/150, assignedTab: .past)
+                        TabBarText( viewRouter: viewRouter, title: "Past", width: geomerty.size.width/5, height: geomerty.size.height/150, assignedTab: .three)
                     }
                     .padding(.horizontal)
                     .frame(width: geomerty.size.width, height: geomerty.size.height/8)

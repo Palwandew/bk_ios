@@ -56,7 +56,7 @@ class PhotosViewModel: ObservableObject {
         var imagesToUpload = images
     
 
-        for photoURL in images {
+        for photoURL in imagesToUpload {
                 
                 self.uploadPhotoUsecase.uploadPhoto(of: facilityID, from: photoURL) { progress in
                     
@@ -78,8 +78,18 @@ class PhotosViewModel: ObservableObject {
                         print("url that upload \(photoURL)")
                         imagesToUpload.removeAll(where: {$0 == photoURL})
                         image += 1
+                        if imagesToUpload.isEmpty{
+                            DispatchQueue.main.async {
+                                self.uploadPhotoUsecase.finishURLSession()
+                                self.showPublishAdScreen = true
+                            }
+                        }
                     }
                 }
+        }
+        print("Outside for loop")
+        if imagesToUpload.isEmpty{
+            showPublishAdScreen = true
         }
     }
 //

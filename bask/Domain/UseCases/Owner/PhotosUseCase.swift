@@ -22,4 +22,8 @@ class PhotosUsecase {
         photosRepository.uploadPhoto(of: facilityID, from: path, progress: progress, completion: completion)
     }
     
+    func finishURLSession(){
+        photosRepository.finishUploadingSession()
+    }
+    
 }

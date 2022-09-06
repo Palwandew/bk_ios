@@ -9,6 +9,8 @@ import Foundation
 
 
 class PhotosRepositoryImpl: PhotosDomainRepoProtocol {
+    
+    
     private let uploadManager: UploadManager
     
     
@@ -24,6 +26,8 @@ class PhotosRepositoryImpl: PhotosDomainRepoProtocol {
     private func getSignedUrl(queryItems: [URLQueryItem], completion: @escaping (Result<PhotoSignedURLDataClass, Error>) -> Void) {
         
         let endpoint = Endpoints.GET_SIGNED_URL(with: queryItems)
+        
+       
         
         print("Signed url: \(String(describing: endpoint.url?.absoluteString))")
         
@@ -56,6 +60,8 @@ class PhotosRepositoryImpl: PhotosDomainRepoProtocol {
     }
     
     
+    
+    
     func uploadPhoto(of facilityID: String, from path: URL, progress: @escaping (Double) -> Void, completion: @escaping (Result<String, Error>) -> Void) {
         
         let facilityIDQueryItem = URLQueryItem(name: "facilityId", value: facilityID)
@@ -83,6 +89,10 @@ class PhotosRepositoryImpl: PhotosDomainRepoProtocol {
                 }
             }
         }
+    }
+    
+    func finishUploadingSession() {
+        uploadManager.finishUploadingTasksAndInvalidate()
     }
     
 }

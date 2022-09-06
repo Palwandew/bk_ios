@@ -419,7 +419,7 @@ class AddNewUnitViewModel: ObservableObject {
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
-                    self.shallRetry = true
+                    self.showToast = true
                     self.toastStyle = .success
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
@@ -428,7 +428,7 @@ class AddNewUnitViewModel: ObservableObject {
             case .failure(_):
                 
                 DispatchQueue.main.async {
-                    self.shallRetry = true
+                    self.showToast = true
                     self.toastStyle = .failure
                 }
                 

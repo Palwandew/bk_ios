@@ -48,7 +48,7 @@ struct FacilityPublishChecklistScreen: View {
                 //MARK: - Continue Button
                 
                 NavigationLink(destination:
-                                PublishFacilityScreen().environmentObject(viewModel), isActive: $showPublish) {
+                                PublishFacilityScreen().environmentObject(viewModel), isActive: $photosViewModel.showPublishAdScreen) {
                     EmptyView()
                 }.isDetailLink(false)
                 
@@ -91,7 +91,7 @@ struct FacilityPublishChecklistScreen: View {
         }.onAppear {
             
             print("on appear")
-            //viewModel.getChecklist()
+            viewModel.getChecklist()
         }
     }
 }

@@ -77,6 +77,7 @@ class UploadManager: NSObject {
     func finishUploadingTasksAndInvalidate(){
         urlSession.finishTasksAndInvalidate()
     }
+    
 }
 
 extension UploadManager: URLSessionTaskDelegate {

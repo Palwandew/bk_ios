@@ -11,4 +11,5 @@ protocol PhotosDomainRepoProtocol {
     
     func uploadPhoto(of facilityID: String, from path: URL, progress: @escaping (Double) -> Void, completion: @escaping (Result<String, Error>) -> Void)
     
+    func finishUploadingSession()
 }

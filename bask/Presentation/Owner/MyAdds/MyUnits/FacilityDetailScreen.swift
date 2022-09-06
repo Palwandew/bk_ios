@@ -33,57 +33,94 @@ struct FacilityDetailScreen: View {
         }
     
     var body: some View {
-        ZStack {
-            ZStack(alignment: .top){
-                //                Rectangle()
-                //                    .fill(Color.orange)
-                Image("sample_resort")
-                    .resizable()
-                    .brightness(-0.1)
-                
-                
-                
-                HStack {
-                    FadedBlueButton(icon: "chevron.left") {
+        ZStack(alignment: .bottom) {
+            Group {
+                VStack{
+                    //                Rectangle()
+                    //                    .fill(Color.orange)
+                    ZStack(alignment: .top) {
                         
-                        print("heloo")
-                        self.presentationMode.wrappedValue.dismiss()
+                        Image("sample_resort")
+                            .resizable()
+                        .brightness(-0.1)
+                        
+                        HStack {
+                            FadedBlueButton(icon: "chevron.left") {
+                                
+                                print("heloo")
+                                self.presentationMode.wrappedValue.dismiss()
 
+                                
+                            }.frame(width: 42, height: 42)
+                            
+                            Spacer()
+                            
+                            FadedBlueButton(icon: "ellipsis") {
+                                print("detials")
+                            }.frame(width: 42, height: 42)
+                        }.padding()
                         
-                    }.frame(width: 42, height: 42)
+                    }.frame(height: UIScreen.main.bounds.height * 0.375)
                     
+                    
+                    
+                    
+                  
                     Spacer()
-                    
-                    FadedBlueButton(icon: "ellipsis") {
-                        print("detials")
-                    }.frame(width: 42, height: 42)
-                }.padding()
-                
-            }.frame(height: UIScreen.main.bounds.height * 0.375)
-                .offset(y: 16)
-            
+                }
+            }
             
             
             VStack(alignment: .leading, spacing: 16){
                 Header(price: "800", rating: "4.2", status: "Booked")
-                
+
                 Text("Mountaina Resort")
                     .font(Font.custom("Poppins-Regular", size: 26))
                     .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
-                    
-                
+
+
                 HStack(spacing: 16) {
                     BookedDateTileView(date: "06", type: .checkIn)
-                    
+
                     BookedDateTileView(date: "09", type: .checkOut)
+
+                }
+
+                Group {
+                    Divider()
+                    
+                    CalendarButton()
+
+                    Divider()
+                    
+                    GuestInfoView(name: "Palwandew", rating: "4.2")
+                    
+                    Divider()
+                }
+
+                
+                
+                HStack{
+                    
+                    Image(systemName: "clock.fill")
+                        .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
+                    
+                    Text("Arrival after 3 PM")
+                        .font(Font.custom("Poppins-Medium", size: 14))
+                        .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
                     
                 }
                 
-                Divider()
-                
-                CalendarButton()
-
-                Divider()
+                HStack{
+                    
+                    Image(systemName: "calendar")
+                        .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
+                    
+                    Text("Free cancellation until 72 hours before booking time")
+                        .font(Font.custom("Poppins-Medium", size: 14))
+                        .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
+                    
+                }
                 
                 Spacer()
                 
@@ -98,16 +135,16 @@ struct FacilityDetailScreen: View {
 
                         Spacer()
                     }.background(RoundedRectangle(cornerRadius: 8).fill(Color(AppColor.DARK_BLUE)))
-                }.padding(.bottom)
-                
+                }
             }
             .padding()
             .frame(height: UIScreen.main.bounds.height * currentHeight)
             .background(Color.white)
             .roundCorners(radius: 16, [.topLeft, .topRight])
+            .shadow(radius: 4, y: -3)
             .gesture(simpleDrag)
             
-        }
+        }.navigationBarHidden(true)
     }
 }
 
@@ -252,5 +289,57 @@ struct CalendarButton: View {
                 }
             }
         }.padding(.horizontal)
+    }
+}
+
+struct GuestInfoView: View {
+    
+    let name: String
+    let rating: String
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                
+                Rectangle().fill(.gray).frame(width: 60, height: 60)
+                    .clipShape(Circle())
+                
+                VStack(alignment: .leading) {
+                    Text("Guest")
+                        .font(Font.custom("Poppins-Regular", size: 12))
+                        .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                    
+                    Text(name)
+                        .font(Font.custom("Poppins-Medium", size: 16))
+                        .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                }
+                
+                Spacer()
+                
+                Text(rating)
+                    .font(Font.custom("Poppins-Medium", size: 16))
+                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                
+                Image(systemName: "star.fill")
+                    .foregroundColor(.yellow)
+                
+            }
+            
+            
+            
+            HStack{
+                
+                Image(systemName: "star.fill")
+                    .foregroundColor(.yellow)
+                
+                Text("Complain")
+                    .font(Font.custom("Poppins-Regular", size: 16))
+                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                
+                Image(systemName: "arrow.right")
+                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                
+            }
+        }
     }
 }

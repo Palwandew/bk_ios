@@ -36,6 +36,9 @@
 		C43DCEB928BE0867005FB7F4 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCEB828BE0867005FB7F4 /* Toast.swift */; };
 		C441FF5A28A456FD00AAC00C /* UIApplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441FF5928A456FD00AAC00C /* UIApplicationHelper.swift */; };
 		C441FF5C28A4CE3C00AAC00C /* Amenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441FF5B28A4CE3C00AAC00C /* Amenity.swift */; };
+		C443CE1E28C89B06009E32F2 /* AmenityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443CE1D28C89B06009E32F2 /* AmenityCard.swift */; };
+		C443CE2028C8A706009E32F2 /* FacilityMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443CE1F28C8A706009E32F2 /* FacilityMapView.swift */; };
+		C443CE2228C8ABF5009E32F2 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443CE2128C8ABF5009E32F2 /* ReviewsView.swift */; };
 		C450F44428A7CE260083AB86 /* FreeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450F44328A7CE260083AB86 /* FreeService.swift */; };
 		C450F44628A7CE440083AB86 /* PaidService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450F44528A7CE440083AB86 /* PaidService.swift */; };
 		C45C84C628B7342C00646719 /* PhotosUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45C84C528B7342C00646719 /* PhotosUseCase.swift */; };
@@ -197,6 +200,9 @@
 		C43DCEB828BE0867005FB7F4 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		C441FF5928A456FD00AAC00C /* UIApplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationHelper.swift; sourceTree = "<group>"; };
 		C441FF5B28A4CE3C00AAC00C /* Amenity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amenity.swift; sourceTree = "<group>"; };
+		C443CE1D28C89B06009E32F2 /* AmenityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCard.swift; sourceTree = "<group>"; };
+		C443CE1F28C8A706009E32F2 /* FacilityMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityMapView.swift; sourceTree = "<group>"; };
+		C443CE2128C8ABF5009E32F2 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
 		C450F44328A7CE260083AB86 /* FreeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeService.swift; sourceTree = "<group>"; };
 		C450F44528A7CE440083AB86 /* PaidService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidService.swift; sourceTree = "<group>"; };
 		C45C84C528B7342C00646719 /* PhotosUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosUseCase.swift; sourceTree = "<group>"; };
@@ -772,6 +778,9 @@
 				C4918D6628A1D0C000A8777D /* GalleryImage.swift */,
 				C4A921C928B5AA6700969EF1 /* UploadProgressView.swift */,
 				C43DCEB828BE0867005FB7F4 /* Toast.swift */,
+				C443CE1D28C89B06009E32F2 /* AmenityCard.swift */,
+				C443CE1F28C8A706009E32F2 /* FacilityMapView.swift */,
+				C443CE2128C8ABF5009E32F2 /* ReviewsView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -929,6 +938,7 @@
 				C482683D289759600072147F /* FacilityRoomsScreen.swift in Sources */,
 				C482110E28C7315900D6F75F /* MyUnitsScreen.swift in Sources */,
 				C403100C289466210046B645 /* RentCollectionIndicator.swift in Sources */,
+				C443CE2028C8A706009E32F2 /* FacilityMapView.swift in Sources */,
 				C47BE342289AADD400B91D69 /* AmenityPriceDecriptionInputView.swift in Sources */,
 				C40310132894A2FE0046B645 /* LeftSwipe.swift in Sources */,
 				C4AF9B172828216600EBB141 /* RequestError.swift in Sources */,
@@ -1005,6 +1015,7 @@
 				C4AF9B222828216600EBB141 /* PostEndpoint.swift in Sources */,
 				C49191BE28A2F92700C03743 /* CreateFacilityDomainRepoProtocol.swift in Sources */,
 				C4D659B2282B4F5000FAE1D1 /* SignupViewModel.swift in Sources */,
+				C443CE1E28C89B06009E32F2 /* AmenityCard.swift in Sources */,
 				C4AF9B232828216600EBB141 /* PostViewModel.swift in Sources */,
 				C4BB005D2890C576000D2E47 /* MaterialSecureField.swift in Sources */,
 				C4AF9B242828216600EBB141 /* PostView.swift in Sources */,
@@ -1042,6 +1053,7 @@
 				C482111028C7353300D6F75F /* BookedFacilitiesScreen.swift in Sources */,
 				C410D26428B4897000914D84 /* PhotoUploadManager.swift in Sources */,
 				C4B538122899DE4A0067CC21 /* AccentGreen.swift in Sources */,
+				C443CE2228C8ABF5009E32F2 /* ReviewsView.swift in Sources */,
 				C41A26AB289C345E0057F3FE /* MaterialPriceField.swift in Sources */,
 				C4BB007A2891162E000D2E47 /* CountriesCallingCodeScreen.swift in Sources */,
 				C4BB007128910797000D2E47 /* LocalDataSource.swift in Sources */,

@@ -35,13 +35,12 @@ struct FacilityDetailScreen: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            Group {
+            
                 FacilityImagesSliderView(isPopupShown: $showPopup, onBackTapped: {
                     presentationMode.wrappedValue.dismiss()
                 }, onPopupTapped: {
                     showPopup.toggle()
                 })
-            }
             
             
             ScrollView {
@@ -154,18 +153,18 @@ struct FacilityDetailScreen: View {
                     
                     
                     //MARK: - Message Guest Button
-//                    Button {
-//                        print("message guest")
-//                    } label: {
-//                        HStack {
-//                            Spacer()
-//                            Text("Message Guest")
-//                                .foregroundColor(.white)
-//                                .padding()
-//
-//                            Spacer()
-//                        }.background(RoundedRectangle(cornerRadius: 8).fill(Color(AppColor.DARK_BLUE)))
-//                    }
+                    Button {
+                        print("message guest")
+                    } label: {
+                        HStack {
+                            Spacer()
+                            Text("Message Guest")
+                                .foregroundColor(.white)
+                                .padding()
+
+                            Spacer()
+                        }.background(RoundedRectangle(cornerRadius: 8).fill(Color(AppColor.DARK_BLUE)))
+                    }
                 }
                 .padding()
                 

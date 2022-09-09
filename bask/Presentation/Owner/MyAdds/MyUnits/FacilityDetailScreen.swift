@@ -15,41 +15,33 @@ struct FacilityDetailScreen: View {
     @State var newHeight = 0
     @State var currentHeight = 0.610
     @State var showPopup: Bool = false
-    var simpleDrag: some Gesture {
-            DragGesture()
-                .onChanged { value in
-                    //self.location = value.location
-                    print("Locaion change to \(value.location)")
-                    if value.location.y < 0 && currentHeight < 0.90{
-                        currentHeight = currentHeight + abs(value.location.y/100)
-                        print("Current Height: \(currentHeight)")
-                    }
-                    self.isDragging = true
-
-                }
-                .onEnded {_ in
-                    self.isDragging = false
-                    
-                }
-        }
+    @State var willShowCancelBookingDialog: Bool = false
     
+    
+    //MARK: - Body
     var body: some View {
         ZStack(alignment: .bottom) {
             
-                FacilityImagesSliderView(isPopupShown: $showPopup, onBackTapped: {
+            
+            //MARK: - Images Slider
+            
+            FacilityImagesSliderView(isPopupShown: $showPopup, cancelBookingDialog: $willShowCancelBookingDialog, onBackTapped: {
                     presentationMode.wrappedValue.dismiss()
                 }, onPopupTapped: {
                     showPopup.toggle()
                 })
             
             
+            //MARK: - Half Modal Sheet
+            
             ScrollView {
                 VStack(alignment: .leading, spacing: 16){
                     
+                    // MARK: - Status
                     Group {
                         Header(price: "800", rating: "4.2", status: "Booked")
                         
-                        Text("Mountaina Resort")
+                        Text("Mountaina Resort Chilas Diamer Pakistan")
                             .font(Font.custom("Poppins-Regular", size: 26))
                             .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
 
@@ -59,6 +51,8 @@ struct FacilityDetailScreen: View {
 
                     
 
+                    //MARK: - Calendar & Guest
+                    
                     Group {
                         Divider()
                         
@@ -71,7 +65,7 @@ struct FacilityDetailScreen: View {
                         Divider()
                     }
 
-                    
+                    //MARK: - Cancelation Policy
                     
                     Group {
                         HStack{
@@ -99,6 +93,8 @@ struct FacilityDetailScreen: View {
                     
                     Divider()
                     
+                    
+                    //MARK: - Size
                     Group {
                         HStack{
                             
@@ -116,7 +112,7 @@ struct FacilityDetailScreen: View {
                     }
                     
                     
-                    // Amenity car
+                    // MARK: - Amenities
                     Group {
                         Text("Amenities")
                             .font(Font.custom("Poppins-Regular", size: 20))
@@ -174,17 +170,87 @@ struct FacilityDetailScreen: View {
             //.gesture(simpleDrag)
             }.frame(height: UIScreen.main.bounds.height * currentHeight)
             
-        }.navigationBarHidden(true)
+        }
+        .alertDialog(isShowing: $willShowCancelBookingDialog, content: {
+         
+            
+            //MARK: - Cancel Dialog
+            BookingCancelationDialog(onProceedCancelation: {
+                print("Send cancelation request")
+            }, onDismissDialog: {
+                willShowCancelBookingDialog.toggle()
+            })
+        })
+        .navigationBarHidden(true)
     }
 }
 
 struct FacilityDetailScreen_Previews: PreviewProvider {
     static var previews: some View {
         FacilityDetailScreen()
+        
+       // BookingCancelationDialog()//.previewLayout(.sizeThatFits)
     }
 }
 
 
+//MARK: - BookingCancelationDialog
+struct BookingCancelationDialog: View {
+    
+    let onProceedCancelation: () -> Void
+    let onDismissDialog: () -> Void
+    
+    var body: some View {
+        
+        VStack(alignment: .leading, spacing: 16){
+            
+            HStack {
+                Spacer()
+                Image("icon_complain")
+                Spacer()
+            }
+            
+            Text("cancel_booking_title")
+                .font(.custom("Poppins-Regular", size: 20, relativeTo: .body))
+                .foregroundColor(Color(AppColor.DARKEST_BLUE))
+            
+            Text("You want to cancel booking on 08.03-15.03. If you cancel guest`s booking you will be fined on 50% of facility cost.")
+                .font(.custom("Poppins-Regular", size: 16, relativeTo: .body))
+                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+            
+            HStack {
+                
+                Spacer()
+                
+                VStack(alignment: .trailing, spacing: 16){
+                    
+                    Button {
+                        onProceedCancelation()
+                    } label: {
+                        Text("Cancel booking and lose 50%")
+                            .font(.custom("Poppins-Regular", size: 16, relativeTo: .body))
+                            .foregroundColor(Color(AppColor.RED))
+                    }
+                    
+                    Button {
+                        onDismissDialog()
+                    } label: {
+                        Text("Don't cancel the booking")
+                            .font(.custom("Poppins-Regular", size: 16, relativeTo: .body))
+                            .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                    }
+                    
+                }
+            }
+        }
+        .padding(24)
+    }
+}
+
+
+//MARK: - View used in the screen.
+
+//MARK: - FaddedBlueButton
 struct FadedBlueButton: View {
     let icon: String
     let action: () -> Void
@@ -210,6 +276,8 @@ struct FadedBlueButton: View {
     }
 }
 
+
+//MARK: - Header
 struct Header: View {
     let price: String
     let rating: String
@@ -241,12 +309,14 @@ struct Header: View {
                 .font(Font.custom("Poppins-Medium", size: 16))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
-            Image(systemName: "calendar")
+            Image("icon_booked_calendar")
                 .foregroundColor(.blue)
         }
     }
 }
 
+
+//MARK: - BookedDateTileView
 struct BookedDateTileView: View {
     
     let date: String
@@ -293,6 +363,8 @@ struct BookedDateTileView: View {
     }
 }
 
+
+//MARK: - CalendarButton
 struct CalendarButton: View {
     var body: some View {
         HStack {
@@ -322,6 +394,9 @@ struct CalendarButton: View {
     }
 }
 
+
+
+//MARK: - GuestInfoView
 struct GuestInfoView: View {
     
     let name: String
@@ -359,8 +434,9 @@ struct GuestInfoView: View {
             
             HStack{
                 
-                Image(systemName: "star.fill")
-                    .foregroundColor(.yellow)
+                Image("icon_complain")
+                    .resizable()
+                    .frame(width: 24, height: 24)
                 
                 Text("Complain")
                     .font(Font.custom("Poppins-Regular", size: 16))
@@ -374,6 +450,8 @@ struct GuestInfoView: View {
     }
 }
 
+
+//MARK: - SizeInfoView
 struct SizeInfoView: View {
     
     let size: String
@@ -397,6 +475,8 @@ struct SizeInfoView: View {
     }
 }
 
+
+//MARK: - BookingDatesView
 struct BookingDatesView: View {
     var body: some View {
         HStack(spacing: 16) {
@@ -408,6 +488,8 @@ struct BookingDatesView: View {
     }
 }
 
+
+//MARK: PopupView
 struct PopupView: View {
     
     fileprivate let onButtonTapped: (PopupButton) -> Void
@@ -417,7 +499,10 @@ struct PopupView: View {
             Spacer()
             VStack(alignment: .leading) {
                 Button {
-                    onButtonTapped(.cancel)
+                    withAnimation {
+                        onButtonTapped(.cancel)
+                    }
+
                 } label: {
                     Text("Cancel booking")
                         .font(.custom("Poppins-Regular", size: 14, relativeTo: .body))
@@ -426,7 +511,9 @@ struct PopupView: View {
                 }
                 
                 Button {
-                    onButtonTapped(.edit)
+                    withAnimation {
+                        onButtonTapped(.edit)
+                    }
                 } label: {
                     Text("Edit Description")
                     .font(.custom("Poppins-Regular", size: 14, relativeTo: .body))
@@ -435,7 +522,9 @@ struct PopupView: View {
                 }
                 
                 Button {
-                    onButtonTapped(.unpublish)
+                    withAnimation {
+                        onButtonTapped(.unpublish)
+                    }
                 } label: {
                     Text("Unpublish Item")
                     .font(.custom("Poppins-Regular", size: 14, relativeTo: .body))
@@ -451,15 +540,20 @@ struct PopupView: View {
     }
 }
 
+
+//MARK: - PopupButton
 fileprivate enum PopupButton{
     case cancel
     case edit
     case unpublish
 }
 
+
+//MARK: - FacilityImagesSliderView
 struct FacilityImagesSliderView: View {
     
     @Binding var isPopupShown: Bool
+    @Binding var cancelBookingDialog: Bool
     let onBackTapped: () -> Void
     let onPopupTapped: () -> Void
     
@@ -469,9 +563,7 @@ struct FacilityImagesSliderView: View {
             //                    .fill(Color.orange)
             ZStack(alignment: .top) {
                 
-                Image("sample_resort")
-                    .resizable()
-                    .brightness(-0.1)
+                FacilityImageSliderView()
                 
                 VStack(spacing: -8) {
                     HStack {
@@ -498,10 +590,14 @@ struct FacilityImagesSliderView: View {
                             switch button {
                             case .cancel:
                                 print("Cancel")
+                                cancelBookingDialog.toggle()
+                                isPopupShown.toggle()
                             case .edit:
                                 print("edit")
+                                isPopupShown.toggle()
                             case .unpublish:
                                 print("Unpub")
+                                isPopupShown.toggle()
                             }
                         })
                             .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
@@ -509,7 +605,7 @@ struct FacilityImagesSliderView: View {
                     
                 }
                 
-            }.frame(height: UIScreen.main.bounds.height * 0.375)
+            }.frame(height: UIScreen.main.bounds.height * 0.340)
             
             
             

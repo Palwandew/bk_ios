@@ -14,3 +14,4 @@
 "valid_roon_length" = "Required Field";
 "valid_description" = "Required";
 "loading" = "Working";
+"cancel_booking_title" = "Are you sure you want to cancel the booking?";

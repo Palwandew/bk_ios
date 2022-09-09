@@ -34,7 +34,7 @@ struct CustomAlertDialog<DialogContent: View>: ViewModifier {
                 
             if isShowing {
                 // the semi-transparent overlay
-                Rectangle().foregroundColor(Color.black.opacity(0.6))
+                Rectangle().foregroundColor(Color.black.opacity(0.6)).edgesIgnoringSafeArea(.all)
                 // the dialog content is in a ZStack to pad it from the edges
                 // of the screen
                 ZStack {

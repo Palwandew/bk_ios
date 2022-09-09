@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FacilityImageSliderView: View {
     @State private var currentIndex = 0
-    private let colors: [Color] = [.red, .blue, .green, .orange, .yellow, .red, .blue, .green, .orange, .yellow, .red, .blue, .green, .orange, .yellow, .green]
+    private let colors: [Color] = [.red, .blue]
       
       // MARK: - Body
       
@@ -22,8 +22,20 @@ struct FacilityImageSliderView: View {
               }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            ImageIndexIndicatorView(numberOfPages: colors.count, currentIndex: currentIndex)
-                .padding(.bottom)
+            HStack(spacing: -48) {
+                
+                Spacer()
+                
+                ImageIndexIndicatorView(numberOfPages: colors.count, currentIndex: currentIndex)
+                    
+                Spacer()
+                
+                Text("\(currentIndex + 1) / \(colors.count)")
+                    .font(.custom("Poppins-Regular", size: 12, relativeTo: .body))
+                    .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                    .padding(.trailing)
+                
+            }.padding(.bottom, 48)
         }
     }
 }

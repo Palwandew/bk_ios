@@ -46,7 +46,6 @@ struct MyUnitsScreen: View {
             case .one:
 
                 BookedFacilitiesScreen()
-                    .environmentObject(viewModel)
                     .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
                     .onLeftSwipe {
                         withAnimation {
@@ -56,7 +55,7 @@ struct MyUnitsScreen: View {
                     .onAppear {
                         print("onAppear() -> Upcoming bookings")
 //                            myBookingsViewModel.screenState = .loading
-                        viewModel.updateState()
+                        
                     }
                     .onDisappear {
                         print("onDisappear() -> Upcoming bookings")

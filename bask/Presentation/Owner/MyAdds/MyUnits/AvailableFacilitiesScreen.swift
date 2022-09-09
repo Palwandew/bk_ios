@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct AvailableFacilitiesScreen: View {
-    //@EnvironmentObject var viewModel: MyUnitsViewModel
-    @StateObject var viewModel = MyUnitsViewModel()
+    @EnvironmentObject var viewModel: MyUnitsViewModel
+    //@StateObject var viewModel = MyUnitsViewModel()
     @State var availableFacilities: [Int] = [5]
     var body: some View {
         

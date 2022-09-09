@@ -32,6 +32,8 @@ extension Endpoints{
     static let CREATE_IMAGE_LINK: Endpoints = Endpoints(path: "image", queryItems: nil)
     static let ADD_FREE_AMENITIES: Endpoints = Endpoints(path: "facilityservice/amenitiesfree")
     static let ADD_PAID_AMENITIES: Endpoints = Endpoints(path: "facilityservice/amenitiesextra")
+    static let GET_BOOKED_FACILITIES: Endpoints = Endpoints(path: "booking/currentmonth")
+    
     static func GET_CHECKLIST(for facilityID: String) -> Endpoints {
      return Endpoints(path: "facility/\(facilityID)")
     }

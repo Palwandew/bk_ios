@@ -16,6 +16,7 @@ struct FacilityDetailScreen: View {
     @State var currentHeight = 0.610
     @State var showPopup: Bool = false
     @State var willShowCancelBookingDialog: Bool = false
+    @State var showCalendarSheet: Bool = false
     let style: FacilityDetailsStyle
     
     //MARK: - Body
@@ -55,6 +56,9 @@ struct FacilityDetailScreen: View {
                                 Divider().padding(.vertical)
                                 
                                 CalendarButton()
+                                    .onTapGesture {
+                                        showCalendarSheet.toggle()
+                                    }
                                 
                                 Divider().padding(.vertical)
                                 
@@ -131,6 +135,9 @@ struct FacilityDetailScreen: View {
             }, onDismissDialog: {
                 willShowCancelBookingDialog.toggle()
             })
+        })
+        .sheet(isPresented: $showCalendarSheet, content: {
+            Text("Calendar for booked facility")
         })
         .navigationBarHidden(true)
     }

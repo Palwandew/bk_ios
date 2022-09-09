@@ -10,7 +10,7 @@ import SwiftUI
 struct BookedFacilitiesScreen: View {
     @EnvironmentObject var viewModel: MyUnitsViewModel
     //@StateObject var viewModel = MyUnitsViewModel()
-    @State var bookedFacilities: [Int] = []
+    @State var bookedFacilities: [Int] = [1]
     var body: some View {
         
         switch viewModel.screenState {
@@ -26,9 +26,13 @@ struct BookedFacilitiesScreen: View {
                     LazyVStack(alignment: .leading){
                         ForEach(0...bookedFacilities.count, id:\.self) { _ in
                             
-                            BookedFacilityCard(bookingDates: "15 Jun - 20 May, 2022", name: "Sunny House", address: "Uhud Road, Al-Qatif")
-                                .frame(height: UIScreen.main.bounds.height * 0.15)
-                                .padding()
+                            NavigationLink {
+                                FacilityDetailScreen(style: .booked)
+                            } label: {
+                                BookedFacilityCard(bookingDates: "15 Jun - 20 May, 2022", name: "Sunny House", address: "Uhud Road, Al-Qatif")
+                                    .frame(height: UIScreen.main.bounds.height * 0.15)
+                                    .padding()
+                            }
                             
                         }
                     }

@@ -16,7 +16,7 @@ struct FacilityDetailScreen: View {
     @State var currentHeight = 0.610
     @State var showPopup: Bool = false
     @State var willShowCancelBookingDialog: Bool = false
-    
+    let style: FacilityDetailsStyle
     
     //MARK: - Body
     var body: some View {
@@ -25,11 +25,11 @@ struct FacilityDetailScreen: View {
             
             //MARK: - Images Slider
             
-            FacilityImagesSliderView(isPopupShown: $showPopup, cancelBookingDialog: $willShowCancelBookingDialog, onBackTapped: {
-                    presentationMode.wrappedValue.dismiss()
-                }, onPopupTapped: {
-                    showPopup.toggle()
-                })
+            FacilityImagesSliderView(isPopupShown: $showPopup, cancelBookingDialog: $willShowCancelBookingDialog, popupStyle: style, onBackTapped: {
+                presentationMode.wrappedValue.dismiss()
+            }, onPopupTapped: {
+                showPopup.toggle()
+            })
             
             
             //MARK: - Half Modal Sheet
@@ -39,101 +39,51 @@ struct FacilityDetailScreen: View {
                     
                     // MARK: - Status
                     Group {
-                        Header(price: "800", rating: "4.2", status: "Booked")
+                        FacilityPriceHeader(price: "800", rating: "4.2", status: style)
                         
                         Text("Mountaina Resort Chilas Diamer Pakistan")
                             .font(Font.custom("Poppins-Regular", size: 26))
                             .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
-
-
-                        BookingDatesView()
-                    }
-
-                    
-
-                    //MARK: - Calendar & Guest
-                    
-                    Group {
-                        Divider()
                         
-                        CalendarButton()
-
-                        Divider()
-                        
-                        GuestInfoView(name: "Palwandew", rating: "4.2")
-                        
-                        Divider()
-                    }
-
-                    //MARK: - Cancelation Policy
-                    
-                    Group {
-                        HStack{
+                        switch style {
                             
-                            Image(systemName: "clock.fill")
-                                .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
+                            //MARK: - Booked Style
+                        case .booked:
+                            BookingDatesView()
                             
-                            Text("Arrival after 3 PM")
-                                .font(Font.custom("Poppins-Medium", size: 14))
-                                .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
-                            
-                        }
-                        
-                        HStack{
-                            
-                            Image(systemName: "calendar")
-                                .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
-                            
-                            Text("Free cancellation until 72 hours before booking time")
-                                .font(Font.custom("Poppins-Medium", size: 14))
-                                .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
-                            
-                        }
-                    }
-                    
-                    Divider()
-                    
-                    
-                    //MARK: - Size
-                    Group {
-                        HStack{
-                            
-                            SizeInfoView(size: "80 m2", label: "Living space")
-                            
-                            Spacer()
-                            
-                            SizeInfoView(size: "3", label: "Living rooms")
-                            
-                            Spacer()
-                            
-                            SizeInfoView(size: "20", label: "Capacity")
-                            
-                        }
-                    }
-                    
-                    
-                    // MARK: - Amenities
-                    Group {
-                        Text("Amenities")
-                            .font(Font.custom("Poppins-Regular", size: 20))
-                        .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                        
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            LazyHStack(spacing: 16){
+                            Group {
+                                Divider().padding(.vertical)
                                 
-                                AmenityCard(icon: "icon_parking", label: "Parking")
+                                CalendarButton()
                                 
-                                AmenityCard(icon: "icon_parking", label: "WiFi")
+                                Divider().padding(.vertical)
                                 
-                                AmenityCard(icon: "icon_parking", label: "Indoor pool")
+                                GuestInfoView(name: "Palwandew", rating: "4.2")
                                 
-                                AmenityCard(icon: "icon_parking", label: "Barbeque")
+                                Divider().padding(.vertical)
                                 
-                                AmenityCard(icon: "icon_parking", label: "Barbeque")
+                                SizeInfoView(space: "80 m2", rooms: "3", capacity: "8")
                                 
+                                FacilityAmenitiesView()
+                                
+                                Divider()
+                                    .padding(.vertical)
                             }
-                            .padding(2)
-                        
+                            
+                            
+                            //MARK: - Available Style
+                        case .available:
+                            SizeInfoView(space: "80 m2", rooms: "3", capacity: "8")
+                            
+                            FacilityAmenitiesView()
+                            
+                            Divider()
+                                .padding(.vertical)
+                            
+                            GuestInfoView(name: "Palwandew", rating: "4.2")
+                            
+                            Divider()
+                                .padding(.vertical)
                         }
                         
                         // MARK: - Location
@@ -142,12 +92,13 @@ struct FacilityDetailScreen: View {
                             .frame(height: UIScreen.main.bounds.height * 0.35)
                             .padding(.bottom)
                         
+                        Divider().padding(.vertical)
+                        
+                        //MARK: - Reviews
                         ReviewsView()
+                        
                     }
-                    
-                    
-                    
-                    
+
                     //MARK: - Message Guest Button
                     Button {
                         print("message guest")
@@ -157,9 +108,9 @@ struct FacilityDetailScreen: View {
                             Text("Message Guest")
                                 .foregroundColor(.white)
                                 .padding()
-
+                            
                             Spacer()
-                        }.background(RoundedRectangle(cornerRadius: 8).fill(Color(AppColor.DARK_BLUE)))
+                        }.background(RoundedRectangle(cornerRadius: 8).fill(Color(AppColor.DARKEST_BLUE)))
                     }
                 }
                 .padding()
@@ -167,12 +118,12 @@ struct FacilityDetailScreen: View {
                 .background(Color.white)
                 .roundCorners(radius: 16, [.topLeft, .topRight])
                 .shadow(radius: 4, y: -3)
-            //.gesture(simpleDrag)
+                //.gesture(simpleDrag)
             }.frame(height: UIScreen.main.bounds.height * currentHeight)
             
         }
         .alertDialog(isShowing: $willShowCancelBookingDialog, content: {
-         
+            
             
             //MARK: - Cancel Dialog
             BookingCancelationDialog(onProceedCancelation: {
@@ -187,9 +138,9 @@ struct FacilityDetailScreen: View {
 
 struct FacilityDetailScreen_Previews: PreviewProvider {
     static var previews: some View {
-        FacilityDetailScreen()
+        FacilityDetailScreen(style: .available)
         
-       // BookingCancelationDialog()//.previewLayout(.sizeThatFits)
+        // BookingCancelationDialog()//.previewLayout(.sizeThatFits)
     }
 }
 
@@ -250,368 +201,42 @@ struct BookingCancelationDialog: View {
 
 //MARK: - View used in the screen.
 
-//MARK: - FaddedBlueButton
-struct FadedBlueButton: View {
-    let icon: String
-    let action: () -> Void
-    var body: some View {
-        GeometryReader { geomerty in
-            
-            Button {
-                action()
-            } label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color(AppColor.DARK_BLUE).opacity(0.5))
-                        .frame(width: geomerty.size.width, height: geomerty.size.height)
-                    
-                    Image(systemName: icon)
-                        .foregroundColor(.white)
-                        .rotationEffect(icon.elementsEqual("ellipsis") ? .degrees(90) : .degrees(0))
-                }
-            }
-            
-            
-        }
-    }
+enum FacilityDetailsStyle{
+    case booked
+    case available
 }
 
 
-//MARK: - Header
-struct Header: View {
-    let price: String
-    let rating: String
-    let status: String
-    
+
+
+//MARK: - ArrivalDetailsView
+struct ArrivalDetailsView: View {
     var body: some View {
-        HStack {
-            Text("\(price) SAR")
-                .font(.custom("Poppins-Medium", size: 16, relativeTo: .body))
-                .foregroundColor(Color(AppColor.DARKEST_BLUE))
-            
-            Text("per night")
-                .font(Font.custom("Poppins-Regular", size: 14))
-                .foregroundColor(Color(AppColor.DARKEST_BLUE))
-            
-            
-            Divider()
-                .frame(height: 32)
-            Text("\(rating)")
-                .font(Font.custom("Poppins-Medium", size: 16))
-                .foregroundColor(Color(AppColor.DARKEST_BLUE))
-            
-            Image(systemName: "star.fill")
-                .foregroundColor(.yellow)
-            
-            Spacer()
-            
-            Text("Booked")
-                .font(Font.custom("Poppins-Medium", size: 16))
-                .foregroundColor(Color(AppColor.DARKEST_BLUE))
-            
-            Image("icon_booked_calendar")
-                .foregroundColor(.blue)
-        }
-    }
-}
-
-
-//MARK: - BookedDateTileView
-struct BookedDateTileView: View {
-    
-    let date: String
-    let type: TileType
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8){
-            HStack {
-                
-                switch type {
-                case .checkIn:
-                    Text("Check in")
-                case .checkOut:
-                    Text("Check out")
-                }
-                
-
-                
-                Spacer()
+        
+        VStack(alignment: .leading, spacing: 16) {
+            HStack{
                 
                 Image(systemName: "clock.fill")
-                    .foregroundColor(Color(AppColor.LIGHT_VOILET))
-            }
-            
-            HStack(alignment: .lastTextBaseline) {
-                Text(date)
-                    .font(Font.custom("Poppins-Regular", size: 33))
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                    .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
                 
-                
-                Text("MARCH 2022")
-                    .font(Font.custom("Poppins-Regular", size: 14))
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
-            }
-        }
-        .padding(8)
-        .background(RoundedRectangle(cornerRadius: 8).fill(Color(AppColor.BACKGROUND)))
-        .shadow(radius: 1)
-    }
-    
-    enum TileType{
-        case checkIn
-        case checkOut
-    }
-}
-
-
-//MARK: - CalendarButton
-struct CalendarButton: View {
-    var body: some View {
-        HStack {
-            Image(systemName: "calendar")
-                .foregroundColor(Color(AppColor.DARKEST_BLUE))
-            
-            Text("Calendar")
-                .font(Font.custom("Poppins-Medium", size: 16))
-                .foregroundColor(Color(AppColor.DARKEST_BLUE))
-            
-            Spacer()
-            
-            Button {
-                print("Calendar gooo")
-            } label: {
-                HStack{
-                    
-                    Text("View")
-                        .font(Font.custom("Poppins-Regular", size: 16))
-                        .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                    
-                    Image(systemName: "arrow.right")
-                        .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                }
-            }
-        }.padding(.horizontal)
-    }
-}
-
-
-
-//MARK: - GuestInfoView
-struct GuestInfoView: View {
-    
-    let name: String
-    let rating: String
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                
-                Rectangle().fill(.gray).frame(width: 60, height: 60)
-                    .clipShape(Circle())
-                
-                VStack(alignment: .leading) {
-                    Text("Guest")
-                        .font(Font.custom("Poppins-Regular", size: 12))
-                        .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
-                    
-                    Text(name)
-                        .font(Font.custom("Poppins-Medium", size: 16))
-                        .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                }
-                
-                Spacer()
-                
-                Text(rating)
-                    .font(Font.custom("Poppins-Medium", size: 16))
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                
-                Image(systemName: "star.fill")
-                    .foregroundColor(.yellow)
+                Text("Arrival after 3 PM")
+                    .font(Font.custom("Poppins-Medium", size: 14))
+                    .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
                 
             }
-            
-            
             
             HStack{
                 
-                Image("icon_complain")
-                    .resizable()
-                    .frame(width: 24, height: 24)
+                Image(systemName: "calendar")
+                    .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
                 
-                Text("Complain")
-                    .font(Font.custom("Poppins-Regular", size: 16))
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                
-                Image(systemName: "arrow.right")
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                Text("Free cancellation until 72 hours before booking time")
+                    .font(Font.custom("Poppins-Medium", size: 14))
+                    .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
                 
             }
         }
-    }
-}
-
-
-//MARK: - SizeInfoView
-struct SizeInfoView: View {
-    
-    let size: String
-    let label: String
-    
-    var body: some View {
-        VStack {
-            Text(size)
-                .font(.custom("Poppins-Medium", size: 16, relativeTo: .body))
-                .foregroundColor(Color(AppColor.DARKEST_BLUE))
-            
-            Text(label)
-                .font(.custom("Poppins-Regular", size: 12, relativeTo: .body))
-                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
-        }
-        .padding(.vertical)
-        .frame(width: UIScreen.main.bounds.width / 3.5, height: UIScreen.main.bounds.width / 5)
-        .background(Color(AppColor.BACKGROUND))
-        .cornerRadius(8)
-        .shadow(radius: 1)
-    }
-}
-
-
-//MARK: - BookingDatesView
-struct BookingDatesView: View {
-    var body: some View {
-        HStack(spacing: 16) {
-            BookedDateTileView(date: "06", type: .checkIn)
-            
-            BookedDateTileView(date: "09", type: .checkOut)
-            
-        }
-    }
-}
-
-
-//MARK: PopupView
-struct PopupView: View {
-    
-    fileprivate let onButtonTapped: (PopupButton) -> Void
-    
-    var body: some View {
-        HStack{
-            Spacer()
-            VStack(alignment: .leading) {
-                Button {
-                    withAnimation {
-                        onButtonTapped(.cancel)
-                    }
-
-                } label: {
-                    Text("Cancel booking")
-                        .font(.custom("Poppins-Regular", size: 14, relativeTo: .body))
-                        .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                    .padding(.top, 4)
-                }
-                
-                Button {
-                    withAnimation {
-                        onButtonTapped(.edit)
-                    }
-                } label: {
-                    Text("Edit Description")
-                    .font(.custom("Poppins-Regular", size: 14, relativeTo: .body))
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                    .padding(.top, 4)
-                }
-                
-                Button {
-                    withAnimation {
-                        onButtonTapped(.unpublish)
-                    }
-                } label: {
-                    Text("Unpublish Item")
-                    .font(.custom("Poppins-Regular", size: 14, relativeTo: .body))
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                    .padding(.top, 4)
-                }
-            }
-            .padding(.horizontal)
-            .padding(.vertical, 8)
-            .background(Color.white)
-            .cornerRadius(8)
-        }.padding(.trailing)
-    }
-}
-
-
-//MARK: - PopupButton
-fileprivate enum PopupButton{
-    case cancel
-    case edit
-    case unpublish
-}
-
-
-//MARK: - FacilityImagesSliderView
-struct FacilityImagesSliderView: View {
-    
-    @Binding var isPopupShown: Bool
-    @Binding var cancelBookingDialog: Bool
-    let onBackTapped: () -> Void
-    let onPopupTapped: () -> Void
-    
-    var body: some View {
-        VStack{
-            //                Rectangle()
-            //                    .fill(Color.orange)
-            ZStack(alignment: .top) {
-                
-                FacilityImageSliderView()
-                
-                VStack(spacing: -8) {
-                    HStack {
-                        FadedBlueButton(icon: "chevron.left") {
-                            
-                            onBackTapped()
-                            
-                            
-                        }.frame(width: 42, height: 42)
-                        
-                        Spacer()
-                        
-                        FadedBlueButton(icon: "ellipsis") {
-                            
-                            withAnimation {
-                                onPopupTapped()
-                            }
-                            
-                        }.frame(width: 42, height: 42)
-                    }.padding()
-                    
-                    if isPopupShown{
-                        PopupView(onButtonTapped: { button in
-                            switch button {
-                            case .cancel:
-                                print("Cancel")
-                                cancelBookingDialog.toggle()
-                                isPopupShown.toggle()
-                            case .edit:
-                                print("edit")
-                                isPopupShown.toggle()
-                            case .unpublish:
-                                print("Unpub")
-                                isPopupShown.toggle()
-                            }
-                        })
-                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
-                    }
-                    
-                }
-                
-            }.frame(height: UIScreen.main.bounds.height * 0.340)
-            
-            
-            
-            
-            
-            Spacer()
-        }
+        
+        
     }
 }

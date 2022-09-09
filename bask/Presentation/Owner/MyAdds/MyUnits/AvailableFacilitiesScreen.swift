@@ -26,9 +26,13 @@ struct AvailableFacilitiesScreen: View {
                     LazyVStack(alignment: .leading){
                         ForEach(0...availableFacilities.count, id:\.self) { _ in
                             
-                            AvailableFacilityCard(price: "800 SAR", name: "Sunny House", address: "Uhud Road, Al-Qatif")
-                                .frame(height: UIScreen.main.bounds.height * 0.15)
-                                .padding()
+                            NavigationLink {
+                                FacilityDetailScreen(style: .available)
+                            } label: {
+                                AvailableFacilityCard(price: "800 SAR", name: "Sunny House", address: "Uhud Road, Al-Qatif")
+                                    .frame(height: UIScreen.main.bounds.height * 0.15)
+                                    .padding()
+                            }
                             
                         }
                     }

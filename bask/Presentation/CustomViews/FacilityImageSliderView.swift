@@ -7,7 +7,69 @@
 
 import SwiftUI
 
-struct FacilityImageSliderView: View {
+//MARK: - FacilityImagesSliderView
+struct FacilityImagesSliderView: View {
+    
+    @Binding var isPopupShown: Bool
+    @Binding var cancelBookingDialog: Bool
+    let popupStyle: FacilityDetailsStyle
+    let onBackTapped: () -> Void
+    let onPopupTapped: () -> Void
+    
+    var body: some View {
+        VStack{
+            ZStack(alignment: .top) {
+                
+                ImageSliderView()
+                
+                VStack(spacing: -8) {
+                    HStack {
+                        FadedBlueButton(icon: "chevron.left") {
+                            
+                            onBackTapped()
+                            
+                            
+                        }.frame(width: 42, height: 42)
+                        
+                        Spacer()
+                        
+                        FadedBlueButton(icon: "ellipsis") {
+                            
+                            withAnimation {
+                                onPopupTapped()
+                            }
+                            
+                        }.frame(width: 42, height: 42)
+                    }.padding()
+                    
+                    if isPopupShown{
+                        PopupView(style: popupStyle, onButtonTapped: { button in
+                            switch button {
+                            case .cancel:
+                                print("Cancel")
+                                cancelBookingDialog.toggle()
+                                isPopupShown.toggle()
+                            case .edit:
+                                print("edit")
+                                isPopupShown.toggle()
+                            case .unpublish:
+                                print("Unpub")
+                                isPopupShown.toggle()
+                            }
+                        })
+                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
+                    }
+                    
+                }
+                
+            }.frame(height: UIScreen.main.bounds.height * 0.340)
+            
+            Spacer()
+        }
+    }
+}
+
+struct ImageSliderView: View {
     @State private var currentIndex = 0
     private let colors: [Color] = [.red, .blue]
       
@@ -37,12 +99,6 @@ struct FacilityImageSliderView: View {
                 
             }.padding(.bottom, 48)
         }
-    }
-}
-
-struct FacilityImageSliderView_Previews: PreviewProvider {
-    static var previews: some View {
-        FacilityImageSliderView()
     }
 }
 
@@ -94,3 +150,68 @@ struct ImageIndexIndicatorView: View {
   }
 }
 
+
+
+//MARK: PopupView
+struct PopupView: View {
+    
+    let style: FacilityDetailsStyle
+    fileprivate let onButtonTapped: (PopupButton) -> Void
+    
+    var body: some View {
+        HStack{
+            Spacer()
+            VStack(alignment: .leading) {
+                
+                if style == .booked {
+                    Button {
+                        withAnimation {
+                            onButtonTapped(.cancel)
+                        }
+                        
+                    } label: {
+                        Text("Cancel booking")
+                            .font(.custom("Poppins-Regular", size: 14, relativeTo: .body))
+                            .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                            .padding(.top, 4)
+                    }
+                }
+                
+                
+                Button {
+                    withAnimation {
+                        onButtonTapped(.edit)
+                    }
+                } label: {
+                    Text("Edit Description")
+                        .font(.custom("Poppins-Regular", size: 14, relativeTo: .body))
+                        .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                        .padding(.top, 4)
+                }
+                
+                Button {
+                    withAnimation {
+                        onButtonTapped(.unpublish)
+                    }
+                } label: {
+                    Text("Unpublish Item")
+                        .font(.custom("Poppins-Regular", size: 14, relativeTo: .body))
+                        .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                        .padding(.top, 4)
+                }
+            }
+            .padding(.horizontal)
+            .padding(.vertical, 8)
+            .background(Color.white)
+            .cornerRadius(8)
+        }.padding(.trailing)
+    }
+}
+
+
+//MARK: - PopupButton
+fileprivate enum PopupButton{
+    case cancel
+    case edit
+    case unpublish
+}

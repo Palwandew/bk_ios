@@ -29,7 +29,7 @@ struct UnpublishedFacilitiesScreen: View {
                             
                             
                             NavigationLink {
-                                FacilityDetailScreen()
+                                FacilityDetailScreen(style: .available)
                             } label: {
                                 UnpublishedFacilityCard(name: "Sunny House", progress: $progress, address: "Uhud Road, Al-Qatif")
                                     .frame(height: UIScreen.main.bounds.height * 0.15)

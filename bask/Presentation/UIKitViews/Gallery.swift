@@ -82,10 +82,15 @@ struct Gallery: UIViewControllerRepresentable {
         func generateThumbnail(of url: URL) -> Image {
             let url = url as CFURL
             var thumbNail: Image? = nil
-            if let imageSource = CGImageSourceCreateWithURL(url, nil) {
-                let maxPixel: CFNumber = 600 as CFNumber
-                let createThumbnail: CFBoolean = kCFBooleanTrue
-                let options = [kCGImageSourceCreateThumbnailFromImageIfAbsent: createThumbnail, kCGImageSourceThumbnailMaxPixelSize: maxPixel] as CFDictionary
+            let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+            if let imageSource = CGImageSourceCreateWithURL(url, imageSourceOptions) {
+                let maxPixel: CFNumber = max(UIScreen.main.bounds.width, UIScreen.main.bounds.height) * 0.8 as CFNumber
+                //let createThumbnail: CFBoolean = kCFBooleanTrue
+                let options =
+                [kCGImageSourceCreateThumbnailFromImageAlways: true,
+                 kCGImageSourceShouldCacheImmediately: true,
+                 kCGImageSourceCreateThumbnailWithTransform: true,
+                 kCGImageSourceThumbnailMaxPixelSize: maxPixel] as CFDictionary
                 
                 guard let cgImg = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, options) else {
                     return Image(systemName: "photo.fill")

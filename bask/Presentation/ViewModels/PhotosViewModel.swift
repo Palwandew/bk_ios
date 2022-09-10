@@ -144,8 +144,10 @@ class PhotosViewModel: ObservableObject {
     func imageIo(url: URL) -> CGImage? {
         let url = url as CFURL
         var thumbNail: CGImage? = nil
-        if let imageSource = CGImageSourceCreateWithURL(url, nil) {
+        let imageSourceOption = [kCGImageSourceShouldCache: false] as CFDictionary
+        if let imageSource = CGImageSourceCreateWithURL(url, imageSourceOption) {
             //let maxPixel: CFNumber = 200 as CFNumber
+            
             let createThumbnail: CFBoolean = kCFBooleanTrue
             let options = [kCGImageSourceCreateThumbnailFromImageIfAbsent: createThumbnail] as CFDictionary
             

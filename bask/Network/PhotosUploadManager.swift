@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 
-class UploadManager: NSObject {
+class PhotosUploadManager: NSObject {
     
     typealias Percentage = Double
     typealias ProgressHandler = (Percentage) -> Void
@@ -53,13 +53,15 @@ class UploadManager: NSObject {
         task.resume()
     }
     
+    
+    
     func finishUploadingTasksAndInvalidate(){
         urlSession.finishTasksAndInvalidate()
     }
     
 }
 
-extension UploadManager: URLSessionTaskDelegate {
+extension PhotosUploadManager: URLSessionTaskDelegate {
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         

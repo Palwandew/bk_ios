@@ -11,7 +11,7 @@ import Foundation
 class PhotosRepositoryImpl: PhotosDomainRepoProtocol {
     
     
-    private let uploadManager: UploadManager
+    private let uploadManager: PhotosUploadManager
     
     
     // Don't forget to change access-token
@@ -19,7 +19,7 @@ class PhotosRepositoryImpl: PhotosDomainRepoProtocol {
     
     let facilityID = "879605bb-766e-43bf-9e08-04900a7734eb"
     
-    init(uploadManager: UploadManager){
+    init(uploadManager: PhotosUploadManager){
         self.uploadManager = uploadManager
     }
     

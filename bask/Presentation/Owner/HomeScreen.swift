@@ -83,6 +83,7 @@ struct HomeScreen: View {
                         .navigationBarHidden(true)
                     
                 }
+
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .accentColor(Color(AppColor.ACCENT_GREEN))
                 .navigationBarHidden(true)

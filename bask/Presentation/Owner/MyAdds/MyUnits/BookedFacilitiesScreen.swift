@@ -12,6 +12,12 @@ struct BookedFacilitiesScreen: View {
     //@StateObject var viewModel = MyUnitsViewModel()
     @StateObject var model = BookedFacilitiesListViewModel()
     @State var bookedFacilities: [Int] = [1]
+    
+    init(){
+        print("Init --->: BookedFacilitiesScreen")
+    }
+    
+    
     var body: some View {
         
         switch model.state {
@@ -30,12 +36,13 @@ struct BookedFacilitiesScreen: View {
                             NavigationLink {
                                 FacilityDetailScreen(style: .booked)
                             } label: {
-                                BookedFacilityCard(bookingDates: facility.bookedDates
-                                                   , name: facility.description, address: facility.address)
+                                BookedFacilityCard(bookingDates: facility.bookedDates, name: facility.description,
+                                    imgURL: facility.imgURL,
+                                    address: facility.address)
                                 
                                     .frame(height: UIScreen.main.bounds.height * 0.15)
                                     .padding()
-                                    
+                                
                             }
                             
                             
@@ -64,23 +71,24 @@ struct BookedFacilityCard: View {
     
     let bookingDates: String
     let name: String
+    let imgURL: String
     let address: String
     
     var body: some View {
         
         GeometryReader { geometry in
-        ZStack{
-            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .fill(.white)
-                .shadow(radius: 2)
-            
-            HStack(alignment: .top){
-                    Image("sample_resort")
-                        .resizable()
+            ZStack{
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .fill(.white)
+                    .shadow(radius: 2)
+                
+                HStack(alignment: .top){
+                    
+                    ImageView(withURL: imgURL, size: CGSize(width: geometry.size.width * 0.40, height: geometry.size.height))
                         .frame(width: geometry.size.width * 0.40, height: geometry.size.height)
                         .cornerRadius(6)
                         .padding([.top, .leading, .bottom], 4)
-                                        
+                    
                     VStack(alignment: .leading){
                         Text(bookingDates)
                             .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .body))
@@ -98,12 +106,14 @@ struct BookedFacilityCard: View {
                         Text(address)
                             .font(Font.custom("Poppins-Medium", size: 12, relativeTo: .callout))
                             .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
-                            
+                        
                     }.padding(.top)
-                    .padding(8)
+                        .padding(8)
                     Spacer()
                 }
             }
         }
     }
 }
+
+

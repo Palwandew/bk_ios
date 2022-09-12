@@ -11,6 +11,10 @@ struct AvailableFacilitiesScreen: View {
     @EnvironmentObject var viewModel: MyUnitsViewModel
     //@StateObject var viewModel = MyUnitsViewModel()
     @State var availableFacilities: [Int] = [5]
+    
+    init(){
+        print("Init --->: AvailFacilitiesScreen")
+    }
     var body: some View {
         
         switch viewModel.screenState {

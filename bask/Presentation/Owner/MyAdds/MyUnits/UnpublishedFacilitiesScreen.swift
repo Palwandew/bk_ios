@@ -12,6 +12,10 @@ struct UnpublishedFacilitiesScreen: View {
     @StateObject var viewModel = MyUnitsViewModel()
     @State var availableFacilities: [Int] = [1]
     @State var progress: Float = 0.89
+    
+    init(){
+        print("Init --->: unPubFacilitiesScreen")
+    }
     var body: some View {
         
         switch viewModel.screenState {

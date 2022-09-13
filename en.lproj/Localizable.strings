@@ -15,3 +15,15 @@
 "valid_description" = "Required";
 "loading" = "Working";
 "cancel_booking_title" = "Are you sure you want to cancel the booking?";
+// Facility details Screen
+"per night" = "per night";
+"booked" = "Booked";
+"available" = "Available";
+"Check in" = "Check in";
+"Check out" = "Check out";
+"Calendar" = "Calender";
+
+
+
+
+

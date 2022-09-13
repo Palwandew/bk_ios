@@ -9,5 +9,9 @@ import Foundation
 
 protocol FacilityDomainReopProtocol {
     
+    // This will get all the booked facilities. Need to make it generic for available and unpublished as well.
     func getFacilities(completion: @escaping (Result<[Booking], Error> ) -> Void)
+    
+    // This will get a single Facility
+    func getFacility<T: Codable>(_ endPoint: Endpoints, completion: @escaping (Result<T, Error>) -> Void)
 }

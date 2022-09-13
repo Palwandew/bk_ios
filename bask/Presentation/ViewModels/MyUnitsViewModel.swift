@@ -41,5 +41,3 @@ class MyUnitsViewModel: ObservableObject {
         print("MyUnitsViewModel -> deInit()")
     }
 }
-
-

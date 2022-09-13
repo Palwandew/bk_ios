@@ -9,18 +9,21 @@ import SwiftUI
 
 //MARK: - BookingDatesView
 struct BookingDatesView: View {
+    
+    let checkInDate: LocalDate
+    let checkOutDate: LocalDate
     var body: some View {
         HStack(spacing: 16) {
-            BookedDateTileView(date: "06", type: .checkIn)
+            BookedDateTileView(date: checkInDate, type: .checkIn)
             
-            BookedDateTileView(date: "09", type: .checkOut)
+            BookedDateTileView(date: checkOutDate, type: .checkOut)
             
         }
     }
     
     private struct BookedDateTileView: View {
         
-        let date: String
+        let date: LocalDate
         let type: TileType
         
         var body: some View {
@@ -30,8 +33,10 @@ struct BookingDatesView: View {
                     switch type {
                     case .checkIn:
                         Text("Check in")
+                            .font(.custom("Poppins-Regular", size: 14))
                     case .checkOut:
                         Text("Check out")
+                            .font(.custom("Poppins-Regular", size: 14))
                     }
                     
                     
@@ -43,12 +48,12 @@ struct BookingDatesView: View {
                 }
                 
                 HStack(alignment: .lastTextBaseline) {
-                    Text(date)
+                    Text(date.day)
                         .font(Font.custom("Poppins-Regular", size: 33))
                         .foregroundColor(Color(AppColor.DARKEST_BLUE))
                     
                     
-                    Text("MARCH 2022")
+                    Text(date.month + " " + date.year)
                         .font(Font.custom("Poppins-Regular", size: 14))
                         .foregroundColor(Color(AppColor.DARKEST_BLUE))
                 }

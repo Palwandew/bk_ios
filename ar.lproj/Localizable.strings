@@ -14,3 +14,10 @@
 "valid_roon_length" = "يتطلب حقلا";
 "loading" = "عمل";
 "cancel_booking_title" = "هل أنت متأكد أنك تريد إلغاء الحجز؟";
+// Facility details Screen
+"per night" = "لليلة الواحدة";
+"booked" = "حجز";
+"available" = "متوفرة";
+"Check in" = "تحقق في";
+"Check out" = "الدفع";
+"Calendar" = "تقويم";

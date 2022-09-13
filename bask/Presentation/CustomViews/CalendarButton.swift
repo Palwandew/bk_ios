@@ -29,7 +29,7 @@ struct CalendarButton: View {
                         .font(Font.custom("Poppins-Regular", size: 16))
                         .foregroundColor(Color(AppColor.DARKEST_BLUE))
                     
-                    Image(systemName: "arrow.right")
+                    Image(systemName: "arrow.forward")
                         .foregroundColor(Color(AppColor.DARKEST_BLUE))
                 }
             }

@@ -9,13 +9,13 @@ import SwiftUI
 
 //MARK: - FacilityPriceHeader
 struct FacilityPriceHeader: View {
-    let price: String
-    let rating: String
+    let price: String?
+    let rating: String?
     let status: FacilityDetailsStyle
     
     var body: some View {
         HStack {
-            Text("\(price) SAR")
+            Text(price ?? "--")
                 .font(.custom("Poppins-Medium", size: 16, relativeTo: .body))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
@@ -26,7 +26,7 @@ struct FacilityPriceHeader: View {
             
             Divider()
                 .frame(height: 32)
-            Text("\(rating)")
+            Text(rating ?? "--")
                 .font(Font.custom("Poppins-Medium", size: 16))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
@@ -37,21 +37,30 @@ struct FacilityPriceHeader: View {
             
             switch status {
             case .booked:
-                Text("Booked")
-                    .font(Font.custom("Poppins-Medium", size: 16))
+                Group {
+                    Text("booked")
+                        .font(Font.custom("Poppins-Medium", size: 16))
                     .foregroundColor(Color(AppColor.DARKEST_BLUE))
                 
-                Image("icon_booked_calendar")
-                    .foregroundColor(.blue)
+                    Image("icon_booked_calendar")
+            
+                }
+                .unredacted()
             case .available:
-                Text("Available")
-                    .font(Font.custom("Poppins-Medium", size: 16))
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                Group {
+                    Text("available")
+                        .font(Font.custom("Poppins-Medium", size: 16))
+                    
+                    
+                    Image(systemName: "calendar")
+
+                }.foregroundColor(Color(AppColor.DARKEST_BLUE))
+                    .unredacted()
                 
-                Image(systemName: "calendar")
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                
+                
             }
             
-        }
+        }.redacted(reason: (price != nil) ? [] : .placeholder)
     }
 }

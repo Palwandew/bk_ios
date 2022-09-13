@@ -11,13 +11,24 @@ struct FacilityDetailScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     
+    @StateObject var model: FacilityDetailViewModel = FacilityDetailViewModel(repository: FacilityRepositoryImpl())
+    
     @State var isDragging = false
     @State var newHeight = 0
     @State var currentHeight = 0.610
     @State var showPopup: Bool = false
     @State var willShowCancelBookingDialog: Bool = false
     @State var showCalendarSheet: Bool = false
+    
+    let facility: BookedFacilityViewModel
     let style: FacilityDetailsStyle
+    
+    
+    init(facility: BookedFacilityViewModel, style: FacilityDetailsStyle){
+        self.facility = facility
+        self.style = style
+        
+    }
     
     //MARK: - Body
     var body: some View {
@@ -40,9 +51,10 @@ struct FacilityDetailScreen: View {
                     
                     // MARK: - Status
                     Group {
-                        FacilityPriceHeader(price: "800", rating: "4.2", status: style)
                         
-                        Text("Mountaina Resort Chilas Diamer Pakistan")
+                        FacilityPriceHeader(price: model.pricePerNight, rating: model.rating, status: style)
+                        
+                        Text(facility.description)
                             .font(Font.custom("Poppins-Regular", size: 26))
                             .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
                         
@@ -50,7 +62,10 @@ struct FacilityDetailScreen: View {
                             
                             //MARK: - Booked Style
                         case .booked:
-                            BookingDatesView()
+                            BookingDatesView(checkInDate: model.startDate, checkOutDate: model.endDate)
+                                .onAppear {
+                                    model.updateBookingDatesFormat(facility.startDate, facility.endDate)
+                                }
                             
                             Group {
                                 Divider().padding(.vertical)
@@ -143,13 +158,13 @@ struct FacilityDetailScreen: View {
     }
 }
 
-struct FacilityDetailScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        FacilityDetailScreen(style: .available)
-        
-        // BookingCancelationDialog()//.previewLayout(.sizeThatFits)
-    }
-}
+//struct FacilityDetailScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FacilityDetailScreen(style: .available)
+//
+//        // BookingCancelationDialog()//.previewLayout(.sizeThatFits)
+//    }
+//}
 
 
 //MARK: - BookingCancelationDialog

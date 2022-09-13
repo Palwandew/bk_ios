@@ -51,20 +51,11 @@ class baskTests: XCTestCase {
 //        let freeAmen = Endpoints.ADD_FREE_AMENITIES
 //        let image = Endpoints.CREATE_IMAGE_LINK
 //        let facility = Endpoints.CREATE_FACILITY
-        let signedURL = Endpoints.GET_SIGNED_URL(with: [URLQueryItem(name: "facilityId", value: "fac-123-123"), URLQueryItem(name: "fileExtension", value: "jpg")])
+        let bookedItem = Endpoints.GET_BOOKED_ITEM(with: [URLQueryItem(name: "booking_id", value: "308"), URLQueryItem(name: "facility_id", value: "123")])
         
-        let update = Endpoints.UPDATE_FACILITY("fac-123-123")
+        XCTAssertEqual(bookedItem.url?.absoluteString, "https://api.baskapp.co/api/v1/facility/bookeditem?booking_id=308&facility_id=123")
         
-        XCTAssertNotNil(signedURL.url)
-        XCTAssertEqual(signedURL.url?.absoluteString, "https://api.baskapp.co/api/v1/files/getpresignedurl?facilityId=fac-123-123&fileExtension=jpg")
-        XCTAssertNotEqual(signedURL.url?.absoluteString, "pakistan")
-        
-        XCTAssertNotNil(update.url)
-        XCTAssertEqual(update.url?.absoluteString, "https://api.baskapp.co/api/v1/facility/fac-123-123")
-        XCTAssertNotEqual(update.url?.absoluteString, "pakistan")
-        
-        
-        
+        XCTAssertNotEqual(bookedItem.url?.absoluteString, "hi")
     }
 
     func testPerformanceExample() throws {

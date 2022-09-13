@@ -32,13 +32,13 @@ struct UnpublishedFacilitiesScreen: View {
                         ForEach(0...availableFacilities.count, id:\.self) { _ in
                             
                             
-                            NavigationLink {
-                                FacilityDetailScreen(style: .available)
-                            } label: {
-                                UnpublishedFacilityCard(name: "Sunny House", progress: $progress, address: "Uhud Road, Al-Qatif")
-                                    .frame(height: UIScreen.main.bounds.height * 0.15)
-                                    .padding()
-                            }
+//                            NavigationLink {
+//                                FacilityDetailScreen(facility: <#BookedFacilityViewModel#>, style: .available)
+//                            } label: {
+//                                UnpublishedFacilityCard(name: "Sunny House", progress: $progress, address: "Uhud Road, Al-Qatif")
+//                                    .frame(height: UIScreen.main.bounds.height * 0.15)
+//                                    .padding()
+//                            }
 
 
                             

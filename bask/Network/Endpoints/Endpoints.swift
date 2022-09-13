@@ -34,6 +34,10 @@ extension Endpoints{
     static let ADD_PAID_AMENITIES: Endpoints = Endpoints(path: "facilityservice/amenitiesextra")
     static let GET_BOOKED_FACILITIES: Endpoints = Endpoints(path: "booking/currentmonth")
     
+    static func GET_BOOKED_ITEM(with query: [URLQueryItem]) -> Endpoints {
+        return Endpoints(path: "facility/bookeditem", queryItems: query)
+    }
+    
     static func GET_CHECKLIST(for facilityID: String) -> Endpoints {
      return Endpoints(path: "facility/\(facilityID)")
     }

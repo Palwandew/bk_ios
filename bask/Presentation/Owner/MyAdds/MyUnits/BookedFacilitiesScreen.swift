@@ -34,7 +34,7 @@ struct BookedFacilitiesScreen: View {
                         ForEach(model.facilities) { facility in
                             
                             NavigationLink {
-                                FacilityDetailScreen(style: .booked)
+                                FacilityDetailScreen(facility: facility, style: .booked)
                             } label: {
                                 BookedFacilityCard(bookingDates: facility.bookedDates, name: facility.description,
                                     imgURL: facility.imgURL,

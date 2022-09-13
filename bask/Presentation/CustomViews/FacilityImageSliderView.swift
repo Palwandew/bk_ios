@@ -12,19 +12,21 @@ struct FacilityImagesSliderView: View {
     
     @Binding var isPopupShown: Bool
     @Binding var cancelBookingDialog: Bool
+    let images: [FacilityImage]
     let popupStyle: FacilityDetailsStyle
     let onBackTapped: () -> Void
     let onPopupTapped: () -> Void
+    
     
     var body: some View {
         VStack{
             ZStack(alignment: .top) {
                 
-                ImageSliderView()
+                ImageSliderView(images: images)
                 
                 VStack(spacing: -8) {
                     HStack {
-                        FadedBlueButton(icon: "chevron.left") {
+                        FadedBlueButton(icon: "chevron.backward") {
                             
                             onBackTapped()
                             
@@ -71,33 +73,36 @@ struct FacilityImagesSliderView: View {
 
 struct ImageSliderView: View {
     @State private var currentIndex = 0
+    let images: [FacilityImage]
     private let colors: [Color] = [.red, .blue]
       
       // MARK: - Body
       
     var body: some View {
-        ZStack(alignment: .bottom) {
-            TabView(selection: $currentIndex.animation()) { // 1
-              ForEach(0..<colors.count, id: \.self) { index in
-                colors[index]
-                  .tag(index)
-              }
-            }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            HStack(spacing: -48) {
-                
-                Spacer()
-                
-                ImageIndexIndicatorView(numberOfPages: colors.count, currentIndex: currentIndex)
+        GeometryReader{ geometry in
+            ZStack(alignment: .bottom) {
+                TabView(selection: $currentIndex.animation()) { // 1
+                    ForEach(0..<images.count, id: \.self) { index in
+                        ImageView(withURL: images[index].photo, size: CGSize(width: geometry.size.width, height: geometry.size.height))
+                            .tag(index)
+                  }
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                HStack(spacing: -48) {
                     
-                Spacer()
-                
-                Text("\(currentIndex + 1) / \(colors.count)")
-                    .font(.custom("Poppins-Regular", size: 12, relativeTo: .body))
-                    .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
-                    .padding(.trailing)
-                
-            }.padding(.bottom, 48)
+                    Spacer()
+                    
+                    ImageIndexIndicatorView(numberOfPages: colors.count, currentIndex: currentIndex)
+                        
+                    Spacer()
+                    
+                    Text("\(currentIndex + 1) / \(colors.count)")
+                        .font(.custom("Poppins-Regular", size: 12, relativeTo: .body))
+                        .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                        .padding(.trailing)
+                    
+                }.padding(.bottom, 48)
+            }
         }
     }
 }

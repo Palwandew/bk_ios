@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import MapKit
+import SwiftUI
 
 class LocalizationHelper {
     
@@ -17,6 +19,10 @@ class LocalizationHelper {
     
     func getLocalizedNumber(_ number: Int) -> String {
         return generateLocalizedString(for: number)
+    }
+    
+    func getLocalizedNumber(from: String) -> String {
+        return generateLocalizedString(from: from)
     }
     
     private func generateLocalizedDate(_ date: Date) -> LocalDate {
@@ -81,4 +87,54 @@ class LocalizationHelper {
         
         return localizedString
     }
+    
+    private func generateLocalizedString(from: String) -> String {
+        let formatter = NumberFormatter()
+        let stringToTransform = formatter.number(from: from)
+        guard let stringToTransform = stringToTransform else {
+            return ""
+        }
+
+        let formattingStyle = NumberFormatter.Style.none // this will exclude the currency sign from the string.
+        let localizedString = NumberFormatter.localizedString(from: stringToTransform, number: formattingStyle)
+        
+        return localizedString
+    }
+}
+
+
+class MapSnapshotter {
+    
+    var mapType = MKMapType.standard
+    
+    
+    
+    func take(size: CGSize) -> UIImage? {
+        let options = MKMapSnapshotter.Options()
+        
+        options.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 24.19970898091148, longitude: 45.11031652737802), span: MKCoordinateSpan(latitudeDelta: 8, longitudeDelta: 22))
+        
+        options.mapType = .standard
+        options.showsBuildings = false
+        options.size = size
+        
+        var imag: UIImage? = nil
+        
+        let snapshotter = MKMapSnapshotter(options: options)
+        
+        snapshotter.start(with: .main) { snapshot, error in
+            if let _ = error {
+                return
+            }
+            
+            guard let snapshot = snapshot else { return }
+            
+            imag = snapshot.image
+        }
+        
+        return imag
+    }
+    
+    
+    
 }

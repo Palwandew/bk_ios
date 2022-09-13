@@ -37,7 +37,7 @@ struct FacilityDetailScreen: View {
             
             //MARK: - Images Slider
             
-            FacilityImagesSliderView(isPopupShown: $showPopup, cancelBookingDialog: $willShowCancelBookingDialog, popupStyle: style, onBackTapped: {
+            FacilityImagesSliderView(isPopupShown: $showPopup, cancelBookingDialog: $willShowCancelBookingDialog, images: model.facility?.facility.images ?? [], popupStyle: style, onBackTapped: {
                 presentationMode.wrappedValue.dismiss()
             }, onPopupTapped: {
                 showPopup.toggle()
@@ -77,11 +77,11 @@ struct FacilityDetailScreen: View {
                                 
                                 Divider().padding(.vertical)
                                 
-                                GuestInfoView(name: "Palwandew", rating: "4.2")
+                                GuestInfoView(name: model.facility?.guest ?? "" , rating: "4.2")
                                 
                                 Divider().padding(.vertical)
                                 
-                                SizeInfoView(space: "80 m2", rooms: "3", capacity: "8")
+                                SizeInfoView(space: model.facility?.livingSpace ?? "", rooms: model.facility?.livingRooms ?? "", capacity: model.facility?.capacity ?? "")
                                 
                                 FacilityAmenitiesView()
                                 
@@ -92,7 +92,7 @@ struct FacilityDetailScreen: View {
                             
                             //MARK: - Available Style
                         case .available:
-                            SizeInfoView(space: "80 m2", rooms: "3", capacity: "8")
+                            SizeInfoView(space: model.facility?.livingSpace ?? "", rooms: model.facility?.livingRooms ?? "", capacity: model.facility?.capacity ?? "")
                             
                             FacilityAmenitiesView()
                             
@@ -141,6 +141,9 @@ struct FacilityDetailScreen: View {
             }.frame(height: UIScreen.main.bounds.height * currentHeight)
             
         }
+        .onAppear(perform: {
+            model.getDetails(for: facility.booking.facility.id, with: String(facility.booking.bookingID))
+        })
         .alertDialog(isShowing: $willShowCancelBookingDialog, content: {
             
             
@@ -241,7 +244,7 @@ struct ArrivalDetailsView: View {
                 Image(systemName: "clock.fill")
                     .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
                 
-                Text("Arrival after 3 PM")
+                Text("Arrival after")
                     .font(Font.custom("Poppins-Medium", size: 14))
                     .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
                 

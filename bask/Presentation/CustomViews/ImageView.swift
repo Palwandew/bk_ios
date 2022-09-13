@@ -10,7 +10,7 @@ import SwiftUI
 struct ImageView: View {
     @ObservedObject private var imageLoader: ImageLoader
     
-    init(withURL url:String, size: CGSize) {
+    init(withURL url: String, size: CGSize) {
         imageLoader = ImageLoader(urlString:url, size: size)
     }
     

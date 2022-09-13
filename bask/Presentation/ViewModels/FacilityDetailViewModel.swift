@@ -17,6 +17,8 @@ class FacilityDetailViewModel: ObservableObject {
     @Published var pricePerNight: String? = nil
     @Published var rating: String? = nil
     
+    @Published var facility: BookedFacilityDetailsViewModel? = nil
+    
     init(repository: FacilityDomainReopProtocol){
         self.facilityRepo = repository
         print("Init----> facility details")
@@ -36,9 +38,68 @@ class FacilityDetailViewModel: ObservableObject {
         let queryItems = [URLQueryItem(name: "booking_id", value: bookingID), URLQueryItem(name: "facility_id", value: facilityID)]
         let endpoint = Endpoints.GET_BOOKED_ITEM(with: queryItems)
         
-        facilityRepo.getFacility(endpoint) { Result<Decodable & Encodable, Error> in
-            <#code#>
+        facilityRepo.getFacility(endpoint, response: BookedFacilityItemResponse.self) { result in
+            switch result {
+                
+            case .failure(let error):
+                print("Error occured: \(error)")
+                
+            case .success(let response):
+                
+                DispatchQueue.main.async {
+                    self.facility = BookedFacilityDetailsViewModel(facility: response.data.bookedItem)
+                }
+                print("heh")
+                
+            }
         }
+        
+    }
+    
+}
+
+class BookedFacilityDetailsViewModel {
+    let facility: BookedItem
+    private let localizationHelper: LocalizationHelper
+    init(facility: BookedItem){
+        self.facility = facility
+        self.localizationHelper = LocalizationHelper()
+    }
+    
+    var price: String? {
+        
+        return localizationHelper.getLocalizedNumber(facility.price)
+    }
+    
+    var rating: String? {
+        return localizationHelper.getLocalizedNumber(4)
+    }
+    
+    //Guest Name
+    var guest: String? {
+       return self.facility.booking.first?.customer.fullName
+    }
+
+    var guestRating: Double? {
+        return self.facility.booking.first?.customer.rating
+    }
+    
+    var arrivalTime: String? {
+        return self.facility.checkInAfter
+    }
+    
+    // cancellation policy is missing
+    
+    var livingSpace: String {
+        return localizationHelper.getLocalizedNumber(self.facility.length * self.facility.width)
+    }
+    
+    var livingRooms: String {
+        return localizationHelper.getLocalizedNumber(from: self.facility.noOfLivingrooms)
+    }
+    
+    var capacity: String {
+        return localizationHelper.getLocalizedNumber(self.facility.capacity)
     }
     
 }

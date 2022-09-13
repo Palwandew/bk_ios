@@ -13,5 +13,5 @@ protocol FacilityDomainReopProtocol {
     func getFacilities(completion: @escaping (Result<[Booking], Error> ) -> Void)
     
     // This will get a single Facility
-    func getFacility<T: Codable>(_ endPoint: Endpoints, completion: @escaping (Result<T, Error>) -> Void)
+    func getFacility<T: Codable>(_ endPoint: Endpoints, response: T.Type, completion: @escaping (Result<T, Error>) -> Void)
 }

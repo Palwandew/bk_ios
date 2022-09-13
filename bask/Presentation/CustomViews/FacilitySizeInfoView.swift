@@ -22,15 +22,15 @@ struct SizeInfoView: View {
     var body: some View {
         HStack{
             
-            SizeInfoTileView(size: livingSpace, label: "Living space")
+            SizeInfoTileView(size: livingSpace, label: LocalizedStringKey("Living space"))
             
             Spacer()
             
-            SizeInfoTileView(size: livingRooms, label: "Living rooms")
+            SizeInfoTileView(size: livingRooms, label: LocalizedStringKey("Living rooms"))
             
             Spacer()
             
-            SizeInfoTileView(size: capacity, label: "Capacity")
+            SizeInfoTileView(size: capacity, label: LocalizedStringKey("Capacity"))
             
         }
     }
@@ -40,7 +40,7 @@ struct SizeInfoView: View {
     private struct SizeInfoTileView: View {
         
         let size: String
-        let label: String
+        let label: LocalizedStringKey
         
         var body: some View {
             VStack {

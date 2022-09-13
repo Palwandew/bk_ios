@@ -28,7 +28,7 @@ class FacilityRepositoryImpl: FacilityDomainReopProtocol {
         }
     }
     
-    func getFacility<T: Codable>(_ endpoint: Endpoints, completion: @escaping (Result<T, Error>) -> Void) {
+    func getFacility<T: Codable>(_ endpoint: Endpoints, response: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
         URLSession.shared.sendRequest(endpoint: endpoint, requestType: .get, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: nil, responseModel: T.self) { result in
             switch result {
             case .failure(let error):

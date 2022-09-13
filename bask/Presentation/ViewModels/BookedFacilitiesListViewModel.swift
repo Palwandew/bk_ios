@@ -11,9 +11,11 @@ class BookedFacilityViewModel: Identifiable {
     
     let id: Int
     let booking: Booking
+    private let localizationHelper: LocalizationHelper
     
     
     init(booking: Booking) {
+        self.localizationHelper = LocalizationHelper()
         self.id = booking.bookingID
         self.booking = booking
         
@@ -25,7 +27,13 @@ class BookedFacilityViewModel: Identifiable {
     }
     
     var bookedDates: String {
-        return stringDate(date: self.booking.bookingDates.startDate, endDate: self.booking.bookingDates.endDate)
+        let start = getDateFrom(self.booking.bookingDates.startDate)
+        let end = getDateFrom(self.booking.bookingDates.endDate)
+        
+        let startDate = localizationHelper.getLocalizedDate(start)
+        let endDate = localizationHelper.getLocalizedDate(end)
+        
+        return ("\(startDate.day) \(startDate.month) - \(endDate.day) \(endDate.month), \(endDate.year)")
     }
     
     var description: String {

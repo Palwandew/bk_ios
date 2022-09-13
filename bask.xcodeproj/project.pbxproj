@@ -34,6 +34,7 @@
 		C41A26AD289C6DB30057F3FE /* AmenityPriceLengthInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */; };
 		C41A26AF289C79810057F3FE /* FacilityRulesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */; };
 		C41CBF8F28D0C6A400EE55B2 /* LocalizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CBF8E28D0C6A400EE55B2 /* LocalizationHelper.swift */; };
+		C41CBF9128D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CBF9028D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift */; };
 		C41DCB5A28CB48BF004888B1 /* FadedBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB5928CB48BF004888B1 /* FadedBlueButton.swift */; };
 		C41DCB5C28CB4925004888B1 /* FacilityPriceHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB5B28CB4925004888B1 /* FacilityPriceHeader.swift */; };
 		C41DCB6028CB49B2004888B1 /* CalendarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB5F28CB49B2004888B1 /* CalendarButton.swift */; };
@@ -217,6 +218,7 @@
 		C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityPriceLengthInputView.swift; sourceTree = "<group>"; };
 		C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRulesScreen.swift; sourceTree = "<group>"; };
 		C41CBF8E28D0C6A400EE55B2 /* LocalizationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationHelper.swift; sourceTree = "<group>"; };
+		C41CBF9028D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableFacilitiesResponse.swift; sourceTree = "<group>"; };
 		C41DCB5928CB48BF004888B1 /* FadedBlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadedBlueButton.swift; sourceTree = "<group>"; };
 		C41DCB5B28CB4925004888B1 /* FacilityPriceHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPriceHeader.swift; sourceTree = "<group>"; };
 		C41DCB5F28CB49B2004888B1 /* CalendarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarButton.swift; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 			children = (
 				C41DCB6A28CBAA5A004888B1 /* BookedFacilitiesResponse.swift */,
 				C47B734C28CFB1B700C719BE /* BookedFacilityItemResponse.swift */,
+				C41CBF9028D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift */,
 			);
 			path = "Request Response Models";
 			sourceTree = "<group>";
@@ -1009,6 +1012,7 @@
 				C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */,
 				C482683F28975DBF0072147F /* MaterialLengthField.swift in Sources */,
 				C482683D289759600072147F /* FacilityRoomsScreen.swift in Sources */,
+				C41CBF9128D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift in Sources */,
 				C482110E28C7315900D6F75F /* MyUnitsScreen.swift in Sources */,
 				C403100C289466210046B645 /* RentCollectionIndicator.swift in Sources */,
 				C443CE2028C8A706009E32F2 /* FacilityMapView.swift in Sources */,

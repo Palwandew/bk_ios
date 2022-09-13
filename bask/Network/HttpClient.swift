@@ -32,13 +32,15 @@ extension URLSession{
             }
             
             URLSession.shared.dataTask(with: request) { data, response, error in
-                if let _ = error {
+                if let er = error {
+                    print("Err -> \(er)")
                     completion(.failure(RequestError.unexpectedStatusCode))
                     return
                 }
                 
                 guard let response = response as? HTTPURLResponse, 200...299 ~= response.statusCode else {
-                    
+                    let re = response as? HTTPURLResponse
+                    print("Statu \(String(describing: re?.statusCode))")
                     completion(.failure(RequestError.unexpectedStatusCode))
                     return
                 }
@@ -53,6 +55,7 @@ extension URLSession{
                     completion(.success(dataFromServer))
                     
                 } catch {
+                    print("decode error")
                     completion(.failure(RequestError.decode))
                 }
                 

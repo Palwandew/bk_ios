@@ -32,5 +32,8 @@
 "Living space" = "مكان عيش \ سكن";
 "Message Guest" = "رسالة الضيف";
 "Arrival after" = "وصول بعد";
+"Cancel booking" = "إلغاء الحجز";
+"Edit description" = "تحرير الوصف";
+"Unpublish item" = "إلغاء نشر العنصر";
 
-
+"%@ currency" = "%@ س.ر";

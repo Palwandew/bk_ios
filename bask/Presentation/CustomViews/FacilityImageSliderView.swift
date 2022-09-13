@@ -188,7 +188,7 @@ struct PopupView: View {
                         onButtonTapped(.edit)
                     }
                 } label: {
-                    Text("Edit Description")
+                    Text("Edit description")
                         .font(.custom("Poppins-Regular", size: 14, relativeTo: .body))
                         .foregroundColor(Color(AppColor.DARKEST_BLUE))
                         .padding(.top, 4)
@@ -199,7 +199,7 @@ struct PopupView: View {
                         onButtonTapped(.unpublish)
                     }
                 } label: {
-                    Text("Unpublish Item")
+                    Text("Unpublish item")
                         .font(.custom("Poppins-Regular", size: 14, relativeTo: .body))
                         .foregroundColor(Color(AppColor.DARKEST_BLUE))
                         .padding(.top, 4)

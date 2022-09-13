@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct AvailableFacilitiesScreen: View {
-    @EnvironmentObject var viewModel: MyUnitsViewModel
+    //@EnvironmentObject var viewModel: MyUnitsViewModel
     //@StateObject var viewModel = MyUnitsViewModel()
+    @StateObject var model = AvailableFacilitiesListViewModel()
     @State var availableFacilities: [Int] = [5]
     
     init(){
@@ -17,30 +18,30 @@ struct AvailableFacilitiesScreen: View {
     }
     var body: some View {
         
-        switch viewModel.screenState {
+        switch model.state {
         case .loading:
             Spinner()
         case .success:
-            if availableFacilities.isEmpty {
+            if model.facilities.isEmpty {
                 
                 EmptyState(illustration: "empty_my_units", message: "You don't have a published unit yet.")
                 
             } else {
                 ScrollView{
                     LazyVStack(alignment: .leading){
-                        ForEach(0...availableFacilities.count, id:\.self) { _ in
+                        ForEach(model.facilities) { facility in
                             
-//                            NavigationLink {
-//                                FacilityDetailScreen(style: .available)
-//                            } label: {
-//                                AvailableFacilityCard(price: "800 SAR", name: "Sunny House", address: "Uhud Road, Al-Qatif")
-//                                    .frame(height: UIScreen.main.bounds.height * 0.15)
-//                                    .padding()
-//                            }
+                            NavigationLink {
+                                HomeScreen()
+                            } label: {
+                                AvailableFacilityCard(imageURL: facility.imgURL, price: facility.price, name: facility.name, address: facility.address)
+                                    .frame(height: UIScreen.main.bounds.height * 0.15)
+                                    .padding()
+                            }
                             
                         }
                     }
-                }.background(Color.white)
+                }.background(Color(AppColor.BACKGROUND))
             }
             
         case .failed:
@@ -61,6 +62,7 @@ struct AvailableFacilitiesScreen_Previews: PreviewProvider {
 
 struct AvailableFacilityCard: View {
     
+    let imageURL: String
     let price: String
     let name: String
     let address: String
@@ -71,17 +73,17 @@ struct AvailableFacilityCard: View {
         ZStack{
             RoundedRectangle(cornerRadius: 8, style: .continuous)
                 .fill(.white)
-                .shadow(radius: 2)
+                .shadow(radius: 4)
             
             HStack(alignment: .top){
-                    Image("sample_resort")
-                        .resizable()
-                        .frame(width: geometry.size.width * 0.40, height: geometry.size.height)
-                        .cornerRadius(6)
-                        .padding([.top, .leading, .bottom], 4)
+                
+                ImageView(withURL: imageURL, size: CGSize(width: geometry.size.width * 0.40, height: geometry.size.height))
+                    .frame(width: geometry.size.width * 0.40, height: geometry.size.height)
+                    .cornerRadius(6)
+                    .padding([.top, .leading, .bottom], 4)
                                         
                     VStack(alignment: .leading){
-                        Text(price)
+                        Text("\(price) currency")
                             .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .body))
                             .foregroundColor(Color(AppColor.DARKEST_BLUE))
                         

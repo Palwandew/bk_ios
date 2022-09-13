@@ -33,6 +33,11 @@
 "Living space" = "Living space";
 "Message Guest" = "Message Guest";
 "Arrival after" = "Arrival after";
+"Cancel booking" = "Cancel booking";
+"Edit description" = "Edit description";
+"Unpublish item" = "Unpublish item";
+
+"%@ currency" = "%@ SAR";
 
 
 

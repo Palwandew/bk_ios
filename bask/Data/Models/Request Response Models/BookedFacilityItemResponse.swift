@@ -29,7 +29,7 @@ struct BookedItem: Codable {
     let bookedItemDescription, englishName, checkInAfter, address: String
     let capacity, length, width: Int
     let latitude, longitude: Double
-    let cancellationpolicy: Int?
+    let cancellationpolicy: CancellationPolicy?
     let booking: [BookedItemBooking]
     let facilityservices: [JSONAny]
     let images: [FacilityImage]
@@ -88,5 +88,17 @@ struct Reviews: Codable {
         case reviews
         case facilityAvgRating = "facility_avg_rating"
         case totalReviews = "total_reviews"
+    }
+}
+
+
+// MARK: - Cancellationpolicy
+struct CancellationPolicy: Codable {
+    let id: Int
+    let title, cancellationpolicyDescription: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, title
+        case cancellationpolicyDescription = "description"
     }
 }

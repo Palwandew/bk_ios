@@ -45,8 +45,11 @@
 		C41DCB6B28CBAA5A004888B1 /* BookedFacilitiesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6A28CBAA5A004888B1 /* BookedFacilitiesResponse.swift */; };
 		C41DCB6D28CBB31C004888B1 /* FacilityDomainRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6C28CBB31C004888B1 /* FacilityDomainRepoProtocol.swift */; };
 		C41DCB6F28CBB477004888B1 /* FacilityRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6E28CBB477004888B1 /* FacilityRepositoryImpl.swift */; };
+		C430368A28D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430368928D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift */; };
 		C43DCEB728BDE254005FB7F4 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCEB628BDE254005FB7F4 /* ToastView.swift */; };
 		C43DCEB928BE0867005FB7F4 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCEB828BE0867005FB7F4 /* Toast.swift */; };
+		C440B92D28D1FD7E00909D21 /* AvailableFacilityItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440B92C28D1FD7E00909D21 /* AvailableFacilityItemResponse.swift */; };
+		C440B92F28D224E200909D21 /* UnpublishedFacilitiesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440B92E28D224E200909D21 /* UnpublishedFacilitiesResponse.swift */; };
 		C441FF5A28A456FD00AAC00C /* UIApplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441FF5928A456FD00AAC00C /* UIApplicationHelper.swift */; };
 		C441FF5C28A4CE3C00AAC00C /* Amenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441FF5B28A4CE3C00AAC00C /* Amenity.swift */; };
 		C443CE2028C8A706009E32F2 /* FacilityMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443CE1F28C8A706009E32F2 /* FacilityMapView.swift */; };
@@ -229,8 +232,11 @@
 		C41DCB6A28CBAA5A004888B1 /* BookedFacilitiesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedFacilitiesResponse.swift; sourceTree = "<group>"; };
 		C41DCB6C28CBB31C004888B1 /* FacilityDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDomainRepoProtocol.swift; sourceTree = "<group>"; };
 		C41DCB6E28CBB477004888B1 /* FacilityRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRepositoryImpl.swift; sourceTree = "<group>"; };
+		C430368928D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnpublishedFacilitiesListViewModel.swift; sourceTree = "<group>"; };
 		C43DCEB628BDE254005FB7F4 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		C43DCEB828BE0867005FB7F4 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		C440B92C28D1FD7E00909D21 /* AvailableFacilityItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableFacilityItemResponse.swift; sourceTree = "<group>"; };
+		C440B92E28D224E200909D21 /* UnpublishedFacilitiesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnpublishedFacilitiesResponse.swift; sourceTree = "<group>"; };
 		C441FF5928A456FD00AAC00C /* UIApplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationHelper.swift; sourceTree = "<group>"; };
 		C441FF5B28A4CE3C00AAC00C /* Amenity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amenity.swift; sourceTree = "<group>"; };
 		C443CE1F28C8A706009E32F2 /* FacilityMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityMapView.swift; sourceTree = "<group>"; };
@@ -427,6 +433,8 @@
 				C41DCB6A28CBAA5A004888B1 /* BookedFacilitiesResponse.swift */,
 				C47B734C28CFB1B700C719BE /* BookedFacilityItemResponse.swift */,
 				C41CBF9028D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift */,
+				C440B92C28D1FD7E00909D21 /* AvailableFacilityItemResponse.swift */,
+				C440B92E28D224E200909D21 /* UnpublishedFacilitiesResponse.swift */,
 			);
 			path = "Request Response Models";
 			sourceTree = "<group>";
@@ -580,6 +588,7 @@
 				C47B734828CFAAFF00C719BE /* BookedFacilitiesListViewModel.swift */,
 				C47B734A28CFADF900C719BE /* AvailableFacilitiesListViewModel.swift */,
 				C47B734E28CFB97800C719BE /* FacilityDetailViewModel.swift */,
+				C430368928D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1090,6 +1099,7 @@
 				C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */,
 				C4AF9B202828216600EBB141 /* PostRemoteDataSource.swift in Sources */,
 				C4BB007F28913C7E000D2E47 /* FirstResponderTextField.swift in Sources */,
+				C440B92D28D1FD7E00909D21 /* AvailableFacilityItemResponse.swift in Sources */,
 				C482111428C742A300D6F75F /* AvailableFacilitiesScreen.swift in Sources */,
 				C4B5380E2899B0820067CC21 /* FacilityServiceRooms.swift in Sources */,
 				C4918D6B28A1DBBB00A8777D /* PublishFacilityScreen.swift in Sources */,
@@ -1097,7 +1107,9 @@
 				C482683B289751D70072147F /* AddNewUnitViewModel.swift in Sources */,
 				C47FEB112896962B008BC4C2 /* CustomAlertDialog.swift in Sources */,
 				C4082846289D2E3300C1B51B /* FacilityMapScreen.swift in Sources */,
+				C440B92F28D224E200909D21 /* UnpublishedFacilitiesResponse.swift in Sources */,
 				C4A5C581289F4697006AF774 /* MaterialTimePicker.swift in Sources */,
+				C430368A28D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift in Sources */,
 				C482682B289700BB0072147F /* PastBookings.swift in Sources */,
 				C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */,
 				C43DCEB928BE0867005FB7F4 /* Toast.swift in Sources */,

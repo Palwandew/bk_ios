@@ -13,11 +13,13 @@ class FacilityRepositoryImpl: FacilityDomainReopProtocol {
     
     
     
-    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2Mjc0MTYyOSwiZXhwIjoxNjYzMTczNjI5fQ.WyVE8NBrhSwwpn7ZCHWgms9jMXcVtRQk8y3QAZ7V-uA"
+    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2MzE3NTI1NCwiZXhwIjoxNjYzNjA3MjU0fQ.c_V5hDpyIL2gWEQOQMGo6Fzw2skP_4QBIsQNhMxiiRg"
     
     func getFacilities(completion: @escaping (Result<[Booking], Error> ) -> Void) {
         
         let endpoint = Endpoints.GET_BOOKED_FACILITIES
+        
+        
         
         URLSession.shared.sendRequest(endpoint: endpoint, requestType: .get, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: nil, responseModel: BookedFacilitiesResponse.self) { result in
             switch result {
@@ -35,6 +37,22 @@ class FacilityRepositoryImpl: FacilityDomainReopProtocol {
         let endpoint = Endpoints.GET_AVAILABLE_FACILITIES
         
         URLSession.shared.sendRequest(endpoint: endpoint, requestType: .get, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: nil, responseModel: AvailableFacilitiesResponse.self) { result in
+            switch result {
+            case .failure(let error):
+                print("error \(error.localizedDescription)")
+                completion(.failure(error))
+                
+            case .success(let response):
+                completion(.success(response.data.facilities))
+            }
+        }
+    }
+    
+    func getUnpublishedFacilities(completion: @escaping (Result<[UnpublishedFacility], Error>) -> Void) {
+        
+        let endpoint = Endpoints.GET_UNPUBLISHED_FACILITIES
+        
+        URLSession.shared.sendRequest(endpoint: endpoint, requestType: .get, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: nil, responseModel: UnpublishedFacilitiesResponse.self) { result in
             switch result {
             case .failure(let error):
                 print("error \(error.localizedDescription)")

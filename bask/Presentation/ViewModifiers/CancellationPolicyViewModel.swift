@@ -8,12 +8,12 @@
 import Foundation
 
 class CancellationPolicyViewModel: ObservableObject {
-    @Published var policy: CancellationPolicy = .anytime
+    @Published var policy: CancellationPolicyType = .anytime
     
     
 }
 
-enum CancellationPolicy {
+enum CancellationPolicyType {
     case anytime
     case threeDays
     case week

@@ -76,7 +76,7 @@ struct CancellationPolicyItem: View {
     var checked: Bool
     let label: String
     let description: String
-    let assignedPolicy: CancellationPolicy
+    let assignedPolicy: CancellationPolicyType
     let onRadioButtonTapped: () -> Void
     
     var body: some View {

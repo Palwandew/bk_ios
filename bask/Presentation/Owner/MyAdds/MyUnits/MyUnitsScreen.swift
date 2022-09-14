@@ -62,6 +62,7 @@ struct MyUnitsScreen: View {
             case .one:
 
                 BookedFacilitiesScreen()
+                    .environmentObject(viewModel)
                     .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
                     .onLeftSwipe {
                         withAnimation {

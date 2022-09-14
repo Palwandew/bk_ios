@@ -14,8 +14,19 @@ class MyUnitsViewModel: ObservableObject {
     //MARK: - Booked Facilities
     @Published var bookedFacilities: [Int] = [32]
     
+    @Published var bookedFacility: BookedFacilityViewModel? = nil
+    @Published var availableFacility: AvailableFacilityViewModel? = nil 
+    
     init(){
         print("MyUnitsViewModel -> init()")
+    }
+    
+    func prepareBookedFacilityForDetailsScreen(facility: BookedFacilityViewModel){
+        self.bookedFacility = facility
+    }
+    
+    func prepareAvailableFacilityForDetailsScreen(facility: AvailableFacilityViewModel){
+        self.availableFacility = facility
     }
     
     func updateState() {

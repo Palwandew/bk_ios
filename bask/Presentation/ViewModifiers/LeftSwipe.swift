@@ -12,7 +12,7 @@ struct LeftSwipe: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .gesture(DragGesture(minimumDistance: 30, coordinateSpace: .local)
+            .highPriorityGesture(DragGesture(minimumDistance: 30, coordinateSpace: .local)
                         .onEnded({ value in
                 
                 switch(value.translation.width, value.translation.height) {

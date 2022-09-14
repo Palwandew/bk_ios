@@ -14,6 +14,8 @@ protocol FacilityDomainReopProtocol {
     
     func getAvailableFacilities(completion: @escaping (Result<[AvailableFacility], Error>) -> Void)
     
+    func getUnpublishedFacilities(completion: @escaping (Result<[UnpublishedFacility], Error>) -> Void)
+    
     // This will get a single Facility
     func getFacility<T: Codable>(_ endPoint: Endpoints, response: T.Type, completion: @escaping (Result<T, Error>) -> Void)
 }

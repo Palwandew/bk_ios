@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct AvailableFacilitiesScreen: View {
-    //@EnvironmentObject var viewModel: MyUnitsViewModel
+    @EnvironmentObject var viewModel: MyUnitsViewModel
     //@StateObject var viewModel = MyUnitsViewModel()
     @StateObject var model = AvailableFacilitiesListViewModel()
     @State var availableFacilities: [Int] = [5]
-    
+    @State var shallNavigateToDetailsScreen: Bool = false
     init(){
         print("Init --->: AvailFacilitiesScreen")
     }
@@ -29,15 +29,36 @@ struct AvailableFacilitiesScreen: View {
             } else {
                 ScrollView{
                     LazyVStack(alignment: .leading){
+                        
+                        NavigationLink(isActive: $shallNavigateToDetailsScreen) {
+                            FacilityDetailScreen(style: .available)
+                                .environmentObject(viewModel)
+                            
+                        } label: {
+                            EmptyView()
+                        }
+                        
                         ForEach(model.facilities) { facility in
                             
-                            NavigationLink {
-                                HomeScreen()
-                            } label: {
-                                AvailableFacilityCard(imageURL: facility.imgURL, price: facility.price, name: facility.name, address: facility.address)
-                                    .frame(height: UIScreen.main.bounds.height * 0.15)
-                                    .padding()
-                            }
+                            AvailableFacilityCard(
+                                imageURL: facility.imgURL,
+                                price: facility.price,
+                                name: facility.name,
+                                address: facility.address)
+                                .frame(height: UIScreen.main.bounds.height * 0.15)
+                                .padding()
+                                .onTapGesture {
+                                    viewModel.prepareAvailableFacilityForDetailsScreen(facility: facility)
+                                    shallNavigateToDetailsScreen.toggle()
+                                }
+                            
+//                            NavigationLink {
+//                                HomeScreen()
+//                            } label: {
+//                                AvailableFacilityCard(imageURL: facility.imgURL, price: facility.price, name: facility.name, address: facility.address)
+//                                    .frame(height: UIScreen.main.bounds.height * 0.15)
+//                                    .padding()
+//                            }
                             
                         }
                     }

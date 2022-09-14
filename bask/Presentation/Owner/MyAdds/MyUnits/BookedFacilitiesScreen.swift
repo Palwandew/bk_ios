@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct BookedFacilitiesScreen: View {
-    //@EnvironmentObject var viewModel: MyUnitsViewModel
+    @EnvironmentObject var viewModel: MyUnitsViewModel
     //@StateObject var viewModel = MyUnitsViewModel()
     @StateObject var model = BookedFacilitiesListViewModel()
     @State var bookedFacilities: [Int] = [1]
-    
+    @State var shallNavigateToDetailsScreen: Bool = false
     init(){
         print("Init --->: BookedFacilitiesScreen")
     }
@@ -31,19 +31,41 @@ struct BookedFacilitiesScreen: View {
             } else {
                 ScrollView{
                     LazyVStack(alignment: .leading){
-                        ForEach(model.facilities) { facility in
+                        
+                        NavigationLink(isActive: $shallNavigateToDetailsScreen) {
+                            FacilityDetailScreen(style: .booked)
+                                .environmentObject(viewModel)
                             
-                            NavigationLink {
-                                FacilityDetailScreen(facility: facility, style: .booked)
-                            } label: {
-                                BookedFacilityCard(bookingDates: facility.bookedDates, name: facility.description,
-                                    imgURL: facility.imgURL,
-                                    address: facility.address)
-                                
-                                    .frame(height: UIScreen.main.bounds.height * 0.15)
-                                    .padding()
-                                
-                            }
+                        } label: {
+                            EmptyView()
+                        }
+
+                        
+                        ForEach(model.facilities) { facility in
+                         
+                            
+                            BookedFacilityCard(
+                                bookingDates: facility.bookedDates,
+                                name: facility.description,
+                                imgURL: facility.imgURL,
+                                address: facility.address)
+                                .frame(height: UIScreen.main.bounds.height * 0.15)
+                                .padding()
+                                .onTapGesture {
+                                    viewModel.prepareBookedFacilityForDetailsScreen(facility: facility)
+                                    shallNavigateToDetailsScreen.toggle()
+                                }
+//                            NavigationLink {
+//                                FacilityDetailScreen(facility: facility, style: .booked)
+//                            } label: {
+//                                BookedFacilityCard(bookingDates: facility.bookedDates, name: facility.description,
+//                                    imgURL: facility.imgURL,
+//                                    address: facility.address)
+//
+//                                    .frame(height: UIScreen.main.bounds.height * 0.15)
+//                                    .padding()
+//
+//                            }
                             
                             
                         }

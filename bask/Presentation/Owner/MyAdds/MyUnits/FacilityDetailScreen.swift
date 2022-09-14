@@ -10,7 +10,7 @@ import SwiftUI
 struct FacilityDetailScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
-    
+    @EnvironmentObject var viewModel: MyUnitsViewModel
     @StateObject var model: FacilityDetailViewModel = FacilityDetailViewModel(repository: FacilityRepositoryImpl())
     
     @State var isDragging = false
@@ -20,24 +20,25 @@ struct FacilityDetailScreen: View {
     @State var willShowCancelBookingDialog: Bool = false
     @State var showCalendarSheet: Bool = false
     
-    let facility: BookedFacilityViewModel
     let style: FacilityDetailsStyle
     
     
-    init(facility: BookedFacilityViewModel, style: FacilityDetailsStyle){
-        self.facility = facility
+    init(style: FacilityDetailsStyle){
+        //self.facility = facility
         self.style = style
         
     }
     
     //MARK: - Body
     var body: some View {
+        
+        
         ZStack(alignment: .bottom) {
             
             
             //MARK: - Images Slider
             
-            FacilityImagesSliderView(isPopupShown: $showPopup, cancelBookingDialog: $willShowCancelBookingDialog, images: model.facility?.facility.images ?? [], popupStyle: style, onBackTapped: {
+            FacilityImagesSliderView(isPopupShown: $showPopup, cancelBookingDialog: $willShowCancelBookingDialog, images: model.images, popupStyle: style, onBackTapped: {
                 presentationMode.wrappedValue.dismiss()
             }, onPopupTapped: {
                 showPopup.toggle()
@@ -54,7 +55,7 @@ struct FacilityDetailScreen: View {
                         
                         FacilityPriceHeader(price: model.pricePerNight, rating: model.rating, status: style)
                         
-                        Text(facility.description)
+                        Text(model.name ?? "")
                             .font(Font.custom("Poppins-Regular", size: 26))
                             .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
                         
@@ -64,7 +65,7 @@ struct FacilityDetailScreen: View {
                         case .booked:
                             BookingDatesView(checkInDate: model.startDate, checkOutDate: model.endDate)
                                 .onAppear {
-                                    model.updateBookingDatesFormat(facility.startDate, facility.endDate)
+                                    model.updateBookingDatesFormat(viewModel.bookedFacility?.startDate, viewModel.bookedFacility?.endDate)
                                 }
                             
                             Group {
@@ -92,14 +93,14 @@ struct FacilityDetailScreen: View {
                             
                             //MARK: - Available Style
                         case .available:
-                            SizeInfoView(space: model.facility?.livingSpace ?? "", rooms: model.facility?.livingRooms ?? "", capacity: model.facility?.capacity ?? "")
+                            SizeInfoView(space: model.availableFacility?.livingSpace ?? "", rooms: model.availableFacility?.livingRooms ?? "", capacity: model.availableFacility?.capacity ?? "")
                             
                             FacilityAmenitiesView()
                             
                             Divider()
                                 .padding(.vertical)
                             
-                            GuestInfoView(name: "Palwandew", rating: "4.2")
+                            GuestInfoView(name: model.availableFacility?.owner ?? "", rating: "4.2")
                             
                             Divider()
                                 .padding(.vertical)
@@ -124,7 +125,7 @@ struct FacilityDetailScreen: View {
                     } label: {
                         HStack {
                             Spacer()
-                            Text("Message Guest")
+                            Text( style == .booked ? "Message Guest" : "Check Calendat")
                                 .foregroundColor(.white)
                                 .padding()
                             
@@ -142,7 +143,15 @@ struct FacilityDetailScreen: View {
             
         }
         .onAppear(perform: {
-            model.getDetails(for: facility.booking.facility.id, with: String(facility.booking.bookingID))
+            
+            switch style {
+            case .booked:
+                model.getDetails(for: viewModel.bookedFacility?.booking.facility.id ?? "", with: String(viewModel.bookedFacility?.booking.bookingID ?? 0))
+            case .available:
+                model.getDetails(for: viewModel.availableFacility?.facility.id ?? "")
+            }
+
+            //model.getDetails(for: facility.booking.facility.id, with: String(facility.booking.bookingID))
         })
         .alertDialog(isShowing: $willShowCancelBookingDialog, content: {
             

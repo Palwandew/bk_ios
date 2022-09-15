@@ -44,7 +44,7 @@ struct MyGuestsScreen: View {
                 PresentGuestsScreen()
                     .tag(1)
                 
-                Text("Rating")
+                RatingScreen()
                     .tag(2)
                 
             }.tabViewStyle(.page(indexDisplayMode: .never))

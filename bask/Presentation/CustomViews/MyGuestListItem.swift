@@ -7,47 +7,8 @@
 
 import SwiftUI
 
-struct UpcomingGuestsScreen: View {
-    private let guests: [String] = ["Palwandew","Sadia","Pulwana"]
-    
-    init(){
-        print("Guest upcoming screen")
-    }
-    
-    var body: some View {
-        
-        ScrollView{
-            
-            LazyVStack {
-                ForEach(0..<guests.underestimatedCount, id:
-                            \.self){ index in
-                    MyGuestListItem(name: guests[index])
-                }
-            }
-        }
-    }
-}
 
-struct PresentGuestsScreen: View {
-    private let guests: [String] = ["Palwandew","Sadia","Pulwana"]
-    
-    init(){
-        print("Guest present screen")
-    }
-    
-    var body: some View {
-        
-        ScrollView{
-            
-            LazyVStack {
-                ForEach(0..<guests.underestimatedCount, id:
-                            \.self){ index in
-                    MyGuestListItem(name: guests[index])
-                }
-            }
-        }
-    }
-}
+
 
 struct MyGuestListItem: View {
     

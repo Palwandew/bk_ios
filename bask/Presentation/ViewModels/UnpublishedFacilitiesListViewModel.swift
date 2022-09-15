@@ -22,19 +22,21 @@ class UnpublishedFacilitiesListViewModel: ObservableObject {
     
     private func getUnpublishedFacilities() {
         
-        repository.getUnpublishedFacilities { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let facilities):
-                    self?.state = .success
-                    self?.facilities = facilities.map(UnpublishedFacilityViewModel.init)
-                    
-                case .failure(_):
-                    print("error occured")
-                    self?.state = .failed
-                }
-            }
-        }
+
+        
+//        repository.getUnpublishedFacilities { [weak self] result in
+//            DispatchQueue.main.async {
+//                switch result {
+//                case .success(let facilities):
+//                    self?.state = .success
+//                    self?.facilities = facilities.map(UnpublishedFacilityViewModel.init)
+//
+//                case .failure(_):
+//                    print("error occured")
+//                    self?.state = .failed
+//                }
+//            }
+//        }
     }
 }
 

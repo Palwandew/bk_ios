@@ -40,6 +40,11 @@
 "%@ currency" = "%@ SAR";
 
 "Continue" = "Continue";
+//My Guests Screen
+"My Guests" = "My Guests";
+"Upcoming" = "Upcoming";
+"Present" = "Present";
+"Rating" = "Rating";
 
 
 

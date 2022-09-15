@@ -46,6 +46,8 @@
 		C41DCB6D28CBB31C004888B1 /* FacilityDomainRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6C28CBB31C004888B1 /* FacilityDomainRepoProtocol.swift */; };
 		C41DCB6F28CBB477004888B1 /* FacilityRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6E28CBB477004888B1 /* FacilityRepositoryImpl.swift */; };
 		C430368A28D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430368928D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift */; };
+		C430368F28D25A3F00C232D5 /* MyGuestsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430368E28D25A3F00C232D5 /* MyGuestsScreen.swift */; };
+		C430369328D2B3C700C232D5 /* MyGuestListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430369228D2B3C700C232D5 /* MyGuestListItem.swift */; };
 		C43DCEB728BDE254005FB7F4 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCEB628BDE254005FB7F4 /* ToastView.swift */; };
 		C43DCEB928BE0867005FB7F4 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCEB828BE0867005FB7F4 /* Toast.swift */; };
 		C440B92D28D1FD7E00909D21 /* AvailableFacilityItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440B92C28D1FD7E00909D21 /* AvailableFacilityItemResponse.swift */; };
@@ -233,6 +235,8 @@
 		C41DCB6C28CBB31C004888B1 /* FacilityDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDomainRepoProtocol.swift; sourceTree = "<group>"; };
 		C41DCB6E28CBB477004888B1 /* FacilityRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRepositoryImpl.swift; sourceTree = "<group>"; };
 		C430368928D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnpublishedFacilitiesListViewModel.swift; sourceTree = "<group>"; };
+		C430368E28D25A3F00C232D5 /* MyGuestsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGuestsScreen.swift; sourceTree = "<group>"; };
+		C430369228D2B3C700C232D5 /* MyGuestListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGuestListItem.swift; sourceTree = "<group>"; };
 		C43DCEB628BDE254005FB7F4 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		C43DCEB828BE0867005FB7F4 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		C440B92C28D1FD7E00909D21 /* AvailableFacilityItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableFacilityItemResponse.swift; sourceTree = "<group>"; };
@@ -439,6 +443,14 @@
 			path = "Request Response Models";
 			sourceTree = "<group>";
 		};
+		C430368B28D259BB00C232D5 /* MyGuests */ = {
+			isa = PBXGroup;
+			children = (
+				C430368E28D25A3F00C232D5 /* MyGuestsScreen.swift */,
+			);
+			path = MyGuests;
+			sourceTree = "<group>";
+		};
 		C45C84CD28B74C9A00646719 /* Request Body Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,6 +522,7 @@
 		C482682C28970EB00072147F /* MyAdds */ = {
 			isa = PBXGroup;
 			children = (
+				C430368B28D259BB00C232D5 /* MyGuests */,
 				C482110C28C7300900D6F75F /* MyUnits */,
 				C482683728974C280072147F /* AddUnit */,
 				C482682D28970EC90072147F /* MyAddsScreen.swift */,
@@ -866,6 +879,7 @@
 				C41DCB6528CB4B04004888B1 /* BookingDatesInfoView.swift */,
 				C41DCB6728CB4C95004888B1 /* FacilityAmenitiesView.swift */,
 				C47B734628CFAA3400C719BE /* ImageView.swift */,
+				C430369228D2B3C700C232D5 /* MyGuestListItem.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1036,6 +1050,7 @@
 				C441FF5C28A4CE3C00AAC00C /* Amenity.swift in Sources */,
 				C4AF9B192828216600EBB141 /* RequestMethod.swift in Sources */,
 				C403100A28945D8D0046B645 /* MyBookings.swift in Sources */,
+				C430368F28D25A3F00C232D5 /* MyGuestsScreen.swift in Sources */,
 				C4AF9B1A2828216600EBB141 /* baskApp.swift in Sources */,
 				C409A10828C9BD9500D4E6C7 /* FacilityImageSliderView.swift in Sources */,
 				C4A5C57F289F3EFB006AF774 /* MaterialTextSelector.swift in Sources */,
@@ -1127,6 +1142,7 @@
 				C49191C928A319B900C03743 /* Room.swift in Sources */,
 				C4AF9B272828216600EBB141 /* LoginDomainRepoProtocol.swift in Sources */,
 				C482111228C735E200D6F75F /* MyUnitsViewModel.swift in Sources */,
+				C430369328D2B3C700C232D5 /* MyGuestListItem.swift in Sources */,
 				C482682E28970EC90072147F /* MyAddsScreen.swift in Sources */,
 				C4918D6328A19DBC00A8777D /* Gallery.swift in Sources */,
 				C4AF9B282828216600EBB141 /* PostUseCase.swift in Sources */,

@@ -38,3 +38,8 @@
 
 "%@ currency" = "%@ س.ر";
 "Continue" = "يكمل";
+//My Guests Screen
+"My Guests" = "ضيوفي";
+"Upcoming" = "القادمة";
+"Present" = "الحالي";
+"Rating" = "المراجعات";

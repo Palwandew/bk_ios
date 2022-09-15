@@ -36,10 +36,12 @@ struct MyAddsScreen: View {
             
             //MARK: - Guests
             
-            RowButton(title: "Guests", icon: "person.fill")
-                .onTapGesture {
-                    print("Guests")
-                }
+            NavigationLink{
+                MyGuestsScreen()
+            } label: {
+                RowButton(title: "Guests", icon: "person.fill")
+
+            }
             
             //MARK: - Cancellation policy
             NavigationLink {

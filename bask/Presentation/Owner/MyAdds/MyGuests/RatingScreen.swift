@@ -28,6 +28,13 @@ struct RatingScreen: View {
                     } label: {
                         EmptyView()
                     }
+                    
+                    NavigationLink(isActive: $willShowComplainGuestScreen) {
+                        ComplainGuestScreen()
+                    } label: {
+                        EmptyView()
+                    }
+                    
                     ForEach(0..<list.count, id:\.self) { _ in
                         GuestRatingListItem {
                             willShowRateGuestScreen.toggle()

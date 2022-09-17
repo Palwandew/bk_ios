@@ -9,8 +9,13 @@ import SwiftUI
 
 struct RateGuestScreen: View {
     
+    @Environment(\.presentationMode) var presentationMode
     @State var rating: Int = 1
-    @State var comment: String = "Test"
+    @State var comment: String = ""
+    @State var editMode: Bool = false
+    @State var done: Bool = false
+    @State private var textStyle = UIFont.TextStyle.body
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading){
@@ -48,18 +53,58 @@ struct RateGuestScreen: View {
                 RatingQuestion(title: "Cleanlines", question: "Do you think appartments was clean?", rating: $rating)
                 
                 RatingQuestion(title: "Facility structure", question: "Rate facility`s constructed infrastructure such as buildings, pools, outdoors", rating: $rating)
-                
+
                 RatingQuestion(title: "Services", question: "Did quality of services coresponde to declared? Was all the declared services available?", rating: $rating)
-                
+
                 RatingQuestion(title: "Communication", question: "Was communication with guest easy and comfortable?", rating: $rating)
-                
+
                 RatingQuestion(title: "Overall", question: "What is your overall impresion about appartmens and host?", rating: $rating)
                 
+                
                 CommentField()
-
-            }
-            .padding(.horizontal)
-        }.background(Color(AppColor.BACKGROUND))
+                    .frame(width: UIScreen.main.bounds.width * 0.9, height: 150)
+                    .padding(.bottom, 32)
+                    
+                
+                if !editMode{
+                    FilledButton(label: "Save rating", color: Color(AppColor.DARKEST_BLUE)) {
+                        print("Save")
+                        editMode.toggle()
+                        done.toggle()
+                    }
+                }
+                
+            }.padding(.horizontal)
+            
+        }
+        
+        .background(Color(AppColor.BACKGROUND))
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(
+                leading:
+                    Button(action : {
+                        print("Back button tapped")
+                        //self.dismiss.callAsFunction()
+                        self.presentationMode.wrappedValue.dismiss()
+                       
+                    }){
+                        Image(systemName: "chevron.backward")
+                            .foregroundColor(Color(AppColor.GREY))
+                        
+                    },
+                trailing: Button(action : {
+                    print("Back button tapped")
+                    //                    self.dismiss.callAsFunction()
+                }){
+                    if !editMode{
+                        Text("Edit")
+                            .font(Font.custom("Poppins-Light", size: 16.0))
+                            .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
+                            .onTapGesture {
+                                editMode.toggle()
+                            }
+                    }
+                })
     }
 }
 
@@ -67,7 +112,7 @@ struct RateGuestScreen_Previews: PreviewProvider {
     static var previews: some View {
         RateGuestScreen()
         
-        CommentField()
+        //CommentField()
     }
 }
 
@@ -106,11 +151,31 @@ struct RatingQuestion: View {
 }
 
 struct CommentField: View {
-    @State var comment = "Comment"
+    @State var comment = ""
+    @State var resign: Bool = false
     var body: some View {
-        List{
-            TextEditor(text: $comment)
-                .background(Color.yellow)
+        ZStack(alignment: .topLeading){
+            
+            
+            MaterialCommentField(text: $comment, resignFirstResponder: $resign)
+            
+                .padding()
+                
+
+                
+            
+            if comment.isEmpty{
+                Text("Tell about your impresions from staying?")
+                    .font(.custom("Poppins-Regular", size: 16))
+                    .foregroundColor(Color.gray)
+                    .padding()
+                }
+            
         }
+
+        .background(RoundedRectangle(cornerRadius: 8).fill(.white))
+        .background(RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1))
+        
+        
     }
 }

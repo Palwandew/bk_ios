@@ -180,9 +180,19 @@
 		C4D659B4282B5A8900FAE1D1 /* LinearProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D659B3282B5A8900FAE1D1 /* LinearProgressBar.swift */; };
 		C4F6675828D37C1500ABA680 /* UpcomingGuestsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6675728D37C1500ABA680 /* UpcomingGuestsScreen.swift */; };
 		C4F6675A28D37C4400ABA680 /* PresentGuestsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6675928D37C4400ABA680 /* PresentGuestsScreen.swift */; };
-		C4F6675C28D37E9C00ABA680 /* GuestRatingListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6675B28D37E9C00ABA680 /* GuestRatingListItem.swift */; };
+		C4F6675C28D37E9C00ABA680 /* UnratedGuestListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6675B28D37E9C00ABA680 /* UnratedGuestListItem.swift */; };
 		C4F6675E28D38E3700ABA680 /* RatingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6675D28D38E3700ABA680 /* RatingScreen.swift */; };
 		C4F6676028D393FD00ABA680 /* RateGuestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6675F28D393FD00ABA680 /* RateGuestScreen.swift */; };
+		C4FF858428D6126900ADBCDF /* UpcomingGuestsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF858328D6126900ADBCDF /* UpcomingGuestsResponse.swift */; };
+		C4FF858628D6135300ADBCDF /* GuestsDomainRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF858528D6135300ADBCDF /* GuestsDomainRepoProtocol.swift */; };
+		C4FF858828D6144600ADBCDF /* GuestsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF858728D6144600ADBCDF /* GuestsRepositoryImpl.swift */; };
+		C4FF858A28D6152800ADBCDF /* UpcomingGuestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF858928D6152800ADBCDF /* UpcomingGuestsViewModel.swift */; };
+		C4FF858C28D6299800ADBCDF /* PresentGuestsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF858B28D6299800ADBCDF /* PresentGuestsResponse.swift */; };
+		C4FF858E28D62A8F00ADBCDF /* PresentGuestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF858D28D62A8F00ADBCDF /* PresentGuestsViewModel.swift */; };
+		C4FF859028D63B1600ADBCDF /* RatingGuestsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF858F28D63B1600ADBCDF /* RatingGuestsResponse.swift */; };
+		C4FF859228D63C4B00ADBCDF /* RatingGuestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF859128D63C4B00ADBCDF /* RatingGuestsViewModel.swift */; };
+		C4FF859428D64E8E00ADBCDF /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF859328D64E8E00ADBCDF /* Rating.swift */; };
+		C4FF859628D6556300ADBCDF /* RateGuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF859528D6556300ADBCDF /* RateGuestViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -381,9 +391,19 @@
 		C4D659B3282B5A8900FAE1D1 /* LinearProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearProgressBar.swift; sourceTree = "<group>"; };
 		C4F6675728D37C1500ABA680 /* UpcomingGuestsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingGuestsScreen.swift; sourceTree = "<group>"; };
 		C4F6675928D37C4400ABA680 /* PresentGuestsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentGuestsScreen.swift; sourceTree = "<group>"; };
-		C4F6675B28D37E9C00ABA680 /* GuestRatingListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestRatingListItem.swift; sourceTree = "<group>"; };
+		C4F6675B28D37E9C00ABA680 /* UnratedGuestListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnratedGuestListItem.swift; sourceTree = "<group>"; };
 		C4F6675D28D38E3700ABA680 /* RatingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingScreen.swift; sourceTree = "<group>"; };
 		C4F6675F28D393FD00ABA680 /* RateGuestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateGuestScreen.swift; sourceTree = "<group>"; };
+		C4FF858328D6126900ADBCDF /* UpcomingGuestsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingGuestsResponse.swift; sourceTree = "<group>"; };
+		C4FF858528D6135300ADBCDF /* GuestsDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestsDomainRepoProtocol.swift; sourceTree = "<group>"; };
+		C4FF858728D6144600ADBCDF /* GuestsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestsRepositoryImpl.swift; sourceTree = "<group>"; };
+		C4FF858928D6152800ADBCDF /* UpcomingGuestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingGuestsViewModel.swift; sourceTree = "<group>"; };
+		C4FF858B28D6299800ADBCDF /* PresentGuestsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentGuestsResponse.swift; sourceTree = "<group>"; };
+		C4FF858D28D62A8F00ADBCDF /* PresentGuestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentGuestsViewModel.swift; sourceTree = "<group>"; };
+		C4FF858F28D63B1600ADBCDF /* RatingGuestsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingGuestsResponse.swift; sourceTree = "<group>"; };
+		C4FF859128D63C4B00ADBCDF /* RatingGuestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingGuestsViewModel.swift; sourceTree = "<group>"; };
+		C4FF859328D64E8E00ADBCDF /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		C4FF859528D6556300ADBCDF /* RateGuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateGuestViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -453,6 +473,9 @@
 				C41CBF9028D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift */,
 				C440B92C28D1FD7E00909D21 /* AvailableFacilityItemResponse.swift */,
 				C440B92E28D224E200909D21 /* UnpublishedFacilitiesResponse.swift */,
+				C4FF858328D6126900ADBCDF /* UpcomingGuestsResponse.swift */,
+				C4FF858B28D6299800ADBCDF /* PresentGuestsResponse.swift */,
+				C4FF858F28D63B1600ADBCDF /* RatingGuestsResponse.swift */,
 			);
 			path = "Request Response Models";
 			sourceTree = "<group>";
@@ -577,6 +600,7 @@
 				C49191BF28A2FAB000C03743 /* CreateFacilityRepositoryImpl.swift */,
 				C45C84C928B736A100646719 /* PhotosRepositoryImpl.swift */,
 				C41DCB6E28CBB477004888B1 /* FacilityRepositoryImpl.swift */,
+				C4FF858728D6144600ADBCDF /* GuestsRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -621,6 +645,10 @@
 				C47B734A28CFADF900C719BE /* AvailableFacilitiesListViewModel.swift */,
 				C47B734E28CFB97800C719BE /* FacilityDetailViewModel.swift */,
 				C430368928D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift */,
+				C4FF858928D6152800ADBCDF /* UpcomingGuestsViewModel.swift */,
+				C4FF858D28D62A8F00ADBCDF /* PresentGuestsViewModel.swift */,
+				C4FF859128D63C4B00ADBCDF /* RatingGuestsViewModel.swift */,
+				C4FF859528D6556300ADBCDF /* RateGuestViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -777,6 +805,7 @@
 				C465D51228AB07F000CFDBC4 /* Rules.swift */,
 				C465D51428AB41BE00CFDBC4 /* Location.swift */,
 				C4A921CD28B601AB00969EF1 /* CheckList.swift */,
+				C4FF859328D64E8E00ADBCDF /* Rating.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -801,6 +830,7 @@
 				C49191BD28A2F92700C03743 /* CreateFacilityDomainRepoProtocol.swift */,
 				C45C84C728B734F300646719 /* PhotosDomainRepoProtocol.swift */,
 				C41DCB6C28CBB31C004888B1 /* FacilityDomainRepoProtocol.swift */,
+				C4FF858528D6135300ADBCDF /* GuestsDomainRepoProtocol.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -899,7 +929,7 @@
 				C41DCB6728CB4C95004888B1 /* FacilityAmenitiesView.swift */,
 				C47B734628CFAA3400C719BE /* ImageView.swift */,
 				C430369228D2B3C700C232D5 /* MyGuestListItem.swift */,
-				C4F6675B28D37E9C00ABA680 /* GuestRatingListItem.swift */,
+				C4F6675B28D37E9C00ABA680 /* UnratedGuestListItem.swift */,
 				C48E9F5528D4A7F200FFD1AF /* MaterialCommentField.swift */,
 			);
 			path = CustomViews;
@@ -1064,6 +1094,7 @@
 				C40310132894A2FE0046B645 /* LeftSwipe.swift in Sources */,
 				C4AF9B172828216600EBB141 /* RequestError.swift in Sources */,
 				C4031008289459280046B645 /* HomeScreen.swift in Sources */,
+				C4FF859028D63B1600ADBCDF /* RatingGuestsResponse.swift in Sources */,
 				C4BB007428910802000D2E47 /* CountryCallingCodeRepoProtocol.swift in Sources */,
 				C47B734D28CFB1B700C719BE /* BookedFacilityItemResponse.swift in Sources */,
 				C4AF9B182828216600EBB141 /* HttpClientProtocol.swift in Sources */,
@@ -1078,6 +1109,7 @@
 				C4A5C57F289F3EFB006AF774 /* MaterialTextSelector.swift in Sources */,
 				C4D659B4282B5A8900FAE1D1 /* LinearProgressBar.swift in Sources */,
 				C4BB005B2890AB89000D2E47 /* MaterialTextField.swift in Sources */,
+				C4FF859228D63C4B00ADBCDF /* RatingGuestsViewModel.swift in Sources */,
 				C41DCB6428CB4AA2004888B1 /* FacilitySizeInfoView.swift in Sources */,
 				C48268292896EDAF0072147F /* PresentBookings.swift in Sources */,
 				C46BD78228292161006AC587 /* FilledButton.swift in Sources */,
@@ -1086,15 +1118,18 @@
 				C41DCB6628CB4B04004888B1 /* BookingDatesInfoView.swift in Sources */,
 				C48268262896E8860072147F /* EmptyState.swift in Sources */,
 				C47B734728CFAA3400C719BE /* ImageView.swift in Sources */,
+				C4FF859628D6556300ADBCDF /* RateGuestViewModel.swift in Sources */,
 				C450F44628A7CE440083AB86 /* PaidService.swift in Sources */,
 				C4AF9B1B2828216600EBB141 /* PostDI.swift in Sources */,
+				C4FF858E28D62A8F00ADBCDF /* PresentGuestsViewModel.swift in Sources */,
 				C4082844289D29D300C1B51B /* FacilityLocationScreen.swift in Sources */,
+				C4FF858628D6135300ADBCDF /* GuestsDomainRepoProtocol.swift in Sources */,
 				C465D51328AB07F000CFDBC4 /* Rules.swift in Sources */,
 				C47B734928CFAAFF00C719BE /* BookedFacilitiesListViewModel.swift in Sources */,
 				C4BB0076289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift in Sources */,
 				C47B734F28CFB97800C719BE /* FacilityDetailViewModel.swift in Sources */,
 				C4A921CA28B5AA6700969EF1 /* UploadProgressView.swift in Sources */,
-				C4F6675C28D37E9C00ABA680 /* GuestRatingListItem.swift in Sources */,
+				C4F6675C28D37E9C00ABA680 /* UnratedGuestListItem.swift in Sources */,
 				C4D0872E289326B400DCEACF /* OTPInput.swift in Sources */,
 				C48E9F5628D4A7F200FFD1AF /* MaterialCommentField.swift in Sources */,
 				C4B538102899D0C70067CC21 /* FacilityFreeAmenitiesScreen.swift in Sources */,
@@ -1111,6 +1146,7 @@
 				C4AF9B1D2828216600EBB141 /* LoginRepositoryImp.swift in Sources */,
 				C482111628C7459B00D6F75F /* UnpublishedFacilitiesScreen.swift in Sources */,
 				C4082848289D455B00C1B51B /* CountriesListScreen.swift in Sources */,
+				C4FF859428D64E8E00ADBCDF /* Rating.swift in Sources */,
 				C46BD76628290DB9006AC587 /* UserTypeSelectionScreen.swift in Sources */,
 				C46BD78A28295FA0006AC587 /* ColorExtension.swift in Sources */,
 				C41DCB6228CB4A19004888B1 /* GuestInfoView.swift in Sources */,
@@ -1129,10 +1165,13 @@
 				C48268242896E47E0072147F /* Spinner.swift in Sources */,
 				C4918D6928A1D66100A8777D /* FacilityPublishChecklistScreen.swift in Sources */,
 				C48E9F5828D4E0E100FFD1AF /* ComplainGuestScreen.swift in Sources */,
+				C4FF858A28D6152800ADBCDF /* UpcomingGuestsViewModel.swift in Sources */,
 				C4AF9B1F2828216600EBB141 /* PostRepositoryImp.swift in Sources */,
 				C47B734328CF89DF00C719BE /* CacheHelper.swift in Sources */,
+				C4FF858428D6126900ADBCDF /* UpcomingGuestsResponse.swift in Sources */,
 				C41DCB5C28CB4925004888B1 /* FacilityPriceHeader.swift in Sources */,
 				C49191BC28A2D42700C03743 /* ArabicTextInputField.swift in Sources */,
+				C4FF858C28D6299800ADBCDF /* PresentGuestsResponse.swift in Sources */,
 				C46526CE28C4D0F700CFDF4F /* Endpoints.swift in Sources */,
 				C4F6675A28D37C4400ABA680 /* PresentGuestsScreen.swift in Sources */,
 				C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */,
@@ -1140,6 +1179,7 @@
 				C40FBF07289A854B00557AEB /* AmenityDescriptionCounter.swift in Sources */,
 				C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */,
 				C4AF9B202828216600EBB141 /* PostRemoteDataSource.swift in Sources */,
+				C4FF858828D6144600ADBCDF /* GuestsRepositoryImpl.swift in Sources */,
 				C4BB007F28913C7E000D2E47 /* FirstResponderTextField.swift in Sources */,
 				C440B92D28D1FD7E00909D21 /* AvailableFacilityItemResponse.swift in Sources */,
 				C482111428C742A300D6F75F /* AvailableFacilitiesScreen.swift in Sources */,

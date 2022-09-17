@@ -12,6 +12,11 @@ struct MyGuestsScreen: View {
     @State var selectedItem = 0
     @State var shallAnimate: Bool = false
     @State var dashSize: CGSize = .zero
+    
+    @State var model = UpcomingGuestsViewModel(repository: GuestsRepositoryImpl())
+    @State var pgViewModel = PresentGuestsViewModel(repository: GuestsRepositoryImpl())
+    @State var ratingViewModel = RatingGuestsViewModel(repository: GuestsRepositoryImpl())
+    
     var body: some View {
         
         VStack(alignment: .leading) {
@@ -39,12 +44,15 @@ struct MyGuestsScreen: View {
             TabView(selection: $selectedItem){
                 
                 UpcomingGuestsScreen()
+                    .environmentObject(model)
                     .tag(0)
                 
                 PresentGuestsScreen()
+                    .environmentObject(pgViewModel)
                     .tag(1)
                 
                 RatingScreen()
+                    .environmentObject(ratingViewModel)
                     .tag(2)
                 
             }.tabViewStyle(.page(indexDisplayMode: .never))

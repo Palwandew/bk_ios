@@ -6,32 +6,50 @@
 //
 
 import SwiftUI
+import AudioToolbox
 
 
 
 
 struct MyGuestListItem: View {
     
-    let name: String
+    let facilityName: String
+    let address: String
+    let checkInTime: String
+    let checkOutTime: String
+    let guestName: String
+    
+    init(_ facilityName: String,
+         _ address: String,
+         _ checkInTime: String ,
+         _ checkOutTime: String,
+         _ guestName: String){
+        self.facilityName = facilityName
+        self.address = address
+        self.checkInTime = checkInTime
+        self.checkOutTime = checkOutTime
+        self.guestName = guestName
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Sunny appartment with gym and swimming pool")
+            Text(facilityName)
                 .font(.custom("Poppins-Regular", size: 20))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
                 .padding(.bottom, 4)
             
-            Text("Check in: 2 PM, Check out : 3 PM")
+            Text("Check in: \(checkInTime), Check out : \(checkOutTime)")
                 .font(.custom("Poppins-Regular", size: 14))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
                 .fontWeight(.light)
                 .padding(.bottom, 1)
             
-            Text("\(Image(systemName: "mappin.circle.fill")) Al Khuwaildiyah, Al Qatif 32653")
+            Text("\(Image(systemName: "mappin.circle.fill")) \(address)")
                 .font(.custom("Poppins-Regular", size: 12))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                 .fontWeight(.light)
             
-            GuestInfoCard(name: name)
+            GuestInfoCard(name: guestName)
             
         }.padding()
     }

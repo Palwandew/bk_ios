@@ -52,6 +52,7 @@ extension URLSession{
                 
                 do {
                     let dataFromServer = try JSONDecoder().decode(T.self, from: data)
+                    print("data from server")
                     completion(.success(dataFromServer))
                     
                 } catch {

@@ -7,40 +7,60 @@
 
 import SwiftUI
 
-struct GuestRatingListItem: View {
-    @State var style: GuestRatingListItemStyle = .new
-    
+struct UnratedGuestListItem: View {
+    let model: UnratedGuestViewModel
     let rateGuest: () -> Void
     let complainGuest: () -> Void
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Sunny appartment with gym and swimming pool")
-                .font(.custom("Poppins-Regular", size: 20))
-                .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                .padding(.bottom, 4)
             
-            Text("Check in: 2 PM, Check out : 3 PM")
-                .font(.custom("Poppins-Regular", size: 14))
-                .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
-                .fontWeight(.light)
-                .padding(.bottom, 1)
+            FacilityInfo(name: model.facilityName, address: model.facilityAddress, checkInTime: model.chechInTime, checkOutTime: model.checkOutTime)
             
-            Text("\(Image(systemName: "mappin.circle.fill")) Al Khuwaildiyah, Al Qatif 32653")
-                .font(.custom("Poppins-Regular", size: 12))
-                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
-                .fontWeight(.light)
+            NewRatingItem(model.name, model.startDate, model.endDate, complainGuest, onRate: rateGuest)
             
-            switch style {
-            case .new:
-                NewRatingItem({
-                    complainGuest()
-                }, onRate: {
-                    rateGuest()
-                })
-            case .old:
-                RatedGuestItem()
-            }
+        }.padding()
+    }
+}
+
+struct FacilityInfo: View {
+    
+    let name: String
+    let address: String
+    let checkInTime: String
+    let checkOutTime: String
+    
+    var body: some View {
+        Text(name)
+            .font(.custom("Poppins-Regular", size: 20))
+            .foregroundColor(Color(AppColor.DARKEST_BLUE))
+            .padding(.bottom, 4)
+        
+        Text("Check in: \(checkInTime), Check out : \(checkOutTime)")
+            .font(.custom("Poppins-Regular", size: 14))
+            .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
+            .fontWeight(.light)
+            .padding(.bottom, 1)
+        
+        Text("\(Image(systemName: "mappin.circle.fill")) \(address)")
+            .font(.custom("Poppins-Regular", size: 12))
+            .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+            .fontWeight(.light)
+    }
+}
+
+struct RatedGuestListItem: View {
+    
+    let viewDetails: () -> Void
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            
+            //FacilityInfo(name: <#T##String#>, address: <#T##String#>, checkInTime: <#T##String#>, checkOutTime: <#T##String#>)
+            
+            
+            RatedGuestItem()
+            
         }.padding()
     }
 }
@@ -54,10 +74,19 @@ struct GuestRatingListItem: View {
 
 struct NewRatingItem: View {
     
+    let guestName: String
+    let startDate: String
+    let endDate: String
     let newComplain: () -> Void
     let rateGuest: () -> Void
     
-    init(_ onComplainTapped: @escaping () -> Void, onRate onRateTapped: @escaping () -> Void){
+    init(_ name: String,
+         _ startDate: String,
+         _ endDate: String,
+         _ onComplainTapped: @escaping () -> Void, onRate onRateTapped: @escaping () -> Void){
+        self.guestName = name
+        self.startDate = startDate
+        self.endDate = endDate
         self.newComplain = onComplainTapped
         self.rateGuest = onRateTapped
     }
@@ -71,12 +100,12 @@ struct NewRatingItem: View {
                     .padding(.trailing, 8)
                 
                 VStack(alignment: .leading) {
-                    Text("15 Jun - 16 May, 2020")
+                    Text("\(startDate) - \(endDate)")
                         .font(Font.custom("Poppins-Medium", size: 12))
                         .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                         .padding(.bottom, 1)
                     
-                    Text("Palwandew")
+                    Text(guestName)
                         .font(Font.custom("Poppins-Medium", size: 16))
                         .foregroundColor(Color(AppColor.DARKEST_BLUE))
                 }

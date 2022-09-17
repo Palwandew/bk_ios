@@ -8,29 +8,37 @@
 import SwiftUI
 
 struct PresentGuestsScreen: View {
-    private let guests: [String] = []
     
-    init(){
-        print("Guest present screen")
-    }
+    @EnvironmentObject var model: PresentGuestsViewModel
     
     var body: some View {
         
-        if guests.isEmpty{
+        switch model.state {
             
-            EmptyState(illustration: "empty_guest_illustration", message: "You don't have any guests at this moment.")
-        }
-        else {
+        case .loading:
+            Spinner()
             
-            ScrollView{
+        case .success:
+            if model.presentGuests.isEmpty {
                 
-                LazyVStack {
-                    ForEach(0..<guests.underestimatedCount, id:
-                                \.self){ index in
-                        MyGuestListItem(name: guests[index])
+                EmptyState(illustration: "empty_guest_illustration", message: "You are not expecting any guests at this moment.")
+            }
+            else {
+                ScrollView{
+                    
+                    LazyVStack {
+                        ForEach(model.presentGuests){ guest in
+                            MyGuestListItem(guest.facilityName, guest.facilityAddress, guest.chechInTime, guest.checkOutTime, guest.name)
+                        }
                     }
                 }
             }
+            
+        case .failed:
+            ErrorStateScreen()
+            
+        case .initial:
+            EmptyView()
         }
     }
 }

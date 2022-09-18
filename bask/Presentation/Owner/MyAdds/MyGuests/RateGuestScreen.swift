@@ -10,11 +10,18 @@ import SwiftUI
 struct RateGuestScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
+    @StateObject var model = RateGuestViewModel(RateGuestUsecase(repo: GuestsRepositoryImpl()))
+    
     @State var rating: Int = 1
     @State var comment: String = ""
     @State var editMode: Bool = false
     @State var done: Bool = false
     @State private var textStyle = UIFont.TextStyle.body
+    private var guest: UnratedGuestViewModel? = nil
+    
+    init(_ guest: UnratedGuestViewModel?){
+        self.guest = guest
+    }
     
     var body: some View {
         ScrollView {
@@ -31,12 +38,12 @@ struct RateGuestScreen: View {
                             .padding(.trailing, 8)
                         
                         VStack(alignment: .leading) {
-                            Text("15 Jun - 16 May, 2020")
+                            Text("\(guest?.startDate ?? "") - \(guest?.endDate ?? "")")
                                 .font(Font.custom("Poppins-Medium", size: 12))
                                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                                 .padding(.bottom, 1)
                             
-                            Text("Palwandew")
+                            Text(guest?.name ?? "")
                                 .font(Font.custom("Poppins-Medium", size: 16))
                                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
                         }
@@ -50,27 +57,26 @@ struct RateGuestScreen: View {
                     .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
                     .padding(.bottom)
                 
-                RatingQuestion(title: "Cleanlines", question: "Do you think appartments was clean?", rating: $rating)
+                RatingQuestion(title: "Cleanlines", question: "Do you think appartments was clean?", rating: $model.questionOne.star)
                 
-                RatingQuestion(title: "Facility structure", question: "Rate facility`s constructed infrastructure such as buildings, pools, outdoors", rating: $rating)
+                RatingQuestion(title: "Facility structure", question: "Rate facility`s constructed infrastructure such as buildings, pools, outdoors", rating: $model.questionTwo.star)
 
-                RatingQuestion(title: "Services", question: "Did quality of services coresponde to declared? Was all the declared services available?", rating: $rating)
+                RatingQuestion(title: "Services", question: "Did quality of services coresponde to declared? Was all the declared services available?", rating: $model.questionThree.star)
 
-                RatingQuestion(title: "Communication", question: "Was communication with guest easy and comfortable?", rating: $rating)
+                RatingQuestion(title: "Communication", question: "Was communication with guest easy and comfortable?", rating: $model.questionFour.star)
 
-                RatingQuestion(title: "Overall", question: "What is your overall impresion about appartmens and host?", rating: $rating)
+                RatingQuestion(title: "Overall", question: "What is your overall impresion about appartmens and host?", rating: $model.questionFive.star)
                 
                 
-                CommentField()
+                CommentField(comment: $model.comment)
                     .frame(width: UIScreen.main.bounds.width * 0.9, height: 150)
                     .padding(.bottom, 32)
                     
                 
                 if !editMode{
                     FilledButton(label: "Save rating", color: Color(AppColor.DARKEST_BLUE)) {
-                        print("Save")
-                        editMode.toggle()
-                        done.toggle()
+                        model.saveRating(for: guest)
+                        
                     }
                 }
                 
@@ -108,13 +114,13 @@ struct RateGuestScreen: View {
     }
 }
 
-struct RateGuestScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        RateGuestScreen()
-        
-        //CommentField()
-    }
-}
+//struct RateGuestScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RateGuestScreen()
+//
+//        //CommentField()
+//    }
+//}
 
 struct RatingQuestion: View {
     
@@ -137,7 +143,6 @@ struct RatingQuestion: View {
                 ForEach(1..<6){index in
                     
                     Button {
-                        print("he")
                         rating = index
                     } label: {
                         Image(systemName: rating >= index ? "star.fill" : "star")
@@ -151,7 +156,7 @@ struct RatingQuestion: View {
 }
 
 struct CommentField: View {
-    @State var comment = ""
+    @Binding var comment: String
     @State var resign: Bool = false
     var body: some View {
         ZStack(alignment: .topLeading){
@@ -160,12 +165,9 @@ struct CommentField: View {
             MaterialCommentField(text: $comment, resignFirstResponder: $resign)
             
                 .padding()
-                
-
-                
             
             if comment.isEmpty{
-                Text("Tell about your impresions from staying?")
+                Text("Share your impresions from staying?")
                     .font(.custom("Poppins-Regular", size: 16))
                     .foregroundColor(Color.gray)
                     .padding()

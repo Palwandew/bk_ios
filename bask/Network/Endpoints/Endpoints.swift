@@ -38,6 +38,7 @@ extension Endpoints{
     static let GET_UPCOMING_GUESTS: Endpoints = Endpoints(path: "booking/upcomingguests")
     static let GET_PRESENT_GUESTS: Endpoints = Endpoints(path: "booking/presentguests")
     static let GET_GUESTS_RATINGS: Endpoints = Endpoints(path: "booking/guestsrating")
+    static let ADD_GUEST_RATING: Endpoints = Endpoints(path: "rating")
     
     static func GET_BOOKED_ITEM(with query: [URLQueryItem]) -> Endpoints {
         return Endpoints(path: "facility/bookeditem", queryItems: query)

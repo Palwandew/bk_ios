@@ -30,5 +30,5 @@ struct Rating {
 
 struct Question{
     let id: Int
-    let star: Int
+    var star: Int
 }

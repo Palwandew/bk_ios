@@ -14,6 +14,7 @@ struct RatingScreen: View {
     @State var list = [1]
     @State var willShowRateGuestScreen: Bool = false
     @State var willShowComplainGuestScreen: Bool = false
+    @State var guest: UnratedGuestViewModel? = nil
     
     var body: some View {
         
@@ -23,7 +24,7 @@ struct RatingScreen: View {
             Spinner()
             
         case .success:
-            if model.unRatedGuests.isEmpty {
+            if model.unRatedGuests.isEmpty && model.ratedGuests.isEmpty {
                 
                 EmptyState(illustration: "empty_guest_illustration", message: "You are not expecting any guests at this moment.")
             }
@@ -31,7 +32,7 @@ struct RatingScreen: View {
                 ScrollView{
                     LazyVStack{
                         NavigationLink(isActive: $willShowRateGuestScreen) {
-                            RateGuestScreen()
+                            RateGuestScreen(guest)
                         } label: {
                             EmptyView()
                         }
@@ -41,15 +42,26 @@ struct RatingScreen: View {
                         } label: {
                             EmptyView()
                         }
-                        
-                        ForEach(model.unRatedGuests) { model in
-                            UnratedGuestListItem(model: model, rateGuest: {
-                                willShowRateGuestScreen.toggle()
-                            }, complainGuest: {
-                                willShowComplainGuestScreen.toggle()
-                            })
+                        if !model.unRatedGuests.isEmpty {
+                            ForEach(model.unRatedGuests) { model in
+                                UnratedGuestListItem(model: model, rateGuest: {
+                                    guest = model
+                                    willShowRateGuestScreen.toggle()
+                                }, complainGuest: {
+                                    willShowComplainGuestScreen.toggle()
+                                })
 
+                            }
                         }
+                        
+                        if !model.ratedGuests.isEmpty {
+                            ForEach(model.ratedGuests) { model in
+                                RatedGuestListItem(model: model, viewDetails: {
+                                    print("heii")
+                                })
+                            }
+                        }
+                        
                         
                     }
                 }

@@ -35,6 +35,8 @@
 		C41A26AF289C79810057F3FE /* FacilityRulesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */; };
 		C41CBF8F28D0C6A400EE55B2 /* LocalizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CBF8E28D0C6A400EE55B2 /* LocalizationHelper.swift */; };
 		C41CBF9128D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CBF9028D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift */; };
+		C41D312228D75FB60049042B /* RateGuestUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41D312128D75FB60049042B /* RateGuestUsecase.swift */; };
+		C41D312428D77E100049042B /* RateGuestRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41D312328D77E100049042B /* RateGuestRequestBody.swift */; };
 		C41DCB5A28CB48BF004888B1 /* FadedBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB5928CB48BF004888B1 /* FadedBlueButton.swift */; };
 		C41DCB5C28CB4925004888B1 /* FacilityPriceHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB5B28CB4925004888B1 /* FacilityPriceHeader.swift */; };
 		C41DCB6028CB49B2004888B1 /* CalendarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB5F28CB49B2004888B1 /* CalendarButton.swift */; };
@@ -241,6 +243,8 @@
 		C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRulesScreen.swift; sourceTree = "<group>"; };
 		C41CBF8E28D0C6A400EE55B2 /* LocalizationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationHelper.swift; sourceTree = "<group>"; };
 		C41CBF9028D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableFacilitiesResponse.swift; sourceTree = "<group>"; };
+		C41D312128D75FB60049042B /* RateGuestUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateGuestUsecase.swift; sourceTree = "<group>"; };
+		C41D312328D77E100049042B /* RateGuestRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateGuestRequestBody.swift; sourceTree = "<group>"; };
 		C41DCB5928CB48BF004888B1 /* FadedBlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadedBlueButton.swift; sourceTree = "<group>"; };
 		C41DCB5B28CB4925004888B1 /* FacilityPriceHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPriceHeader.swift; sourceTree = "<group>"; };
 		C41DCB5F28CB49B2004888B1 /* CalendarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarButton.swift; sourceTree = "<group>"; };
@@ -497,6 +501,7 @@
 			isa = PBXGroup;
 			children = (
 				C45C84CE28B74CD900646719 /* ImageLinkRequestBody.swift */,
+				C41D312328D77E100049042B /* RateGuestRequestBody.swift */,
 			);
 			path = "Request Body Models";
 			sourceTree = "<group>";
@@ -610,6 +615,7 @@
 			children = (
 				C45C84C528B7342C00646719 /* PhotosUseCase.swift */,
 				C49191C528A305FC00C03743 /* CreateFacility */,
+				C41D312128D75FB60049042B /* RateGuestUsecase.swift */,
 			);
 			path = Owner;
 			sourceTree = "<group>";
@@ -1100,6 +1106,7 @@
 				C4AF9B182828216600EBB141 /* HttpClientProtocol.swift in Sources */,
 				C4BB006F289106A0000D2E47 /* CountryCode.swift in Sources */,
 				C441FF5C28A4CE3C00AAC00C /* Amenity.swift in Sources */,
+				C41D312228D75FB60049042B /* RateGuestUsecase.swift in Sources */,
 				C4AF9B192828216600EBB141 /* RequestMethod.swift in Sources */,
 				C403100A28945D8D0046B645 /* MyBookings.swift in Sources */,
 				C430368F28D25A3F00C232D5 /* MyGuestsScreen.swift in Sources */,
@@ -1154,6 +1161,7 @@
 				C45C84C828B734F300646719 /* PhotosDomainRepoProtocol.swift in Sources */,
 				C4AF9B1E2828216600EBB141 /* LoginEndpoint.swift in Sources */,
 				C47BE340289AABA900B91D69 /* FacilityPaidAmenitiesScreen.swift in Sources */,
+				C41D312428D77E100049042B /* RateGuestRequestBody.swift in Sources */,
 				C482683428973BF00072147F /* RadioButton.swift in Sources */,
 				C450F44428A7CE260083AB86 /* FreeService.swift in Sources */,
 				C441FF5A28A456FD00AAC00C /* UIApplicationHelper.swift in Sources */,

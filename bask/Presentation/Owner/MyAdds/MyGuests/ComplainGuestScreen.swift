@@ -18,6 +18,7 @@ struct ComplainGuestScreen: View {
     @State var degree: Double = 0
     
     @State var images: [Int] = [1, 4, 5, 6 ,7 ,8, 12, 1, 0 , 1]
+    @State var comment = ""
     
     var body: some View {
 
@@ -55,7 +56,7 @@ struct ComplainGuestScreen: View {
             .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
             .padding(.bottom)
             
-            CommentField()
+            CommentField(comment: $comment)
                 .frame(width: UIScreen.main.bounds.width * 0.9, height: 150)
                 .padding(.bottom, 32)
             

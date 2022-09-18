@@ -12,6 +12,7 @@ class RatingGuestsViewModel: ObservableObject {
     private let repository: GuestsDomainRepoProtocol
     
     @Published var unRatedGuests: [UnratedGuestViewModel] = []
+    @Published var ratedGuests: [UnratedGuestViewModel] = []
     @Published var state: ScreenState = .loading
     
     init(repository: GuestsDomainRepoProtocol){
@@ -22,6 +23,8 @@ class RatingGuestsViewModel: ObservableObject {
     private func getGuests() {
         
         let endPoint = Endpoints.GET_GUESTS_RATINGS
+        
+        print("Endpi ->\(endPoint.url?.absoluteString)")
         
         repository.getAllGuests(endPoint, response: RatingGuestsResponse.self) { [weak self] result in
             DispatchQueue.main.async {
@@ -34,6 +37,7 @@ class RatingGuestsViewModel: ObservableObject {
                 case .success(let response):
                     self?.state = .success
                     self?.unRatedGuests = response.data.unratedGuests.map(UnratedGuestViewModel.init)
+                    self?.ratedGuests = response.data.ratedGuests.map(UnratedGuestViewModel.init)
                 }
             }
         }
@@ -45,9 +49,9 @@ class RatingGuestsViewModel: ObservableObject {
 class UnratedGuestViewModel: Identifiable {
     
     let id: Int
-    let guest: UnratedGuestBookingData
+    let guest: GuestAndBookingData
     
-    init(guest: UnratedGuestBookingData){
+    init(guest: GuestAndBookingData){
         self.id = guest.bookingID
         self.guest = guest
     }
@@ -79,6 +83,14 @@ class UnratedGuestViewModel: Identifiable {
     
     var endDate: String {
         return self.guest.bookingDates.endDate
+    }
+    
+    var userId: String {
+        return self.guest.customer.id
+    }
+    
+    var isRated: Bool {
+        return !self.guest.ratinginfo.isEmpty
     }
     
     

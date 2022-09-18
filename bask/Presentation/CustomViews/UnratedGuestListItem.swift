@@ -49,29 +49,6 @@ struct FacilityInfo: View {
     }
 }
 
-struct RatedGuestListItem: View {
-    
-    let viewDetails: () -> Void
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            
-            //FacilityInfo(name: <#T##String#>, address: <#T##String#>, checkInTime: <#T##String#>, checkOutTime: <#T##String#>)
-            
-            
-            RatedGuestItem()
-            
-        }.padding()
-    }
-}
-
-//struct GuestRatingListItem_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GuestRatingListItem().previewLayout(.sizeThatFits)
-//    }
-//}
-
-
 struct NewRatingItem: View {
     
     let guestName: String
@@ -164,8 +141,36 @@ struct NewRatingItem: View {
     }
 }
 
+struct RatedGuestListItem: View {
+    let model: UnratedGuestViewModel
+    let viewDetails: () -> Void
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            
+            FacilityInfo(name: model.facilityName, address: model.facilityAddress, checkInTime: model.chechInTime, checkOutTime: model.checkOutTime)
+            
+            
+            RatedGuestItem(guestName: model.name, startDate: model.startDate, endDate: model.endDate, isRated: model.isRated)
+            
+        }.padding()
+    }
+}
+
+//struct GuestRatingListItem_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GuestRatingListItem().previewLayout(.sizeThatFits)
+//    }
+//}
+
+
+
+
 struct RatedGuestItem: View {
-    @State var isRated: Bool = false
+    let guestName: String
+    let startDate: String
+    let endDate: String
+    let isRated: Bool
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -175,12 +180,12 @@ struct RatedGuestItem: View {
                     .padding(.trailing, 8)
                 
                 VStack(alignment: .leading) {
-                    Text("15 Jun - 16 May, 2020")
+                    Text("\(startDate) - \(endDate)")
                         .font(Font.custom("Poppins-Medium", size: 12))
                         .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                         .padding(.bottom, 1)
                     
-                    Text("Palwandew")
+                    Text(guestName)
                         .font(Font.custom("Poppins-Medium", size: 16))
                         .foregroundColor(Color(AppColor.DARKEST_BLUE))
                 }

@@ -25,7 +25,7 @@ extension URLSession{
             
             request.httpMethod = requestType.rawValue
             request.allHTTPHeaderFields = headers
-            request.cachePolicy = .returnCacheDataElseLoad
+            //request.cachePolicy = .returnCacheDataElseLoad
             
             if let body = body {
                 request.httpBody = body//try? JSONSerialization.data(withJSONObject: body, options: [])
@@ -52,7 +52,7 @@ extension URLSession{
                 
                 do {
                     let dataFromServer = try JSONDecoder().decode(T.self, from: data)
-                    print("data from server")
+                    print("data from server \(dataFromServer)")
                     completion(.success(dataFromServer))
                     
                 } catch {
@@ -86,6 +86,7 @@ extension URLSession{
                 
                 do {
                     let requestBody = try JSONEncoder().encode(body)
+                    print("boy ==\(requestBody)")
                     request.httpBody = requestBody
                 } catch {
                     print("error encoding the data")
@@ -111,11 +112,48 @@ extension URLSession{
                     return
                 }
                 
+                do {
+                    let requestBody = try JSONDecoder().decode(Test.self, from: data!)
+                    print("res ==\(requestBody)")
+                } catch {
+                    print("error encoding the data")
+                }
                 print("Data from server \(String(describing: data))")
-                completion(.success("Success"))
+                completion(.success("Successful."))
 
                 
             }.resume()
     }
     
 }
+
+
+struct Test: Codable {
+    let data: TestDataClass
+    let error: Bool
+    let message: String
+}
+
+// MARK: - DataClass
+struct TestDataClass: Codable {
+    let ratinginfo: TestRatinginfo
+}
+
+// MARK: - Ratinginfo
+struct TestRatinginfo: Codable {
+    let author, ratedObject: String
+    let bookingID: Int
+    let ratinginfoDescription: String
+    let id: Int
+
+    enum CodingKeys: String, CodingKey {
+        case author
+        case ratedObject = "rated_object"
+        case bookingID = "booking_id"
+        case ratinginfoDescription = "description"
+        case id
+    }
+}
+
+
+

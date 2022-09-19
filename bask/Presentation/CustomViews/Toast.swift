@@ -21,7 +21,7 @@ struct Toast: View {
            
             
             Text(message)
-                .font(Font.custom("Poppins-Regular", size: 16))
+                .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .callout))
                 .foregroundColor(.white)
                 .padding()
             

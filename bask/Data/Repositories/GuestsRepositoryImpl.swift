@@ -10,8 +10,34 @@ import Foundation
 class GuestsRepositoryImpl: GuestsDomainRepoProtocol {
     
     
+    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2MzYwNzQ5NiwiZXhwIjoxNjY0MDM5NDk2fQ.jGU9lV4swFm_u17xzCdljTY3jkAQQO7hekON56x56Dc"
     
-    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2MzE3NTI1NCwiZXhwIjoxNjYzNjA3MjU0fQ.c_V5hDpyIL2gWEQOQMGo6Fzw2skP_4QBIsQNhMxiiRg"
+    func lodgeComplainAgainst(_ guest: String, _ bookingID: Int, with comments: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let _ = Endpoints.ADD_COMPLAIN
+        let ownerId = "7ae267e8-65cc-4c6d-948a-5518a8bfeb36"
+        let requestBody = ComplainRequestBody(requestBy: ownerId, defandant: guest, type: "complain", bookingID: bookingID, dueDate: Date().description, body: comments)
+        
+        print("Request body \(requestBody)")
+        
+        completion(.failure(RequestError.unknown("Error")))
+        //completion(.success("Done"))
+//        URLSession.shared.sendUpdateRequest(endpoint: endpoint, requestType: .post, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: requestBody) { result in
+//            switch result {
+//            case .failure(let error):
+//                print("error \(error.localizedDescription)")
+//                completion(.failure(error))
+//
+//            case .success(let response):
+//                completion(.success(response))
+//            }
+//        }
+
+    }
+    
+    
+    
+    
+    
     
     
     func getSingleRating(with id: String, completion: @escaping (Result<[Question], Error>) -> Void) {

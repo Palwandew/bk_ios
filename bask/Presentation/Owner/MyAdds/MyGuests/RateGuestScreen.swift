@@ -91,7 +91,7 @@ struct RateGuestScreen: View {
             
             self.model.prepareDataToShow(for: guest)
         })
-        .toast(isShowing: $model.to, content: {
+        .toast(isShowing: $model.toast.willShow, content: {
             Toast(message: model.toast.message, style: model.toast.style)
         })
         .background(Color(AppColor.BACKGROUND))

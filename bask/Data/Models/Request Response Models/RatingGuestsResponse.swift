@@ -31,7 +31,7 @@ struct GuestAndBookingData: Codable {
     let bookingDates: BookingDates
     let englishName, checkInAfter, checkOutBefore, address: String
     let ratinginfo: [RatingInfo]
-    let complain: [Int]?
+    let complain: [ComplainInfo]
     let customer: RatingGuest
 
     enum CodingKeys: String, CodingKey {
@@ -85,6 +85,25 @@ struct RatingInfo: Codable {
         case bookingID = "booking_id"
         case ratinginfoDescription = "description"
         case rating
+    }
+}
+
+// MARK: - ComplainInfo
+struct ComplainInfo: Codable {
+    let id, requestBy, defandant: String
+    let assignedTo: String?
+    let bookingID: Int
+    let createdDate, dueDate, type, status: String
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case requestBy = "request_by"
+        case defandant
+        case assignedTo = "assigned_to"
+        case bookingID = "booking_id"
+        case createdDate = "created_date"
+        case dueDate = "due_date"
+        case type, status
     }
 }
 

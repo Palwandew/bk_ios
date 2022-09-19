@@ -37,7 +37,7 @@ struct RatingScreen: View {
                     }
                     
                     NavigationLink(isActive: $willShowComplainGuestScreen) {
-                        ComplainGuestScreen()
+                        ComplainGuestScreen(guest)
                     } label: {
                         EmptyView()
                     }
@@ -49,6 +49,7 @@ struct RatingScreen: View {
                                     guest = model
                                     willShowRateGuestScreen.toggle()
                                 }, complainGuest: {
+                                    guest = model
                                     willShowComplainGuestScreen.toggle()
                                 })
 
@@ -65,6 +66,7 @@ struct RatingScreen: View {
                                         willShowRateGuestScreen = true
                                         
                                     } else {
+                                        guest = model 
                                         willShowComplainGuestScreen.toggle()
                                     }
                                 })

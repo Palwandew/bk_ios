@@ -39,7 +39,7 @@ extension Endpoints{
     static let GET_PRESENT_GUESTS: Endpoints = Endpoints(path: "booking/presentguests")
     static let GET_GUESTS_RATINGS: Endpoints = Endpoints(path: "booking/guestsrating")
     static let ADD_GUEST_RATING: Endpoints = Endpoints(path: "rating")
-    
+    static let ADD_COMPLAIN: Endpoints = Endpoints(path: "request")
     
     static func GET_SINGLE_RATING(with query: [URLQueryItem]) -> Endpoints {
         return Endpoints(path: "rating", queryItems: query)

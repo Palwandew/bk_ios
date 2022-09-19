@@ -157,7 +157,7 @@ class RateGuestViewModel: ObservableObject {
 
 class ToastViewModel: ObservableObject {
     
-    @Published var willShow: Bool = false
+    @Published var willShow: Bool = false 
     @Published var style: ToastStyle = .success
     @Published var message: String = ""
     

@@ -17,4 +17,6 @@ protocol GuestsDomainRepoProtocol {
     
     func getSingleRating(with id: String, completion: @escaping (Result<[Question], Error>) -> Void)
     
+    func lodgeComplainAgainst(_ guest: String, _ bookingID: Int, with comments: String, completion: @escaping (Result<String, Error>) -> Void)
+    
 }

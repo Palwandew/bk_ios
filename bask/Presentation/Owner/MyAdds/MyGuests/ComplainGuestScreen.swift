@@ -10,7 +10,7 @@ import SwiftUI
 struct ComplainGuestScreen: View {
     
     @StateObject var photoVm = PhotosViewModel(useCase: PhotosUsecase(repo: PhotosRepositoryImpl(uploadManager: PhotosUploadManager())))
-    
+    @StateObject var model = ComplainGuestViewModel(ComplainGuestUseCase(repo: GuestsRepositoryImpl()))
     @State var showGallery: Bool = false
     @State var pickerResult: [Image] = []
     @State var progress: Double = 0.0
@@ -19,6 +19,12 @@ struct ComplainGuestScreen: View {
     
     @State var images: [Int] = [1, 4, 5, 6 ,7 ,8, 12, 1, 0 , 1]
     @State var comment = ""
+    
+    private var guest: UnratedGuestViewModel? = nil
+    
+    init(_ guest: UnratedGuestViewModel?){
+        self.guest = guest
+    }
     
     var body: some View {
 
@@ -37,12 +43,12 @@ struct ComplainGuestScreen: View {
                     .padding(.trailing, 8)
                 
                 VStack(alignment: .leading) {
-                    Text("15 Jun - 16 May, 2020")
+                    Text("\(guest?.startDate ?? "") - \(guest?.endDate ?? "")")
                         .font(Font.custom("Poppins-Medium", size: 12))
                         .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                         .padding(.bottom, 1)
                     
-                    Text("Palwandew")
+                    Text(guest?.name ?? "")
                         .font(Font.custom("Poppins-Medium", size: 16))
                         .foregroundColor(Color(AppColor.DARKEST_BLUE))
                 }
@@ -56,7 +62,7 @@ struct ComplainGuestScreen: View {
             .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
             .padding(.bottom)
             
-            CommentField(comment: $comment)
+            CommentField(comment: $model.comments)
                 .frame(width: UIScreen.main.bounds.width * 0.9, height: 150)
                 .padding(.bottom, 32)
             
@@ -97,18 +103,19 @@ struct ComplainGuestScreen: View {
             
             FilledButton(label: "Send complaint", color: Color(AppColor.DARKEST_BLUE)) {
                 print("Save")
+                model.lodgeComplainAgainst(guest)
                 //degree += 30
-                if progress != 1 {
-                    progress += 0.2
-                
-                } else {
-                    progress = 0
-                }
-                if degree == 0 {
-                    degree += 360
-                } else {
-                    degree = 0
-                }
+//                if progress != 1 {
+//                    progress += 0.2
+//
+//                } else {
+//                    progress = 0
+//                }
+//                if degree == 0 {
+//                    degree += 360
+//                } else {
+//                    degree = 0
+//                }
 
                 
             }
@@ -118,14 +125,17 @@ struct ComplainGuestScreen: View {
                 Gallery(selectedImagesThumbnails: $pickerResult, isPresented: $showGallery)
                     .environmentObject(photoVm)
             })
+            .toast(isShowing: $model.toast.willShow, content: {
+                Toast(message: model.toast.message, style: model.toast.style)
+            })
     }
 }
 
-struct ComplainGuestScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        ComplainGuestScreen()
-    }
-}
+//struct ComplainGuestScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ComplainGuestScreen()
+//    }
+//}
 
 struct ComplainImageUplodingProgressView: View {
     

@@ -187,6 +187,9 @@
 		C4F6676028D393FD00ABA680 /* RateGuestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6675F28D393FD00ABA680 /* RateGuestScreen.swift */; };
 		C4F7E77D28D855F50060A1C7 /* SingleGuestRatingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7E77C28D855F50060A1C7 /* SingleGuestRatingResponse.swift */; };
 		C4F7E77F28D884AD0060A1C7 /* UpdatedGuestRatingRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7E77E28D884AD0060A1C7 /* UpdatedGuestRatingRequestBody.swift */; };
+		C4F7E78128D8BEDC0060A1C7 /* ComplainRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7E78028D8BEDC0060A1C7 /* ComplainRequestBody.swift */; };
+		C4F7E78328D8CE8C0060A1C7 /* ComplainGuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7E78228D8CE8C0060A1C7 /* ComplainGuestViewModel.swift */; };
+		C4F7E78528D8D0100060A1C7 /* ComplainGuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7E78428D8D0100060A1C7 /* ComplainGuestUseCase.swift */; };
 		C4FF858428D6126900ADBCDF /* UpcomingGuestsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF858328D6126900ADBCDF /* UpcomingGuestsResponse.swift */; };
 		C4FF858628D6135300ADBCDF /* GuestsDomainRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF858528D6135300ADBCDF /* GuestsDomainRepoProtocol.swift */; };
 		C4FF858828D6144600ADBCDF /* GuestsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF858728D6144600ADBCDF /* GuestsRepositoryImpl.swift */; };
@@ -402,6 +405,9 @@
 		C4F6675F28D393FD00ABA680 /* RateGuestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateGuestScreen.swift; sourceTree = "<group>"; };
 		C4F7E77C28D855F50060A1C7 /* SingleGuestRatingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGuestRatingResponse.swift; sourceTree = "<group>"; };
 		C4F7E77E28D884AD0060A1C7 /* UpdatedGuestRatingRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedGuestRatingRequestBody.swift; sourceTree = "<group>"; };
+		C4F7E78028D8BEDC0060A1C7 /* ComplainRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplainRequestBody.swift; sourceTree = "<group>"; };
+		C4F7E78228D8CE8C0060A1C7 /* ComplainGuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplainGuestViewModel.swift; sourceTree = "<group>"; };
+		C4F7E78428D8D0100060A1C7 /* ComplainGuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplainGuestUseCase.swift; sourceTree = "<group>"; };
 		C4FF858328D6126900ADBCDF /* UpcomingGuestsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingGuestsResponse.swift; sourceTree = "<group>"; };
 		C4FF858528D6135300ADBCDF /* GuestsDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestsDomainRepoProtocol.swift; sourceTree = "<group>"; };
 		C4FF858728D6144600ADBCDF /* GuestsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestsRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -508,6 +514,7 @@
 				C45C84CE28B74CD900646719 /* ImageLinkRequestBody.swift */,
 				C41D312328D77E100049042B /* RateGuestRequestBody.swift */,
 				C4F7E77E28D884AD0060A1C7 /* UpdatedGuestRatingRequestBody.swift */,
+				C4F7E78028D8BEDC0060A1C7 /* ComplainRequestBody.swift */,
 			);
 			path = "Request Body Models";
 			sourceTree = "<group>";
@@ -622,6 +629,7 @@
 				C45C84C528B7342C00646719 /* PhotosUseCase.swift */,
 				C49191C528A305FC00C03743 /* CreateFacility */,
 				C41D312128D75FB60049042B /* RateGuestUsecase.swift */,
+				C4F7E78428D8D0100060A1C7 /* ComplainGuestUseCase.swift */,
 			);
 			path = Owner;
 			sourceTree = "<group>";
@@ -661,6 +669,7 @@
 				C4FF858D28D62A8F00ADBCDF /* PresentGuestsViewModel.swift */,
 				C4FF859128D63C4B00ADBCDF /* RatingGuestsViewModel.swift */,
 				C4FF859528D6556300ADBCDF /* RateGuestViewModel.swift */,
+				C4F7E78228D8CE8C0060A1C7 /* ComplainGuestViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1099,6 +1108,8 @@
 				C4F7E77D28D855F50060A1C7 /* SingleGuestRatingResponse.swift in Sources */,
 				C482683F28975DBF0072147F /* MaterialLengthField.swift in Sources */,
 				C482683D289759600072147F /* FacilityRoomsScreen.swift in Sources */,
+				C4F7E78528D8D0100060A1C7 /* ComplainGuestUseCase.swift in Sources */,
+				C4F7E78328D8CE8C0060A1C7 /* ComplainGuestViewModel.swift in Sources */,
 				C41CBF9128D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift in Sources */,
 				C482110E28C7315900D6F75F /* MyUnitsScreen.swift in Sources */,
 				C403100C289466210046B645 /* RentCollectionIndicator.swift in Sources */,
@@ -1250,6 +1261,7 @@
 				C47B734528CFA9C900C719BE /* ImageLoader.swift in Sources */,
 				C45C84CF28B74CD900646719 /* ImageLinkRequestBody.swift in Sources */,
 				C48268362897454C0072147F /* CancellationPolicyViewModel.swift in Sources */,
+				C4F7E78128D8BEDC0060A1C7 /* ComplainRequestBody.swift in Sources */,
 				C46BD7612828FBD2006AC587 /* User.swift in Sources */,
 				C482111828C7599100D6F75F /* FacilityDetailScreen.swift in Sources */,
 				C4BB00692890F504000D2E47 /* VerifyPhoneNumberScreen.swift in Sources */,

@@ -185,6 +185,8 @@
 		C4F6675C28D37E9C00ABA680 /* UnratedGuestListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6675B28D37E9C00ABA680 /* UnratedGuestListItem.swift */; };
 		C4F6675E28D38E3700ABA680 /* RatingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6675D28D38E3700ABA680 /* RatingScreen.swift */; };
 		C4F6676028D393FD00ABA680 /* RateGuestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6675F28D393FD00ABA680 /* RateGuestScreen.swift */; };
+		C4F7E77D28D855F50060A1C7 /* SingleGuestRatingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7E77C28D855F50060A1C7 /* SingleGuestRatingResponse.swift */; };
+		C4F7E77F28D884AD0060A1C7 /* UpdatedGuestRatingRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7E77E28D884AD0060A1C7 /* UpdatedGuestRatingRequestBody.swift */; };
 		C4FF858428D6126900ADBCDF /* UpcomingGuestsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF858328D6126900ADBCDF /* UpcomingGuestsResponse.swift */; };
 		C4FF858628D6135300ADBCDF /* GuestsDomainRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF858528D6135300ADBCDF /* GuestsDomainRepoProtocol.swift */; };
 		C4FF858828D6144600ADBCDF /* GuestsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF858728D6144600ADBCDF /* GuestsRepositoryImpl.swift */; };
@@ -398,6 +400,8 @@
 		C4F6675B28D37E9C00ABA680 /* UnratedGuestListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnratedGuestListItem.swift; sourceTree = "<group>"; };
 		C4F6675D28D38E3700ABA680 /* RatingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingScreen.swift; sourceTree = "<group>"; };
 		C4F6675F28D393FD00ABA680 /* RateGuestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateGuestScreen.swift; sourceTree = "<group>"; };
+		C4F7E77C28D855F50060A1C7 /* SingleGuestRatingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGuestRatingResponse.swift; sourceTree = "<group>"; };
+		C4F7E77E28D884AD0060A1C7 /* UpdatedGuestRatingRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedGuestRatingRequestBody.swift; sourceTree = "<group>"; };
 		C4FF858328D6126900ADBCDF /* UpcomingGuestsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingGuestsResponse.swift; sourceTree = "<group>"; };
 		C4FF858528D6135300ADBCDF /* GuestsDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestsDomainRepoProtocol.swift; sourceTree = "<group>"; };
 		C4FF858728D6144600ADBCDF /* GuestsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestsRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -480,6 +484,7 @@
 				C4FF858328D6126900ADBCDF /* UpcomingGuestsResponse.swift */,
 				C4FF858B28D6299800ADBCDF /* PresentGuestsResponse.swift */,
 				C4FF858F28D63B1600ADBCDF /* RatingGuestsResponse.swift */,
+				C4F7E77C28D855F50060A1C7 /* SingleGuestRatingResponse.swift */,
 			);
 			path = "Request Response Models";
 			sourceTree = "<group>";
@@ -502,6 +507,7 @@
 			children = (
 				C45C84CE28B74CD900646719 /* ImageLinkRequestBody.swift */,
 				C41D312328D77E100049042B /* RateGuestRequestBody.swift */,
+				C4F7E77E28D884AD0060A1C7 /* UpdatedGuestRatingRequestBody.swift */,
 			);
 			path = "Request Body Models";
 			sourceTree = "<group>";
@@ -1090,6 +1096,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */,
+				C4F7E77D28D855F50060A1C7 /* SingleGuestRatingResponse.swift in Sources */,
 				C482683F28975DBF0072147F /* MaterialLengthField.swift in Sources */,
 				C482683D289759600072147F /* FacilityRoomsScreen.swift in Sources */,
 				C41CBF9128D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift in Sources */,
@@ -1221,6 +1228,7 @@
 				C482682E28970EC90072147F /* MyAddsScreen.swift in Sources */,
 				C4918D6328A19DBC00A8777D /* Gallery.swift in Sources */,
 				C4AF9B282828216600EBB141 /* PostUseCase.swift in Sources */,
+				C4F7E77F28D884AD0060A1C7 /* UpdatedGuestRatingRequestBody.swift in Sources */,
 				C4F6675828D37C1500ABA680 /* UpcomingGuestsScreen.swift in Sources */,
 				C47FEB132896A874008BC4C2 /* MyBookingsViewModel.swift in Sources */,
 				C4AF9B292828216600EBB141 /* LoginUseCase.swift in Sources */,

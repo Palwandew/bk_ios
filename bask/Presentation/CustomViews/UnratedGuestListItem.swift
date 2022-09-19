@@ -151,7 +151,7 @@ struct RatedGuestListItem: View {
             FacilityInfo(name: model.facilityName, address: model.facilityAddress, checkInTime: model.chechInTime, checkOutTime: model.checkOutTime)
             
             
-            RatedGuestItem(guestName: model.name, startDate: model.startDate, endDate: model.endDate, isRated: model.isRated)
+            RatedGuestItem(guestName: model.name, startDate: model.startDate, endDate: model.endDate, isRated: model.isRated, showDetails: viewDetails)
             
         }.padding()
     }
@@ -171,6 +171,7 @@ struct RatedGuestItem: View {
     let startDate: String
     let endDate: String
     let isRated: Bool
+    let showDetails: () -> Void
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -216,6 +217,7 @@ struct RatedGuestItem: View {
                 
                 Button {
                     print("message guest")
+                    showDetails()
                 } label: {
                     
                     HStack {

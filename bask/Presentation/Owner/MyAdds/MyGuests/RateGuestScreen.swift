@@ -14,7 +14,7 @@ struct RateGuestScreen: View {
     
     @State var rating: Int = 1
     @State var comment: String = ""
-    @State var editMode: Bool = false
+    @State var editMode: Bool = true
     @State var done: Bool = false
     @State private var textStyle = UIFont.TextStyle.body
     private var guest: UnratedGuestViewModel? = nil
@@ -57,23 +57,27 @@ struct RateGuestScreen: View {
                     .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
                     .padding(.bottom)
                 
-                RatingQuestion(title: "Cleanlines", question: "Do you think appartments was clean?", rating: $model.questionOne.star)
+                RatingQuestion(title: "Cleanlines", question: "Do you think appartments was clean?", rating: $model.questions[0].stars)
                 
-                RatingQuestion(title: "Facility structure", question: "Rate facility`s constructed infrastructure such as buildings, pools, outdoors", rating: $model.questionTwo.star)
+                RatingQuestion(title: "Facility structure", question: "Rate facility`s constructed infrastructure such as buildings, pools, outdoors", rating: $model.questions[1].stars)
 
-                RatingQuestion(title: "Services", question: "Did quality of services coresponde to declared? Was all the declared services available?", rating: $model.questionThree.star)
+                RatingQuestion(title: "Services", question: "Did quality of services coresponde to declared? Was all the declared services available?", rating: $model.questions[2].stars)
 
-                RatingQuestion(title: "Communication", question: "Was communication with guest easy and comfortable?", rating: $model.questionFour.star)
+                RatingQuestion(title: "Communication", question: "Was communication with guest easy and comfortable?", rating: $model.questions[3].stars)
 
-                RatingQuestion(title: "Overall", question: "What is your overall impresion about appartmens and host?", rating: $model.questionFive.star)
+                RatingQuestion(title: "Overall", question: "What is your overall impresion about appartmens and host?", rating: $model.questions[4].stars)
                 
                 
                 CommentField(comment: $model.comment)
                     .frame(width: UIScreen.main.bounds.width * 0.9, height: 150)
                     .padding(.bottom, 32)
+                    .onAppear {
+                        model.setComment( guest?.ratingInfo)
+                        model.setQuestionsStar(guest?.rating)
+                    }
                     
-                
-                if !editMode{
+                //Shows the save button when it's a new rating else not.
+                if !model.isEditEnabled {
                     FilledButton(label: "Save rating", color: Color(AppColor.DARKEST_BLUE)) {
                         model.saveRating(for: guest)
                         
@@ -83,7 +87,13 @@ struct RateGuestScreen: View {
             }.padding(.horizontal)
             
         }
-        
+        .onAppear(perform: {
+            
+            self.model.prepareDataToShow(for: guest)
+        })
+        .toast(isShowing: $model.to, content: {
+            Toast(message: model.toast.message, style: model.toast.style)
+        })
         .background(Color(AppColor.BACKGROUND))
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(
@@ -102,12 +112,12 @@ struct RateGuestScreen: View {
                     print("Back button tapped")
                     //                    self.dismiss.callAsFunction()
                 }){
-                    if !editMode{
+                    if model.isEditEnabled {
                         Text("Edit")
                             .font(Font.custom("Poppins-Light", size: 16.0))
                             .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
                             .onTapGesture {
-                                editMode.toggle()
+                                model.enableEditMode()
                             }
                     }
                 })

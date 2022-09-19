@@ -13,4 +13,8 @@ protocol GuestsDomainRepoProtocol {
     
     func rateGuest(requestBody: RateGuestRequestBody, completion: @escaping (Result<String, Error>) -> Void)
     
+    func updateGuestPreviousRating(_ oldRatingID: Int, _ comment: String, _ questions: [Question], completion: @escaping (Result<String, Error>) -> Void)
+    
+    func getSingleRating(with id: String, completion: @escaping (Result<[Question], Error>) -> Void)
+    
 }

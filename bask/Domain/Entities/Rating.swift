@@ -22,13 +22,15 @@ struct Rating {
         
         var questions = [Question]()
         for i in 1..<6 {
-            questions.append(Question(id: i, star: 1))
+            questions.append(Question(rubricId: i, stars: 1))
         }
         return questions
     }
 }
 
 struct Question{
-    let id: Int
-    var star: Int
+    let rubricId: Int
+    var stars: Int
+    var idFromDB: Int? = nil
+    
 }

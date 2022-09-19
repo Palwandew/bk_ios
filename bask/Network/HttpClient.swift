@@ -25,7 +25,7 @@ extension URLSession{
             
             request.httpMethod = requestType.rawValue
             request.allHTTPHeaderFields = headers
-            //request.cachePolicy = .returnCacheDataElseLoad
+            //request.cachePolicy = .reloadRevalidatingCacheData //Use cache data if the origin source can validate it; otherwise, load from the origin.
             
             if let body = body {
                 request.httpBody = body//try? JSONSerialization.data(withJSONObject: body, options: [])

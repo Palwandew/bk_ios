@@ -24,8 +24,6 @@ class RatingGuestsViewModel: ObservableObject {
         
         let endPoint = Endpoints.GET_GUESTS_RATINGS
         
-        print("Endpi ->\(endPoint.url?.absoluteString)")
-        
         repository.getAllGuests(endPoint, response: RatingGuestsResponse.self) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
@@ -85,12 +83,21 @@ class UnratedGuestViewModel: Identifiable {
         return self.guest.bookingDates.endDate
     }
     
+    
     var userId: String {
         return self.guest.customer.id
     }
     
     var isRated: Bool {
         return !self.guest.ratinginfo.isEmpty
+    }
+    
+    var ratingInfo: String? {
+        return self.guest.ratinginfo.first?.ratinginfoDescription 
+    }
+    
+    var rating: [RatingStar]? {
+        return self.guest.ratinginfo.first?.rating
     }
     
     

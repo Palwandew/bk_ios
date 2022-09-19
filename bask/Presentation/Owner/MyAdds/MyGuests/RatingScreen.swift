@@ -30,18 +30,19 @@ struct RatingScreen: View {
             }
             else {
                 ScrollView{
+                    NavigationLink(isActive: $willShowRateGuestScreen) {
+                        RateGuestScreen(guest)
+                    } label: {
+                        EmptyView()
+                    }
+                    
+                    NavigationLink(isActive: $willShowComplainGuestScreen) {
+                        ComplainGuestScreen()
+                    } label: {
+                        EmptyView()
+                    }
                     LazyVStack{
-                        NavigationLink(isActive: $willShowRateGuestScreen) {
-                            RateGuestScreen(guest)
-                        } label: {
-                            EmptyView()
-                        }
                         
-                        NavigationLink(isActive: $willShowComplainGuestScreen) {
-                            ComplainGuestScreen()
-                        } label: {
-                            EmptyView()
-                        }
                         if !model.unRatedGuests.isEmpty {
                             ForEach(model.unRatedGuests) { model in
                                 UnratedGuestListItem(model: model, rateGuest: {
@@ -58,11 +59,17 @@ struct RatingScreen: View {
                             ForEach(model.ratedGuests) { model in
                                 RatedGuestListItem(model: model, viewDetails: {
                                     print("heii")
+                                    if model.isRated {
+                                        print("inside")
+                                        guest = model 
+                                        willShowRateGuestScreen = true
+                                        
+                                    } else {
+                                        willShowComplainGuestScreen.toggle()
+                                    }
                                 })
                             }
                         }
-                        
-                        
                     }
                 }
             }

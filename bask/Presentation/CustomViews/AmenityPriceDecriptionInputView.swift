@@ -96,6 +96,7 @@ struct MaterialDropdown: View {
     
     @Binding var menuShowed: Bool
     @Binding var selectedText: String
+    var icon: String? = nil
     let onTapped: () -> Void
     
     var body: some View {
@@ -114,8 +115,14 @@ struct MaterialDropdown: View {
                     
                     Spacer()
                     
-                    Image(systemName: menuShowed ? "chevron.up" : "chevron.down")
-                        .foregroundColor(color)
+                    if icon == nil {
+                        Image(systemName: menuShowed ? "chevron.up" : "chevron.down")
+                            .foregroundColor(color)
+                    } else {
+                        Image(systemName: icon!)
+                            .foregroundColor(color)
+                    }
+
                     
                 }
                 .contentShape(Rectangle())

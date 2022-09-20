@@ -48,6 +48,19 @@
 "Rate" = "Rate";
 "View details" = "View details";
 
+//Offers Screen
+"Set duration" = "Set Duration";
+"to" = "to";
+
+//Calendar
+
+"mon" = "mon";
+"tue" = "tue";
+"wed" = "wed";
+"thu" = "thu";
+"fri" = "fri";
+"sat" = "sat";
+"sun" = "sun";
 
 
 

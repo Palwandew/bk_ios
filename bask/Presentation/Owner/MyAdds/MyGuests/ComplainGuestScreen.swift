@@ -88,9 +88,9 @@ struct ComplainGuestScreen: View {
                     ForEach(0..<photoVm.images.count, id:
                                     
                                 \.self){ index in
-                        ComplainImageListItem(progress: $progress, degress: $degree, name: "Image ", onRemove: {
+                        ComplainImageListItem(progress: $progress, degress: $degree, name: "Image \(index+1)", onRemove: {
                             
-                            images.remove(at: index)
+                            photoVm.images.remove(at: index)
                         })
                     }
                 }.padding(1)
@@ -104,6 +104,8 @@ struct ComplainGuestScreen: View {
             FilledButton(label: "Send complaint", color: Color(AppColor.DARKEST_BLUE)) {
                 print("Save")
                 model.lodgeComplainAgainst(guest)
+                
+                
                 //degree += 30
 //                if progress != 1 {
 //                    progress += 0.2
@@ -130,12 +132,6 @@ struct ComplainGuestScreen: View {
             })
     }
 }
-
-//struct ComplainGuestScreen_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ComplainGuestScreen()
-//    }
-//}
 
 struct ComplainImageUplodingProgressView: View {
     

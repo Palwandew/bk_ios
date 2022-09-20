@@ -22,7 +22,7 @@ struct FilledButton: View {
                 Text(label)
                     .font(Font.custom("Poppins-Regular", size: 16))
                 Spacer()
-                Image(systemName: "arrow.right")
+                Image(systemName: "arrow.forward")
             }
             .padding()
         }

@@ -114,7 +114,7 @@ class RateGuestViewModel: ObservableObject {
                 case .success(let questions):
                     print("Previous rating")
                     self?.questions = questions
-                case .failure(let error):
+                case .failure(_):
                     print("error")
                 }
             }

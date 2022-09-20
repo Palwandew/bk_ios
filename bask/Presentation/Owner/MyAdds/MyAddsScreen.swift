@@ -53,11 +53,11 @@ struct MyAddsScreen: View {
 
 
             //MARK: - My Offers
-            
-            RowButton(title: "My offers", icon: "flame.fill")
-                .onTapGesture {
-                    print("My offers")
-                }
+            NavigationLink {
+                MyOffersScreen()
+            } label: {
+                RowButton(title: "My offers", icon: "flame.fill")
+            }
             
             //MARK: - Create Promo
             
@@ -96,7 +96,7 @@ struct RowButton: View {
                     .fontWeight(.regular)
                     .foregroundColor(Color(AppColor.DARKEST_BLUE))
                 Spacer()
-                Image(systemName: "chevron.right")
+                Image(systemName: "chevron.forward")
                     .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
             }.padding(.leading)
                 .contentShape(Rectangle())

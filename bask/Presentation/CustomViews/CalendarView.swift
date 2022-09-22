@@ -7,69 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
-fileprivate extension DateFormatter {
-    
-    static var day: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.setLocalizedDateFormatFromTemplate("d")
-        //formatter.dateFormat = "MMMM"
-        return formatter
-    }
-    
-    static var test: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.setLocalizedDateFormatFromTemplate("dd MM yyyy")
-        //formatter.dateFormat = "MMMM"
-        return formatter
-    }
-    
-    static var month: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.setLocalizedDateFormatFromTemplate("MMMM yyyy")
-        //formatter.dateFormat = "MMMM"
-        return formatter
-    }
-    
-    static var monthAndYear: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM yyyy"
-        return formatter
-    }
-}
-
-fileprivate extension Calendar {
-    func generateDates(
-        inside interval: DateInterval,
-        matching components: DateComponents
-    ) -> [Date] {
-        
-        var dates: [Date] = []
-        dates.append(interval.start)
-        
-        enumerateDates(
-            startingAfter: interval.start,
-            matching: components,
-            matchingPolicy: .nextTime
-        ) { date, _, stop in
-            if let date = date {
-                if date < interval.end {
-                    dates.append(date)
-                } else {
-                    stop = true
-                }
-            }
-            
-            
-        }
-        
-        return dates
-    }
-}
 
 struct CalendarView<DateView>: View where DateView: View {
     @Environment(\.calendar) var calendar
@@ -148,6 +85,7 @@ struct MonthHeader: View {
                     Spacer()
                     Text(days[day])
                         .font(.footnote)
+                        .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                         .lineLimit(1)
                     Spacer()
                 }
@@ -300,44 +238,48 @@ struct MonthView<DateView>: View where DateView: View {
 struct CalendarViews: View {
     @Environment(\.calendar) var calendar
     
+    @State private var startDate: Date? = nil
+    @State private var endDate: Date? = nil
+    var onDateSelected: ((Date?, Date?) -> Void)? = nil
+    
     private var year: DateInterval {
         calendar.dateInterval(of: .year, for: Date())!
     }
     
-    let myLocale = Locale(identifier: "ar_KSA")
     
-    @State var startDate: Date? = nil
-    @State var endDate: Date? = nil
     
     var bookedDays: [CalendarDay] = [CalendarDay(date: "8/30/2022", status:.booked, isDefaultPrice: true)]
+    
     
     var body: some View {
         
         
-        NavigationView {
-            CalendarView(interval: year, bookedDays: bookedDays, sDate: $startDate, eDate: $endDate) { date in
-                
-    //            RoundedRectangle(cornerRadius: 8).fill(isDateSelected(date) ? Color(red: 0.086, green: 0.114, blue: 0.314, opacity: 1) : Color.white).shadow(radius: 1)
-                
-                NestedStack(date: DateFormatter.day.string(from: date), isDateSelected(date))
-                
-                    .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
-                    .padding(1)
-                    .onTapGesture {
-                    
-                                                setDate(date)
-                                            }
-    //                .overlay(
-    //                    Text(DateFormatter.day.string(from: date))//.padding()
-    //                        .font(.body)
-    //                        .foregroundColor(isDateSelected(date) ? .white : .blue)
-    //                        .onTapGesture {
-    //
-    //                            setDate(date)
-    //                        }
-    //                )
-            }
+        
+        CalendarView(interval: year, bookedDays: bookedDays, sDate: $startDate, eDate: $endDate) { date in
+            
+            //            RoundedRectangle(cornerRadius: 8).fill(isDateSelected(date) ? Color(red: 0.086, green: 0.114, blue: 0.314, opacity: 1) : Color.white).shadow(radius: 1)
+            
+            CalendarCell(date: DateFormatter.day.string(from: date), isDateSelected(date))
+            
+                .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
+                .padding(1)
+                .onTapGesture {
+                    setDate(date)
+                    if let onDateSelected = onDateSelected {
+                        onDateSelected(startDate, endDate)
+                    }
+                }
+            //                .overlay(
+            //                    Text(DateFormatter.day.string(from: date))//.padding()
+            //                        .font(.body)
+            //                        .foregroundColor(isDateSelected(date) ? .white : .blue)
+            //                        .onTapGesture {
+            //
+            //                            setDate(date)
+            //                        }
+            //                )
         }
+        
     }
     
     private func isDateSelected(_ date: Date) -> Bool {
@@ -387,13 +329,7 @@ class CalendarDay{
     }
 }
 
-//struct CalendarView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CalendarView()
-//    }
-//}
-
-struct NestedStack: View {
+struct CalendarCell: View {
     
     let date: String
     let isDateSelected: Bool
@@ -405,27 +341,27 @@ struct NestedStack: View {
     var body: some View {
         GeometryReader { reader in
             
-        ZStack(alignment: .bottom) {
+            ZStack(alignment: .bottom) {
                 RoundedRectangle(cornerRadius: 8)
-                .fill( isDateSelected ? Color(AppColor.DARKEST_BLUE) : Color.white).shadow(radius: 1)
+                    .fill( isDateSelected ? Color(AppColor.DARKEST_BLUE) : Color(AppColor.LIGHT_GREY)).shadow(radius: 1)
                     .frame(width: reader.size.width, height: reader.size.height)
-                .shadow(radius: 2)
-                .overlay(
-                    Text(date)
-                        .foregroundColor(isDateSelected ? .white : Color(AppColor.DARKEST_BLUE))
-                        .padding(.bottom, 6)
-                )
+                    .shadow(radius: 2)
+                    .overlay(
+                        Text(date)
+                            .foregroundColor(isDateSelected ? .white : Color(AppColor.DARKEST_BLUE))
+                            .padding(.bottom, 6)
+                    )
                 
                 RoundedRectangle(cornerRadius: 4)
                     .fill(Color(red: 0.341, green: 0.884, blue: 0.818, opacity: 1))
                     .frame(width: reader.size.width, height: reader.size.height * 0.30)
                     .overlay(
                         Text("300")
-
+                        
                             .foregroundColor( .white)
                             .font(.footnote)
                     )
-
+                
                 
             }
             

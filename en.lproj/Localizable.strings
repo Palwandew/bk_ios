@@ -15,6 +15,23 @@
 "valid_description" = "Required";
 "loading" = "Working";
 "cancel_booking_title" = "Are you sure you want to cancel the booking?";
+
+// Tab bar indicator
+"Home" = "Home";
+"Calendar" = "Calendar";
+"My Ads" = "My Ads";
+"Messages" = "Messages";
+"Profile" = "Profile";
+
+// Owner Home Screen
+"Collection of rent" = "Collection of Rent";
+"Pending" = "Pending";
+"Available" = "Available";
+"My Bookings" = "My Bookings";
+"Upcoming" = "Upcoming";
+"Present" = "Present";
+"Past" = "Past";
+
 // Facility details Screen
 "per night" = "per night";
 "booked" = "Booked";
@@ -37,7 +54,18 @@
 "Edit description" = "Edit description";
 "Unpublish item" = "Unpublish item";
 
+//CUrreny
 "%@ currency" = "%@ SAR";
+
+
+//My Adds
+"My Ads" = "My Ads";
+"Add a new unit" = "Add a new unit";
+"My Units" = "My Units";
+"Guests" = "Guests";
+"Cancellation policy" = "Cancellation policy";
+"My offers" = "My offers";
+"Create promocode" = "Create promocode";
 
 "Continue" = "Continue";
 //My Guests Screen
@@ -49,8 +77,21 @@
 "View details" = "View details";
 
 //Offers Screen
+"My Offers" = "My Offers";
+"Add new offer" = "Add new offer";
+"empty_offer_list" = "You don't have any offers yet. Create an offer to attract guests.";
+"Choose facility for offer" = "Choose facility";
+"Choose unit for offer from existing ads" = "Choose a unit for an offer from existing ads";
+"Set price" = "Set price";
+"Set your offer price" = "Set your offer price";
+"New price" = "New price";
 "Set duration" = "Set Duration";
 "to" = "to";
+"Set offer duration for your facility" = "Set offer duration for your facility";
+"Duration of offer" = "Duration of offer";
+"Create offer" = "Create offer";
+"empty offer price" = "Please enter the amount";
+"invalid discount price" = "Please enter the amount less than facility's original price";
 
 //Calendar
 

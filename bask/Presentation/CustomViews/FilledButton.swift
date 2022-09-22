@@ -19,7 +19,7 @@ struct FilledButton: View {
         Button(action: action) {
             HStack{
                 Spacer()
-                Text(label)
+                Text(LocalizedStringKey(label))
                     .font(Font.custom("Poppins-Regular", size: 16))
                 Spacer()
                 Image(systemName: "arrow.forward")

@@ -47,8 +47,7 @@ struct ToastView<ToastContent: View>: ViewModifier {
 
 extension View {
     func toast<Content: View>(
-        isShowing: Binding<Bool>, cornerRadius: CGFloat? = nil,
-        backgroundColor: Color? = nil,
+        isShowing: Binding<Bool>,
         @ViewBuilder content: @escaping () -> Content
     ) -> some View {
         

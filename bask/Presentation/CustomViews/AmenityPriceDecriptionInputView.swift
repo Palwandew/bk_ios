@@ -31,7 +31,7 @@ struct AmenityPriceDecriptionInputView: View {
                         .font(Font.custom("Poppins-Regular", size: 14))
                         .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                     
-                    MaterialDropdown(menuShowed: $menuShowed, selectedText: $selectedText) {
+                    MaterialDropdown(menuShowed: $menuShowed, selectedText: selectedText) {
                         print("hee")
                         menuShowed.toggle()
                     }.frame(height: 57)
@@ -95,7 +95,7 @@ struct MaterialDropdown: View {
     private let color: Color = Color(red: 0.404, green: 0.424, blue: 0.561)
     
     @Binding var menuShowed: Bool
-    @Binding var selectedText: String
+    var selectedText: String
     var icon: String? = nil
     let onTapped: () -> Void
     

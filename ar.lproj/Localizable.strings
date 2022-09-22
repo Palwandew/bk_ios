@@ -14,6 +14,22 @@
 "valid_roon_length" = "يتطلب حقلا";
 "loading" = "عمل";
 "cancel_booking_title" = "هل أنت متأكد أنك تريد إلغاء الحجز؟";
+
+// Tab bar indicator
+"Home" = "مسكن";
+"Calendar" = "تقويم";
+"My Ads" = "إعلاناتي";
+"Messages" = "رسائل";
+"Profile" = "الملف الشخصي";
+
+// Owner Home Screen
+"Collection of rent" = "تحصيل الإيجار";
+"Pending" = "قيد الانتظار";
+"Available" = "متوفرة";
+"My Bookings" = "حجوزاتي";
+"Upcoming" = "القادمة";
+"Present" = "الحالي";
+"Past" = "ماضي";
 // Facility details Screen
 "per night" = "لليلة الواحدة";
 "booked" = "حجز";
@@ -35,8 +51,18 @@
 "Cancel booking" = "إلغاء الحجز";
 "Edit description" = "تحرير الوصف";
 "Unpublish item" = "إلغاء نشر العنصر";
-
+//Currency
 "%@ currency" = "%@ س.ر";
+
+//My Adds
+"My Ads" = "إعلاناتي";
+"Add a new unit" = "أضف وحدة جديدة";
+"My Units" = "وحداتي";
+"Guests" = "وحداتي";
+"Cancellation policy" = "سياسة الإلغاء";
+"My offers" = "عروضي";
+"Create promocode" = "أنشئ رمزًا ترويجيًا";
+
 "Continue" = "يكمل";
 //My Guests Screen
 "My Guests" = "ضيوفي";
@@ -47,8 +73,21 @@
 "View details" = "عرض التفاصيل";
 
 //Offers Screen
+"My Offers" = "عروضي";
+"Add new offer" = "أضف عرضًا جديدًا";
+"empty_offer_list" = "ليس لديك أي عروض حتى الآن. إنشاء عرض لجذب الضيوف.";
+"Choose facility for offer" = "اختر منشأة";
+"Choose unit for offer from existing ads" = "اختر وحدة لعرض من الإعلانات الموجودة";
+"Set price" = "ضع سعر";
+"Set your offer price" = "حدد سعر العرض الخاص بك";
+"New price" = "سعر جديد";
 "Set duration" = "ضبط المدة";
 "to" = "إلى";
+"Set offer duration for your facility" = "حدد مدة العرض لمنشأتك";
+"Duration of offer" = "مدة العرض";
+"Create offer" = "إنشاء عرض";
+"empty offer price" = "الرجاء إدخال المبلغ";
+"invalid discount price" = "الرجاء إدخال المبلغ أقل من السعر الأصلي للمنشأة";
 
 //Calendar
 

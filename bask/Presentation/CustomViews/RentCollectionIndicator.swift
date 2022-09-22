@@ -10,6 +10,8 @@ import SwiftUI
 struct RentCollectionIndicator: View {
     
     @Binding var collectionStatus: Float
+    let avail: String = "0";
+    let pend: String = "0";
     var body: some View {
         
         GeometryReader{ geomerty in
@@ -23,7 +25,7 @@ struct RentCollectionIndicator: View {
                 
                 VStack{
                     HStack{
-                        Text("Collection of Rent")
+                        Text("Collection of rent")
                             .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                             .font(Font.custom("Poppins-Medium", size: 12, relativeTo: .title))
                         
@@ -50,13 +52,13 @@ struct RentCollectionIndicator: View {
                         .frame(height: 9)
                     
                     HStack{
-                        Text("0 SR")
+                        Text("\(avail) currency")
                             .foregroundColor(Color(AppColor.DARK_BLUE))
                             .font(Font.custom("Poppins-Medium", size: 14, relativeTo: .title))
                         
                         Spacer()
                         
-                        Text("0 SR")
+                        Text("\(pend) currency")
                             .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                             .font(Font.custom("Poppins-Medium", size: 14, relativeTo: .title))
                     }

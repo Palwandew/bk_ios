@@ -9,34 +9,16 @@ import SwiftUI
 
 struct OfferDurationSettingScreen: View {
     
-    @State var show: Bool = false
-    @State var text: String = "Dec 13"
     
+    @EnvironmentObject var model: NewOfferViewModel
+    @State var show: Bool = false
+    @State var text: String = DateFormatter.test.string(from: Date())
+    
+    @State var startDate: Date = Date()
+    @State var endDate: Date = Date()
     
     var body: some View {
         VStack(alignment: .leading) {
-            
-            //MARK: - Title
-            Text("Set duration")
-                .font(.custom("Poppins-Medium", size: 26))
-                .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                .padding(.horizontal)
-            
-            Text("Set offer duration for your facility")
-                .font(.custom("Poppins-Regular", size: 16))
-                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
-                .padding(.horizontal)
-                .padding(.bottom)
-            
-            //MARK: - Facility Card
-            AvailableFacilityCard(imageURL: "Imag", price: "800", name: "Blue Lagoon", address: "Al Qatif")
-                .frame(height: UIScreen.main.bounds.height * 0.15)
-                .padding()
-            
-//            MaterialPriceField(text: $price, isEditing: isEditing, isValid: $isValid, errorMessage: LocalizedStringKey("Error"), placeHolder: "Amount of discount")
-//                .padding(.horizontal)
-//                .padding(.top)
-                
             
             //MARK: - Offer duration
             Text("Duration of offer")
@@ -47,42 +29,46 @@ struct OfferDurationSettingScreen: View {
             
             //MARK: - Offer duration input
             HStack {
-                MaterialDropdown(menuShowed: $show, selectedText: $text, icon: "calendar") {
-                    
+                MaterialDropdown(menuShowed: $show, selectedText: model.offer.formattedStartDate, icon: "calendar") {
+                    showCalendar()
                 }
+                
 
                 Text("to")
                     .font(.custom("Poppins-Regular", size: 16))
                 
-                MaterialDropdown(menuShowed: $show, selectedText: $text, icon: "calendar") {
-                    
+                MaterialDropdown(menuShowed: $show, selectedText: model.offer.formattedEndDate, icon: "calendar") {
+                    showCalendar()
                 }
+                
             }.frame(height: UIScreen.main.bounds.height * 0.07)
                 .padding(.horizontal)
                 
-            
             Spacer()
             
-            FilledButton(label: "Create offer", color: Color(AppColor.DARKEST_BLUE)) {
-                //willShowDurationSetting.toggle()
-                show.toggle()
-            }
-            .padding(.horizontal)
-            
         }
+        
         .sheet(isPresented: $show, content: {
-            CalendarViews()
+            CalendarViews(onDateSelected: { startDate, endDate in
+                model.updateDates(startDate, endDate)
+            })
+                .padding(.top)
         })
+        
         .navigationBarTitleDisplayMode(.inline)
-    } 
+    }
+    
+    private func showCalendar() {
+        show.toggle()
+    }
 }
 
 struct OfferDurationSettingScreen_Previews: PreviewProvider {
     static var previews: some View {
         OfferDurationSettingScreen()
         
-//        OfferDurationSettingScreen().environment(\.locale, .init(identifier: "ar") )
-//            .environment(\.layoutDirection, .rightToLeft)
+        OfferDurationSettingScreen().environment(\.locale, .init(identifier: "ar") )
+            .environment(\.layoutDirection, .rightToLeft)
         
         
     }

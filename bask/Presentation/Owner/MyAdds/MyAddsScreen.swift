@@ -7,13 +7,14 @@
 
 import SwiftUI
 
+
 struct MyAddsScreen: View {
     var body: some View {
         VStack(alignment: .leading){
             
             //MARK: - Title
             
-            Text("My Adds")
+            Text("My Ads")
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
@@ -91,7 +92,7 @@ struct RowButton: View {
     var body: some View {
         Label {
             HStack{
-                Text(title)
+                Text(LocalizedStringKey(title))
                     .font(Font.custom("Poppins-Light", size: 16, relativeTo: .body))
                     .fontWeight(.regular)
                     .foregroundColor(Color(AppColor.DARKEST_BLUE))

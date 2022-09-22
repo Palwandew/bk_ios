@@ -39,7 +39,7 @@ struct HomeScreen: View {
                     
                     //MARK: - Calendar
                     
-                    Text("Calendar")
+                    CalendarViews()
                         .onAppear(perform: {
                             print("onAppear() -> Calendar")
                         })
@@ -57,7 +57,7 @@ struct HomeScreen: View {
                     
                     MyAddsScreen()
                         .tabItem {
-                            Label("My Adds", systemImage: "music.note.house.fill")
+                            Label("My Ads", systemImage: "music.note.house.fill")
                         }
                         .navigationTitle("")
                         .navigationBarHidden(true)

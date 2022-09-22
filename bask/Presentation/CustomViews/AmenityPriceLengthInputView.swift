@@ -30,7 +30,7 @@ struct AmenityPriceLengthInputView: View {
                     .font(Font.custom("Poppins-Regular", size: 14))
                     .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                 
-                MaterialDropdown(menuShowed: $menuShowed, selectedText: $selectedText) {
+                MaterialDropdown(menuShowed: $menuShowed, selectedText: selectedText) {
                     print("hee")
                     menuShowed.toggle()
                 }.frame(height: 57)

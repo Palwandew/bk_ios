@@ -99,7 +99,7 @@ struct TabBarText: View {
     
     var body: some View {
         VStack{
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .body))
                 .foregroundColor(viewRouter.currentTab == assignedTab ? Color(AppColor.DARKEST_BLUE) : Color(AppColor.MAIN_TEXT_LIGHT))
             

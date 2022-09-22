@@ -10,7 +10,7 @@ import Foundation
 class MyOffersViewModel: ObservableObject {
     
     private let useCase: OffersUsecase
-    @Published var offers: [Int] = []
+    @Published var offers: [OfferItemViewModel] = []
     @Published var state: ScreenState = .loading
     @Published var facilities: [OfferFacilityViewModel] = []
     var selectedFacility = OfferFacilityViewModel(facility: OfferFacility(englishName: "", address: "", price: 0, id: "1"))
@@ -23,12 +23,13 @@ class MyOffersViewModel: ObservableObject {
     }
     
     private func getOffers() {
-        useCase.getAllOffer { [weak self] result in
+        useCase.getAllOffers { [weak self] result in
             DispatchQueue.main.async {
                 switch result{
-                case .success(let string):
-                    print(string)
+                case .success(let items):
+                    self?.offers = items.map(OfferItemViewModel.init)
                     self?.state = .success
+                    
                 case .failure(let error):
                     print("Error occured \(error)")
                     self?.state = .failed
@@ -80,4 +81,41 @@ class OfferFacilityViewModel: Identifiable {
     var address: String {
         return facility.address ?? ""
     }
+}
+
+class OfferItemViewModel: Identifiable {
+    
+    let id: Int
+    private let offerItem: OfferItem
+    
+    init(item: OfferItem){
+        self.id = item.id
+        self.offerItem = item
+    }
+    
+    var photoURL: String {
+        return self.offerItem.photo
+    }
+    
+    var price: String {
+        return String(self.offerItem.price)
+    }
+    
+    var discount: String {
+        return String(self.offerItem.discount)
+    }
+    
+    var discountType: String{
+        return self.discountType
+    }
+        
+    var name: String {
+        return self.offerItem.englishName
+    }
+    
+    var address: String {
+        return self.offerItem.address
+    }
+    
+    
 }

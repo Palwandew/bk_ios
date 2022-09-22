@@ -42,7 +42,7 @@ extension Endpoints{
     static let ADD_COMPLAIN: Endpoints = Endpoints(path: "request")
     static let GET_OWNER_FACILITIES: Endpoints = Endpoints(path: "facility/calendartab")
     static let OFFER: Endpoints = Endpoints(path:"offer")
-    
+    static let MYOFFERS: Endpoints = Endpoints(path: "offer/myoffers")
     static func GET_SINGLE_RATING(with query: [URLQueryItem]) -> Endpoints {
         return Endpoints(path: "rating", queryItems: query)
     }

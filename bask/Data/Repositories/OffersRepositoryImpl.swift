@@ -12,8 +12,19 @@ class OffersRepositoryImpl: OffersDomainRepoProtocol {
     let accessToken = ["x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2Mzc2NzUxNCwiZXhwIjoxNjY0MTk5NTE0fQ.HBYuwjTubmMSixou-JnmDWPQQsDX5Un7eJ1WvGn1J5c", "Content-Type":"application/json; charset=utf-8"]
     
     
-    func getOffers(completion: @escaping (Result<String, Error>) -> Void) {
-        completion(.success("Successful"))
+    func getOffers(completion: @escaping (Result<[OfferItem], Error>) -> Void) {
+        
+        let endpoint = Endpoints.MYOFFERS
+        
+        URLSession.shared.sendRequest(endpoint: endpoint, requestType: .get, headers: accessToken, body: nil, responseModel: OwnerOffersResponse.self) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let response):
+                completion(.success(response.data.offers.results))
+            }
+        }
+        
     }
     
     func getFacilities(completion: @escaping (Result<[OfferFacility], Error>) -> Void) {

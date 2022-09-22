@@ -23,7 +23,7 @@ struct MyOffersScreen: View {
             Text("My Offers")
                 .font(.custom("Poppins-Medium", size: 26))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
-            
+                .padding(.horizontal)
             
             //MARK: - Add Offer Button
             
@@ -43,6 +43,7 @@ struct MyOffersScreen: View {
                 }
                 .padding(8)
                 .background(RoundedRectangle(cornerRadius: 8).stroke(Color(AppColor.DARKEST_BLUE)))
+                .padding(.horizontal)
                 .onTapGesture {
                     model.getFacilities()
                     willShowChooseFacilities.toggle()
@@ -73,13 +74,13 @@ struct MyOffersScreen: View {
                 } else {
                     ScrollView{
                         LazyVStack{
-                            ForEach(model.offers, id:\.self){ _ in
+                            ForEach(model.offers){ item in
                                 
                                 
-                                FacilityCard(price: "1600 SAR", name: "Sunny House", bookingDates: "Al Qatif", bannerText: "-400 SAR", bannerColor: Color(AppColor.LIGHT_VOILET))
+                                AvailableFacilityCard(imageURL: item.photoURL , price: item.price, name: item.name, address: item.address)
                                     .frame(height: UIScreen.main.bounds.height * 0.15)
-                                    .padding(4)
-                                    .padding(.bottom, 8)
+                                    .padding()
+                                    
                             }
                         }
                     }
@@ -97,7 +98,7 @@ struct MyOffersScreen: View {
             Spacer()
             
         }
-        .padding(.horizontal)
+        
         .navigationBarTitle("")
         .navigationBarTitleDisplayMode(.inline)
     }

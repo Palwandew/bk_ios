@@ -9,7 +9,7 @@ import Foundation
 
 protocol OffersDomainRepoProtocol {
     
-    func getOffers(completion: @escaping (Result<String, Error>) -> Void )
+    func getOffers(completion: @escaping (Result<[OfferItem], Error>) -> Void )
     
     func getFacilities(completion: @escaping (Result<[OfferFacility], Error>) -> Void)
     

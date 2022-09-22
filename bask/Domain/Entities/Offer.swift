@@ -15,6 +15,8 @@ struct Offer {
     var type: String
     var startDate: Date?
     var endDate: Date?
+    var photoURL: String? = nil 
+    
     var validDiscount: Bool {
         return true
     }

@@ -31,6 +31,7 @@
 		C408F9D828DB720100518632 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C408F9D728DB720100518632 /* Offer.swift */; };
 		C408F9DA28DB880500518632 /* NewOfferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C408F9D928DB880500518632 /* NewOfferViewModel.swift */; };
 		C408F9DC28DBC90D00518632 /* NewOfferRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C408F9DB28DBC90D00518632 /* NewOfferRequestBody.swift */; };
+		C408F9DE28DBEB5500518632 /* OwnerOffersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C408F9DD28DBEB5500518632 /* OwnerOffersResponse.swift */; };
 		C409A10828C9BD9500D4E6C7 /* FacilityImageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A10728C9BD9500D4E6C7 /* FacilityImageSliderView.swift */; };
 		C40E7F6228984E7200788652 /* AmenityCounterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6128984E7200788652 /* AmenityCounterButton.swift */; };
 		C40E7F6428985BE700788652 /* AmenityCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6328985BE700788652 /* AmenityCounterView.swift */; };
@@ -259,6 +260,7 @@
 		C408F9D728DB720100518632 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		C408F9D928DB880500518632 /* NewOfferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOfferViewModel.swift; sourceTree = "<group>"; };
 		C408F9DB28DBC90D00518632 /* NewOfferRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOfferRequestBody.swift; sourceTree = "<group>"; };
+		C408F9DD28DBEB5500518632 /* OwnerOffersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerOffersResponse.swift; sourceTree = "<group>"; };
 		C409A10728C9BD9500D4E6C7 /* FacilityImageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityImageSliderView.swift; sourceTree = "<group>"; };
 		C40E7F6128984E7200788652 /* AmenityCounterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterButton.swift; sourceTree = "<group>"; };
 		C40E7F6328985BE700788652 /* AmenityCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterView.swift; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 				C4FF858F28D63B1600ADBCDF /* RatingGuestsResponse.swift */,
 				C4F7E77C28D855F50060A1C7 /* SingleGuestRatingResponse.swift */,
 				C408F9CF28DB4E3600518632 /* OwnerFacilitiesForOffersResponse.swift */,
+				C408F9DD28DBEB5500518632 /* OwnerOffersResponse.swift */,
 			);
 			path = "Request Response Models";
 			sourceTree = "<group>";
@@ -1295,6 +1298,7 @@
 				C4AF9B252828216600EBB141 /* ContentView.swift in Sources */,
 				C41DCB5A28CB48BF004888B1 /* FadedBlueButton.swift in Sources */,
 				C4AF9B262828216600EBB141 /* PostDomainRepoProtocol.swift in Sources */,
+				C408F9DE28DBEB5500518632 /* OwnerOffersResponse.swift in Sources */,
 				C49191C928A319B900C03743 /* Room.swift in Sources */,
 				C4AF9B272828216600EBB141 /* LoginDomainRepoProtocol.swift in Sources */,
 				C482111228C735E200D6F75F /* MyUnitsViewModel.swift in Sources */,

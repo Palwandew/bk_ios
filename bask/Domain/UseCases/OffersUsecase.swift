@@ -15,7 +15,7 @@ struct OffersUsecase {
         self.repository = repo
     }
     
-    func getAllOffer(completion: @escaping (Result<String, Error>) -> Void){
+    func getAllOffers(completion: @escaping (Result<[OfferItem], Error>) -> Void){
         repository.getOffers(completion: completion)
     }
     

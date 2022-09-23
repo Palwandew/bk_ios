@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MessagesInboxScreen: View {
+    @State var willShowChatScreen: Bool = false
     var body: some View {
 
         VStack(alignment: .leading) {
@@ -17,11 +18,19 @@ struct MessagesInboxScreen: View {
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
                 .padding(.horizontal)
                 
-            
+            NavigationLink(isActive: $willShowChatScreen) {
+                ChattingScreen()
+            } label: {
+                EmptyView()
+            }
+
             ScrollView{
                 LazyVStack(spacing: 16){
                     ForEach(0...2, id:\.self){ _ in
                         InboxItem()
+                            .onTapGesture {
+                                willShowChatScreen.toggle()
+                            }
                     }
                 }.padding(.top, 4)
             }

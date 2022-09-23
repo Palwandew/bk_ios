@@ -26,5 +26,6 @@ struct AppColor{
     static let SELECTION_GREY: UInt = 0xFFF2F5FE
     static let COUNTER_GREY: UInt = 0xFFF0F2FB
     static let SUCCESS_GREEN: UInt = 0xFF0B5228
+    static let CHAT_SENT_ITEM: UInt = 0xFFEAEDF9
     
 }

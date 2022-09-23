@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ChattingScreen: View {
+    @State var message: String = ""
     var body: some View {
         VStack{
             
@@ -17,8 +18,54 @@ struct ChattingScreen: View {
                 .frame(height: 6)
                 .opacity(0.8)
             
-            Spacer()
+            ScrollView {
+                LazyVStack{
+                    
+                    SentItem()
+                        .padding(.leading, 64)
+                        .padding(.bottom)
+                    
+                    ReceivedItem()
+                        .padding(.trailing, 64)
+                        .padding(.bottom)
+                    
+                    SentItem()
+                        .padding(.leading, 64)
+                        .padding(.bottom)
+                    
+                    SentItem()
+                        .padding(.leading, 64)
+                        .padding(.bottom)
+                    
+                    ReceivedItem()
+                        .padding(.trailing, 64)
+                        .padding(.bottom)
+                    
+                    SentItem()
+                        .padding(.leading, 64)
+                        .padding(.bottom)
+                    
+                    
+                    SentItem()
+                        .padding(.leading, 64)
+                        .padding(.bottom)
+                    
+                    ReceivedItem()
+                        .padding(.trailing, 64)
+                        .padding(.bottom)
+                    
+                    SentItem()
+                        .padding(.leading, 64)
+                        .padding(.bottom)
+                }
+                
+            }
+            
+            CommentField(comment: $message)
+                .frame(width: 320, height: 15)
+                .padding(.horizontal)
         }.background(Color(AppColor.BACKGROUND))
+            .navigationBarHidden(true)
     }
 }
 
@@ -58,5 +105,54 @@ struct ChatTitle: View {
                 .foregroundColor(.gray)
         }.padding(.horizontal)
             .background(Color.white)
+    }
+}
+
+struct SentItem: View {
+    var body: some View {
+        HStack{
+            
+            Spacer()
+            
+            VStack(alignment: .trailing, spacing: 8) {
+                Text("Hello how are you?")
+                    .font(.custom("Poppins-Regular", size: 16))
+                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                HStack{
+                    Text("9:30 PM")
+                        .font(.custom("Poppins-Regular", size: 10))
+                        .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                    
+                    Image(systemName: "checkmark")
+                        .foregroundColor(Color(AppColor.ACCENT_GREEN))
+                }
+            }.padding(12)
+                .background(Color(AppColor.CHAT_SENT_ITEM).roundCorners(radius: 8, [.topLeft, .bottomLeft, .bottomRight]).shadow(radius: 1))
+            
+        }.padding(.trailing)
+    }
+}
+
+struct ReceivedItem: View {
+    var body: some View {
+        HStack{
+            
+            
+            
+            VStack(alignment: .trailing, spacing: 8) {
+                Text("Hello how are you? What are you up to these days are you doing good? Hah wat wr")
+                    .font(.custom("Poppins-Regular", size: 16))
+                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                
+                    Text("9:30 PM")
+                        .font(.custom("Poppins-Regular", size: 10))
+                        .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                    
+                
+            }.padding(12)
+                .background(Color.white.roundCorners(radius: 8, [.topRight, .bottomLeft, .bottomRight]).shadow(radius: 1))
+            
+            Spacer()
+        }.padding(.leading)
     }
 }

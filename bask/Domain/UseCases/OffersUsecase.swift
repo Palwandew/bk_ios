@@ -27,4 +27,8 @@ struct OffersUsecase {
     func createNewOffer(with newOffer: Offer, completion: @escaping (Result<String, Error>) -> Void){
         repository.postNewOffer(newOffer, completion: completion)
     }
+    
+    func getOfferItemDetails(with offerID: String, and facilityID: String, completion: @escaping (Result<OfferItemDetails, Error>) -> Void) {
+        repository.getOfferItemDetails(with: offerID, and: facilityID, completion: completion)
+    }
 }

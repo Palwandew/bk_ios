@@ -12,7 +12,7 @@ struct MyOffersScreen: View {
     @StateObject var model: MyOffersViewModel = MyOffersViewModel(useCase: OffersUsecase(repo: OffersRepositoryImpl()))
     @State var willShowChooseFacilities: Bool = false
     
-    
+    @State var willShowOfferDetials: Bool = false
     
     var body: some View {
         
@@ -51,7 +51,14 @@ struct MyOffersScreen: View {
             }.isDetailLink(false )
 
             
-            
+            NavigationLink(isActive: $willShowOfferDetials) {
+                OfferDetailView()
+                    .navigationBarHidden(true)
+                    .environmentObject(model)
+            } label: {
+                EmptyView()
+            }
+
 
             
             //MARK: - Offers List
@@ -80,6 +87,10 @@ struct MyOffersScreen: View {
                                 AvailableFacilityCard(imageURL: item.photoURL , price: item.price, name: item.name, address: item.address)
                                     .frame(height: UIScreen.main.bounds.height * 0.15)
                                     .padding()
+                                    .onTapGesture {
+                                        model.prepareDetailsOf(item)
+                                        willShowOfferDetials.toggle()
+                                    }
                                     
                             }
                         }

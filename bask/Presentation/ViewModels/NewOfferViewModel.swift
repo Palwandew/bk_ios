@@ -36,7 +36,7 @@ class NewOfferViewModel: ObservableObject {
     }
     
     func prepareModel(for facility: OfferFacilityViewModel){
-        facilityOriginalPrice = Int(facility.price) ?? 0
+        facilityOriginalPrice = facility.price
         
         let offer = Offer(facilityID: facility.facilityID, originalPrice: facilityOriginalPrice, discount: "", type: "sar", startDate: nil, endDate: nil)
         

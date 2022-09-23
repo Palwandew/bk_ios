@@ -12,6 +12,30 @@ class OffersRepositoryImpl: OffersDomainRepoProtocol {
     let accessToken = ["x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2Mzc2NzUxNCwiZXhwIjoxNjY0MTk5NTE0fQ.HBYuwjTubmMSixou-JnmDWPQQsDX5Un7eJ1WvGn1J5c", "Content-Type":"application/json; charset=utf-8"]
     
     
+    
+    func getOfferItemDetails(with offerID: String, and facilityID: String, completion: @escaping (Result<OfferItemDetails, Error>) -> Void) {
+        
+        let offerIDQueryItem = URLQueryItem(name: "offer_id", value: offerID)
+        let facilityIDQueryItem = URLQueryItem(name: "facility_id", value: facilityID)
+        let queryParameters = [offerIDQueryItem, facilityIDQueryItem]
+        
+        let endpoint = Endpoints.GET_OFFER_ITEM_DETAILS(with: queryParameters)
+        
+        URLSession.shared.sendRequest(endpoint: endpoint, requestType: .get, headers: accessToken, body: nil, responseModel: OfferItemDetailResponse.self) { result in
+            switch result{
+                
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let response):
+                completion(.success(response.data.offerItem))
+            }
+        }
+    }
+    
+    
+    
+    
+    
     func getOffers(completion: @escaping (Result<[OfferItem], Error>) -> Void) {
         
         let endpoint = Endpoints.MYOFFERS
@@ -48,8 +72,6 @@ class OffersRepositoryImpl: OffersDomainRepoProtocol {
         
         let endpoint = Endpoints.OFFER
         
-        print("Endpoint >>>>> \(endpoint.url?.absoluteString)")
-        print("Request body >>>>> \(requestBody)")
         URLSession.shared.sendUpdateRequest(endpoint: endpoint, requestType: .post, headers: accessToken, body: requestBody) { result in
             switch result {
             case .failure(let error):

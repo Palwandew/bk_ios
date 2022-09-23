@@ -38,7 +38,7 @@
 "Check out" = "الدفع";
 "Calendar" = "تقويم";
 "View" = "رأي";
-"Guest" = "زائر";
+
 "Complain" = "شكوى";
 "Amenities" = "وسائل الراحة";
 "Location" = "موقعك";
@@ -47,12 +47,12 @@
 "Living rooms" = "غرف المعيشة";
 "Living space" = "مكان عيش \ سكن";
 "Message Guest" = "رسالة الضيف";
-"Arrival after" = "وصول بعد";
+"Arrival after %@" = "وصول بعد %@";
 "Cancel booking" = "إلغاء الحجز";
 "Edit description" = "تحرير الوصف";
 "Unpublish item" = "إلغاء نشر العنصر";
 //Currency
-"%@ currency" = "%@ س.ر";
+"%lld currency" = "%lld س.ر";
 
 //My Adds
 "My Ads" = "إعلاناتي";
@@ -98,3 +98,12 @@
 "fri" = "الجمعة";
 "sat" = "السبت";
 "sun" = "الأحد";
+
+
+//User type
+"Owner" = "صاحب";
+"Guest" = "زائر";
+
+//m2
+"%@ m2" = "%@ متر مربع";
+

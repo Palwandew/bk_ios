@@ -84,7 +84,7 @@ struct AvailableFacilitiesScreen_Previews: PreviewProvider {
 struct AvailableFacilityCard: View {
     
     let imageURL: String
-    let price: String
+    let price: Int
     let name: String
     let address: String
     

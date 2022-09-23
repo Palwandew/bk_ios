@@ -12,6 +12,18 @@ import SwiftUI
 class LocalizationHelper {
     
     
+    func getLocalizedTime(from timeFromServer: String) -> String {
+        
+        let time = DateFormatter.timeStringToDate.date(from: timeFromServer)
+        guard let time = time else {
+            return "__"
+        }
+
+        let localizedTime = DateFormatter.time.string(from: time)
+        
+        return localizedTime
+    }
+    
     func getLocalizedDate(_ date: Date) -> LocalDate {
         
         return generateLocalizedDate(date)

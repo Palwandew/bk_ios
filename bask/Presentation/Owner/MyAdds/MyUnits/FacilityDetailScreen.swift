@@ -78,7 +78,7 @@ struct FacilityDetailScreen: View {
                                 
                                 Divider().padding(.vertical)
                                 
-                                GuestInfoView(name: model.facility?.guest ?? "" , rating: "4.2")
+                                UserInfoView(name: model.facility?.guest ?? "" , rating: "4.2")
                                 
                                 Divider().padding(.vertical)
                                 
@@ -100,7 +100,7 @@ struct FacilityDetailScreen: View {
                             Divider()
                                 .padding(.vertical)
                             
-                            GuestInfoView(name: model.availableFacility?.owner ?? "", rating: "4.2")
+                            UserInfoView(name: model.availableFacility?.owner ?? "", rating: "4.2")
                             
                             Divider()
                                 .padding(.vertical)
@@ -245,6 +245,8 @@ enum FacilityDetailsStyle{
 
 //MARK: - ArrivalDetailsView
 struct ArrivalDetailsView: View {
+    
+    let time: String 
     var body: some View {
         
         VStack(alignment: .leading, spacing: 16) {
@@ -253,7 +255,7 @@ struct ArrivalDetailsView: View {
                 Image(systemName: "clock.fill")
                     .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
                 
-                Text("Arrival after")
+                Text("Arrival after \(time)")
                     .font(Font.custom("Poppins-Medium", size: 14))
                     .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
                 

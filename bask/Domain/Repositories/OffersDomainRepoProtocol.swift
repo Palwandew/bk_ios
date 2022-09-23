@@ -14,4 +14,6 @@ protocol OffersDomainRepoProtocol {
     func getFacilities(completion: @escaping (Result<[OfferFacility], Error>) -> Void)
     
     func postNewOffer(_ offer: Offer, completion: @escaping (Result<String, Error>) -> Void)
+    
+    func getOfferItemDetails(with offerID: String, and facilityID: String, completion: @escaping (Result<OfferItemDetails, Error>) -> Void)
 }

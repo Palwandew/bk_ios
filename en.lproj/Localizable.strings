@@ -49,13 +49,13 @@
 "Living rooms" = "Living rooms";
 "Living space" = "Living space";
 "Message Guest" = "Message Guest";
-"Arrival after" = "Arrival after";
+"Arrival after %@" = "Arrival after %@";
 "Cancel booking" = "Cancel booking";
 "Edit description" = "Edit description";
 "Unpublish item" = "Unpublish item";
 
 //CUrreny
-"%@ currency" = "%@ SAR";
+"%lld currency" = "%lld SAR";
 
 
 //My Adds
@@ -104,4 +104,9 @@
 "sun" = "sun";
 
 
+//User type
+"Owner" = "Owner";
+"Guest" = "Guest";
 
+// m2
+"%@ m2" = "%@ m2";

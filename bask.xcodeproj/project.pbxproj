@@ -35,6 +35,8 @@
 		C409A10828C9BD9500D4E6C7 /* FacilityImageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A10728C9BD9500D4E6C7 /* FacilityImageSliderView.swift */; };
 		C40E7F6228984E7200788652 /* AmenityCounterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6128984E7200788652 /* AmenityCounterButton.swift */; };
 		C40E7F6428985BE700788652 /* AmenityCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6328985BE700788652 /* AmenityCounterView.swift */; };
+		C40EBA0D28DCE08E00A09838 /* OfferDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EBA0C28DCE08E00A09838 /* OfferDetailView.swift */; };
+		C40EBA0F28DCF1E800A09838 /* OfferItemDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EBA0E28DCF1E800A09838 /* OfferItemDetailsResponse.swift */; };
 		C40FBF07289A854B00557AEB /* AmenityDescriptionCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */; };
 		C40FBF09289A8DE300557AEB /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FBF08289A8DE300557AEB /* Checkbox.swift */; };
 		C410D26428B4897000914D84 /* PhotosUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D26328B4897000914D84 /* PhotosUploadManager.swift */; };
@@ -49,7 +51,7 @@
 		C41DCB5A28CB48BF004888B1 /* FadedBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB5928CB48BF004888B1 /* FadedBlueButton.swift */; };
 		C41DCB5C28CB4925004888B1 /* FacilityPriceHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB5B28CB4925004888B1 /* FacilityPriceHeader.swift */; };
 		C41DCB6028CB49B2004888B1 /* CalendarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB5F28CB49B2004888B1 /* CalendarButton.swift */; };
-		C41DCB6228CB4A19004888B1 /* GuestInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6128CB4A19004888B1 /* GuestInfoView.swift */; };
+		C41DCB6228CB4A19004888B1 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6128CB4A19004888B1 /* UserInfoView.swift */; };
 		C41DCB6428CB4AA2004888B1 /* FacilitySizeInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6328CB4AA2004888B1 /* FacilitySizeInfoView.swift */; };
 		C41DCB6628CB4B04004888B1 /* BookingDatesInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6528CB4B04004888B1 /* BookingDatesInfoView.swift */; };
 		C41DCB6828CB4C95004888B1 /* FacilityAmenitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6728CB4C95004888B1 /* FacilityAmenitiesView.swift */; };
@@ -264,6 +266,8 @@
 		C409A10728C9BD9500D4E6C7 /* FacilityImageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityImageSliderView.swift; sourceTree = "<group>"; };
 		C40E7F6128984E7200788652 /* AmenityCounterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterButton.swift; sourceTree = "<group>"; };
 		C40E7F6328985BE700788652 /* AmenityCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterView.swift; sourceTree = "<group>"; };
+		C40EBA0C28DCE08E00A09838 /* OfferDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailView.swift; sourceTree = "<group>"; };
+		C40EBA0E28DCF1E800A09838 /* OfferItemDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferItemDetailsResponse.swift; sourceTree = "<group>"; };
 		C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityDescriptionCounter.swift; sourceTree = "<group>"; };
 		C40FBF08289A8DE300557AEB /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		C410D26328B4897000914D84 /* PhotosUploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosUploadManager.swift; sourceTree = "<group>"; };
@@ -278,7 +282,7 @@
 		C41DCB5928CB48BF004888B1 /* FadedBlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadedBlueButton.swift; sourceTree = "<group>"; };
 		C41DCB5B28CB4925004888B1 /* FacilityPriceHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPriceHeader.swift; sourceTree = "<group>"; };
 		C41DCB5F28CB49B2004888B1 /* CalendarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarButton.swift; sourceTree = "<group>"; };
-		C41DCB6128CB4A19004888B1 /* GuestInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestInfoView.swift; sourceTree = "<group>"; };
+		C41DCB6128CB4A19004888B1 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		C41DCB6328CB4AA2004888B1 /* FacilitySizeInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySizeInfoView.swift; sourceTree = "<group>"; };
 		C41DCB6528CB4B04004888B1 /* BookingDatesInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingDatesInfoView.swift; sourceTree = "<group>"; };
 		C41DCB6728CB4C95004888B1 /* FacilityAmenitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityAmenitiesView.swift; sourceTree = "<group>"; };
@@ -525,6 +529,7 @@
 				C4F7E77C28D855F50060A1C7 /* SingleGuestRatingResponse.swift */,
 				C408F9CF28DB4E3600518632 /* OwnerFacilitiesForOffersResponse.swift */,
 				C408F9DD28DBEB5500518632 /* OwnerOffersResponse.swift */,
+				C40EBA0E28DCF1E800A09838 /* OfferItemDetailsResponse.swift */,
 			);
 			path = "Request Response Models";
 			sourceTree = "<group>";
@@ -561,6 +566,7 @@
 				C4B301EC28DA1ACA00FAE17D /* ChooseOfferFacility.swift */,
 				C4B301EE28DA1FA400FAE17D /* OfferPriceSettingScreen.swift */,
 				C4B301F028DA2C0900FAE17D /* OfferDurationSettingScreen.swift */,
+				C40EBA0C28DCE08E00A09838 /* OfferDetailView.swift */,
 			);
 			path = MyOffers;
 			sourceTree = "<group>";
@@ -999,7 +1005,7 @@
 				C41DCB5928CB48BF004888B1 /* FadedBlueButton.swift */,
 				C41DCB5B28CB4925004888B1 /* FacilityPriceHeader.swift */,
 				C41DCB5F28CB49B2004888B1 /* CalendarButton.swift */,
-				C41DCB6128CB4A19004888B1 /* GuestInfoView.swift */,
+				C41DCB6128CB4A19004888B1 /* UserInfoView.swift */,
 				C41DCB6328CB4AA2004888B1 /* FacilitySizeInfoView.swift */,
 				C41DCB6528CB4B04004888B1 /* BookingDatesInfoView.swift */,
 				C41DCB6728CB4C95004888B1 /* FacilityAmenitiesView.swift */,
@@ -1184,6 +1190,7 @@
 				C41D312228D75FB60049042B /* RateGuestUsecase.swift in Sources */,
 				C4AF9B192828216600EBB141 /* RequestMethod.swift in Sources */,
 				C403100A28945D8D0046B645 /* MyBookings.swift in Sources */,
+				C40EBA0D28DCE08E00A09838 /* OfferDetailView.swift in Sources */,
 				C430368F28D25A3F00C232D5 /* MyGuestsScreen.swift in Sources */,
 				C4AF9B1A2828216600EBB141 /* baskApp.swift in Sources */,
 				C4F6676028D393FD00ABA680 /* RateGuestScreen.swift in Sources */,
@@ -1235,7 +1242,7 @@
 				C4FF859428D64E8E00ADBCDF /* Rating.swift in Sources */,
 				C46BD76628290DB9006AC587 /* UserTypeSelectionScreen.swift in Sources */,
 				C46BD78A28295FA0006AC587 /* ColorExtension.swift in Sources */,
-				C41DCB6228CB4A19004888B1 /* GuestInfoView.swift in Sources */,
+				C41DCB6228CB4A19004888B1 /* UserInfoView.swift in Sources */,
 				C41DCB6828CB4C95004888B1 /* FacilityAmenitiesView.swift in Sources */,
 				C45C84C828B734F300646719 /* PhotosDomainRepoProtocol.swift in Sources */,
 				C4AF9B1E2828216600EBB141 /* LoginEndpoint.swift in Sources */,
@@ -1288,6 +1295,7 @@
 				C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */,
 				C43DCEB928BE0867005FB7F4 /* Toast.swift in Sources */,
 				C4AF9B222828216600EBB141 /* PostEndpoint.swift in Sources */,
+				C40EBA0F28DCF1E800A09838 /* OfferItemDetailsResponse.swift in Sources */,
 				C49191BE28A2F92700C03743 /* CreateFacilityDomainRepoProtocol.swift in Sources */,
 				C41DCB6B28CBAA5A004888B1 /* BookedFacilitiesResponse.swift in Sources */,
 				C4D659B2282B4F5000FAE1D1 /* SignupViewModel.swift in Sources */,

@@ -55,9 +55,9 @@ class AvailableFacilityViewModel: Identifiable {
         return self.facility.englishName
     }
     
-    var price: String {
+    var price: Int {
         
-        return localizationHelper.getLocalizedNumber(self.facility.price)
+        return self.facility.price
     }
     
     var imgURL: String {

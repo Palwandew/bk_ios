@@ -41,6 +41,8 @@
 		C40EBA1428DD461700A09838 /* NewPromoCodeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EBA1328DD461700A09838 /* NewPromoCodeScreen.swift */; };
 		C40EBA1628DD5F6E00A09838 /* ExistingCodesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EBA1528DD5F6E00A09838 /* ExistingCodesScreen.swift */; };
 		C40EBA1828DD5FE500A09838 /* ExistingPromoTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EBA1728DD5FE500A09838 /* ExistingPromoTicket.swift */; };
+		C40EBA1B28DD948200A09838 /* MessagesInboxScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EBA1A28DD948200A09838 /* MessagesInboxScreen.swift */; };
+		C40EBA1D28DD9DF700A09838 /* ChattingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EBA1C28DD9DF700A09838 /* ChattingScreen.swift */; };
 		C40FBF07289A854B00557AEB /* AmenityDescriptionCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */; };
 		C40FBF09289A8DE300557AEB /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FBF08289A8DE300557AEB /* Checkbox.swift */; };
 		C410D26428B4897000914D84 /* PhotosUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D26328B4897000914D84 /* PhotosUploadManager.swift */; };
@@ -276,6 +278,8 @@
 		C40EBA1328DD461700A09838 /* NewPromoCodeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPromoCodeScreen.swift; sourceTree = "<group>"; };
 		C40EBA1528DD5F6E00A09838 /* ExistingCodesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingCodesScreen.swift; sourceTree = "<group>"; };
 		C40EBA1728DD5FE500A09838 /* ExistingPromoTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingPromoTicket.swift; sourceTree = "<group>"; };
+		C40EBA1A28DD948200A09838 /* MessagesInboxScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesInboxScreen.swift; sourceTree = "<group>"; };
+		C40EBA1C28DD9DF700A09838 /* ChattingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingScreen.swift; sourceTree = "<group>"; };
 		C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityDescriptionCounter.swift; sourceTree = "<group>"; };
 		C40FBF08289A8DE300557AEB /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		C410D26328B4897000914D84 /* PhotosUploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosUploadManager.swift; sourceTree = "<group>"; };
@@ -523,6 +527,15 @@
 			path = CreatePromocodes;
 			sourceTree = "<group>";
 		};
+		C40EBA1928DD945800A09838 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				C40EBA1A28DD948200A09838 /* MessagesInboxScreen.swift */,
+				C40EBA1C28DD9DF700A09838 /* ChattingScreen.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
 		C40FBF0A289A94CC00557AEB /* ToggleStyles */ = {
 			isa = PBXGroup;
 			children = (
@@ -552,7 +565,7 @@
 			path = "Request Response Models";
 			sourceTree = "<group>";
 		};
-		C430368B28D259BB00C232D5 /* MyGuests */ = {
+		C430368B28D259BB00C232D5 /* Guests */ = {
 			isa = PBXGroup;
 			children = (
 				C430368E28D25A3F00C232D5 /* MyGuestsScreen.swift */,
@@ -562,7 +575,7 @@
 				C4F6675F28D393FD00ABA680 /* RateGuestScreen.swift */,
 				C48E9F5728D4E0E100FFD1AF /* ComplainGuestScreen.swift */,
 			);
-			path = MyGuests;
+			path = Guests;
 			sourceTree = "<group>";
 		};
 		C45C84CD28B74C9A00646719 /* Request Body Models */ = {
@@ -655,9 +668,9 @@
 			isa = PBXGroup;
 			children = (
 				C482682D28970EC90072147F /* MyAddsScreen.swift */,
-				C482683728974C280072147F /* AddUnit */,
+				C482683728974C280072147F /* AddNewUnit */,
 				C482110C28C7300900D6F75F /* MyUnits */,
-				C430368B28D259BB00C232D5 /* MyGuests */,
+				C430368B28D259BB00C232D5 /* Guests */,
 				C464679928D9FEF900AEA5D8 /* MyOffers */,
 				C40EBA1028DD3F2200A09838 /* CreatePromocodes */,
 				C482682F289727B10072147F /* CancellationPolicyScreen.swift */,
@@ -665,7 +678,7 @@
 			path = MyAdds;
 			sourceTree = "<group>";
 		};
-		C482683728974C280072147F /* AddUnit */ = {
+		C482683728974C280072147F /* AddNewUnit */ = {
 			isa = PBXGroup;
 			children = (
 				C482683828974C4B0072147F /* FacilityNameScreen.swift */,
@@ -683,7 +696,7 @@
 				C4918D6828A1D66100A8777D /* FacilityPublishChecklistScreen.swift */,
 				C4918D6A28A1DBBB00A8777D /* PublishFacilityScreen.swift */,
 			);
-			path = AddUnit;
+			path = AddNewUnit;
 			sourceTree = "<group>";
 		};
 		C49191C328A3025600C03743 /* Repositories */ = {
@@ -851,6 +864,7 @@
 		C4C63AA82823571900343032 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C40EBA1928DD945800A09838 /* Messages */,
 				C40310112894A29C0046B645 /* ViewModifiers */,
 				C4BB005E2890CEA9000D2E47 /* ViewModels */,
 				C40310062894590E0046B645 /* Owner */,
@@ -1337,6 +1351,7 @@
 				C482682E28970EC90072147F /* MyAddsScreen.swift in Sources */,
 				C4918D6328A19DBC00A8777D /* Gallery.swift in Sources */,
 				C4AF9B282828216600EBB141 /* PostUseCase.swift in Sources */,
+				C40EBA1B28DD948200A09838 /* MessagesInboxScreen.swift in Sources */,
 				C4F7E77F28D884AD0060A1C7 /* UpdatedGuestRatingRequestBody.swift in Sources */,
 				C4F6675828D37C1500ABA680 /* UpcomingGuestsScreen.swift in Sources */,
 				C47FEB132896A874008BC4C2 /* MyBookingsViewModel.swift in Sources */,
@@ -1374,6 +1389,7 @@
 				C443CE2228C8ABF5009E32F2 /* ReviewsView.swift in Sources */,
 				C4B301F528DA5DA500FAE17D /* DateFormaterExtension.swift in Sources */,
 				C41A26AB289C345E0057F3FE /* MaterialPriceField.swift in Sources */,
+				C40EBA1D28DD9DF700A09838 /* ChattingScreen.swift in Sources */,
 				C4BB007A2891162E000D2E47 /* CountriesCallingCodeScreen.swift in Sources */,
 				C4BB007128910797000D2E47 /* LocalDataSource.swift in Sources */,
 				C4BB007828910DCB000D2E47 /* LocalDataSourceDI.swift in Sources */,

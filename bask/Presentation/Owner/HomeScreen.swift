@@ -65,12 +65,12 @@ struct HomeScreen: View {
                     
                     //MARK: - Messages
                     
-                    Text("Messages")
+                    MessagesInboxScreen()
                         .tabItem {
                             Label("Messages", systemImage: "message.fill")
                         }
-                        .navigationTitle("")
-                        .navigationBarHidden(true)
+                        
+                        //.navigationBarHidden(true)
                     
                     
                     //MARK: - Profile

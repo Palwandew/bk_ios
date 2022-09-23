@@ -93,6 +93,14 @@
 "empty offer price" = "Please enter the amount";
 "invalid discount price" = "Please enter the amount less than facility's original price";
 
+//Create promocodes
+"New promocode" = "New promocode";
+"Existing codes" = "Existing codes";
+"maximum_people" = "The maximum number of people who can use the promo code.";
+"Promo code rule" = "The value of the Personal Promocodes will be subtracted from the total price, then the company's cut will be taken after the discount.";
+"empty_promo_message" = "Hey, you don't have any promo code yet. You can add one to attract more guests.";
+"create promo" = "Create promo code";
+
 //Calendar
 
 "mon" = "mon";
@@ -110,3 +118,8 @@
 
 // m2
 "%@ m2" = "%@ m2";
+
+// ErrorState Message
+"oops" = "oops!";
+"something_went_wrong" = "Something went wrong.\nPlease try again.";
+"retry" = "retry";

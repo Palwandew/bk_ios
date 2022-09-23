@@ -60,12 +60,12 @@ struct ErrorStateScreen: View {
                 .frame(width: 32, height: 32)
                 .foregroundColor(.red.opacity(0.6))
             
-            Text("Oops.")
+            Text("oops")
                 .font(.custom("Poppins-Medium", size: 20, relativeTo: .headline))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
                 
             
-            Text("Something went wrong.\nPlease try again.")
+            Text("something_went_wrong")
                 .font(.custom("Poppins-Medium", size: 16))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                 .multilineTextAlignment(.center)
@@ -74,7 +74,7 @@ struct ErrorStateScreen: View {
             Button {
                 print("he")
             } label: {
-                Text("Retry")
+                Text("retry")
                     .foregroundColor(.white)
                     .padding(.horizontal, 64)
                     .padding(.vertical, 8)

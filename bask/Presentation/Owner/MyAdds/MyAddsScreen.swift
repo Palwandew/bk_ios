@@ -62,10 +62,14 @@ struct MyAddsScreen: View {
             
             //MARK: - Create Promo
             
-            RowButton(title: "Create promocode", icon: "qrcode")
-                .onTapGesture {
-                    print("Promocode")
-                }
+            NavigationLink {
+                CreatePromoCodesScreen()
+            } label: {
+                RowButton(title: "Create promocode", icon: "qrcode")
+            }
+
+            
+                
             
             Spacer()
             

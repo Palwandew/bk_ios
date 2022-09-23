@@ -15,7 +15,7 @@ struct EmptyState: View {
     var body: some View {
         VStack{
             Image(illustration)
-            Text(message)
+            Text(LocalizedStringKey(message))
                 .multilineTextAlignment(.center)
                 .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .body))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))

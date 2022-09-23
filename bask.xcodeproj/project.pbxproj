@@ -37,6 +37,10 @@
 		C40E7F6428985BE700788652 /* AmenityCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6328985BE700788652 /* AmenityCounterView.swift */; };
 		C40EBA0D28DCE08E00A09838 /* OfferDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EBA0C28DCE08E00A09838 /* OfferDetailView.swift */; };
 		C40EBA0F28DCF1E800A09838 /* OfferItemDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EBA0E28DCF1E800A09838 /* OfferItemDetailsResponse.swift */; };
+		C40EBA1228DD443D00A09838 /* CreatePromoCodesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EBA1128DD443D00A09838 /* CreatePromoCodesScreen.swift */; };
+		C40EBA1428DD461700A09838 /* NewPromoCodeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EBA1328DD461700A09838 /* NewPromoCodeScreen.swift */; };
+		C40EBA1628DD5F6E00A09838 /* ExistingCodesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EBA1528DD5F6E00A09838 /* ExistingCodesScreen.swift */; };
+		C40EBA1828DD5FE500A09838 /* ExistingPromoTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EBA1728DD5FE500A09838 /* ExistingPromoTicket.swift */; };
 		C40FBF07289A854B00557AEB /* AmenityDescriptionCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */; };
 		C40FBF09289A8DE300557AEB /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FBF08289A8DE300557AEB /* Checkbox.swift */; };
 		C410D26428B4897000914D84 /* PhotosUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D26328B4897000914D84 /* PhotosUploadManager.swift */; };
@@ -268,6 +272,10 @@
 		C40E7F6328985BE700788652 /* AmenityCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterView.swift; sourceTree = "<group>"; };
 		C40EBA0C28DCE08E00A09838 /* OfferDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailView.swift; sourceTree = "<group>"; };
 		C40EBA0E28DCF1E800A09838 /* OfferItemDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferItemDetailsResponse.swift; sourceTree = "<group>"; };
+		C40EBA1128DD443D00A09838 /* CreatePromoCodesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePromoCodesScreen.swift; sourceTree = "<group>"; };
+		C40EBA1328DD461700A09838 /* NewPromoCodeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPromoCodeScreen.swift; sourceTree = "<group>"; };
+		C40EBA1528DD5F6E00A09838 /* ExistingCodesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingCodesScreen.swift; sourceTree = "<group>"; };
+		C40EBA1728DD5FE500A09838 /* ExistingPromoTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingPromoTicket.swift; sourceTree = "<group>"; };
 		C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityDescriptionCounter.swift; sourceTree = "<group>"; };
 		C40FBF08289A8DE300557AEB /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		C410D26328B4897000914D84 /* PhotosUploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosUploadManager.swift; sourceTree = "<group>"; };
@@ -505,6 +513,16 @@
 			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
+		C40EBA1028DD3F2200A09838 /* CreatePromocodes */ = {
+			isa = PBXGroup;
+			children = (
+				C40EBA1128DD443D00A09838 /* CreatePromoCodesScreen.swift */,
+				C40EBA1328DD461700A09838 /* NewPromoCodeScreen.swift */,
+				C40EBA1528DD5F6E00A09838 /* ExistingCodesScreen.swift */,
+			);
+			path = CreatePromocodes;
+			sourceTree = "<group>";
+		};
 		C40FBF0A289A94CC00557AEB /* ToggleStyles */ = {
 			isa = PBXGroup;
 			children = (
@@ -641,6 +659,7 @@
 				C482110C28C7300900D6F75F /* MyUnits */,
 				C430368B28D259BB00C232D5 /* MyGuests */,
 				C464679928D9FEF900AEA5D8 /* MyOffers */,
+				C40EBA1028DD3F2200A09838 /* CreatePromocodes */,
 				C482682F289727B10072147F /* CancellationPolicyScreen.swift */,
 			);
 			path = MyAdds;
@@ -1014,6 +1033,7 @@
 				C4F6675B28D37E9C00ABA680 /* UnratedGuestListItem.swift */,
 				C48E9F5528D4A7F200FFD1AF /* MaterialCommentField.swift */,
 				C4B301F228DA34FE00FAE17D /* CalendarView.swift */,
+				C40EBA1728DD5FE500A09838 /* ExistingPromoTicket.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1191,6 +1211,7 @@
 				C4AF9B192828216600EBB141 /* RequestMethod.swift in Sources */,
 				C403100A28945D8D0046B645 /* MyBookings.swift in Sources */,
 				C40EBA0D28DCE08E00A09838 /* OfferDetailView.swift in Sources */,
+				C40EBA1628DD5F6E00A09838 /* ExistingCodesScreen.swift in Sources */,
 				C430368F28D25A3F00C232D5 /* MyGuestsScreen.swift in Sources */,
 				C4AF9B1A2828216600EBB141 /* baskApp.swift in Sources */,
 				C4F6676028D393FD00ABA680 /* RateGuestScreen.swift in Sources */,
@@ -1292,6 +1313,7 @@
 				C4A5C581289F4697006AF774 /* MaterialTimePicker.swift in Sources */,
 				C430368A28D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift in Sources */,
 				C482682B289700BB0072147F /* PastBookings.swift in Sources */,
+				C40EBA1428DD461700A09838 /* NewPromoCodeScreen.swift in Sources */,
 				C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */,
 				C43DCEB928BE0867005FB7F4 /* Toast.swift in Sources */,
 				C4AF9B222828216600EBB141 /* PostEndpoint.swift in Sources */,
@@ -1302,6 +1324,7 @@
 				C41DCB6028CB49B2004888B1 /* CalendarButton.swift in Sources */,
 				C4AF9B232828216600EBB141 /* PostViewModel.swift in Sources */,
 				C4BB005D2890C576000D2E47 /* MaterialSecureField.swift in Sources */,
+				C40EBA1828DD5FE500A09838 /* ExistingPromoTicket.swift in Sources */,
 				C4AF9B242828216600EBB141 /* PostView.swift in Sources */,
 				C4AF9B252828216600EBB141 /* ContentView.swift in Sources */,
 				C41DCB5A28CB48BF004888B1 /* FadedBlueButton.swift in Sources */,
@@ -1364,6 +1387,7 @@
 				C4D659AC282AFA7100FAE1D1 /* NameCredentialsScreen.swift in Sources */,
 				C40310172894A6260046B645 /* RightSwipe.swift in Sources */,
 				C410D26628B48C4300914D84 /* PhotosViewModel.swift in Sources */,
+				C40EBA1228DD443D00A09838 /* CreatePromoCodesScreen.swift in Sources */,
 				C49191C028A2FAB000C03743 /* CreateFacilityRepositoryImpl.swift in Sources */,
 				C41DCB6F28CBB477004888B1 /* FacilityRepositoryImpl.swift in Sources */,
 				C482683928974C4B0072147F /* FacilityNameScreen.swift in Sources */,

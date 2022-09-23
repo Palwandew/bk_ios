@@ -15,6 +15,7 @@ struct MaterialPriceField: View {
     @State private var borderColor: Color = Color.gray
     var errorMessage: LocalizedStringKey
     var placeHolder: String
+    var endIcon: String? = nil
     private let focusedBorderLineWidth: CGFloat = 2
     private let unFocusedBorderLineWidth: CGFloat = 1
     
@@ -51,10 +52,16 @@ struct MaterialPriceField: View {
             HStack{
                 Spacer()
                 
+                if endIcon != nil {
+                    Image(systemName: endIcon ?? "calendar")
+                        .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                        .padding([.top, .trailing])
+                } else {
                 Text("SR")
                     .font(Font.custom("Poppins-Medium", size: 16.0))
                     .foregroundColor(Color(AppColor.DARKEST_BLUE))
                     .padding([.top, .trailing])
+                }
                 
             }
             

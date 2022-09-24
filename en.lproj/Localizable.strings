@@ -123,3 +123,8 @@
 "oops" = "oops!";
 "something_went_wrong" = "Something went wrong.\nPlease try again.";
 "retry" = "retry";
+
+
+//Messages
+"empty_state_message" = "You don't have any messages yet.";
+"message_input_place_holder" = "Enter your message";

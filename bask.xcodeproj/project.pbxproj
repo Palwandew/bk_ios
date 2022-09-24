@@ -128,6 +128,8 @@
 		C482683B289751D70072147F /* AddNewUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683A289751D70072147F /* AddNewUnitViewModel.swift */; };
 		C482683D289759600072147F /* FacilityRoomsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683C289759600072147F /* FacilityRoomsScreen.swift */; };
 		C482683F28975DBF0072147F /* MaterialLengthField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683E28975DBF0072147F /* MaterialLengthField.swift */; };
+		C48790D028DE93F600BD6224 /* MessageDeliveryIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48790CF28DE93F600BD6224 /* MessageDeliveryIndicator.swift */; };
+		C48790D228DE981000BD6224 /* DynamicHeightTextInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48790D128DE981000BD6224 /* DynamicHeightTextInputField.swift */; };
 		C48E9F5628D4A7F200FFD1AF /* MaterialCommentField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48E9F5528D4A7F200FFD1AF /* MaterialCommentField.swift */; };
 		C48E9F5828D4E0E100FFD1AF /* ComplainGuestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48E9F5728D4E0E100FFD1AF /* ComplainGuestScreen.swift */; };
 		C4918D6128A19A9900A8777D /* FacilityPicturesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4918D6028A19A9900A8777D /* FacilityPicturesScreen.swift */; };
@@ -364,6 +366,8 @@
 		C482683A289751D70072147F /* AddNewUnitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUnitViewModel.swift; sourceTree = "<group>"; };
 		C482683C289759600072147F /* FacilityRoomsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRoomsScreen.swift; sourceTree = "<group>"; };
 		C482683E28975DBF0072147F /* MaterialLengthField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialLengthField.swift; sourceTree = "<group>"; };
+		C48790CF28DE93F600BD6224 /* MessageDeliveryIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDeliveryIndicator.swift; sourceTree = "<group>"; };
+		C48790D128DE981000BD6224 /* DynamicHeightTextInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextInputField.swift; sourceTree = "<group>"; };
 		C48E9F5528D4A7F200FFD1AF /* MaterialCommentField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialCommentField.swift; sourceTree = "<group>"; };
 		C48E9F5728D4E0E100FFD1AF /* ComplainGuestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplainGuestScreen.swift; sourceTree = "<group>"; };
 		C4918D6028A19A9900A8777D /* FacilityPicturesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPicturesScreen.swift; sourceTree = "<group>"; };
@@ -1048,6 +1052,8 @@
 				C48E9F5528D4A7F200FFD1AF /* MaterialCommentField.swift */,
 				C4B301F228DA34FE00FAE17D /* CalendarView.swift */,
 				C40EBA1728DD5FE500A09838 /* ExistingPromoTicket.swift */,
+				C48790CF28DE93F600BD6224 /* MessageDeliveryIndicator.swift */,
+				C48790D128DE981000BD6224 /* DynamicHeightTextInputField.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1272,6 +1278,7 @@
 				C4AF9B1C2828216600EBB141 /* AppDI.swift in Sources */,
 				C4AF9B1D2828216600EBB141 /* LoginRepositoryImp.swift in Sources */,
 				C408F9DC28DBC90D00518632 /* NewOfferRequestBody.swift in Sources */,
+				C48790D228DE981000BD6224 /* DynamicHeightTextInputField.swift in Sources */,
 				C482111628C7459B00D6F75F /* UnpublishedFacilitiesScreen.swift in Sources */,
 				C4082848289D455B00C1B51B /* CountriesListScreen.swift in Sources */,
 				C4FF859428D64E8E00ADBCDF /* Rating.swift in Sources */,
@@ -1279,6 +1286,7 @@
 				C46BD78A28295FA0006AC587 /* ColorExtension.swift in Sources */,
 				C41DCB6228CB4A19004888B1 /* UserInfoView.swift in Sources */,
 				C41DCB6828CB4C95004888B1 /* FacilityAmenitiesView.swift in Sources */,
+				C48790D028DE93F600BD6224 /* MessageDeliveryIndicator.swift in Sources */,
 				C45C84C828B734F300646719 /* PhotosDomainRepoProtocol.swift in Sources */,
 				C4AF9B1E2828216600EBB141 /* LoginEndpoint.swift in Sources */,
 				C47BE340289AABA900B91D69 /* FacilityPaidAmenitiesScreen.swift in Sources */,

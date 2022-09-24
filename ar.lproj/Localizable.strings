@@ -118,3 +118,8 @@
 "oops" = "وجه الفتاة !";
 "something_went_wrong" = "حدث خطأ ما. أعد المحاولة من فضلك";
 "retry" = "أعد المحاولة";
+
+
+//Messages
+"empty_state_message" = "ليس لديك أية رسائل حتى الآن.";
+"message_input_place_holder" = "أدخل رسالتك";

@@ -9,32 +9,45 @@ import SwiftUI
 
 struct MessagesInboxScreen: View {
     @State var willShowChatScreen: Bool = false
+    
+    var inbox: [Int] = []
+    
     var body: some View {
+        
 
         VStack(alignment: .leading) {
             
             Text("Messages")
                 .font(.custom("Poppins-Medium", size: 26))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                .padding(.horizontal)
                 
-            NavigationLink(isActive: $willShowChatScreen) {
-                ChattingScreen()
-            } label: {
-                EmptyView()
-            }
+                
+            if inbox.isEmpty {
+                
+                EmptyState(illustration: "empty_inbox_illustration", message: "empty_state_message")
+            } else {
+                NavigationLink(isActive: $willShowChatScreen) {
+                    ChattingScreen()
+                } label: {
+                    EmptyView()
+                }
 
-            ScrollView{
-                LazyVStack(spacing: 16){
-                    ForEach(0...2, id:\.self){ _ in
-                        InboxItem()
-                            .onTapGesture {
-                                willShowChatScreen.toggle()
-                            }
-                    }
-                }.padding(.top, 4)
+                ScrollView{
+                    LazyVStack(spacing: 16){
+                        ForEach(0..<inbox.count, id:\.self){ _ in
+                            InboxItem()
+                                .onTapGesture {
+                                    willShowChatScreen.toggle()
+                                }
+                        }
+                    }.padding(.top, 4)
+                }
             }
-        }.background(Color(AppColor.BACKGROUND))
+        }
+        .padding()
+        .background(Color(AppColor.BACKGROUND))
+        
+           
     }
 }
 

@@ -68,7 +68,8 @@ struct HomeScreen: View {
                     MessagesInboxScreen()
                         .tabItem {
                             Label("Messages", systemImage: "message.fill")
-                        }
+                        }.navigationTitle("")
+                        .navigationBarHidden(true)
                         
                         //.navigationBarHidden(true)
                     

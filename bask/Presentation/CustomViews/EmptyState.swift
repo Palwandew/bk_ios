@@ -13,13 +13,20 @@ struct EmptyState: View {
     let message: String
 
     var body: some View {
-        VStack{
-            Image(illustration)
-            Text(LocalizedStringKey(message))
-                .multilineTextAlignment(.center)
-                .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .body))
-                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
-                .padding(.horizontal)
+        HStack {
+            Spacer()
+            VStack{
+                Spacer()
+                Image(illustration)
+                Text(LocalizedStringKey(message))
+                    .multilineTextAlignment(.center)
+                    .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .body))
+                    .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                    .padding(.horizontal)
+                Spacer()
+            }
+            
+            Spacer()
         }
     }
 }

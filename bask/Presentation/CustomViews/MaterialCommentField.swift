@@ -21,6 +21,7 @@ struct MaterialCommentField: UIViewRepresentable {
         textView.autocapitalizationType = .sentences
         textView.isSelectable = true
         textView.delegate = context.coordinator
+        
         textView.isUserInteractionEnabled = true
         textView.inputAccessoryView = createDoneLabel()
         

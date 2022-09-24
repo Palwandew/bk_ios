@@ -11,7 +11,7 @@ struct PaymentsScreen: View {
     var body: some View {
         VStack(spacing: 16) {
             NavigationLink {
-                Text("wall")
+                WalletScreen()
             } label: {
                 PaymentsScreenListRowItem(label: "Wallet")
             }

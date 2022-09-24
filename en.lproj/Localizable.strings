@@ -128,3 +128,15 @@
 //Messages
 "empty_state_message" = "You don't have any messages yet.";
 "message_input_place_holder" = "Enter your message";
+
+
+// Profile Tab
+"Profile info" = "Profile info";
+"Payments" = "Payments";
+"Agreement" = "Agreement";
+"Help Center" = "Help Center";
+"Logout" = "Logout";
+"Change password" = "Change password";
+"Language" = "Language";
+"English" = "English";
+"Arabic" = "Arabic";

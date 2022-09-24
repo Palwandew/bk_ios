@@ -123,3 +123,14 @@
 //Messages
 "empty_state_message" = "ليس لديك أية رسائل حتى الآن.";
 "message_input_place_holder" = "أدخل رسالتك";
+
+// Profile Tab
+"Profile info" = "معلومات الشخصي";
+"Payments" = "المدفوعات";
+"Agreement" = "اتفاق";
+"Help Center" = "مركز المساعدة";
+"Logout" = "تسجيل خروج";
+"Change password" = "غير كلمة السر";
+"Language" = "لغة";
+"English" = "إنجليزي";
+"Arabic" = "عربي";

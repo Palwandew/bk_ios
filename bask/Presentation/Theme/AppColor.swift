@@ -28,4 +28,10 @@ struct AppColor{
     static let SUCCESS_GREEN: UInt = 0xFF0B5228
     static let CHAT_SENT_ITEM: UInt = 0xFFEAEDF9
     static let CHAT_BOOKED_ITEM: UInt = 0xFFE6E9F3
+    
+    
+    // gradi
+    static let WALLET_CARD_GARD: UInt = 0xFF2F3EA4
+    static let WALLET_CARD_GARD_GREEN: UInt = 0xFF5CEEA7
+    
 }

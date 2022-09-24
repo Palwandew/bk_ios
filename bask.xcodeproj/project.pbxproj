@@ -130,6 +130,10 @@
 		C482683F28975DBF0072147F /* MaterialLengthField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683E28975DBF0072147F /* MaterialLengthField.swift */; };
 		C48790D028DE93F600BD6224 /* MessageDeliveryIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48790CF28DE93F600BD6224 /* MessageDeliveryIndicator.swift */; };
 		C48790D228DE981000BD6224 /* DynamicHeightTextInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48790D128DE981000BD6224 /* DynamicHeightTextInputField.swift */; };
+		C48790D528DEE54600BD6224 /* ProfileTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48790D428DEE54600BD6224 /* ProfileTabScreen.swift */; };
+		C48790D728DEEAD500BD6224 /* ProfileInfoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48790D628DEEAD500BD6224 /* ProfileInfoScreen.swift */; };
+		C48790DB28DF021700BD6224 /* PaymentsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48790DA28DF021700BD6224 /* PaymentsScreen.swift */; };
+		C48790DE28DF074100BD6224 /* WalletScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48790DD28DF074100BD6224 /* WalletScreen.swift */; };
 		C48E9F5628D4A7F200FFD1AF /* MaterialCommentField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48E9F5528D4A7F200FFD1AF /* MaterialCommentField.swift */; };
 		C48E9F5828D4E0E100FFD1AF /* ComplainGuestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48E9F5728D4E0E100FFD1AF /* ComplainGuestScreen.swift */; };
 		C4918D6128A19A9900A8777D /* FacilityPicturesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4918D6028A19A9900A8777D /* FacilityPicturesScreen.swift */; };
@@ -368,6 +372,10 @@
 		C482683E28975DBF0072147F /* MaterialLengthField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialLengthField.swift; sourceTree = "<group>"; };
 		C48790CF28DE93F600BD6224 /* MessageDeliveryIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDeliveryIndicator.swift; sourceTree = "<group>"; };
 		C48790D128DE981000BD6224 /* DynamicHeightTextInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextInputField.swift; sourceTree = "<group>"; };
+		C48790D428DEE54600BD6224 /* ProfileTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabScreen.swift; sourceTree = "<group>"; };
+		C48790D628DEEAD500BD6224 /* ProfileInfoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoScreen.swift; sourceTree = "<group>"; };
+		C48790DA28DF021700BD6224 /* PaymentsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsScreen.swift; sourceTree = "<group>"; };
+		C48790DD28DF074100BD6224 /* WalletScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletScreen.swift; sourceTree = "<group>"; };
 		C48E9F5528D4A7F200FFD1AF /* MaterialCommentField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialCommentField.swift; sourceTree = "<group>"; };
 		C48E9F5728D4E0E100FFD1AF /* ComplainGuestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplainGuestScreen.swift; sourceTree = "<group>"; };
 		C4918D6028A19A9900A8777D /* FacilityPicturesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPicturesScreen.swift; sourceTree = "<group>"; };
@@ -703,6 +711,41 @@
 			path = AddNewUnit;
 			sourceTree = "<group>";
 		};
+		C48790D328DEE51300BD6224 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C48790D428DEE54600BD6224 /* ProfileTabScreen.swift */,
+				C48790D828DF01E800BD6224 /* ProfileInfo */,
+				C48790D928DF020300BD6224 /* Payments */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		C48790D828DF01E800BD6224 /* ProfileInfo */ = {
+			isa = PBXGroup;
+			children = (
+				C48790D628DEEAD500BD6224 /* ProfileInfoScreen.swift */,
+			);
+			path = ProfileInfo;
+			sourceTree = "<group>";
+		};
+		C48790D928DF020300BD6224 /* Payments */ = {
+			isa = PBXGroup;
+			children = (
+				C48790DC28DF072C00BD6224 /* Wallet */,
+				C48790DA28DF021700BD6224 /* PaymentsScreen.swift */,
+			);
+			path = Payments;
+			sourceTree = "<group>";
+		};
+		C48790DC28DF072C00BD6224 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				C48790DD28DF074100BD6224 /* WalletScreen.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
 		C49191C328A3025600C03743 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -868,6 +911,7 @@
 		C4C63AA82823571900343032 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C48790D328DEE51300BD6224 /* Profile */,
 				C40EBA1928DD945800A09838 /* Messages */,
 				C40310112894A29C0046B645 /* ViewModifiers */,
 				C4BB005E2890CEA9000D2E47 /* ViewModels */,
@@ -1239,6 +1283,7 @@
 				C4A5C57F289F3EFB006AF774 /* MaterialTextSelector.swift in Sources */,
 				C4D659B4282B5A8900FAE1D1 /* LinearProgressBar.swift in Sources */,
 				C4BB005B2890AB89000D2E47 /* MaterialTextField.swift in Sources */,
+				C48790D528DEE54600BD6224 /* ProfileTabScreen.swift in Sources */,
 				C4FF859228D63C4B00ADBCDF /* RatingGuestsViewModel.swift in Sources */,
 				C41DCB6428CB4AA2004888B1 /* FacilitySizeInfoView.swift in Sources */,
 				C48268292896EDAF0072147F /* PresentBookings.swift in Sources */,
@@ -1279,6 +1324,7 @@
 				C4AF9B1D2828216600EBB141 /* LoginRepositoryImp.swift in Sources */,
 				C408F9DC28DBC90D00518632 /* NewOfferRequestBody.swift in Sources */,
 				C48790D228DE981000BD6224 /* DynamicHeightTextInputField.swift in Sources */,
+				C48790DB28DF021700BD6224 /* PaymentsScreen.swift in Sources */,
 				C482111628C7459B00D6F75F /* UnpublishedFacilitiesScreen.swift in Sources */,
 				C4082848289D455B00C1B51B /* CountriesListScreen.swift in Sources */,
 				C4FF859428D64E8E00ADBCDF /* Rating.swift in Sources */,
@@ -1297,6 +1343,7 @@
 				C403100E289482B10046B645 /* MaterialTabView.swift in Sources */,
 				C408F9D828DB720100518632 /* Offer.swift in Sources */,
 				C4B301F128DA2C0900FAE17D /* OfferDurationSettingScreen.swift in Sources */,
+				C48790D728DEEAD500BD6224 /* ProfileInfoScreen.swift in Sources */,
 				C4A00E3F289B1D6D00D78640 /* Dropdown.swift in Sources */,
 				C4826830289727B10072147F /* CancellationPolicyScreen.swift in Sources */,
 				C403101D2894BC340046B645 /* FacilityCard.swift in Sources */,
@@ -1314,6 +1361,7 @@
 				C4FF858C28D6299800ADBCDF /* PresentGuestsResponse.swift in Sources */,
 				C46526CE28C4D0F700CFDF4F /* Endpoints.swift in Sources */,
 				C4B301F328DA34FE00FAE17D /* CalendarView.swift in Sources */,
+				C48790DE28DF074100BD6224 /* WalletScreen.swift in Sources */,
 				C4F6675A28D37C4400ABA680 /* PresentGuestsScreen.swift in Sources */,
 				C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */,
 				C4F6675E28D38E3700ABA680 /* RatingScreen.swift in Sources */,

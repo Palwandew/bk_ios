@@ -76,7 +76,7 @@ struct HomeScreen: View {
                     
                     //MARK: - Profile
                     
-                    Text("Profile")
+                    ProfileTabScreen()
                         .tabItem {
                             Label("Profile", systemImage: "person.circle")
                         }

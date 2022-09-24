@@ -110,7 +110,9 @@ struct RowButton: View {
             
                 .resizable()
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                .aspectRatio(contentMode: .fit)
                 .frame(width: 24, height: 24)
+                
                 .padding(12)
                 .background(RoundedRectangle(cornerRadius: 8).fill(.white).shadow(radius: 2))
         }

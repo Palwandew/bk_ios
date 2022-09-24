@@ -16,6 +16,7 @@ struct baskApp: App {
 //            PostView(postVM: postViewModel)
 //            UserTypeSelectionScreen(signupViewModel: signUpViewModel)
             HomeScreen()
+            
         }
     }
 }

@@ -64,6 +64,9 @@
 		C41DCB6B28CBAA5A004888B1 /* BookedFacilitiesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6A28CBAA5A004888B1 /* BookedFacilitiesResponse.swift */; };
 		C41DCB6D28CBB31C004888B1 /* FacilityDomainRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6C28CBB31C004888B1 /* FacilityDomainRepoProtocol.swift */; };
 		C41DCB6F28CBB477004888B1 /* FacilityRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6E28CBB477004888B1 /* FacilityRepositoryImpl.swift */; };
+		C42ACE6028E00BD300E7B86B /* AddAmountToWithdrawScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42ACE5F28E00BD300E7B86B /* AddAmountToWithdrawScreen.swift */; };
+		C42ACE6328E032EE00E7B86B /* PaymentMethodsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42ACE6228E032EE00E7B86B /* PaymentMethodsScreen.swift */; };
+		C42DC5D128E0438300FCE145 /* WKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42DC5D028E0438300FCE145 /* WKWebView.swift */; };
 		C430368A28D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430368928D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift */; };
 		C430368F28D25A3F00C232D5 /* MyGuestsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430368E28D25A3F00C232D5 /* MyGuestsScreen.swift */; };
 		C430369328D2B3C700C232D5 /* MyGuestListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430369228D2B3C700C232D5 /* MyGuestListItem.swift */; };
@@ -307,6 +310,9 @@
 		C41DCB6A28CBAA5A004888B1 /* BookedFacilitiesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedFacilitiesResponse.swift; sourceTree = "<group>"; };
 		C41DCB6C28CBB31C004888B1 /* FacilityDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDomainRepoProtocol.swift; sourceTree = "<group>"; };
 		C41DCB6E28CBB477004888B1 /* FacilityRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRepositoryImpl.swift; sourceTree = "<group>"; };
+		C42ACE5F28E00BD300E7B86B /* AddAmountToWithdrawScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAmountToWithdrawScreen.swift; sourceTree = "<group>"; };
+		C42ACE6228E032EE00E7B86B /* PaymentMethodsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsScreen.swift; sourceTree = "<group>"; };
+		C42DC5D028E0438300FCE145 /* WKWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebView.swift; sourceTree = "<group>"; };
 		C430368928D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnpublishedFacilitiesListViewModel.swift; sourceTree = "<group>"; };
 		C430368E28D25A3F00C232D5 /* MyGuestsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGuestsScreen.swift; sourceTree = "<group>"; };
 		C430369228D2B3C700C232D5 /* MyGuestListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGuestListItem.swift; sourceTree = "<group>"; };
@@ -577,6 +583,15 @@
 			path = "Request Response Models";
 			sourceTree = "<group>";
 		};
+		C42ACE6128E032D100E7B86B /* PaymentMethods */ = {
+			isa = PBXGroup;
+			children = (
+				C42ACE6228E032EE00E7B86B /* PaymentMethodsScreen.swift */,
+				C42DC5D028E0438300FCE145 /* WKWebView.swift */,
+			);
+			path = PaymentMethods;
+			sourceTree = "<group>";
+		};
 		C430368B28D259BB00C232D5 /* Guests */ = {
 			isa = PBXGroup;
 			children = (
@@ -732,6 +747,7 @@
 		C48790D928DF020300BD6224 /* Payments */ = {
 			isa = PBXGroup;
 			children = (
+				C42ACE6128E032D100E7B86B /* PaymentMethods */,
 				C48790DC28DF072C00BD6224 /* Wallet */,
 				C48790DA28DF021700BD6224 /* PaymentsScreen.swift */,
 			);
@@ -742,6 +758,7 @@
 			isa = PBXGroup;
 			children = (
 				C48790DD28DF074100BD6224 /* WalletScreen.swift */,
+				C42ACE5F28E00BD300E7B86B /* AddAmountToWithdrawScreen.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -1296,6 +1313,7 @@
 				C47B734728CFAA3400C719BE /* ImageView.swift in Sources */,
 				C4FF859628D6556300ADBCDF /* RateGuestViewModel.swift in Sources */,
 				C450F44628A7CE440083AB86 /* PaidService.swift in Sources */,
+				C42ACE6028E00BD300E7B86B /* AddAmountToWithdrawScreen.swift in Sources */,
 				C4AF9B1B2828216600EBB141 /* PostDI.swift in Sources */,
 				C4FF858E28D62A8F00ADBCDF /* PresentGuestsViewModel.swift in Sources */,
 				C4082844289D29D300C1B51B /* FacilityLocationScreen.swift in Sources */,
@@ -1326,6 +1344,7 @@
 				C48790D228DE981000BD6224 /* DynamicHeightTextInputField.swift in Sources */,
 				C48790DB28DF021700BD6224 /* PaymentsScreen.swift in Sources */,
 				C482111628C7459B00D6F75F /* UnpublishedFacilitiesScreen.swift in Sources */,
+				C42ACE6328E032EE00E7B86B /* PaymentMethodsScreen.swift in Sources */,
 				C4082848289D455B00C1B51B /* CountriesListScreen.swift in Sources */,
 				C4FF859428D64E8E00ADBCDF /* Rating.swift in Sources */,
 				C46BD76628290DB9006AC587 /* UserTypeSelectionScreen.swift in Sources */,
@@ -1461,6 +1480,7 @@
 				C410D26628B48C4300914D84 /* PhotosViewModel.swift in Sources */,
 				C40EBA1228DD443D00A09838 /* CreatePromoCodesScreen.swift in Sources */,
 				C49191C028A2FAB000C03743 /* CreateFacilityRepositoryImpl.swift in Sources */,
+				C42DC5D128E0438300FCE145 /* WKWebView.swift in Sources */,
 				C41DCB6F28CBB477004888B1 /* FacilityRepositoryImpl.swift in Sources */,
 				C482683928974C4B0072147F /* FacilityNameScreen.swift in Sources */,
 			);

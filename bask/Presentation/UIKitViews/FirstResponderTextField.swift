@@ -75,3 +75,70 @@ struct FirstResponderTextField: UIViewRepresentable {
 //        FirstResponderTextField()
 //    }
 //}
+
+
+struct AmountInputTextField: UIViewRepresentable {
+    
+    typealias UIViewType = UITextField
+    
+    @Binding var becomeFirstResponder: Bool
+    @Binding var text: String
+    
+    func makeUIView(context: Context) -> UITextField {
+        let textField = UITextField(frame: .zero)
+        textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        textField.font = UIFont(name: "Poppins-Medium", size: 42)
+        textField.textAlignment = .natural
+        textField.text = text 
+        textField.textColor = .darkText
+        textField.delegate = context.coordinator
+        textField.keyboardType = .numberPad
+        
+        textField.autocorrectionType = .no
+        
+        return textField
+    }
+    
+    func updateUIView(_ textField: UITextField, context: Context) {
+        if self.becomeFirstResponder {
+            DispatchQueue.main.async {
+                textField.becomeFirstResponder()
+            }
+        }
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    class Coordinator: NSObject, UITextFieldDelegate {
+        var parent: AmountInputTextField
+        
+        init(_ textField: AmountInputTextField) {
+            self.parent = textField
+        }
+        
+        
+        func textFieldDidChangeSelection(_ textField: UITextField) {
+            DispatchQueue.main.async {
+                self.parent.text = textField.text ?? ""
+            }
+        }
+        
+//        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//
+//            print(string)
+//            parent.text = string
+//            //parent.text = textField.text ?? ""
+//
+//            let maxLength = 1
+//            let currentString = (textField.text ?? "") as NSString
+//            let newString = currentString.replacingCharacters(in: range, with: string)
+//
+//
+//            return newString.count <= maxLength
+//
+//
+//        }
+    }
+}

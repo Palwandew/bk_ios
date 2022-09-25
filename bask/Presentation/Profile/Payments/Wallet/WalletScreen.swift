@@ -84,8 +84,11 @@ struct WalletScreen: View {
                         
                         Spacer()
                         
+                        AddPaymentButton()
+                        
                     }
                     .padding(.horizontal)
+                    .padding(.bottom, 32)
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.532)
                     .background(Color.white)
                     .roundCorners(radius: 20, [.topLeft, .topRight])
@@ -99,6 +102,7 @@ struct WalletScreen: View {
                 
         
         }.navigationTitle("Wallet")
+            .navigationBarBackButtonHidden(showHalfModal)
     }
 }
 
@@ -191,3 +195,5 @@ struct PaymentHistoryView: View {
         }
     }
 }
+
+

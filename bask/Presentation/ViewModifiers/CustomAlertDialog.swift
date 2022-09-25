@@ -23,7 +23,6 @@ struct CustomAlertDialog<DialogContent: View>: ViewModifier {
         self.dialogContent = dialogContent()
         self.cornerRadius = cornerRadius
         self.backgroundColor = backgroundColor
-        
 
     }
     
@@ -31,10 +30,15 @@ struct CustomAlertDialog<DialogContent: View>: ViewModifier {
         // wrap the view being modified in a ZStack and render dialog on top of it
         ZStack {
             content
+                .animation(.spring(), value: isShowing)
+                
+
                 
             if isShowing {
                 // the semi-transparent overlay
                 Rectangle().foregroundColor(Color.black.opacity(0.6)).edgesIgnoringSafeArea(.all)
+                    .animation(.spring(), value: isShowing)
+                    .navigationBarBackButtonHidden(true)
                 // the dialog content is in a ZStack to pad it from the edges
                 // of the screen
                 ZStack {
@@ -43,6 +47,8 @@ struct CustomAlertDialog<DialogContent: View>: ViewModifier {
                             RoundedRectangle(cornerRadius: cornerRadius ?? 8)
                                 .foregroundColor(backgroundColor ?? .white))
                 }.padding(40)
+                    .animation(.spring(), value: isShowing)
+                    
             }
         }
     }

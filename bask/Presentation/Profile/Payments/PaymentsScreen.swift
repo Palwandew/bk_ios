@@ -16,7 +16,7 @@ struct PaymentsScreen: View {
                 PaymentsScreenListRowItem(label: "Wallet")
             }
             NavigationLink {
-                Text("wall")
+                PaymentMethodsScreen()
             } label: {
                 PaymentsScreenListRowItem(label: "Payment methods")
             }

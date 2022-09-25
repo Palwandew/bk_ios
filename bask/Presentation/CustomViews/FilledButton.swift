@@ -11,6 +11,7 @@ struct FilledButton: View {
     
     let label: String
     let color: Color
+    var endIcon: String? = nil
     let action: () -> Void
     
     var body: some View {
@@ -22,7 +23,7 @@ struct FilledButton: View {
                 Text(LocalizedStringKey(label))
                     .font(Font.custom("Poppins-Regular", size: 16))
                 Spacer()
-                Image(systemName: "arrow.forward")
+                Image(systemName: endIcon ?? "arrow.forward")
             }
             .padding()
         }

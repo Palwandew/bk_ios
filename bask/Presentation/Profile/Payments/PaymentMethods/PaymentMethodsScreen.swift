@@ -12,6 +12,8 @@ struct PaymentMethodsScreen: View {
     @State var showDeleteDialog: Bool = false
     @State var showWebView: Bool = false
     
+    let methods: [Int] = []
+    
     var body: some View {
         VStack(alignment: .leading) {
             
@@ -21,46 +23,79 @@ struct PaymentMethodsScreen: View {
             
             Spacer()
             
-            ScrollView(.vertical, showsIndicators: false) {
-                LazyVStack {
-                    PaymentMethodView(delete: $showDeleteDialog)
-                    
-                    PaymentMethodView(delete: $showDeleteDialog)
-                }.padding(5)
-            }
-            AddPaymentButton()
-                .onTapGesture {
-                    showWebView.toggle()
-                }
             
-            Spacer()
+            if methods.isEmpty{
+                EmptyState(illustration: "empty_payment_method_illustration", message: "You don't have any payment methods yet. You can add credit/debit card and Mada account.")
+                
+                FilledButton(label: "Add payment method", color: Color(AppColor.DARKEST_BLUE)) {
+                    print("Add card")
+                    showDeleteDialog.toggle()
+                }
+            } else {
+            
+                ScrollView(.vertical, showsIndicators: false) {
+                    LazyVStack {
+                        PaymentMethodView(delete: $showDeleteDialog)
+                        
+                        PaymentMethodView(delete: $showDeleteDialog)
+                    }.padding(5)
+                }
+                AddPaymentButton()
+                    .onTapGesture {
+                        showDeleteDialog.toggle()
+                    }
+                
+                Spacer()
+            }
         }
+        
+        .alert(isPresented: $showDeleteDialog) {
+                Alert(
+                    title: Text("Unable to Save Workout Data"),
+                    message: Text("The connection to the server was lost."),
+                    primaryButton: .default(
+                        Text("Try Again"),
+                        action: {
+                            print("hi")
+                        }
+                    ),
+                    secondaryButton: .destructive(
+                        Text("Delete"),
+                        action: {
+                            print("Hi")
+                        }
+                    )
+                )
+            }
         .padding([.horizontal, .bottom])
         .navigationBarTitleDisplayMode(.inline)
-        .fullScreenCover(isPresented: $showWebView, content: {
-            NavigationView{
-                WebView(url: URL(string: "https://www.google.com")!)
-                    .navigationTitle("")
-                    .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                Image(systemName: "chevron.backward")
-                                    .foregroundColor(.gray)
-                            }
-                        }
-            }
-            
-        })
+//        .fullScreenCover(isPresented: $showWebView, content: {
+//            NavigationView{
+//                WebView(url: URL(string: "https://www.google.com")!)
+//                    .navigationTitle("")
+//                    .navigationBarTitleDisplayMode(.inline)
+//                        .toolbar {
+//                            ToolbarItem(placement: .navigationBarLeading) {
+//                                Image(systemName: "chevron.backward")
+//                                    .foregroundColor(.gray)
+//                                    .onTapGesture {
+//                                        showWebView.toggle()
+//                                    }
+//                            }
+//                        }
+//            }
+//
+//        })
         
-        .alertDialog(isShowing: $showDeleteDialog) {
-            withAnimation {
-                DeleteCardDialog {
-                    showDeleteDialog.toggle()
-                } delete: {
-                    print("delete card")
-                }.transition(.move(edge: .bottom))
-            }
-        }
+//        .alertDialog(isShowing: $showDeleteDialog) {
+//            withAnimation {
+//                AlertDialog(title: "Delete card", "Do you want to delete card **** 4567", "Cancel", "Delete"){
+//                    showDeleteDialog.toggle()
+//                } perform: {
+//                    print("delete card")
+//                }.transition(.move(edge: .bottom))
+//            }
+//        }
     }
 }
 
@@ -130,24 +165,33 @@ struct AddPaymentButton: View {
     }
 }
 
-struct DeleteCardDialog: View {
+struct AlertDialog: View {
     
+    let title: String
+    let message: String
+    let leadingItemLabel: String
+    let trailingItemLabel: String
     let cancel: () -> Void
     let delete: () -> Void
     
-    init(_ cancel: @escaping () -> Void, delete: @escaping () -> Void ){
+    init(title: String, _ subtitle: String, _ leadingItemLabel: String, _ trailingItemLabel: String,_ cancel: @escaping () -> Void, perform: @escaping () -> Void ){
+        
+        self.title = title
+        self.message = subtitle
+        self.leadingItemLabel = leadingItemLabel
+        self.trailingItemLabel = trailingItemLabel
         self.cancel = cancel
-        self.delete = delete
+        self.delete = perform
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16){
             
-            Text("Delete card")
+            Text(title)
                 .font(.custom("Poppins-Medium", size: 20))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
-            Text("Do you want to delete card **** 4567?")
+            Text(message)
                 .font(.custom("Poppins-Medium", size: 16))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
             
@@ -156,7 +200,7 @@ struct DeleteCardDialog: View {
                 Button{
                     cancel()
                 } label: {
-                    Text("Cancel")
+                    Text(leadingItemLabel)
                         .font(.custom("Poppins-Medium", size: 16))
                         .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                     
@@ -167,7 +211,7 @@ struct DeleteCardDialog: View {
                 Button{
                     delete()
                 } label: {
-                    Text("Delete")
+                    Text(trailingItemLabel)
                         .font(.custom("Poppins-Medium", size: 16))
                         .foregroundColor(Color(AppColor.RED))
                     
@@ -175,6 +219,9 @@ struct DeleteCardDialog: View {
             }
             
             
-        }.padding()
+        }
+        
+        
+        .padding()
     }
 }

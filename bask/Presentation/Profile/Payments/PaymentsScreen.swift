@@ -21,14 +21,15 @@ struct PaymentsScreen: View {
                 PaymentsScreenListRowItem(label: "Payment methods")
             }
             NavigationLink {
-                Text("wall")
+                FacilityPercentageScreen()
             } label: {
                 PaymentsScreenListRowItem(label: "Percentages")
-            }
+                    
+            }.isDetailLink(false)
             
             Spacer()
         }
-        .padding(.horizontal)
+        .padding([.horizontal, .top])
         .navigationTitle("Payments")
     }
 }

@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct PaymentsScreen: View {
+    @StateObject var model: PaymentMethodsViewModel  = PaymentMethodsViewModel(PaymentMethodUsecase(repo: PaymentMethodsProtocolImpl()))
+    
     var body: some View {
         VStack(spacing: 16) {
             NavigationLink {
-                WalletScreen()
+                WalletScreen(paymentMethodsVM: model)
             } label: {
                 PaymentsScreenListRowItem(label: "Wallet")
             }
             NavigationLink {
-                PaymentMethodsScreen()
+                PaymentMethodsScreen(model: model)
             } label: {
                 PaymentsScreenListRowItem(label: "Payment methods")
             }
@@ -31,6 +33,25 @@ struct PaymentsScreen: View {
         }
         .padding([.horizontal, .top])
         .navigationTitle("Payments")
+        .fullScreenCover(isPresented: $model.showWebView, onDismiss: {
+            model.updatePaymentMethodsList()
+        }, content: {
+            NavigationView{
+                WebView(url: model.addPaymentMethodURL ?? URL(string: "https://site.paytabs.com/en/payment-methods/")!)
+                    .navigationTitle("")
+                    .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                Image(systemName: "chevron.backward")
+                                    .foregroundColor(.gray)
+                                    .onTapGesture {
+                                        model.showWebView.toggle()
+                                    }
+                            }
+                        }
+            }
+
+        })
     }
 }
 

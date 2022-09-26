@@ -9,10 +9,11 @@ import SwiftUI
 
 struct AddAmountToWithdrawScreen: View {
     
-    @State var amount: String = ""
-    @State var showKeyboard: Bool = false
-    @State var insufficentAmount: Bool = true
-    @State var status: WithdrawStatus? = nil
+    @ObservedObject var model: WalletViewModel
+    @State private var amount: String = ""
+    @State private var showKeyboard: Bool = false
+    @State private var insufficentAmount: Bool = true
+    @State private var status: WithdrawStatus? = nil
     var body: some View {
         ZStack {
             

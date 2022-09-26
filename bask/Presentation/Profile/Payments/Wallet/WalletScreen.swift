@@ -9,10 +9,12 @@ import SwiftUI
 
 struct WalletScreen: View {
     
-    @State var value: Float = 0.60
-    @State var showHalfModal: Bool = true
+    @ObservedObject var paymentMethodsVM: PaymentMethodsViewModel
+    @StateObject private var model: WalletViewModel = WalletViewModel(GetWalletStatusUsecase(WalletProtocolImpl()))
+    @State private var value: Float = 0.60
+    @State private var showHalfModal: Bool = false
     var body: some View {
-
+        
         ZStack {
             VStack(alignment: .leading){
                 
@@ -20,29 +22,17 @@ struct WalletScreen: View {
                     .font(.custom("Poppins-Regular", size: 16))
                     .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                 
-                WalletCard(value: $value)
-                
-                Text("History")
-                    .font(.custom("Poppins-Regular", size: 20))
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                
-                ScrollView(.vertical, showsIndicators: false) {
-                    LazyVStack{
-                        ForEach(0 ..< 10) { item in
-                            PaymentHistoryView()
-                        }
-                    }
-                }
+                WalletCard(model: model)
                 
                 Spacer()
                 
                 if !showHalfModal{
-                FilledButton(label: "Withdraw money", color: Color(AppColor.DARKEST_BLUE)) {
-                    print("money")
-                    withAnimation {
-                        showHalfModal.toggle()
+                    FilledButton(label: "Withdraw money", color: Color(AppColor.DARKEST_BLUE)) {
+                        print("money")
+                        withAnimation {
+                            showHalfModal.toggle()
+                        }
                     }
-                }
                 }
             }
             .padding(.horizontal)
@@ -51,6 +41,8 @@ struct WalletScreen: View {
                 VStack {
                     Spacer()
                     VStack(alignment: .leading){
+                        
+                        Spacer()
                         
                         HStack{
                             
@@ -65,52 +57,58 @@ struct WalletScreen: View {
                         Text("Choose a payment method")
                             .font(.custom("Poppins-Regular", size: 20))
                             .foregroundColor(Color(AppColor.DARK_BLUE))
-                            
+                        
                             .onTapGesture {
                                 withAnimation {
                                     showHalfModal.toggle()
                                 }
                             }
                         
-                        PaymentHistoryView()
-                        
-                        PaymentHistoryView()
-                        
-                        PaymentHistoryView()
-
-                        PaymentHistoryView()
-                        
-                        PaymentHistoryView()
-                        
-                        Spacer()
+                        ScrollView(.vertical, showsIndicators: false) {
+                            LazyVStack {
+                                ForEach(paymentMethodsVM.methods) { item in
+                                    
+                                    NavigationLink{
+                                        AddAmountToWithdrawScreen(model: model)
+                                    } label: {
+                                        PaymentMethodItemView(card: item)
+                                    }
+                                    
+                                    
+                                }
+                            }.padding(5)
+                        }
                         
                         AddPaymentButton()
+                            .onTapGesture {
+                                paymentMethodsVM.addPaymentMethod()
+                            }
                         
-                    }
-                    .padding(.horizontal)
-                    .padding(.bottom, 32)
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.532)
-                    .background(Color.white)
-                    .roundCorners(radius: 20, [.topLeft, .topRight])
-
-                }
-                .background(Color.black.opacity(0.5))
-                .ignoresSafeArea(.all, edges: .all)
-                .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .bottom)))
-                //.animation(.easeInOut, value: showHalfModal)
-            }
+                    }.padding(.horizontal)
+                        .padding(.bottom, 32)
+                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.532)
+                        .background(Color.white)
+                        .roundCorners(radius: 20, [.topLeft, .topRight])
+                    
+                }.background(Color.black.opacity(0.5))
+                    .ignoresSafeArea(.all, edges: .all)
+                    .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .bottom)))
                 
-        
-        }.navigationTitle("Wallet")
-            .navigationBarBackButtonHidden(showHalfModal)
+                
+            }
+        }
+        .navigationTitle("Wallet")
+        .navigationBarBackButtonHidden(showHalfModal)
     }
 }
 
-struct WalletScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        WalletScreen()
-    }
-}
+//struct Wallet_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WalletScreen()
+//    }
+//}
+
+
 
 struct AmountIndicator: View {
     
@@ -120,29 +118,33 @@ struct AmountIndicator: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-                Text(label)
-                    .font(.custom("Poppins-Regular", size: 12))
-                    .foregroundColor(.white)
-                
-                Text("\(amount) currency")
-                    .font(.custom("Poppins-Regular", size: 20))
-                    .foregroundColor(.white)
-            }
-       
+            Text(label)
+                .font(.custom("Poppins-Regular", size: 12))
+                .foregroundColor(.white)
+                .unredacted()
+            
+            Text("\(amount) currency")
+                .font(.custom("Poppins-Regular", size: 20))
+                .foregroundColor(.white)
+        }
+        
     }
 }
 
 struct WalletCard: View {
     
-    @Binding var value: Float
+    @ObservedObject var model: WalletViewModel
+    @State var value: Float = 0.1
     var body: some View {
         VStack {
             HStack {
-                AmountIndicator(label: "Available", amount: 1200)
+                AmountIndicator(label: "Available", amount: model.wallet.availableAmount)
+                    .redacted(reason: model.state != .success ? .placeholder : [])
                 
                 Spacer()
                 
-                AmountIndicator(label: "Pending", amount: 800)
+                AmountIndicator(label: "Pending", amount: model.wallet.pendingAmount)
+                    .redacted(reason: model.state != .success ? .placeholder : [])
             }
             
             LinearProgressBar(value: $value, background: Color(AppColor.DARKEST_BLUE))
@@ -158,7 +160,7 @@ struct WalletCard: View {
                                endPoint: .bottom)
                 LinearGradient(colors: [Color(AppColor.DARK_BLUE), Color(AppColor.WALLET_CARD_GARD)],
                                startPoint: .bottomLeading,
-                                       endPoint: .topTrailing)
+                               endPoint: .topTrailing)
             }
         )
         .cornerRadius(8)

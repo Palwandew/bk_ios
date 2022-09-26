@@ -99,6 +99,12 @@
 		C462F7F828E16EE0000C99E9 /* PaymentMethodsProtocolImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F7F728E16EE0000C99E9 /* PaymentMethodsProtocolImpl.swift */; };
 		C462F7FA28E17065000C99E9 /* PaymentMethodsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F7F928E17065000C99E9 /* PaymentMethodsViewModel.swift */; };
 		C462F7FC28E187E8000C99E9 /* AddPaymentMethodResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F7FB28E187E8000C99E9 /* AddPaymentMethodResponse.swift */; };
+		C462F7FE28E1A577000C99E9 /* GetWalletStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F7FD28E1A577000C99E9 /* GetWalletStatusResponse.swift */; };
+		C462F80028E1A5D2000C99E9 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F7FF28E1A5D2000C99E9 /* Wallet.swift */; };
+		C462F80228E1A74B000C99E9 /* WalletRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F80128E1A74B000C99E9 /* WalletRepositoryProtocol.swift */; };
+		C462F80428E1A794000C99E9 /* WalletProtocolImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F80328E1A794000C99E9 /* WalletProtocolImpl.swift */; };
+		C462F80628E1A91A000C99E9 /* GetWalletStatusUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F80528E1A91A000C99E9 /* GetWalletStatusUsecase.swift */; };
+		C462F80828E1A9A4000C99E9 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F80728E1A9A4000C99E9 /* WalletViewModel.swift */; };
 		C464679B28D9FF2400AEA5D8 /* MyOffersScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C464679A28D9FF2400AEA5D8 /* MyOffersScreen.swift */; };
 		C46526CE28C4D0F700CFDF4F /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46526CD28C4D0F700CFDF4F /* Endpoints.swift */; };
 		C465D51328AB07F000CFDBC4 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = C465D51228AB07F000CFDBC4 /* Rules.swift */; };
@@ -359,6 +365,12 @@
 		C462F7F728E16EE0000C99E9 /* PaymentMethodsProtocolImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsProtocolImpl.swift; sourceTree = "<group>"; };
 		C462F7F928E17065000C99E9 /* PaymentMethodsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsViewModel.swift; sourceTree = "<group>"; };
 		C462F7FB28E187E8000C99E9 /* AddPaymentMethodResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPaymentMethodResponse.swift; sourceTree = "<group>"; };
+		C462F7FD28E1A577000C99E9 /* GetWalletStatusResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWalletStatusResponse.swift; sourceTree = "<group>"; };
+		C462F7FF28E1A5D2000C99E9 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		C462F80128E1A74B000C99E9 /* WalletRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRepositoryProtocol.swift; sourceTree = "<group>"; };
+		C462F80328E1A794000C99E9 /* WalletProtocolImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletProtocolImpl.swift; sourceTree = "<group>"; };
+		C462F80528E1A91A000C99E9 /* GetWalletStatusUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWalletStatusUsecase.swift; sourceTree = "<group>"; };
+		C462F80728E1A9A4000C99E9 /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		C464679A28D9FF2400AEA5D8 /* MyOffersScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOffersScreen.swift; sourceTree = "<group>"; };
 		C46526CD28C4D0F700CFDF4F /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		C465D51228AB07F000CFDBC4 /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
@@ -610,6 +622,7 @@
 				C462F7E728E152A5000C99E9 /* OwnerFacilitiesPercentageResponse.swift */,
 				C462F7EF28E16B56000C99E9 /* PaymentMethodsResponse.swift */,
 				C462F7FB28E187E8000C99E9 /* AddPaymentMethodResponse.swift */,
+				C462F7FD28E1A577000C99E9 /* GetWalletStatusResponse.swift */,
 			);
 			path = "Request Response Models";
 			sourceTree = "<group>";
@@ -822,6 +835,7 @@
 				C4FF858728D6144600ADBCDF /* GuestsRepositoryImpl.swift */,
 				C408F9D328DB500F00518632 /* OffersRepositoryImpl.swift */,
 				C462F7F728E16EE0000C99E9 /* PaymentMethodsProtocolImpl.swift */,
+				C462F80328E1A794000C99E9 /* WalletProtocolImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -878,6 +892,7 @@
 				C408F9D928DB880500518632 /* NewOfferViewModel.swift */,
 				C462F7EB28E15A9B000C99E9 /* FacilityPercentagesViewModel.swift */,
 				C462F7F928E17065000C99E9 /* PaymentMethodsViewModel.swift */,
+				C462F80728E1A9A4000C99E9 /* WalletViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1040,6 +1055,7 @@
 				C408F9D728DB720100518632 /* Offer.swift */,
 				C462F7E928E15538000C99E9 /* FacilityPercentage.swift */,
 				C462F7F128E16BD6000C99E9 /* PaymentCard.swift */,
+				C462F7FF28E1A5D2000C99E9 /* Wallet.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1053,6 +1069,7 @@
 				C4BB0075289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift */,
 				C408F9D528DB519800518632 /* OffersUsecase.swift */,
 				C462F7F328E16E0D000C99E9 /* PaymentMethodsUsecase.swift */,
+				C462F80528E1A91A000C99E9 /* GetWalletStatusUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1069,6 +1086,7 @@
 				C4FF858528D6135300ADBCDF /* GuestsDomainRepoProtocol.swift */,
 				C408F9D128DB4F7400518632 /* OffersDomainRepoProtocol.swift */,
 				C462F7F528E16E4E000C99E9 /* PaymentMethodProtocol.swift */,
+				C462F80128E1A74B000C99E9 /* WalletRepositoryProtocol.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1357,7 +1375,9 @@
 				C409A10828C9BD9500D4E6C7 /* FacilityImageSliderView.swift in Sources */,
 				C462F7F628E16E4E000C99E9 /* PaymentMethodProtocol.swift in Sources */,
 				C4A5C57F289F3EFB006AF774 /* MaterialTextSelector.swift in Sources */,
+				C462F80228E1A74B000C99E9 /* WalletRepositoryProtocol.swift in Sources */,
 				C462F7F428E16E0D000C99E9 /* PaymentMethodsUsecase.swift in Sources */,
+				C462F80428E1A794000C99E9 /* WalletProtocolImpl.swift in Sources */,
 				C4D659B4282B5A8900FAE1D1 /* LinearProgressBar.swift in Sources */,
 				C4BB005B2890AB89000D2E47 /* MaterialTextField.swift in Sources */,
 				C48790D528DEE54600BD6224 /* ProfileTabScreen.swift in Sources */,
@@ -1382,6 +1402,7 @@
 				C47B734928CFAAFF00C719BE /* BookedFacilitiesListViewModel.swift in Sources */,
 				C4BB0076289109FE000D2E47 /* GetCountriesCallingCodeUseCase.swift in Sources */,
 				C47B734F28CFB97800C719BE /* FacilityDetailViewModel.swift in Sources */,
+				C462F80628E1A91A000C99E9 /* GetWalletStatusUsecase.swift in Sources */,
 				C42DC5D828E06B2100FCE145 /* HelpCenterScreen.swift in Sources */,
 				C4A921CA28B5AA6700969EF1 /* UploadProgressView.swift in Sources */,
 				C4F6675C28D37E9C00ABA680 /* UnratedGuestListItem.swift in Sources */,
@@ -1424,6 +1445,7 @@
 				C441FF5A28A456FD00AAC00C /* UIApplicationHelper.swift in Sources */,
 				C403100E289482B10046B645 /* MaterialTabView.swift in Sources */,
 				C408F9D828DB720100518632 /* Offer.swift in Sources */,
+				C462F7FE28E1A577000C99E9 /* GetWalletStatusResponse.swift in Sources */,
 				C4B301F128DA2C0900FAE17D /* OfferDurationSettingScreen.swift in Sources */,
 				C48790D728DEEAD500BD6224 /* ProfileInfoScreen.swift in Sources */,
 				C4A00E3F289B1D6D00D78640 /* Dropdown.swift in Sources */,
@@ -1490,6 +1512,7 @@
 				C482111228C735E200D6F75F /* MyUnitsViewModel.swift in Sources */,
 				C430369328D2B3C700C232D5 /* MyGuestListItem.swift in Sources */,
 				C462F7FC28E187E8000C99E9 /* AddPaymentMethodResponse.swift in Sources */,
+				C462F80828E1A9A4000C99E9 /* WalletViewModel.swift in Sources */,
 				C482682E28970EC90072147F /* MyAddsScreen.swift in Sources */,
 				C4918D6328A19DBC00A8777D /* Gallery.swift in Sources */,
 				C4AF9B282828216600EBB141 /* PostUseCase.swift in Sources */,
@@ -1548,6 +1571,7 @@
 				C41DCB6D28CBB31C004888B1 /* FacilityDomainRepoProtocol.swift in Sources */,
 				C40E7F6228984E7200788652 /* AmenityCounterButton.swift in Sources */,
 				C4D659AC282AFA7100FAE1D1 /* NameCredentialsScreen.swift in Sources */,
+				C462F80028E1A5D2000C99E9 /* Wallet.swift in Sources */,
 				C40310172894A6260046B645 /* RightSwipe.swift in Sources */,
 				C410D26628B48C4300914D84 /* PhotosViewModel.swift in Sources */,
 				C40EBA1228DD443D00A09838 /* CreatePromoCodesScreen.swift in Sources */,

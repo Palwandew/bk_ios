@@ -9,8 +9,7 @@ import SwiftUI
 
 struct PaymentMethodsScreen: View {
     
-    @StateObject private var model: PaymentMethodsViewModel = PaymentMethodsViewModel(PaymentMethodUsecase(repo: PaymentMethodsProtocolImpl()))
-    
+    @ObservedObject var model: PaymentMethodsViewModel
     @State private var showDeleteDialog: Bool = false
     @State private var willPerformDeletion: Bool = false
     @State private var showWebView: Bool = false
@@ -118,17 +117,11 @@ struct PaymentMethodsScreen: View {
     }
 }
 
-struct PaymentMethodsScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        PaymentMethodsScreen()
-    }
-}
-
 
 struct PaymentMethodItemView: View {
     
     let card: PaymentCardViewModel
-    let onDelete: () -> Void
+    var onDelete: (() -> Void)? = nil
     
     var body: some View {
         HStack(alignment: .center) {
@@ -150,17 +143,18 @@ struct PaymentMethodItemView: View {
             
             Spacer()
             
-            Image(systemName: "trash.fill")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 20, height: 20)
-                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
-                .onTapGesture {
-                    
-                    onDelete()
-                }
-                
-            
+            if let onDelete = onDelete {
+                Image(systemName: "trash.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                    .onTapGesture {
+                        
+                            onDelete()
+                        
+                    }
+            }
         }
     }
 }

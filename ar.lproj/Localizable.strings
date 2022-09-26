@@ -124,23 +124,38 @@
 "empty_state_message" = "ليس لديك أية رسائل حتى الآن.";
 "message_input_place_holder" = "أدخل رسالتك";
 
+
+//Logout Dialog
+"Logout" = "تسجيل خروج";
+"Logout_subtitle" = "هل تريد حقًا تسجيل الخروج؟";
+"Cancel_button_label" = "إلغاء";
+
+
 // Profile Tab
 "Profile info" = "معلومات الشخصي";
 "Payments" = "المدفوعات";
-"Agreement" = "اتفاق";
-"Help Center" = "مركز المساعدة";
-"Logout" = "تسجيل خروج";
-"Change password" = "غير كلمة السر";
-"Language" = "لغة";
-"English" = "إنجليزي";
-"Arabic" = "عربي";
+//Payment Screen
+"Wallet" = "محفظة جيب";
+"Wallet_subtitle" = "يمكنك سحب الأموال بعد 7 أيام من إيداع الدخل في الحساب.";
+"Withdraw money" = "سحب الأموال";
+"Choose a payment method" = "اختر طريقة الدفع";
+//Payment methods
+"Payment methods" = "طرق الدفع";
+"Add payment method" = "إضافة طريقة دفع";
+"Empty_payment_method_message" = "ليس لديك أي طرق دفع حتى الآن. يمكنك إضافة بطاقة ائتمان / خصم أو حساب مدى.";
 
-
-//Percentage Screen
+//Percentages
 "Percentages" = "النسب المئوية";
 "Percentages_subtitle" = "النسبة المئوية لكل عملية تأجير تذهب إلى الباسك.";
 
-//Logout Dialog
-"Logout" = "Logout";
-"Logout_subtitle" = "Do you really want to logout?";
-"Cancel_button_label" = "Cancel";
+
+"Agreement" = "اتفاق";
+"Help Center" = "مركز المساعدة";
+
+
+
+//Profile info
+"Change password" = "غير كلمة السر";
+"Language" = "لغة";
+"English" = "إنجليزي";
+"Arabic" = "العربية";

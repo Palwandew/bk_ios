@@ -18,7 +18,7 @@ struct WalletScreen: View {
         ZStack {
             VStack(alignment: .leading){
                 
-                Text("You can withdraw money 7 days after income deposited into account")
+                Text("Wallet_subtitle")
                     .font(.custom("Poppins-Regular", size: 16))
                     .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                 

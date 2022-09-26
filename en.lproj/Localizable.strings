@@ -135,6 +135,9 @@
 "Payments" = "Payments";
 //Payment Screen
 "Wallet" = "Wallet";
+"Wallet_subtitle" = "You can withdraw money 7 days after income deposited into account.";
+"Withdraw money" = "Withdraw money";
+"Choose a payment method" = "Choose a payment method";
 //Payment methods
 "Payment methods" = "Payment methods";
 "Add payment method" = "Add payment method";

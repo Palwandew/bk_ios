@@ -35,6 +35,8 @@ extension Endpoints{
     static let GET_BOOKED_FACILITIES: Endpoints = Endpoints(path: "booking/currentmonth")
     static let GET_AVAILABLE_FACILITIES: Endpoints = Endpoints(path: "facility/available")
     static let GET_UNPUBLISHED_FACILITIES: Endpoints = Endpoints(path: "facility/unpublish")
+    static let GET_FACILITY_PERCENTAGES: Endpoints = Endpoints(path: "facility/percentages")
+    
     static let GET_UPCOMING_GUESTS: Endpoints = Endpoints(path: "booking/upcomingguests")
     static let GET_PRESENT_GUESTS: Endpoints = Endpoints(path: "booking/presentguests")
     static let GET_GUESTS_RATINGS: Endpoints = Endpoints(path: "booking/guestsrating")

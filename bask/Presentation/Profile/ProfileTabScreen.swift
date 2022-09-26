@@ -10,62 +10,9 @@ import SwiftUI
 struct ProfileTabScreen: View {
     
     @State var showLogoutDialog: Bool = false
-     
-    var body: some View {
-
-        if #available(iOS 15.0, *) {
-            MainV(showLogoutDialog: $showLogoutDialog)
-                .alert("Logout", isPresented: $showLogoutDialog) {
-                    Text("Cancel")
-                } message: {
-                    Text("Do you want to logout?")
-                }
-        } else {
-            // Fallback on earlier versions
-            MainV(showLogoutDialog: $showLogoutDialog)
-            .alert(isPresented: $showLogoutDialog) {
-                    Alert(
-                        title: Text("Unable to Save Workout Data"),
-                        message: Text("The connection to the server was lost."),
-                        primaryButton: .default(
-                            Text("Try Again"),
-                            action: {
-                                print("hi")
-                            }
-                        ),
-                        secondaryButton: .destructive(
-                            Text("Delete"),
-                            action: {
-                                print("Hi")
-                            }
-                        )
-                    )
-                }
-        }
-
-//        .alertDialog(isShowing: $showLogoutDialog) {
-//            AlertDialog(title: "Logout", "Do you want to logout?", "Cancel", "Logout") {
-//                print("Cancel")
-//                showLogoutDialog.toggle()
-//            } perform: {
-//                print("Logout")
-//                showLogoutDialog.toggle()
-//            }
-//
-//        }
-    }
-}
-
-struct ProfileTabScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileTabScreen()
-    }
-}
-
-struct MainV: View {
-    @Binding var showLogoutDialog: Bool 
     
     var body: some View {
+        
         VStack{
             
             //MARK: - Profile Picture
@@ -105,6 +52,7 @@ struct MainV: View {
             
             
             //MARK: - Help Center
+            // There isn't any networking involve in this.
             NavigationLink{
                 HelpCenterScreen()
             } label: {
@@ -123,6 +71,23 @@ struct MainV: View {
             
         }
         .padding(.horizontal)
+        .alertDialog(isShowing: $showLogoutDialog) {
+            AlertDialog(title: "Logout", "Logout_subtitle", "Cancel_button_label", "Logout") {
+                print("Cancel")
+                showLogoutDialog.toggle()
+            } perform: {
+                print("Logout needs to be done")
+                showLogoutDialog.toggle()
+            }
+            
+        }
         
+        
+    }
+}
+
+struct ProfileTabScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileTabScreen()
     }
 }

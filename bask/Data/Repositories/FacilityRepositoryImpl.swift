@@ -9,11 +9,32 @@ import Foundation
 
 class FacilityRepositoryImpl: FacilityDomainReopProtocol {
     
+    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2NDE2MjQ1MywiZXhwIjoxNjY0NTk0NDUzfQ.fyPMLalXuhJIdQc8--1VzUgrpUlJfAzoNIJyomopV_4"
+    
+    func getBaskCutForRenting(completion: @escaping (Result<[FacilityPercentage], Error>) -> Void) {
+        
+        
+        let endpoint = Endpoints.GET_FACILITY_PERCENTAGES
+        
+        let session = URLSession.init(configuration: .default)
+        session.sendRequest(endpoint: endpoint, requestType: .get, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: nil, responseModel: OwnerFacilitiesPercentageResponse.self) { result in
+            switch result {
+                
+            case .failure(let error):
+                completion(.failure(error))
+                
+            case .success(let response):
+                completion(.success(response.facilityPercentages()))
+            }
+        }
+    }
     
     
     
     
-    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2MzE3NTI1NCwiZXhwIjoxNjYzNjA3MjU0fQ.c_V5hDpyIL2gWEQOQMGo6Fzw2skP_4QBIsQNhMxiiRg"
+    
+    
+    
     
     func getFacilities(completion: @escaping (Result<[Booking], Error> ) -> Void) {
         

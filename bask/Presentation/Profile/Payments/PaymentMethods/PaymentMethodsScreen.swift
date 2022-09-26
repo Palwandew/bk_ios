@@ -187,11 +187,11 @@ struct AlertDialog: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16){
             
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .font(.custom("Poppins-Medium", size: 20))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
-            Text(message)
+            Text(LocalizedStringKey(message))
                 .font(.custom("Poppins-Medium", size: 16))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
             
@@ -200,7 +200,7 @@ struct AlertDialog: View {
                 Button{
                     cancel()
                 } label: {
-                    Text(leadingItemLabel)
+                    Text(LocalizedStringKey(leadingItemLabel))
                         .font(.custom("Poppins-Medium", size: 16))
                         .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                     
@@ -211,7 +211,7 @@ struct AlertDialog: View {
                 Button{
                     delete()
                 } label: {
-                    Text(trailingItemLabel)
+                    Text(LocalizedStringKey(trailingItemLabel))
                         .font(.custom("Poppins-Medium", size: 16))
                         .foregroundColor(Color(AppColor.RED))
                     

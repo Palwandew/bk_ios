@@ -88,6 +88,10 @@
 		C45C84CA28B736A100646719 /* PhotosRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45C84C928B736A100646719 /* PhotosRepositoryImpl.swift */; };
 		C45C84CC28B738E200646719 /* PhotoSignedURLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45C84CB28B738E200646719 /* PhotoSignedURLModel.swift */; };
 		C45C84CF28B74CD900646719 /* ImageLinkRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45C84CE28B74CD900646719 /* ImageLinkRequestBody.swift */; };
+		C462F7E828E152A5000C99E9 /* OwnerFacilitiesPercentageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F7E728E152A5000C99E9 /* OwnerFacilitiesPercentageResponse.swift */; };
+		C462F7EA28E15538000C99E9 /* FacilityPercentage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F7E928E15538000C99E9 /* FacilityPercentage.swift */; };
+		C462F7EC28E15A9B000C99E9 /* FacilityPercentagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F7EB28E15A9B000C99E9 /* FacilityPercentagesViewModel.swift */; };
+		C462F7EE28E15AEA000C99E9 /* GetFacilityPercentagesUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462F7ED28E15AEA000C99E9 /* GetFacilityPercentagesUsecase.swift */; };
 		C464679B28D9FF2400AEA5D8 /* MyOffersScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C464679A28D9FF2400AEA5D8 /* MyOffersScreen.swift */; };
 		C46526CE28C4D0F700CFDF4F /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46526CD28C4D0F700CFDF4F /* Endpoints.swift */; };
 		C465D51328AB07F000CFDBC4 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = C465D51228AB07F000CFDBC4 /* Rules.swift */; };
@@ -337,6 +341,10 @@
 		C45C84C928B736A100646719 /* PhotosRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRepositoryImpl.swift; sourceTree = "<group>"; };
 		C45C84CB28B738E200646719 /* PhotoSignedURLModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSignedURLModel.swift; sourceTree = "<group>"; };
 		C45C84CE28B74CD900646719 /* ImageLinkRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLinkRequestBody.swift; sourceTree = "<group>"; };
+		C462F7E728E152A5000C99E9 /* OwnerFacilitiesPercentageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerFacilitiesPercentageResponse.swift; sourceTree = "<group>"; };
+		C462F7E928E15538000C99E9 /* FacilityPercentage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPercentage.swift; sourceTree = "<group>"; };
+		C462F7EB28E15A9B000C99E9 /* FacilityPercentagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPercentagesViewModel.swift; sourceTree = "<group>"; };
+		C462F7ED28E15AEA000C99E9 /* GetFacilityPercentagesUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFacilityPercentagesUsecase.swift; sourceTree = "<group>"; };
 		C464679A28D9FF2400AEA5D8 /* MyOffersScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOffersScreen.swift; sourceTree = "<group>"; };
 		C46526CD28C4D0F700CFDF4F /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		C465D51228AB07F000CFDBC4 /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
@@ -585,6 +593,7 @@
 				C408F9CF28DB4E3600518632 /* OwnerFacilitiesForOffersResponse.swift */,
 				C408F9DD28DBEB5500518632 /* OwnerOffersResponse.swift */,
 				C40EBA0E28DCF1E800A09838 /* OfferItemDetailsResponse.swift */,
+				C462F7E728E152A5000C99E9 /* OwnerFacilitiesPercentageResponse.swift */,
 			);
 			path = "Request Response Models";
 			sourceTree = "<group>";
@@ -807,6 +816,7 @@
 				C49191C528A305FC00C03743 /* CreateFacility */,
 				C41D312128D75FB60049042B /* RateGuestUsecase.swift */,
 				C4F7E78428D8D0100060A1C7 /* ComplainGuestUseCase.swift */,
+				C462F7ED28E15AEA000C99E9 /* GetFacilityPercentagesUsecase.swift */,
 			);
 			path = Owner;
 			sourceTree = "<group>";
@@ -849,6 +859,7 @@
 				C4F7E78228D8CE8C0060A1C7 /* ComplainGuestViewModel.swift */,
 				C408F9CD28DB45E200518632 /* MyOffersViewModel.swift */,
 				C408F9D928DB880500518632 /* NewOfferViewModel.swift */,
+				C462F7EB28E15A9B000C99E9 /* FacilityPercentagesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1009,6 +1020,7 @@
 				C4A921CD28B601AB00969EF1 /* CheckList.swift */,
 				C4FF859328D64E8E00ADBCDF /* Rating.swift */,
 				C408F9D728DB720100518632 /* Offer.swift */,
+				C462F7E928E15538000C99E9 /* FacilityPercentage.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1354,11 +1366,13 @@
 				C48E9F5628D4A7F200FFD1AF /* MaterialCommentField.swift in Sources */,
 				C4B538102899D0C70067CC21 /* FacilityFreeAmenitiesScreen.swift in Sources */,
 				C4918D6128A19A9900A8777D /* FacilityPicturesScreen.swift in Sources */,
+				C462F7EA28E15538000C99E9 /* FacilityPercentage.swift in Sources */,
 				C403101B2894BBF10046B645 /* UpcomingBookings.swift in Sources */,
 				C40310192894A9060046B645 /* HorizontalSwipe.swift in Sources */,
 				C4B301EF28DA1FA400FAE17D /* OfferPriceSettingScreen.swift in Sources */,
 				C47B734B28CFADF900C719BE /* AvailableFacilitiesListViewModel.swift in Sources */,
 				C464679B28D9FF2400AEA5D8 /* MyOffersScreen.swift in Sources */,
+				C462F7E828E152A5000C99E9 /* OwnerFacilitiesPercentageResponse.swift in Sources */,
 				C41A26AF289C79810057F3FE /* FacilityRulesScreen.swift in Sources */,
 				C45C84CC28B738E200646719 /* PhotoSignedURLModel.swift in Sources */,
 				C465D51528AB41BE00CFDBC4 /* Location.swift in Sources */,
@@ -1407,8 +1421,10 @@
 				C46526CE28C4D0F700CFDF4F /* Endpoints.swift in Sources */,
 				C4B301F328DA34FE00FAE17D /* CalendarView.swift in Sources */,
 				C48790DE28DF074100BD6224 /* WalletScreen.swift in Sources */,
+				C462F7EE28E15AEA000C99E9 /* GetFacilityPercentagesUsecase.swift in Sources */,
 				C4F6675A28D37C4400ABA680 /* PresentGuestsScreen.swift in Sources */,
 				C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */,
+				C462F7EC28E15A9B000C99E9 /* FacilityPercentagesViewModel.swift in Sources */,
 				C4F6675E28D38E3700ABA680 /* RatingScreen.swift in Sources */,
 				C42DC5D528E0663800FCE145 /* FacilityPercentageScreen.swift in Sources */,
 				C40FBF07289A854B00557AEB /* AmenityDescriptionCounter.swift in Sources */,

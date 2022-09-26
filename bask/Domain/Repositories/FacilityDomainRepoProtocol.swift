@@ -18,4 +18,7 @@ protocol FacilityDomainReopProtocol {
     
     // This will get a single Facility
     func getFacility<T: Codable>(_ endPoint: Endpoints, response: T.Type, completion: @escaping (Result<T, Error>) -> Void)
+    
+    // To get percentage cut that goes to bask
+    func getBaskCutForRenting(completion: @escaping (Result<[FacilityPercentage], Error>) -> Void)
 }

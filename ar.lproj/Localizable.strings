@@ -134,3 +134,13 @@
 "Language" = "لغة";
 "English" = "إنجليزي";
 "Arabic" = "عربي";
+
+
+//Percentage Screen
+"Percentages" = "النسب المئوية";
+"Percentages_subtitle" = "النسبة المئوية لكل عملية تأجير تذهب إلى الباسك.";
+
+//Logout Dialog
+"Logout" = "Logout";
+"Logout_subtitle" = "Do you really want to logout?";
+"Cancel_button_label" = "Cancel";

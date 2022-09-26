@@ -140,3 +140,14 @@
 "Language" = "Language";
 "English" = "English";
 "Arabic" = "Arabic";
+
+
+//Percentage Screen
+"Percentages" = "Percentages";
+"Percentages_subtitle" = "The percentage of every renting operation that goes to the Bask.";
+
+//Logout Dialog
+"Logout" = "Logout";
+"Logout_subtitle" = "Do you really want to logout?";
+"Cancel_button_label" = "Cancel";
+

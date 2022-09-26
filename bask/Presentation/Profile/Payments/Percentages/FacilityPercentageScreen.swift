@@ -8,27 +8,51 @@
 import SwiftUI
 
 struct FacilityPercentageScreen: View {
+    @Environment(\.presentationMode) var presentationMode
+    
+    @StateObject private var model: FacilityPercentagListViewModel = FacilityPercentagListViewModel(GetFacilityPercentagesUsecase(repo: FacilityRepositoryImpl()))
+    
     var body: some View {
         VStack(alignment: .leading){
             Text("Percentages")
                 .font(.custom("Poppins-Medium", size: 26))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
-            Text("The percentage of every renting operation that goes to the Bask")
+            Text("Percentages_subtitle")
                 .font(.custom("Poppins-Regular", size: 16))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
             
-            LazyVStack(spacing: 16){
+            switch model.state {
                 
-                PercentageListItem()
+            case .failed:
+                ErrorStateScreen {
+                    model.tryAgainToGetData()
+                }
                 
-                PercentageListItem()
-                
-                PercentageListItem()
-                
+            case .loading:
+                Spacer()
+                HStack {
+                    Spacer()
+                    Spinner()
+                    Spacer()
+                }
+                Spacer()
+            case .success:
+                if !model.facilityPercentages.isEmpty{
+                    ScrollView(.vertical, showsIndicators: false) {
+                        LazyVStack(spacing: 16){
+                            
+                            ForEach(model.facilityPercentages){ item in
+                                
+                                FacilityPercentageListItem(model: item)
+                            }
+                        }.padding(4)
+                    }
+                }
+            case .initial:
+                EmptyView()
             }
-                
-            Spacer()
+            
             
         }
         .padding(.horizontal)
@@ -38,7 +62,9 @@ struct FacilityPercentageScreen: View {
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
-                Button{} label: {
+                Button{
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
                     Image(systemName: "chevron.backward")
                         .foregroundColor(.gray)
                 }
@@ -50,26 +76,31 @@ struct FacilityPercentageScreen: View {
 struct FacilityPercentageScreen_Previews: PreviewProvider {
     static var previews: some View {
         FacilityPercentageScreen()
+        
+        FacilityPercentageScreen().environment(\.locale, .init(identifier: "ar") )
+            .environment(\.layoutDirection, .rightToLeft)
     }
 }
 
-struct PercentageListItem: View {
+struct FacilityPercentageListItem: View {
+    
+    let model: FacilityPercentageViewModel
+    
     var body: some View {
         HStack{
             
-            Image("sample_resort")
-                .resizable()
-                .scaledToFill()
+            ImageView(withURL: model.photoURL, size: CGSize(width: 75, height: 65))
                 .frame(width: 75, height: 65)
                 .cornerRadius(6)
             
-            Text("Blue Lagoon Resort")
+            Text(model.name)
                 .font(.custom("Poppins-Regular", size: 16))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
+                .lineLimit(2)
             
             Spacer()
             
-            Text("15%")
+            Text("\(model.percentage)")
                 .font(.custom("Poppins-Medium", size: 16))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
         }

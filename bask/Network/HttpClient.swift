@@ -63,6 +63,46 @@ extension URLSession{
             }.resume()
     }
     
+    func deleteRequest(endpoint: Endpoints,
+                       headers: [String : String]?,
+                       complete completion: @escaping (Result<String, RequestError>) -> Void){
+        
+        guard let url = endpoint.url else {
+            return completion(.failure(RequestError.invalidURL))
+        }
+        
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "DELETE"
+        request.allHTTPHeaderFields = headers
+        //request.cachePolicy = .reloadRevalidatingCacheData //Use cache data if the origin source can validate it; otherwise, load from the origin.
+        
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let er = error {
+                print("Err -> \(er)")
+                completion(.failure(RequestError.unexpectedStatusCode))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, 200...299 ~= response.statusCode else {
+                let re = response as? HTTPURLResponse
+                print("Status \(String(describing: re?.statusCode))")
+                completion(.failure(RequestError.unexpectedStatusCode))
+                return
+            }
+            
+            guard let _ = data else {
+                completion(.failure(RequestError.noResponse))
+                return
+            }
+            
+            completion(.success("Successfully deleted."))
+            
+        }.resume()
+
+    }
+    
     
     func sendUpdateRequest<Value>(
         endpoint: Endpoints,

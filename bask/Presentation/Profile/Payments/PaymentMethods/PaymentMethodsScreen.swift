@@ -9,10 +9,15 @@ import SwiftUI
 
 struct PaymentMethodsScreen: View {
     
-    @State var showDeleteDialog: Bool = false
-    @State var showWebView: Bool = false
+    @StateObject private var model: PaymentMethodsViewModel = PaymentMethodsViewModel(PaymentMethodUsecase(repo: PaymentMethodsProtocolImpl()))
     
-    let methods: [Int] = []
+    @State private var showDeleteDialog: Bool = false
+    @State private var willPerformDeletion: Bool = false
+    @State private var showWebView: Bool = false
+    @State private var cardNumber: String = ""
+    
+    
+    let methods: [Int] = [1]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -23,79 +28,93 @@ struct PaymentMethodsScreen: View {
             
             Spacer()
             
-            
-            if methods.isEmpty{
-                EmptyState(illustration: "empty_payment_method_illustration", message: "You don't have any payment methods yet. You can add credit/debit card and Mada account.")
-                
-                FilledButton(label: "Add payment method", color: Color(AppColor.DARKEST_BLUE)) {
-                    print("Add card")
-                    showDeleteDialog.toggle()
+            switch model.state {
+            case .failed:
+                ErrorStateScreen()
+            case .loading:
+                HStack {
+                    Spacer()
+                    Spinner()
+                    Spacer()
                 }
-            } else {
-            
-                ScrollView(.vertical, showsIndicators: false) {
-                    LazyVStack {
-                        PaymentMethodView(delete: $showDeleteDialog)
-                        
-                        PaymentMethodView(delete: $showDeleteDialog)
-                    }.padding(5)
-                }
-                AddPaymentButton()
-                    .onTapGesture {
-                        showDeleteDialog.toggle()
-                    }
-                
                 Spacer()
+            case .success:
+                if model.methods.isEmpty{
+                    EmptyState(illustration: "empty_payment_method_illustration", message: "Empty_payment_method_message")
+                    
+                    FilledButton(label: "Add payment method", color: Color(AppColor.DARKEST_BLUE)) {
+                        print("Add card")
+                        model.addPaymentMethod()
+                    }
+                } else {
+                
+                    ScrollView(.vertical, showsIndicators: false) {
+                        LazyVStack {
+                            ForEach(model.methods) { item in
+                                PaymentMethodItemView(card: item) {
+                                    showDeleteDialog.toggle()
+                                    cardNumber = item.number
+                                    model.deleteCard(item)
+                                }
+                            }
+                        }.padding(5)
+                    }
+                    AddPaymentButton()
+                        .onTapGesture {
+                            model.addPaymentMethod()
+                        }
+                    
+                    Spacer()
+                }
+            case .initial:
+                EmptyView()
             }
+            
+            
         }
-        
-        .alert(isPresented: $showDeleteDialog) {
-                Alert(
-                    title: Text("Unable to Save Workout Data"),
-                    message: Text("The connection to the server was lost."),
-                    primaryButton: .default(
-                        Text("Try Again"),
-                        action: {
-                            print("hi")
-                        }
-                    ),
-                    secondaryButton: .destructive(
-                        Text("Delete"),
-                        action: {
-                            print("Hi")
-                        }
-                    )
-                )
-            }
         .padding([.horizontal, .bottom])
         .navigationBarTitleDisplayMode(.inline)
-//        .fullScreenCover(isPresented: $showWebView, content: {
-//            NavigationView{
-//                WebView(url: URL(string: "https://www.google.com")!)
-//                    .navigationTitle("")
-//                    .navigationBarTitleDisplayMode(.inline)
-//                        .toolbar {
-//                            ToolbarItem(placement: .navigationBarLeading) {
-//                                Image(systemName: "chevron.backward")
-//                                    .foregroundColor(.gray)
-//                                    .onTapGesture {
-//                                        showWebView.toggle()
-//                                    }
-//                            }
-//                        }
-//            }
-//
-//        })
+        .fullScreenCover(isPresented: $model.showWebView, onDismiss: {
+            model.updatePaymentMethodsList()
+        }, content: {
+            NavigationView{
+                WebView(url: model.addPaymentMethodURL ?? URL(string: "https://site.paytabs.com/en/payment-methods/")!)
+                    .navigationTitle("")
+                    .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                Image(systemName: "chevron.backward")
+                                    .foregroundColor(.gray)
+                                    .onTapGesture {
+                                        model.showWebView.toggle()
+                                    }
+                            }
+                        }
+            }
+
+        })
+        .alertDialog(isShowing: $showDeleteDialog) {
+            withAnimation {
+                
+                
+                AlertDialog(title: "Delete card", "Do you want to delete card \(cardNumber) ?", "Cancel", "Delete"){
+                    showDeleteDialog.toggle()
+                } perform: {
+                    showDeleteDialog.toggle()
+                    model.deleteConfirmation()
+                }.transition(.move(edge: .bottom))
+            }
+        }
+        .alertDialog(isShowing: $model.willPerformDeletion, cornerRadius: 16){
+            Spinner()
+                .padding(-64)
+
+        }
+        .toast(isShowing: $model.toast.willShow){
+            
+            Toast(message: model.toast.message, style: model.toast.style)
+        }
         
-//        .alertDialog(isShowing: $showDeleteDialog) {
-//            withAnimation {
-//                AlertDialog(title: "Delete card", "Do you want to delete card **** 4567", "Cancel", "Delete"){
-//                    showDeleteDialog.toggle()
-//                } perform: {
-//                    print("delete card")
-//                }.transition(.move(edge: .bottom))
-//            }
-//        }
     }
 }
 
@@ -106,14 +125,15 @@ struct PaymentMethodsScreen_Previews: PreviewProvider {
 }
 
 
-struct PaymentMethodView: View {
+struct PaymentMethodItemView: View {
     
-    @Binding var delete: Bool
+    let card: PaymentCardViewModel
+    let onDelete: () -> Void
     
     var body: some View {
         HStack(alignment: .center) {
             
-            Image("logo_mastercard")
+            Image(card.type)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 28, height: 18)
@@ -123,7 +143,7 @@ struct PaymentMethodView: View {
             
             
             
-            Text("**** **** **** 1234")
+            Text(card.number)
                 .font(.custom("Poppins-Regular", size: 16))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
                 .padding(.leading)
@@ -136,7 +156,8 @@ struct PaymentMethodView: View {
                 .frame(width: 20, height: 20)
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                 .onTapGesture {
-                    delete.toggle()
+                    
+                    onDelete()
                 }
                 
             

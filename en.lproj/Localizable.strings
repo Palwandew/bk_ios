@@ -1,10 +1,10 @@
 /* 
-  Localizable.strings
-  bask
-
-  Created by TEHSEEN ABBAS on 27/07/2022.
-  
-*/
+ Localizable.strings
+ bask
+ 
+ Created by TEHSEEN ABBAS on 27/07/2022.
+ 
+ */
 "hello_world" = "Hello, world!";
 
 "Welcome to" = "Welcome to";
@@ -133,21 +133,37 @@
 // Profile Tab
 "Profile info" = "Profile info";
 "Payments" = "Payments";
+//Payment Screen
+"Wallet" = "Wallet";
+//Payment methods
+"Payment methods" = "Payment methods";
+"Add payment method" = "Add payment method";
+"Empty_payment_method_message" = "You don't have any payment methods yet. You can add credit/debit card or Mada account.";
+
+//Percentages
+"Percentages" = "Percentages";
+"Percentages_subtitle" = "The percentage of every renting operation that goes to the Bask.";
+
+
 "Agreement" = "Agreement";
 "Help Center" = "Help Center";
 "Logout" = "Logout";
+
+//Logout Dialog
+"Logout" = "Logout";
+"Logout_subtitle" = "Do you really want to logout?";
+"Cancel_button_label" = "Cancel";
+
+//Profile info
 "Change password" = "Change password";
 "Language" = "Language";
 "English" = "English";
 "Arabic" = "Arabic";
 
 
-//Percentage Screen
-"Percentages" = "Percentages";
-"Percentages_subtitle" = "The percentage of every renting operation that goes to the Bask.";
 
-//Logout Dialog
-"Logout" = "Logout";
-"Logout_subtitle" = "Do you really want to logout?";
-"Cancel_button_label" = "Cancel";
+
+
+
+
 

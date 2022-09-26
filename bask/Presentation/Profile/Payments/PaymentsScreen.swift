@@ -48,7 +48,7 @@ struct PaymentsScreenListRowItem: View {
         
         
         HStack{
-            Text(label)
+            Text(LocalizedStringKey(label))
                 .font(.custom("Poppins-Regular", size: 16))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             

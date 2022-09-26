@@ -9,7 +9,8 @@ import XCTest
 @testable import bask
 
 class baskTests: XCTestCase {
-
+    var error: String? = nil
+    var url: URL? = nil
     
 //    let sut: Endpoints
 //    var useCase: CreateFacilityUseCase!
@@ -43,19 +44,28 @@ class baskTests: XCTestCase {
 //    }
 
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        //let time = sut.getTime()
-        //let showScreen = sut.willShowPriceSetupScreen
-//        let paidAmen = Endpoints.ADD_PAID_AMENITIES
-//        let freeAmen = Endpoints.ADD_FREE_AMENITIES
-//        let image = Endpoints.CREATE_IMAGE_LINK
-//        let facility = Endpoints.CREATE_FACILITY
-        let bookedItem = Endpoints.GET_BOOKED_ITEM(with: [URLQueryItem(name: "booking_id", value: "308"), URLQueryItem(name: "facility_id", value: "123")])
         
-        XCTAssertEqual(bookedItem.url?.absoluteString, "https://api.baskapp.co/api/v1/facility/bookeditem?booking_id=308&facility_id=123")
         
-        XCTAssertNotEqual(bookedItem.url?.absoluteString, "hi")
+        let repo = PaymentMethodsProtocolImpl()
+        let useCase = PaymentMethodUsecase(repo: repo)
+        
+        useCase.addPaymentMethod { [weak self] testResult in
+            switch testResult {
+                
+            case .failure(let error):
+                self?.error = error.localizedDescription
+                XCTAssertNil(error)
+                
+            case .success(let url):
+                self?.url = url
+                print("\(url.absoluteString)")
+                XCTAssertNotNil(url, url.absoluteString)
+            }
+        }
+        
+        
+       
+        
     }
 
     func testPerformanceExample() throws {

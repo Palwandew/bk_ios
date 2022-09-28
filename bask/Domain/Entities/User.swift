@@ -8,21 +8,28 @@
 import Foundation
 
 public struct User{
-    private let id: String?
-    private let fullName: String?
-    private let city: String?
+    let id: String?
+    let fullName: String?
+    let city: String?
+    let mobileNumber: String?
+    let email: String?
     
-    init(id: String?, fullName: String?, city: String?){
+    init(id: String?, fullName: String?, city: String?, phone: String?, email: String?){
         self.id = id
         self.fullName = fullName
         self.city = city
+        self.mobileNumber = phone
+        self.email = email
+        
     }
     
     init(){
         self.id = nil
         self.fullName = nil
         self.city = nil
+        self.mobileNumber = nil
+        self.email = nil
     }
     
-
+    
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HelpCenterScreen: View {
-    
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack(alignment: .leading){
@@ -45,6 +45,9 @@ struct HelpCenterScreen: View {
                 Button{} label: {
                     Image(systemName: "chevron.backward")
                         .foregroundColor(.gray)
+                        .onTapGesture {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                 }
             }
         }

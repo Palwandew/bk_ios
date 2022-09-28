@@ -62,6 +62,7 @@ struct MaterialSecureField: View {
                 Spacer()
                 Image(systemName: showPassword ? "eye.slash.fill" : "eye.fill")
                     .resizable()
+                    .scaledToFit()
                     .frame(width: 25, height: 20)
                     .padding([.top, .trailing])
                     .onTapGesture {

@@ -118,7 +118,7 @@ struct AmountIndicator: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Text(label)
+            Text(LocalizedStringKey(label))
                 .font(.custom("Poppins-Regular", size: 12))
                 .foregroundColor(.white)
                 .unredacted()

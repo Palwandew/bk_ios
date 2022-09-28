@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ProfileInfoScreen: View {
     @Environment(\.presentationMode) var presentationMode
+    @StateObject private var model: ProfileInfoViewModel = ProfileInfoViewModel(GetUserProfileDetailsUsecase(repo: UserRepositoryImpl()))
+    
+    
     @State var englishLanguageSelected: Bool = true
     @State var text: String = "Palwandew"
     @State var isValid: Bool = true
@@ -16,27 +19,27 @@ struct ProfileInfoScreen: View {
     
     @State var isEditModeOff: Bool = true
     
-    
+    @State var showEditPassword: Bool = false
     var body: some View {
         VStack(alignment: .leading){
             
-//            Text("Profile info")
-//                .font(.custom("Poppins-Medium", size: 26))
-//                .foregroundColor(Color(AppColor.DARKEST_BLUE))
+            //            Text("Profile info")
+            //                .font(.custom("Poppins-Medium", size: 26))
+            //                .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     
                     Group {
-                        MaterialTextField(text: $text, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Full name")
-                    
-                        MaterialTextField(text: $text, isValid: $isValid, errorMessage: errorMessage, placeHolder: "City (Optional)")
+                        MaterialTextField(text: $model.user.fullName, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Full name")
                         
-                        MaterialPhoneNumberField(text: $text, isValid: $isValid, errorMessage: "error", placeHolder: "123-456-789", countryCallingCode: "+996") {
+                        MaterialTextField(text: $model.user.city, isValid: $isValid, errorMessage: errorMessage, placeHolder: "City (Optional)")
+                        
+                        MaterialPhoneNumberField(text: $model.user.phone, isValid: $isValid, errorMessage: "error", placeHolder: "123-456-789", countryCallingCode: "+996") {
                             print("hi")
                         }
                         
-                        MaterialTextField(text: $text, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Email")
+                        MaterialTextField(text: $model.user.email, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Email")
                         
                     }.disabled(isEditModeOff)
                     
@@ -49,6 +52,8 @@ struct ProfileInfoScreen: View {
                             .onTapGesture {
                                 
                             }
+                    }.onTapGesture {
+                        showEditPassword.toggle()
                     }
                     
                     Divider()
@@ -76,32 +81,36 @@ struct ProfileInfoScreen: View {
                 }
             }
             
-        }.padding(.horizontal)
-            .navigationBarBackButtonHidden(true)
-            .navigationTitle("Profile info")
-            .toolbar(content: {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action : {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }){
-                        Image(systemName: "chevron.backward")
-                            .foregroundColor(Color(AppColor.GREY))
-
-                    }
+        }
+        .padding(.horizontal)
+        .navigationBarBackButtonHidden(true)
+        .navigationTitle("Profile info")
+        .sheet(isPresented: $showEditPassword, content: {
+            VerifyPasswordScreen(dimissScreen: $showEditPassword)
+        })
+        .toolbar(content: {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action : {
+                    self.presentationMode.wrappedValue.dismiss()
+                }){
+                    Image(systemName: "chevron.backward")
+                        .foregroundColor(Color(AppColor.GREY))
+                    
                 }
-                
-                
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Text(isEditModeOff ? "Edit" : "")
-                            .font(Font.custom("Poppins-Light", size: 16.0))
-                            .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
-                            .onTapGesture {
-                                //UIApplicationHelper.popToRootView()
-                                isEditModeOff.toggle()
-                            }
+            }
+            
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Text(isEditModeOff ? "Edit" : "")
+                    .font(Font.custom("Poppins-Light", size: 16.0))
+                    .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
+                    .onTapGesture {
+                        //UIApplicationHelper.popToRootView()
+                        isEditModeOff.toggle()
                     }
-                
-            })
+            }
+            
+        })
     }
 }
 

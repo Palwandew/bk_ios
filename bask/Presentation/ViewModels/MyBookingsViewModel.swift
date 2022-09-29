@@ -125,7 +125,7 @@ enum ScreenState {
 
 enum BookingStatus: String {
     case accepted = "accepted"
-    case pending = "pending"
-    case declined = "declined"
+    case pending = "awaiting"
+    case declined = "rejected"
 }
 

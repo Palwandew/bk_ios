@@ -27,7 +27,6 @@ struct MyBookings: View {
                 
                 
                 RentCollectionIndicator(collectionStatus: $value)
-                
                     .frame(height: UIScreen.main.bounds.height * 0.15)
                     .padding(.horizontal)
             }

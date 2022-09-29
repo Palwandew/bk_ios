@@ -13,6 +13,8 @@ class MyBookingsViewModel: ObservableObject {
     
     @Published var facilities: [UpcomingBookingItemViewModel] = []
     
+    @Published var facilityToConfirmBooking: UpcomingBookingItemViewModel? = nil 
+    
     private let repository: BookingRepositoryProtocol
     
     
@@ -35,6 +37,17 @@ class MyBookingsViewModel: ObservableObject {
             print("loading state")
             changeState(state: .success)
         }
+    }
+    
+    func prepareFacilityForConfirmationDialog(_ facility: UpcomingBookingItemViewModel) {
+        self.facilityToConfirmBooking = facility
+    }
+    
+    func declineBooking(){
+        guard let facilityToConfirmBooking = facilityToConfirmBooking else {
+            return
+        }
+        
     }
     
     private func getUpcomingBookings() {
@@ -83,11 +96,11 @@ class UpcomingBookingItemViewModel: Identifiable {
     
     
     var bookedDates: String {
-        let startDate = DateFormatter.check.date(from: self.facility.bookingDates.startDate)
+        let startDate = generateDate(from: self.facility.bookingDates.startDate)
         guard let date = startDate else { return ""}
         let startDateString = DateFormatter.startDate.string(from: date)
         
-        let endDate = DateFormatter.check.date(from: self.facility.bookingDates.endDate)
+        let endDate = generateDate(from: self.facility.bookingDates.endDate)
         guard let date = endDate else { return ""}
         let endDateString = DateFormatter.endDate.string(from: date)
         
@@ -112,6 +125,24 @@ class UpcomingBookingItemViewModel: Identifiable {
     
     var imageURL: String {
         self.facility.facility.images.first?.photo ?? "imageDummyURL"
+    }
+    
+    
+    private func generateDate(from date: String) -> Date? {
+        let startDate = DateFormatter.check.date(from: date)
+        guard let date = startDate else { return nil}
+        
+        return date
+    }
+    
+    func getTotalDaysOfBooking() -> Int? {
+        let startDate = generateDate(from: self.facility.bookingDates.startDate)
+        guard let startDate = startDate else { return nil}
+        
+        let endDate = generateDate(from: self.facility.bookingDates.endDate)
+        guard let endDate = endDate else { return nil}
+        
+        return Calendar.current.numberOfDaysBetween(startDate, and: endDate)
     }
 }
 

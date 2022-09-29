@@ -31,6 +31,14 @@
 "Upcoming" = "Upcoming";
 "Present" = "Present";
 "Past" = "Past";
+"ConfirmationBookingDialogTitle" = "Your facility was booked";
+"ConfirmationBookingDialogSubtitle" = "Approve or decline the booking. It will be approved automatically within 1 hour";
+"Approve" = "Approve";
+"Decline" = "Decline";
+"DeclineBookingDialogTitle" = "Decline booking";
+"DeclineBookingDialogSubtitle" = "Are you sure you want to decline the booking?";
+"%lld SAR per %lld days" = "%lld SAR per %lld day(s)";
+"Deposit is %lld SAR" = "Deposit is %lld SAR";
 
 // Facility details Screen
 "per night" = "per night";

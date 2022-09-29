@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UpcomingBookings: View {
     @EnvironmentObject var model: MyBookingsViewModel
-    @State var upComingBookings: [Int] = []
+    @State var showAcceptBookingDialog: Bool = false
     var body: some View {
         
         switch model.screenState {
@@ -28,10 +28,19 @@ struct UpcomingBookings: View {
                             FacilityCard(facility: facility, bannerColor: Color(AppColor.LIGHT_VOILET))
                                 .frame(height: UIScreen.main.bounds.height * 0.15)
                                 .padding()
+                                .onTapGesture {
+                                    if facility.status == .pending {
+                                        model.prepareFacilityForConfirmationDialog(facility)
+                                        showAcceptBookingDialog.toggle()
+                                    }
+                                }
                             
                         }
                     }
                 }.background(Color.white)
+                    .fullScreenCover(isPresented: $showAcceptBookingDialog) {
+                        BookingConfirmationDialogScreen(model: model)
+                    }
             }
             
         case .failed:

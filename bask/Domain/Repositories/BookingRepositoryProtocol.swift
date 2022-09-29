@@ -11,4 +11,6 @@ protocol BookingRepositoryProtocol {
     
     func getUpcomingBookings(completion: @escaping (Result<[UpcomingBooking], Error>) -> Void)
     
+    func declineBooking(with bookingID: String, completion: @escaping (Result<String, Error>) -> Void)
+    
 }

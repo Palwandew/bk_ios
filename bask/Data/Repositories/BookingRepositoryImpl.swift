@@ -24,4 +24,18 @@ class BookingRepositoryImpl: BookingRepositoryProtocol {
             }
         }
     }
+    
+    func declineBooking(with bookingID: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let urlQueryParameter = URLQueryItem(name: "booking_id", value: bookingID)
+        let endpoint = Endpoints(path: "bookinng/reject", queryItems: [urlQueryParameter])
+        
+//        URLSession.shared.sendRequest(endpoint: endpoint, requestType: .get, headers: header, body: nil, responseModel: OwnerUpcomingBookingResponse.self) { result in
+//            switch result {
+//            case .failure(let error):
+//                completion(.failure(error))
+//            case .success(let response):
+//                completion(.success(response.data.upcomingBookings))
+//            }
+//        }
+    }
 }

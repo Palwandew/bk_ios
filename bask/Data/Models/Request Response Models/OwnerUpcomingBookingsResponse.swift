@@ -42,6 +42,7 @@ struct UpcomingBooking: Codable {
     }
 }
 
+
 //// MARK: - BookingDates
 //struct BookingDates: Codable {
 //    let startDate, endDate: String

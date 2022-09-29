@@ -30,6 +30,16 @@
 "Upcoming" = "القادمة";
 "Present" = "الحالي";
 "Past" = "ماضي";
+"ConfirmationBookingDialogTitle" = "تم حجز منشأتك";
+"ConfirmationBookingDialogSubtitle" = "الموافقة على الحجز أو رفضه. ستتم الموافقة عليه تلقائيًا في غضون ساعة واحدة";
+"Approve" = "يوافق";
+"Decline" = "انخفاض";
+"DeclineBookingDialogTitle" = "رفض الحجز";
+"DeclineBookingDialogSubtitle" = "هل أنت متأكد أنك تريد رفض الحجز؟";
+"%lld SAR per %lld days" = "%lld ر.س كل %lld ايام";
+"Deposit is %lld SAR" = "الإيداع هو %lld ر.س";
+
+
 // Facility details Screen
 "per night" = "لليلة الواحدة";
 "booked" = "حجز";

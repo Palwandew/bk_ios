@@ -10,8 +10,8 @@ import SwiftUI
 struct RentCollectionIndicator: View {
     
     @Binding var collectionStatus: Float
-    let avail: String = "0";
-    let pend: String = "0";
+    let avail: Int = 0;
+    let pend: Int = 0;
     var body: some View {
         
         GeometryReader{ geomerty in

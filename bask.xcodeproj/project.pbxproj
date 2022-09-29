@@ -20,6 +20,9 @@
 		C403101F2894C71F0046B645 /* SpecifiRoundCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403101E2894C71F0046B645 /* SpecifiRoundCorner.swift */; };
 		C4057859282E199400C7D67A /* EmailCredentialsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4057858282E199400C7D67A /* EmailCredentialsScreen.swift */; };
 		C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405785A282E22A000C7D67A /* PasswordInputField.swift */; };
+		C4075E2828E5601700FEA2F8 /* OwnerUpcomingBookingsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4075E2728E5601700FEA2F8 /* OwnerUpcomingBookingsResponse.swift */; };
+		C4075E2A28E561A100FEA2F8 /* BookingRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4075E2928E561A100FEA2F8 /* BookingRepositoryProtocol.swift */; };
+		C4075E2C28E5631400FEA2F8 /* BookingRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4075E2B28E5631400FEA2F8 /* BookingRepositoryImpl.swift */; };
 		C4082844289D29D300C1B51B /* FacilityLocationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4082843289D29D300C1B51B /* FacilityLocationScreen.swift */; };
 		C4082846289D2E3300C1B51B /* FacilityMapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4082845289D2E3300C1B51B /* FacilityMapScreen.swift */; };
 		C4082848289D455B00C1B51B /* CountriesListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4082847289D455B00C1B51B /* CountriesListScreen.swift */; };
@@ -293,6 +296,9 @@
 		C403101E2894C71F0046B645 /* SpecifiRoundCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifiRoundCorner.swift; sourceTree = "<group>"; };
 		C4057858282E199400C7D67A /* EmailCredentialsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCredentialsScreen.swift; sourceTree = "<group>"; };
 		C405785A282E22A000C7D67A /* PasswordInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputField.swift; sourceTree = "<group>"; };
+		C4075E2728E5601700FEA2F8 /* OwnerUpcomingBookingsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerUpcomingBookingsResponse.swift; sourceTree = "<group>"; };
+		C4075E2928E561A100FEA2F8 /* BookingRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingRepositoryProtocol.swift; sourceTree = "<group>"; };
+		C4075E2B28E5631400FEA2F8 /* BookingRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingRepositoryImpl.swift; sourceTree = "<group>"; };
 		C4082843289D29D300C1B51B /* FacilityLocationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityLocationScreen.swift; sourceTree = "<group>"; };
 		C4082845289D2E3300C1B51B /* FacilityMapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityMapScreen.swift; sourceTree = "<group>"; };
 		C4082847289D455B00C1B51B /* CountriesListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListScreen.swift; sourceTree = "<group>"; };
@@ -639,6 +645,7 @@
 				C462F7FD28E1A577000C99E9 /* GetWalletStatusResponse.swift */,
 				C485C51F28E3F7C900FC0E88 /* GetUserDetailsResponse.swift */,
 				C485C52B28E435CB00FC0E88 /* VerifyPasswordRequestResponse.swift */,
+				C4075E2728E5601700FEA2F8 /* OwnerUpcomingBookingsResponse.swift */,
 			);
 			path = "Request Response Models";
 			sourceTree = "<group>";
@@ -854,6 +861,7 @@
 				C462F7F728E16EE0000C99E9 /* PaymentMethodsProtocolImpl.swift */,
 				C462F80328E1A794000C99E9 /* WalletProtocolImpl.swift */,
 				C485C52528E3FBCF00FC0E88 /* UserRepositoryImpl.swift */,
+				C4075E2B28E5631400FEA2F8 /* BookingRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1108,6 +1116,7 @@
 				C462F7F528E16E4E000C99E9 /* PaymentMethodProtocol.swift */,
 				C462F80128E1A74B000C99E9 /* WalletRepositoryProtocol.swift */,
 				C485C52328E3FB7E00FC0E88 /* UserRepositoryProtocol.swift */,
+				C4075E2928E561A100FEA2F8 /* BookingRepositoryProtocol.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1401,6 +1410,7 @@
 				C462F80428E1A794000C99E9 /* WalletProtocolImpl.swift in Sources */,
 				C4D659B4282B5A8900FAE1D1 /* LinearProgressBar.swift in Sources */,
 				C485C52628E3FBCF00FC0E88 /* UserRepositoryImpl.swift in Sources */,
+				C4075E2A28E561A100FEA2F8 /* BookingRepositoryProtocol.swift in Sources */,
 				C4BB005B2890AB89000D2E47 /* MaterialTextField.swift in Sources */,
 				C48790D528DEE54600BD6224 /* ProfileTabScreen.swift in Sources */,
 				C4FF859228D63C4B00ADBCDF /* RatingGuestsViewModel.swift in Sources */,
@@ -1414,6 +1424,7 @@
 				C48268262896E8860072147F /* EmptyState.swift in Sources */,
 				C47B734728CFAA3400C719BE /* ImageView.swift in Sources */,
 				C4FF859628D6556300ADBCDF /* RateGuestViewModel.swift in Sources */,
+				C4075E2828E5601700FEA2F8 /* OwnerUpcomingBookingsResponse.swift in Sources */,
 				C450F44628A7CE440083AB86 /* PaidService.swift in Sources */,
 				C42ACE6028E00BD300E7B86B /* AddAmountToWithdrawScreen.swift in Sources */,
 				C4AF9B1B2828216600EBB141 /* PostDI.swift in Sources */,
@@ -1463,6 +1474,7 @@
 				C4AF9B1E2828216600EBB141 /* LoginEndpoint.swift in Sources */,
 				C47BE340289AABA900B91D69 /* FacilityPaidAmenitiesScreen.swift in Sources */,
 				C485C52428E3FB7E00FC0E88 /* UserRepositoryProtocol.swift in Sources */,
+				C4075E2C28E5631400FEA2F8 /* BookingRepositoryImpl.swift in Sources */,
 				C41D312428D77E100049042B /* RateGuestRequestBody.swift in Sources */,
 				C482683428973BF00072147F /* RadioButton.swift in Sources */,
 				C450F44428A7CE260083AB86 /* FreeService.swift in Sources */,

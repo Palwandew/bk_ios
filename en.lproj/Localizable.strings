@@ -57,6 +57,9 @@
 //CUrreny
 "%lld currency" = "%lld SAR";
 
+// Time
+"%lld %lld %lld time" = "%lld days %lld h : %lld m";
+
 
 //My Adds
 "My Ads" = "My Ads";

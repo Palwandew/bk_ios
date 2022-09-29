@@ -9,11 +9,10 @@ import SwiftUI
 
 struct FacilityCard: View {
     
-    let price: String
-    let name: String
-    let bookingDates: String
-    let bannerText: String
+    let facility: UpcomingBookingItemViewModel
     let bannerColor: Color
+    
+
     
     var body: some View {
         
@@ -24,27 +23,26 @@ struct FacilityCard: View {
                 .shadow(radius: 2)
             
             HStack(alignment: .top){
-                    Image("sample_resort")
-                        .resizable()
+                ImageView(withURL: facility.imageURL, size: CGSize(width: geometry.size.width * 0.40, height: geometry.size.height))
                         .frame(width: geometry.size.width * 0.40, height: geometry.size.height)
                         .cornerRadius(6)
                         .padding([.top, .leading, .bottom], 4)
                                         
                     VStack(alignment: .leading){
-                        Text(price)
+                        Text("\(facility.price) currency")
                             .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .body))
                             .foregroundColor(Color(AppColor.DARKEST_BLUE))
                         
                         Spacer()
                         
-                        Text(name)
+                        Text(facility.name)
                             .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .body))
                             .lineLimit(2)
                             .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
                         
                         Spacer()
                         
-                        Text(bookingDates)
+                        Text("\(facility.bookedDates)")
                             .font(Font.custom("Poppins-Medium", size: 12, relativeTo: .callout))
                             .foregroundColor(Color(AppColor.DARKEST_BLUE))
                             
@@ -55,7 +53,7 @@ struct FacilityCard: View {
             VStack{
                 HStack {
                     Spacer()
-                    Text(bannerText)
+                    Text("\(facility.daysRemaining) \(facility.minutesRemainig) \(facility.minutesRemainig) time")
                         .foregroundColor(.white)
                         .font(Font.custom("Poppins-Medium", size: 10, relativeTo: .callout))
                         .padding(8)

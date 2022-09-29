@@ -53,7 +53,8 @@
 "Unpublish item" = "إلغاء نشر العنصر";
 //Currency
 "%lld currency" = "%lld س.ر";
-
+// Time
+"%lld %lld %lld time" = "%lld أيام %lld ساعات : %lld الدقائق";
 //My Adds
 "My Ads" = "إعلاناتي";
 "Add a new unit" = "أضف وحدة جديدة";

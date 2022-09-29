@@ -9,6 +9,14 @@ import Foundation
 
 extension DateFormatter {
     
+    static var check: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateFormat = "yyyy-MM-dd"
+        //formatter.dateFormat = "MMMM"
+        return formatter
+    }
+    
     static var day: DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = Locale.current
@@ -21,6 +29,22 @@ extension DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = Locale.current
         formatter.setLocalizedDateFormatFromTemplate("dd MMM")
+        //formatter.dateFormat = "MMMM"
+        return formatter
+    }
+    
+    static var startDate: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.setLocalizedDateFormatFromTemplate("dd MMM")
+        //formatter.dateFormat = "MMMM"
+        return formatter
+    }
+    
+    static var endDate: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.setLocalizedDateFormatFromTemplate("dd MMM yyyy")
         //formatter.dateFormat = "MMMM"
         return formatter
     }

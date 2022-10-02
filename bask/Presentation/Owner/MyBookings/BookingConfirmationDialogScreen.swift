@@ -12,6 +12,7 @@ struct BookingConfirmationDialogScreen: View {
     
     @ObservedObject var model: MyBookingsViewModel
     @State var showDeclineDialog: Bool = false
+    @State var showCalendar: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16){
@@ -26,12 +27,30 @@ struct BookingConfirmationDialogScreen: View {
             AvailableFacilityCard(imageURL: model.facilityToConfirmBooking?.imageURL ?? "", price: model.facilityToConfirmBooking?.price ?? 0, name: model.facilityToConfirmBooking?.name ?? "Mountain", address: "")
                 .frame(height: UIScreen.main.bounds.height * 0.15)
             
-            InfoView(icon: "calendar", text: LocalizedStringKey(model.facilityToConfirmBooking?.bookedDates ?? ""))
-                .padding(.top)
-            
-            InfoView(icon: "folder.fill", text: LocalizedStringKey("\(model.facilityToConfirmBooking?.price ?? 0) SAR per \(model.facilityToConfirmBooking?.getTotalDaysOfBooking() ?? 0) days"))
-           
-            InfoView(icon: "folder.fill", text: LocalizedStringKey("Deposit is \(model.facilityToConfirmBooking?.price ?? 0) SAR"))
+            if model.screenState == .loading {
+                Spinner()
+            } else {
+                HStack {
+                    InfoView(icon: "calendar", text: LocalizedStringKey(model.facilityToConfirmBooking?.bookedDates ?? ""))
+                        .padding(.top)
+                    
+                    Spacer()
+                    
+                    Text("Calendar")
+                        .font(.custom("Poppins-Regular", size: 16))
+                        .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                    
+                    Image(systemName: "arrow.forward")
+                }.contentShape(Rectangle())
+                    .onTapGesture {
+                        showCalendar.toggle()
+                    }
+                
+                InfoView(icon: "folder.fill", text: LocalizedStringKey("\(model.facilityToConfirmBooking?.price ?? 0) SAR per \(model.facilityToConfirmBooking?.getTotalDaysOfBooking() ?? 0) days"))
+               
+                InfoView(icon: "folder.fill", text: LocalizedStringKey("Deposit is \(model.facilityToConfirmBooking?.price ?? 0) SAR"))
+            }
+
             
             Spacer()
             
@@ -52,7 +71,8 @@ struct BookingConfirmationDialogScreen: View {
             }
             
             FilledButton(label: "Approve", color: Color(AppColor.DARKEST_BLUE)) {
-                print("Approve booking")
+                
+                model.acceptBooking()
             }
             
         }
@@ -62,9 +82,18 @@ struct BookingConfirmationDialogScreen: View {
             AlertDialog(title: "DeclineBookingDialogTitle", "DeclineBookingDialogSubtitle", "Cancel_button_label", "Decline") {
                 showDeclineDialog.toggle()
             } perform: {
-                print("print decline booking")
+                model.declineBooking()
+                showDeclineDialog.toggle()
             }
 
+        }
+        .toast(isShowing: $model.toast.willShow) {
+            Toast(message: model.toast.message, style: model.toast.style)
+        }
+        .sheet(isPresented: $showCalendar) {
+            CalendarViews { startDate, endDate in
+                print("hi")
+            }
         }
     }
 }

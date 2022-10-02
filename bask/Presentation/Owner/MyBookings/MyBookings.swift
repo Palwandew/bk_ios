@@ -71,7 +71,6 @@ struct MyBookings: View {
                         .onAppear {
                             print("onAppear() -> Upcoming bookings")
 //                            myBookingsViewModel.screenState = .loading
-                            myBookingsViewModel.updateState()
                         }
                         .onDisappear {
                             print("onDisappear() -> Upcoming bookings")
@@ -96,7 +95,7 @@ struct MyBookings: View {
                             })
                         .onAppear {
                             print("onAppear() -> Present bookings")
-                            myBookingsViewModel.updateState()
+                            myBookingsViewModel.getPresentBookings()
                         }
                         .onDisappear {
                             print("onDisappear() -> Present bookings")
@@ -115,9 +114,7 @@ struct MyBookings: View {
                         }
                         .onAppear {
                             print("onAppear() -> Past bookings")
-                            //myBookingsViewModel.updateState()
-                            myBookingsViewModel.screenState = .loading
-                            myBookingsViewModel.updateState()
+                            myBookingsViewModel.getPastBookings()
                         }
                         .onDisappear {
                             print("onDisappear() -> Past bookings")

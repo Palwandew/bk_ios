@@ -16,23 +16,23 @@ struct UpcomingBookings: View {
         case .loading:
             Spinner()
         case .success:
-            if model.facilities.isEmpty {
+            if model.upComingBookings.isEmpty {
                 
                 EmptyState(illustration: "empty_my_bookings", message: "Unfortunately, there are no upcoming bookings yet.")
                 
             } else {
                 ScrollView{
                     LazyVStack(alignment: .leading){
-                        ForEach(model.facilities) { facility in
+                        ForEach(model.upComingBookings) { facility in
                             
                             FacilityCard(facility: facility, bannerColor: Color(AppColor.LIGHT_VOILET))
                                 .frame(height: UIScreen.main.bounds.height * 0.15)
                                 .padding()
                                 .onTapGesture {
-                                    if facility.status == .pending {
+                                    //if facility.status == .pending {
                                         model.prepareFacilityForConfirmationDialog(facility)
                                         showAcceptBookingDialog.toggle()
-                                    }
+                                    //}
                                 }
                             
                         }
@@ -44,7 +44,9 @@ struct UpcomingBookings: View {
             }
             
         case .failed:
-            Text("error occured")
+            ErrorStateScreen {
+                print("retry")
+            }
         case .initial:
             Text("hi")
         }

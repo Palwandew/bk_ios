@@ -20,7 +20,7 @@ extension URLSession{
             guard let url = endpoint.url else {
                 return completion(.failure(RequestError.invalidURL))
             }
-            
+            print("URL -_-_-_: \(url.absoluteString)")
             var request = URLRequest(url: url)
             
             request.httpMethod = requestType.rawValue
@@ -151,15 +151,15 @@ extension URLSession{
                     completion(.failure(RequestError.noResponse))
                     return
                 }
-                
-                do {
-                    let requestBody = try JSONDecoder().decode(Test.self, from: data!)
-                    print("res ==\(requestBody)")
-                } catch {
-                    print("error encoding the data")
-                }
-                print("Data from server \(String(describing: data))")
                 completion(.success("Successful."))
+//                do {
+//                    let requestBody = try JSONDecoder().decode(Test.self, from: data!)
+//                    print("res ==\(requestBody)")
+//                } catch {
+//                    print("error encoding the data")
+//                }
+//                print("Data from server \(String(describing: data))")
+//                completion(.success("Successful."))
 
                 
             }.resume()

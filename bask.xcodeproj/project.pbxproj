@@ -48,6 +48,9 @@
 		C40EBA1D28DD9DF700A09838 /* ChattingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EBA1C28DD9DF700A09838 /* ChattingScreen.swift */; };
 		C40FBF07289A854B00557AEB /* AmenityDescriptionCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */; };
 		C40FBF09289A8DE300557AEB /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FBF08289A8DE300557AEB /* Checkbox.swift */; };
+		C40FE0C928E95A8D00FDEFD8 /* DeclineBookingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FE0C828E95A8D00FDEFD8 /* DeclineBookingResponse.swift */; };
+		C40FE0CB28E9752600FDEFD8 /* OwnerPastBookingsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FE0CA28E9752600FDEFD8 /* OwnerPastBookingsResponse.swift */; };
+		C40FE0CD28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FE0CC28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift */; };
 		C410D26428B4897000914D84 /* PhotosUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D26328B4897000914D84 /* PhotosUploadManager.swift */; };
 		C410D26628B48C4300914D84 /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D26528B48C4300914D84 /* PhotosViewModel.swift */; };
 		C41A26AB289C345E0057F3FE /* MaterialPriceField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AA289C345E0057F3FE /* MaterialPriceField.swift */; };
@@ -325,6 +328,9 @@
 		C40EBA1C28DD9DF700A09838 /* ChattingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingScreen.swift; sourceTree = "<group>"; };
 		C40FBF06289A854B00557AEB /* AmenityDescriptionCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityDescriptionCounter.swift; sourceTree = "<group>"; };
 		C40FBF08289A8DE300557AEB /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		C40FE0C828E95A8D00FDEFD8 /* DeclineBookingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclineBookingResponse.swift; sourceTree = "<group>"; };
+		C40FE0CA28E9752600FDEFD8 /* OwnerPastBookingsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerPastBookingsResponse.swift; sourceTree = "<group>"; };
+		C40FE0CC28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerPresentBookingsResponse.swift; sourceTree = "<group>"; };
 		C410D26328B4897000914D84 /* PhotosUploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosUploadManager.swift; sourceTree = "<group>"; };
 		C410D26528B48C4300914D84 /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
 		C41A26AA289C345E0057F3FE /* MaterialPriceField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialPriceField.swift; sourceTree = "<group>"; };
@@ -648,6 +654,9 @@
 				C485C51F28E3F7C900FC0E88 /* GetUserDetailsResponse.swift */,
 				C485C52B28E435CB00FC0E88 /* VerifyPasswordRequestResponse.swift */,
 				C4075E2728E5601700FEA2F8 /* OwnerUpcomingBookingsResponse.swift */,
+				C40FE0C828E95A8D00FDEFD8 /* DeclineBookingResponse.swift */,
+				C40FE0CA28E9752600FDEFD8 /* OwnerPastBookingsResponse.swift */,
+				C40FE0CC28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift */,
 			);
 			path = "Request Response Models";
 			sourceTree = "<group>";
@@ -1440,6 +1449,7 @@
 				C47B734F28CFB97800C719BE /* FacilityDetailViewModel.swift in Sources */,
 				C462F80628E1A91A000C99E9 /* GetWalletStatusUsecase.swift in Sources */,
 				C42DC5D828E06B2100FCE145 /* HelpCenterScreen.swift in Sources */,
+				C40FE0CD28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift in Sources */,
 				C4A921CA28B5AA6700969EF1 /* UploadProgressView.swift in Sources */,
 				C4F6675C28D37E9C00ABA680 /* UnratedGuestListItem.swift in Sources */,
 				C4D0872E289326B400DCEACF /* OTPInput.swift in Sources */,
@@ -1460,6 +1470,7 @@
 				C4918D6728A1D0C000A8777D /* GalleryImage.swift in Sources */,
 				C4AF9B1C2828216600EBB141 /* AppDI.swift in Sources */,
 				C4AF9B1D2828216600EBB141 /* LoginRepositoryImp.swift in Sources */,
+				C40FE0CB28E9752600FDEFD8 /* OwnerPastBookingsResponse.swift in Sources */,
 				C408F9DC28DBC90D00518632 /* NewOfferRequestBody.swift in Sources */,
 				C48790D228DE981000BD6224 /* DynamicHeightTextInputField.swift in Sources */,
 				C48790DB28DF021700BD6224 /* PaymentsScreen.swift in Sources */,
@@ -1619,6 +1630,7 @@
 				C410D26628B48C4300914D84 /* PhotosViewModel.swift in Sources */,
 				C40EBA1228DD443D00A09838 /* CreatePromoCodesScreen.swift in Sources */,
 				C485C52028E3F7C900FC0E88 /* GetUserDetailsResponse.swift in Sources */,
+				C40FE0C928E95A8D00FDEFD8 /* DeclineBookingResponse.swift in Sources */,
 				C49191C028A2FAB000C03743 /* CreateFacilityRepositoryImpl.swift in Sources */,
 				C42DC5D128E0438300FCE145 /* WKWebView.swift in Sources */,
 				C41DCB6F28CBB477004888B1 /* FacilityRepositoryImpl.swift in Sources */,

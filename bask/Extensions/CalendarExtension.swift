@@ -40,4 +40,11 @@ extension Calendar {
         
         return numberOfDays.day! + 1 // <1>
     }
+    
+    func generateDate(from date: String) -> Date? {
+        let startDate = DateFormatter.check.date(from: date)
+        guard let date = startDate else { return nil}
+        
+        return date
+    }
 }

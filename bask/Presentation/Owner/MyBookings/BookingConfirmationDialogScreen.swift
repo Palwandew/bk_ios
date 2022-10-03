@@ -14,6 +14,9 @@ struct BookingConfirmationDialogScreen: View {
     @State var showDeclineDialog: Bool = false
     @State var showCalendar: Bool = false
     
+    @State var startDate: Date? = nil
+    @State var endDate: Date? = nil
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 16){
             Text("ConfirmationBookingDialogTitle")
@@ -91,9 +94,7 @@ struct BookingConfirmationDialogScreen: View {
             Toast(message: model.toast.message, style: model.toast.style)
         }
         .sheet(isPresented: $showCalendar) {
-            CalendarViews { startDate, endDate in
-                print("hi")
-            }
+            CalendarViews(startDate: $startDate, endDate: $endDate)
         }
     }
 }

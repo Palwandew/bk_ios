@@ -13,13 +13,13 @@ struct CalendarView<DateView>: View where DateView: View {
     
     let interval: DateInterval // Interval to show the calendar e.g year 2022
     let content: (Date) -> DateView // Body
-    let bookedDates: [CalendarDay] // booked
+    let bookedDates: [Date] // booked
     @Binding var sDate: Date?
     @Binding var eDate: Date?
     
     init(
         interval: DateInterval,
-        bookedDays: [CalendarDay],
+        bookedDays: [Date],
         sDate: Binding<Date?>,
         eDate: Binding<Date?>,
         @ViewBuilder content: @escaping (Date) -> DateView
@@ -100,13 +100,13 @@ struct MonthView<DateView>: View where DateView: View {
     
     let month: Date
     let content: (Date) -> DateView
-    let bookedDays: [CalendarDay]
+    let bookedDays: [Date]
     @Binding var sDate: Date?
     @Binding var eDate: Date?
     
     init(
         month: Date,
-        bookedDays: [CalendarDay],
+        bookedDays: [Date],
         sDate: Binding<Date?>,
         eDate: Binding<Date?>,
         @ViewBuilder content: @escaping (Date) -> DateView
@@ -142,13 +142,13 @@ struct MonthView<DateView>: View where DateView: View {
         
         let week: Date
         let content: (Date) -> DateView
-        let bookedDays: [CalendarDay]
+        let bookedDays: [Date]
         @Binding var sDate: Date?
         @Binding var eDate: Date?
         @State var animate: Bool = false
         init(
             week: Date,
-            bookedDays: [CalendarDay],
+            bookedDays: [Date],
             sDate: Binding<Date?>,
             eDate: Binding<Date?>,
             @ViewBuilder content: @escaping (Date) -> DateView
@@ -197,6 +197,7 @@ struct MonthView<DateView>: View where DateView: View {
                                     )
                                 
                             } else {
+                                
                                 self.content(date)
                                 
                             }
@@ -238,9 +239,9 @@ struct MonthView<DateView>: View where DateView: View {
 struct CalendarViews: View {
     @Environment(\.calendar) var calendar
     
-    @State private var startDate: Date? = nil
-    @State private var endDate: Date? = nil
-    var onDateSelected: ((Date?, Date?) -> Void)? = nil
+    @Binding var startDate: Date?
+    @Binding var endDate: Date?
+    var enabledInteraction: Bool = true
     
     private var year: DateInterval {
         calendar.dateInterval(of: .year, for: Date())!
@@ -248,7 +249,8 @@ struct CalendarViews: View {
     
     
     
-    var bookedDays: [CalendarDay] = [CalendarDay(date: "8/30/2022", status:.booked, isDefaultPrice: true)]
+    var bookedDays: [Date] = [Calendar.current.startOfDay(for: Date())]
+    
     
     
     var body: some View {
@@ -259,16 +261,34 @@ struct CalendarViews: View {
             
             //            RoundedRectangle(cornerRadius: 8).fill(isDateSelected(date) ? Color(red: 0.086, green: 0.114, blue: 0.314, opacity: 1) : Color.white).shadow(radius: 1)
             
-            CalendarCell(date: DateFormatter.day.string(from: date), isDateSelected(date))
-            
-                .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
-                .padding(1)
-                .onTapGesture {
-                    setDate(date)
-                    if let onDateSelected = onDateSelected {
-                        onDateSelected(startDate, endDate)
+            if bookedDays.contains(date){
+                CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.booked )
+                
+                    .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
+                    .padding(1)
+                    .onTapGesture {
+                        print("Date >>>> \(bookedDays.first)")
+                        print("Date <<<< \(date)")
+                        if enabledInteraction {
+                            setDate(date)
+                        }
                     }
-                }
+            }
+            else {
+                CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.available )
+                
+                    .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
+                    .padding(1)
+                    .onTapGesture {
+                        print("Date >>>> \(bookedDays.first)")
+                        print("Date <<<< \(date)")
+                        if enabledInteraction {
+                            setDate(date)
+                        }
+                    }
+            }
+            
+            
             //                .overlay(
             //                    Text(DateFormatter.day.string(from: date))//.padding()
             //                        .font(.body)
@@ -305,10 +325,10 @@ struct CalendarViews: View {
         }
     }
     
-    func getCalendarDay(_ date: Date) -> CalendarDay? {
-        let calendarDay = bookedDays.first(where: {$0.date == DateFormatter.test.string(from: date)})
-        return calendarDay
-    }
+//    func getCalendarDay(_ date: Date) -> CalendarDay? {
+//        let calendarDay = bookedDays.first(where: {$0.date == DateFormatter.test.string(from: date)})
+//        return calendarDay
+//    }
 }
 
 
@@ -318,53 +338,86 @@ enum DayStatus {
     case unavailable
 }
 
-class CalendarDay{
-    let date: String
-    let status: DayStatus
-    let isDefaultPrice: Bool
-    init(date: String, status: DayStatus, isDefaultPrice: Bool){
-        self.date = date
-        self.status = status
-        self.isDefaultPrice = isDefaultPrice
-    }
-}
+//class CalendarDay{
+//    let date: Date
+//    let status: DayStatus
+//    let isDefaultPrice: Bool
+//    init(date: Date, status: DayStatus, isDefaultPrice: Bool){
+//        self.date = date
+//        self.status = status
+//        self.isDefaultPrice = isDefaultPrice
+//    }
+//}
 
 struct CalendarCell: View {
     
-    let date: String
+    let date: Date
     let isDateSelected: Bool
+    let status: DayStatus
     
-    init(date: String, _ isDateSelected: Bool){
-        self.date = date
-        self.isDateSelected = isDateSelected
-    }
+    
     var body: some View {
         GeometryReader { reader in
             
             ZStack(alignment: .bottom) {
-                RoundedRectangle(cornerRadius: 8)
-                    .fill( isDateSelected ? Color(AppColor.DARKEST_BLUE) : Color(AppColor.LIGHT_GREY)).shadow(radius: 1)
-                    .frame(width: reader.size.width, height: reader.size.height)
-                    .shadow(radius: 2)
-                    .overlay(
-                        Text(date)
-                            .foregroundColor(isDateSelected ? .white : Color(AppColor.DARKEST_BLUE))
-                            .padding(.bottom, 6)
-                    )
                 
-                RoundedRectangle(cornerRadius: 4)
-                    .fill(Color(red: 0.341, green: 0.884, blue: 0.818, opacity: 1))
-                    .frame(width: reader.size.width, height: reader.size.height * 0.30)
-                    .overlay(
-                        Text("300")
+                Cell(isDateSelected: isDateSelected, date: date)
+                    
+                
+                switch status {
+                case .booked:
+                    Cell(isDateSelected: isDateSelected, date: date)
+                        .overlay(
+                            Rectangle().fill()
+                                .frame(height: 1)
+                        )
                         
-                            .foregroundColor( .white)
-                            .font(.footnote)
-                    )
-                
-                
+                case .available:
+                    Cell(isDateSelected: isDateSelected, date: date)
+                case .unavailable:
+                    UnavailableCell(isDateSelected: isDateSelected, date: date)
+                }
+//                RoundedRectangle(cornerRadius: 4)
+//                                    .fill(Color(red: 0.341, green: 0.884, blue: 0.818, opacity: 1))
+//                                    .frame(width: reader.size.width, height: reader.size.height * 0.30)
+//                                    .overlay(
+//                                        Text("300")
+//
+//                                            .foregroundColor( .white)
+//                                            .font(.footnote)
+//                                    )
             }
-            
+        }
+    }
+    
+    private struct UnavailableCell: View {
+        let isDateSelected: Bool
+        let date: Date
+        var body: some View {
+            RoundedRectangle(cornerRadius: 8)
+                .fill( isDateSelected ? Color(AppColor.DARKEST_BLUE) : Color(AppColor.MAIN_TEXT_DARK)).shadow(radius: 1)
+                .shadow(radius: 2)
+                .overlay(
+                    Text(DateFormatter.day.string(from: date))
+                        .foregroundColor(isDateSelected ? .white : Color(AppColor.DARKEST_BLUE))
+                        .padding(.bottom, 6)
+                )
+        }
+    }
+    
+    private struct Cell: View {
+        let isDateSelected: Bool
+        let date: Date
+        var body: some View {
+            RoundedRectangle(cornerRadius: 8)
+                .fill( isDateSelected ? Color(AppColor.DARKEST_BLUE) : Color(AppColor.LIGHT_GREY)).shadow(radius: 1)
+                .shadow(radius: 2)
+                .overlay(
+                    Text(DateFormatter.day.string(from: date))
+                        .foregroundColor(isDateSelected ? .white : Color(AppColor.DARKEST_BLUE))
+                        .padding(.bottom, 6)
+                )
         }
     }
 }
+

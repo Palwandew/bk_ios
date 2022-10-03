@@ -11,7 +11,8 @@ struct HomeScreen: View {
     
     @State var showAlertDialog: Bool = false
     //@StateObject var viewRouter = MaterialTabViewRouter()
-
+    @State var startDate: Date? = nil
+    @State var endDate: Date? = nil
     
     var body: some View {
         
@@ -39,7 +40,7 @@ struct HomeScreen: View {
                     
                     //MARK: - Calendar
                     
-                    CalendarViews()
+                    CalendarViews(startDate: $startDate, endDate: $endDate)
                         .onAppear(perform: {
                             print("onAppear() -> Calendar")
                         })

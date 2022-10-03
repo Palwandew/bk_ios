@@ -14,8 +14,8 @@ struct OfferDurationSettingScreen: View {
     @State var show: Bool = false
     @State var text: String = DateFormatter.test.string(from: Date())
     
-    @State var startDate: Date = Date()
-    @State var endDate: Date = Date()
+    @State var startDate: Date? = Date()
+    @State var endDate: Date? = Date()
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -49,9 +49,7 @@ struct OfferDurationSettingScreen: View {
         }
         
         .sheet(isPresented: $show, content: {
-            CalendarViews(onDateSelected: { startDate, endDate in
-                model.updateDates(startDate, endDate)
-            })
+            CalendarViews(startDate: $startDate, endDate: $endDate)
                 .padding(.top)
         })
         

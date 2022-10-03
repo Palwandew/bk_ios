@@ -53,6 +53,7 @@
 		C40FE0CD28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FE0CC28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift */; };
 		C410D26428B4897000914D84 /* PhotosUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D26328B4897000914D84 /* PhotosUploadManager.swift */; };
 		C410D26628B48C4300914D84 /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D26528B48C4300914D84 /* PhotosViewModel.swift */; };
+		C41A210628EB5C590028C4A3 /* GetFacilityCalendarDaysResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A210528EB5C590028C4A3 /* GetFacilityCalendarDaysResponse.swift */; };
 		C41A26AB289C345E0057F3FE /* MaterialPriceField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AA289C345E0057F3FE /* MaterialPriceField.swift */; };
 		C41A26AD289C6DB30057F3FE /* AmenityPriceLengthInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */; };
 		C41A26AF289C79810057F3FE /* FacilityRulesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */; };
@@ -333,6 +334,7 @@
 		C40FE0CC28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerPresentBookingsResponse.swift; sourceTree = "<group>"; };
 		C410D26328B4897000914D84 /* PhotosUploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosUploadManager.swift; sourceTree = "<group>"; };
 		C410D26528B48C4300914D84 /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
+		C41A210528EB5C590028C4A3 /* GetFacilityCalendarDaysResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFacilityCalendarDaysResponse.swift; sourceTree = "<group>"; };
 		C41A26AA289C345E0057F3FE /* MaterialPriceField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialPriceField.swift; sourceTree = "<group>"; };
 		C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityPriceLengthInputView.swift; sourceTree = "<group>"; };
 		C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRulesScreen.swift; sourceTree = "<group>"; };
@@ -657,6 +659,7 @@
 				C40FE0C828E95A8D00FDEFD8 /* DeclineBookingResponse.swift */,
 				C40FE0CA28E9752600FDEFD8 /* OwnerPastBookingsResponse.swift */,
 				C40FE0CC28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift */,
+				C41A210528EB5C590028C4A3 /* GetFacilityCalendarDaysResponse.swift */,
 			);
 			path = "Request Response Models";
 			sourceTree = "<group>";
@@ -1628,6 +1631,7 @@
 				C462F80028E1A5D2000C99E9 /* Wallet.swift in Sources */,
 				C40310172894A6260046B645 /* RightSwipe.swift in Sources */,
 				C410D26628B48C4300914D84 /* PhotosViewModel.swift in Sources */,
+				C41A210628EB5C590028C4A3 /* GetFacilityCalendarDaysResponse.swift in Sources */,
 				C40EBA1228DD443D00A09838 /* CreatePromoCodesScreen.swift in Sources */,
 				C485C52028E3F7C900FC0E88 /* GetUserDetailsResponse.swift in Sources */,
 				C40FE0C928E95A8D00FDEFD8 /* DeclineBookingResponse.swift in Sources */,

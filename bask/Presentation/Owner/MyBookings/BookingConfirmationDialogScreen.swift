@@ -94,7 +94,20 @@ struct BookingConfirmationDialogScreen: View {
             Toast(message: model.toast.message, style: model.toast.style)
         }
         .sheet(isPresented: $showCalendar) {
-            CalendarViews(startDate: $startDate, endDate: $endDate)
+            VStack(alignment: .leading) {
+                Group {
+                    Text("Dates for Booking")
+                        .font(.custom("Poppins-Medium", size: 26))
+                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                    
+                    Text("Review available days. You can change available days in calendar")
+                        .font(.custom("Poppins-Regular", size: 14))
+                        .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                }.padding(.leading)
+                    
+                CalendarViews(startDate: $startDate, endDate: $endDate)
+                
+            }.padding(.top)
         }
     }
 }

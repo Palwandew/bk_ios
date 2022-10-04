@@ -1,5 +1,5 @@
 //
-//  GetFacilityCalendarDaysResponse.swift
+//  GetFacilityCalendarResponse.swift
 //  bask
 //
 //  Created by TEHSEEN ABBAS on 03/10/2022.
@@ -8,8 +8,8 @@
 import Foundation
 
 
-// MARK: - GetFacilityCalendarDays
-struct GetFacilityCalendarDays: Codable {
+// MARK: - GetFacilityCalendarResponse
+struct GetFacilityCalendarResponse: Codable {
     let data: FacilityCalendarDaysData
     let error: Bool
     let message: String

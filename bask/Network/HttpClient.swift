@@ -20,7 +20,6 @@ extension URLSession{
             guard let url = endpoint.url else {
                 return completion(.failure(RequestError.invalidURL))
             }
-            print("URL -_-_-_: \(url.absoluteString)")
             var request = URLRequest(url: url)
             
             request.httpMethod = requestType.rawValue
@@ -52,7 +51,7 @@ extension URLSession{
                 
                 do {
                     let dataFromServer = try JSONDecoder().decode(T.self, from: data)
-                    print("data from server \(dataFromServer)")
+                    //print("data from server \(dataFromServer)")
                     completion(.success(dataFromServer))
                     
                 } catch {

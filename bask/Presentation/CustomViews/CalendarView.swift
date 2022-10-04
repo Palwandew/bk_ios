@@ -75,9 +75,10 @@ struct MonthHeader: View {
         VStack(alignment: .leading) {
             
             Text(monthTitle)
+            
                 .padding(.top, 32)
                 .padding(.bottom, 16)
-                .font(.headline)
+                .font(.custom("Poppins-Regular", size: 16, relativeTo: .subheadline))
             
             
             HStack(spacing: 0){
@@ -177,6 +178,7 @@ struct MonthView<DateView>: View where DateView: View {
                     if self.calendar.isDate(self.week, equalTo: date, toGranularity: .month) {
                         HStack {
                             
+                            
                             if isDateBetweenStartAndEnd(date){
                                 
                                 RoundedRectangle(cornerRadius: 8).fill(Color.clear).shadow(radius: 4)
@@ -186,7 +188,7 @@ struct MonthView<DateView>: View where DateView: View {
                                     .overlay(
                                         Text(DateFormatter.day.string(from: date))
                                         
-                                            .foregroundColor(.white)
+                                            .foregroundColor(Color(AppColor.DARKEST_BLUE))
                                             .onTapGesture(perform: {
                                                 
                                                 updateStartDate(date)
@@ -203,7 +205,7 @@ struct MonthView<DateView>: View where DateView: View {
                             }
                             
                         }             .padding(.horizontal, 4)
-                            .background(isDateBetweenStartAndEnd(date) ? Color(red: 0.741, green: 0.753, blue: 0.827, opacity: 1) : Color.clear)
+                            .background(isDateBetweenStartAndEnd(date) ? Color(AppColor.GREY) : Color.clear)
                     } else {
                         
                         self.content(date).hidden()
@@ -238,7 +240,7 @@ struct MonthView<DateView>: View where DateView: View {
 
 struct CalendarViews: View {
     @Environment(\.calendar) var calendar
-    
+    @StateObject var model: CalendarViewModel = CalendarViewModel(repo: CalendarRepositoryImpl())
     @Binding var startDate: Date?
     @Binding var endDate: Date?
     var enabledInteraction: Bool = true
@@ -255,50 +257,69 @@ struct CalendarViews: View {
     
     var body: some View {
         
-        
-        
-        CalendarView(interval: year, bookedDays: bookedDays, sDate: $startDate, eDate: $endDate) { date in
+        switch model.state {
             
-            //            RoundedRectangle(cornerRadius: 8).fill(isDateSelected(date) ? Color(red: 0.086, green: 0.114, blue: 0.314, opacity: 1) : Color.white).shadow(radius: 1)
-            
-            if bookedDays.contains(date){
-                CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.booked )
+        case .loading:
+            Spinner()
+        case .success:
+            CalendarView(interval: year, bookedDays: bookedDays, sDate: $startDate, eDate: $endDate) { date in
                 
-                    .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
-                    .padding(1)
-                    .onTapGesture {
-                        print("Date >>>> \(bookedDays.first)")
-                        print("Date <<<< \(date)")
-                        if enabledInteraction {
-                            setDate(date)
-                        }
-                    }
-            }
-            else {
-                CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.available )
                 
-                    .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
-                    .padding(1)
-                    .onTapGesture {
-                        print("Date >>>> \(bookedDays.first)")
-                        print("Date <<<< \(date)")
-                        if enabledInteraction {
-                            setDate(date)
+                if model.bookedDays.contains(date){
+                    CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.booked )
+                    
+                        .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
+                        .padding(1)
+                        .onTapGesture {
+                            if enabledInteraction {
+                                setDate(date)
+                            }
                         }
-                    }
+                }
+                
+                if model.availableDays.contains(date) {
+                    CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.available )
+                    
+                        .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
+                        .padding(1)
+                        .onTapGesture {
+                            if enabledInteraction {
+                                setDate(date)
+                            }
+                        }
+                }
+                if model.unavailableDays.contains(date) {
+                    CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.unavailable )
+                    
+                        .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
+                        .padding(1)
+                        .onTapGesture {
+                            if enabledInteraction {
+                                setDate(date)
+                            }
+                        }
+                }
+                
+                
+                //                .overlay(
+                //                    Text(DateFormatter.day.string(from: date))//.padding()
+                //                        .font(.body)
+                //                        .foregroundColor(isDateSelected(date) ? .white : .blue)
+                //                        .onTapGesture {
+                //
+                //                            setDate(date)
+                //                        }
+                //                )
             }
+        case .failed:
+            ErrorStateScreen()
             
+        case .initial:
+            EmptyView()
             
-            //                .overlay(
-            //                    Text(DateFormatter.day.string(from: date))//.padding()
-            //                        .font(.body)
-            //                        .foregroundColor(isDateSelected(date) ? .white : .blue)
-            //                        .onTapGesture {
-            //
-            //                            setDate(date)
-            //                        }
-            //                )
         }
+        
+        
         
     }
     
@@ -361,21 +382,38 @@ struct CalendarCell: View {
             
             ZStack(alignment: .bottom) {
                 
-                Cell(isDateSelected: isDateSelected, date: date)
-                    
-                
                 switch status {
-                case .booked:
-                    Cell(isDateSelected: isDateSelected, date: date)
-                        .overlay(
-                            Rectangle().fill()
-                                .frame(height: 1)
-                        )
+                    case .booked:
                         
-                case .available:
-                    Cell(isDateSelected: isDateSelected, date: date)
-                case .unavailable:
-                    UnavailableCell(isDateSelected: isDateSelected, date: date)
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill( isDateSelected ? Color(AppColor.DARKEST_BLUE) : Color(AppColor.CALENDAR_BOOKED_DAY))
+                            .overlay(
+                                Text(DateFormatter.day.string(from: date))
+                                    .foregroundColor(isDateSelected ? .white : Color(AppColor.DARKEST_BLUE))
+                                    .padding(.bottom, 6)
+                                    .overlay(
+                                        Rectangle().fill()
+                                            .frame(height: 1)
+                                    )
+                            )
+                        
+                            
+                    case .available:
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill( isDateSelected ? Color(AppColor.DARKEST_BLUE) : Color(AppColor.LIGHT_GREY))
+                            .overlay(
+                                Text(DateFormatter.day.string(from: date))
+                                    .foregroundColor(isDateSelected ? .white : Color(AppColor.DARKEST_BLUE))
+                                    .padding(.bottom, 6)
+                            )
+                    case .unavailable:
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill( isDateSelected ? Color(AppColor.DARKEST_BLUE) : Color(AppColor.LIGHT_GREY))
+                            .overlay(
+                                Text(DateFormatter.day.string(from: date))
+                                    .foregroundColor(isDateSelected ? .white : Color(AppColor.MAIN_TEXT_LIGHT))
+                                    .padding(.bottom, 6)
+                            )
                 }
 //                RoundedRectangle(cornerRadius: 4)
 //                                    .fill(Color(red: 0.341, green: 0.884, blue: 0.818, opacity: 1))
@@ -387,36 +425,6 @@ struct CalendarCell: View {
 //                                            .font(.footnote)
 //                                    )
             }
-        }
-    }
-    
-    private struct UnavailableCell: View {
-        let isDateSelected: Bool
-        let date: Date
-        var body: some View {
-            RoundedRectangle(cornerRadius: 8)
-                .fill( isDateSelected ? Color(AppColor.DARKEST_BLUE) : Color(AppColor.MAIN_TEXT_DARK)).shadow(radius: 1)
-                .shadow(radius: 2)
-                .overlay(
-                    Text(DateFormatter.day.string(from: date))
-                        .foregroundColor(isDateSelected ? .white : Color(AppColor.DARKEST_BLUE))
-                        .padding(.bottom, 6)
-                )
-        }
-    }
-    
-    private struct Cell: View {
-        let isDateSelected: Bool
-        let date: Date
-        var body: some View {
-            RoundedRectangle(cornerRadius: 8)
-                .fill( isDateSelected ? Color(AppColor.DARKEST_BLUE) : Color(AppColor.LIGHT_GREY)).shadow(radius: 1)
-                .shadow(radius: 2)
-                .overlay(
-                    Text(DateFormatter.day.string(from: date))
-                        .foregroundColor(isDateSelected ? .white : Color(AppColor.DARKEST_BLUE))
-                        .padding(.bottom, 6)
-                )
         }
     }
 }

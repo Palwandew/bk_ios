@@ -53,7 +53,7 @@
 		C40FE0CD28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FE0CC28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift */; };
 		C410D26428B4897000914D84 /* PhotosUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D26328B4897000914D84 /* PhotosUploadManager.swift */; };
 		C410D26628B48C4300914D84 /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D26528B48C4300914D84 /* PhotosViewModel.swift */; };
-		C41A210628EB5C590028C4A3 /* GetFacilityCalendarDaysResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A210528EB5C590028C4A3 /* GetFacilityCalendarDaysResponse.swift */; };
+		C41A210628EB5C590028C4A3 /* GetFacilityCalendarResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A210528EB5C590028C4A3 /* GetFacilityCalendarResponse.swift */; };
 		C41A26AB289C345E0057F3FE /* MaterialPriceField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AA289C345E0057F3FE /* MaterialPriceField.swift */; };
 		C41A26AD289C6DB30057F3FE /* AmenityPriceLengthInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */; };
 		C41A26AF289C79810057F3FE /* FacilityRulesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */; };
@@ -128,6 +128,9 @@
 		C46BD78728295CCB006AC587 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78628295CCA006AC587 /* AppColor.swift */; };
 		C46BD78A28295FA0006AC587 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78928295FA0006AC587 /* ColorExtension.swift */; };
 		C46BD78C2829627D006AC587 /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BD78B2829627D006AC587 /* OutlinedButton.swift */; };
+		C46E5F0528EC5A170072F1F4 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46E5F0428EC5A170072F1F4 /* CalendarViewModel.swift */; };
+		C46E5F0728EC62770072F1F4 /* CalendarRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46E5F0628EC62770072F1F4 /* CalendarRepositoryProtocol.swift */; };
+		C46E5F0928EC63950072F1F4 /* CalendarRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46E5F0828EC63950072F1F4 /* CalendarRepositoryImpl.swift */; };
 		C47B734028CF2EBC00C719BE /* PhotosDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47B733F28CF2EBC00C719BE /* PhotosDownloadManager.swift */; };
 		C47B734328CF89DF00C719BE /* CacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47B734228CF89DF00C719BE /* CacheHelper.swift */; };
 		C47B734528CFA9C900C719BE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47B734428CFA9C900C719BE /* ImageLoader.swift */; };
@@ -334,7 +337,7 @@
 		C40FE0CC28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerPresentBookingsResponse.swift; sourceTree = "<group>"; };
 		C410D26328B4897000914D84 /* PhotosUploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosUploadManager.swift; sourceTree = "<group>"; };
 		C410D26528B48C4300914D84 /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
-		C41A210528EB5C590028C4A3 /* GetFacilityCalendarDaysResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFacilityCalendarDaysResponse.swift; sourceTree = "<group>"; };
+		C41A210528EB5C590028C4A3 /* GetFacilityCalendarResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFacilityCalendarResponse.swift; sourceTree = "<group>"; };
 		C41A26AA289C345E0057F3FE /* MaterialPriceField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialPriceField.swift; sourceTree = "<group>"; };
 		C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityPriceLengthInputView.swift; sourceTree = "<group>"; };
 		C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRulesScreen.swift; sourceTree = "<group>"; };
@@ -408,6 +411,9 @@
 		C46BD78628295CCA006AC587 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		C46BD78928295FA0006AC587 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		C46BD78B2829627D006AC587 /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
+		C46E5F0428EC5A170072F1F4 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		C46E5F0628EC62770072F1F4 /* CalendarRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRepositoryProtocol.swift; sourceTree = "<group>"; };
+		C46E5F0828EC63950072F1F4 /* CalendarRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRepositoryImpl.swift; sourceTree = "<group>"; };
 		C47B733F28CF2EBC00C719BE /* PhotosDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosDownloadManager.swift; sourceTree = "<group>"; };
 		C47B734228CF89DF00C719BE /* CacheHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheHelper.swift; sourceTree = "<group>"; };
 		C47B734428CFA9C900C719BE /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
@@ -659,7 +665,7 @@
 				C40FE0C828E95A8D00FDEFD8 /* DeclineBookingResponse.swift */,
 				C40FE0CA28E9752600FDEFD8 /* OwnerPastBookingsResponse.swift */,
 				C40FE0CC28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift */,
-				C41A210528EB5C590028C4A3 /* GetFacilityCalendarDaysResponse.swift */,
+				C41A210528EB5C590028C4A3 /* GetFacilityCalendarResponse.swift */,
 			);
 			path = "Request Response Models";
 			sourceTree = "<group>";
@@ -877,6 +883,7 @@
 				C462F80328E1A794000C99E9 /* WalletProtocolImpl.swift */,
 				C485C52528E3FBCF00FC0E88 /* UserRepositoryImpl.swift */,
 				C4075E2B28E5631400FEA2F8 /* BookingRepositoryImpl.swift */,
+				C46E5F0828EC63950072F1F4 /* CalendarRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -935,6 +942,7 @@
 				C462F7F928E17065000C99E9 /* PaymentMethodsViewModel.swift */,
 				C462F80728E1A9A4000C99E9 /* WalletViewModel.swift */,
 				C485C52728E3FDCE00FC0E88 /* ProfileInfoViewModel.swift */,
+				C46E5F0428EC5A170072F1F4 /* CalendarViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1132,6 +1140,7 @@
 				C462F80128E1A74B000C99E9 /* WalletRepositoryProtocol.swift */,
 				C485C52328E3FB7E00FC0E88 /* UserRepositoryProtocol.swift */,
 				C4075E2928E561A100FEA2F8 /* BookingRepositoryProtocol.swift */,
+				C46E5F0628EC62770072F1F4 /* CalendarRepositoryProtocol.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1434,6 +1443,7 @@
 				C46BD78228292161006AC587 /* FilledButton.swift in Sources */,
 				C4A5C57D289F3DD9006AF774 /* FacilityTimeScreen.swift in Sources */,
 				C4031010289494B30046B645 /* MaterialTabViewRouter.swift in Sources */,
+				C46E5F0728EC62770072F1F4 /* CalendarRepositoryProtocol.swift in Sources */,
 				C41DCB6628CB4B04004888B1 /* BookingDatesInfoView.swift in Sources */,
 				C408F9D428DB500F00518632 /* OffersRepositoryImpl.swift in Sources */,
 				C48268262896E8860072147F /* EmptyState.swift in Sources */,
@@ -1490,6 +1500,7 @@
 				C45C84C828B734F300646719 /* PhotosDomainRepoProtocol.swift in Sources */,
 				C4AF9B1E2828216600EBB141 /* LoginEndpoint.swift in Sources */,
 				C47BE340289AABA900B91D69 /* FacilityPaidAmenitiesScreen.swift in Sources */,
+				C46E5F0928EC63950072F1F4 /* CalendarRepositoryImpl.swift in Sources */,
 				C485C52428E3FB7E00FC0E88 /* UserRepositoryProtocol.swift in Sources */,
 				C4075E2C28E5631400FEA2F8 /* BookingRepositoryImpl.swift in Sources */,
 				C41D312428D77E100049042B /* RateGuestRequestBody.swift in Sources */,
@@ -1520,6 +1531,7 @@
 				C46526CE28C4D0F700CFDF4F /* Endpoints.swift in Sources */,
 				C4B301F328DA34FE00FAE17D /* CalendarView.swift in Sources */,
 				C48790DE28DF074100BD6224 /* WalletScreen.swift in Sources */,
+				C46E5F0528EC5A170072F1F4 /* CalendarViewModel.swift in Sources */,
 				C462F7EE28E15AEA000C99E9 /* GetFacilityPercentagesUsecase.swift in Sources */,
 				C4F6675A28D37C4400ABA680 /* PresentGuestsScreen.swift in Sources */,
 				C46BD76328290A7E006AC587 /* HttpClient.swift in Sources */,
@@ -1631,7 +1643,7 @@
 				C462F80028E1A5D2000C99E9 /* Wallet.swift in Sources */,
 				C40310172894A6260046B645 /* RightSwipe.swift in Sources */,
 				C410D26628B48C4300914D84 /* PhotosViewModel.swift in Sources */,
-				C41A210628EB5C590028C4A3 /* GetFacilityCalendarDaysResponse.swift in Sources */,
+				C41A210628EB5C590028C4A3 /* GetFacilityCalendarResponse.swift in Sources */,
 				C40EBA1228DD443D00A09838 /* CreatePromoCodesScreen.swift in Sources */,
 				C485C52028E3F7C900FC0E88 /* GetUserDetailsResponse.swift in Sources */,
 				C40FE0C928E95A8D00FDEFD8 /* DeclineBookingResponse.swift in Sources */,

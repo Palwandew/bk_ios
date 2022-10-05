@@ -13,47 +13,42 @@ class CalendarViewModel: ObservableObject {
     
     @Published var state: ScreenState = .loading
     
-    private var facilityDates: [CalendarDayViewModel] = []
-    public private(set) var bookedDays:[Date] = []
-    var availableDays: [Date] = []
-    var unavailableDays: [Date] = []
+    public private(set) var bookedDays: [Date] = []
+    public private(set) var availableDays: [Date] = []
+    public private(set) var unavailableDays: [Date] = []
     
     init(repo: CalendarRepositoryProtocol){
         self.repository = repo
-        getCalendar(for: "93807af9-3ae9-42cb-8154-0fdf5df674e2")
+        getCalendar(for: "93807af9-3ae9-42cb-8154-0fdf5df674e2")// get this from view
     }
     
     func getCalendar(for facilityID: String){
         
         let year = Calendar.current.component(.year, from: Date())
-        // Get the first day of next year
-        
-        guard let startDate = Calendar.current.date(from: DateComponents(year: year, month: 1, day: 1)) else { return }
-        
-        
-        guard let endDate = Calendar.current.date(from: DateComponents(year: year + 1, month: 1, day: 1)) else { return }
-        
+        let startDate = Calendar.current.date(from: DateComponents(year: year, month: 1, day: 1))
+        let endDate = Calendar.current.date(from: DateComponents(year: year + 1, month: 1, day: 1))
+        guard let startDate = startDate, let endDate = endDate else {
+            return
+        }
         repository.fetchCalendarForFacility(with: facilityID, from: startDate, to: endDate) { [weak self] result in
             switch result {
             case .success(let days):
                 
-                self?.generateDates(days)
-            
+                self?.toDates(days)
                 
                 DispatchQueue.main.async {
-                    print("main queue")
-//                    self?.availableDays = availableDays ?? []
-//                    self?.unavailableDays = unavailableDays ?? []
                     self?.state = .success
                 }
                 
-            case .failure(let error):
-                print("Error 0ccurred \(error)")
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self?.state = .failed
+                }
             }
         }
     }
     
-    private func generateDates(_ days: [CalendarDay]) {
+    private func toDates(_ days: [CalendarDay]) {
         
         for day in days {
             if day.status == .booked {
@@ -83,56 +78,5 @@ class CalendarViewModel: ObservableObject {
             }
         }
     }
-    
-//
-//    private func apped(_ day: String,to array: [Date]){
-//        let date = DateFormatter.check.date(from: day)
-//        if let date = date {
-//
-//            array.append(Calendar.current.startOfDay(for: date))
-//        }
-//    }
-    
-    private func filterList(_ days: [CalendarDay], condition status: Status) -> [CalendarDayViewModel] {
-        let booked = days.filter{ $0.status == status}
-        
-        let mapped = booked.map(CalendarDayViewModel.init)
-        
-        return mapped
-    }
-    
-//    private func mapDaysToAppropiateList(_ days: [CalendarDay]){
-//        
-//        let filteredList = filterList(days, condition: .booked)
-//        
-//        DispatchQueue.main.async {
-//            self.bookedDays = filteredList
-//        }
-//    }
 }
 
-
-struct CalendarDayViewModel {
-    private let day: CalendarDay
-    
-    init(_ day: CalendarDay){
-        self.day = day
-    }
-    
-    var price: Int? {
-        self.day.price
-    }
-    
-    var status: Status {
-        self.day.status
-    }
-    
-    var date: Date? {
-        
-        guard let date = DateFormatter.check.date(from: self.day.date) else {
-            return nil
-        }
-        return Calendar.current.startOfDay(for: date)
-        
-    }
-}

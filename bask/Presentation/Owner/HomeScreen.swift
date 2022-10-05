@@ -40,7 +40,7 @@ struct HomeScreen: View {
                     
                     //MARK: - Calendar
                     
-                    CalendarViews(startDate: $startDate, endDate: $endDate)
+                    CalendarScreen()
                         .onAppear(perform: {
                             print("onAppear() -> Calendar")
                         })

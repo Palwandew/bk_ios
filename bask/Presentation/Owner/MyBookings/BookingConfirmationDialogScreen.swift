@@ -95,6 +95,19 @@ struct BookingConfirmationDialogScreen: View {
         }
         .sheet(isPresented: $showCalendar) {
             VStack(alignment: .leading) {
+                
+                HStack {
+                    
+                    Spacer()
+                    
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.gray)
+                        .frame(width: UIScreen.main.bounds.width * 0.10, height: 3)
+                    
+                    Spacer()
+                    
+                }
+                .padding(.bottom, 32)
                 Group {
                     Text("Dates for Booking")
                         .font(.custom("Poppins-Medium", size: 26))
@@ -105,8 +118,9 @@ struct BookingConfirmationDialogScreen: View {
                         .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                 }.padding(.leading)
                     
-                CalendarViews(startDate: $startDate, endDate: $endDate)
+                CalendarViews(startDate: $startDate, endDate: $endDate, enabledInteraction: false)
                 
+                Spacer()
             }.padding(.top)
         }
     }

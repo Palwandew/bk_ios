@@ -29,10 +29,10 @@ struct UpcomingBookings: View {
                                 .frame(height: UIScreen.main.bounds.height * 0.15)
                                 .padding()
                                 .onTapGesture {
-                                    //if facility.status == .pending {
+                                    if facility.status == .pending {
                                         model.prepareFacilityForConfirmationDialog(facility)
                                         showAcceptBookingDialog.toggle()
-                                    //}
+                                    }
                                 }
                             
                         }

@@ -260,59 +260,62 @@ struct CalendarViews: View {
         switch model.state {
             
         case .loading:
-            Spinner()
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    Spinner()
+                    Spacer()
+                }
+                Spacer()
+            }            .animation(.easeInOut, value: model.state)
         case .success:
-            CalendarView(interval: year, bookedDays: bookedDays, sDate: $startDate, eDate: $endDate) { date in
-                
-                
-                if model.bookedDays.contains(date){
-                    CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.booked )
+            withAnimation {
+                CalendarView(interval: year, bookedDays: bookedDays, sDate: $startDate, eDate: $endDate) { date in
                     
-                        .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
-                        .padding(1)
-                        .onTapGesture {
-                            if enabledInteraction {
-                                setDate(date)
-                            }
-                        }
-                }
-                
-                if model.availableDays.contains(date) {
-                    CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.available )
                     
-                        .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
-                        .padding(1)
-                        .onTapGesture {
-                            if enabledInteraction {
-                                setDate(date)
+                    if model.bookedDays.contains(date){
+                        CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.booked, isDefaultPrice: false )
+                        
+                            .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
+                            .padding(1)
+                            .onTapGesture {
+                                if enabledInteraction {
+                                    setDate(date)
+                                }
                             }
-                        }
-                }
-                if model.unavailableDays.contains(date) {
-                    CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.unavailable )
+                    }
                     
-                        .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
-                        .padding(1)
-                        .onTapGesture {
-                            if enabledInteraction {
-                                setDate(date)
+                    if model.availableDays.contains(date) {
+                        CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.available, isDefaultPrice: true )
+                        
+                            .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
+                            .padding(1)
+                            .onTapGesture {
+                                if enabledInteraction {
+                                    setDate(date)
+                                }
                             }
-                        }
+                    }
+                    if model.unavailableDays.contains(date) {
+                        CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.unavailable, isDefaultPrice: true )
+                        
+                            .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
+                            .padding(1)
+                            .onTapGesture {
+                                if enabledInteraction {
+                                    setDate(date)
+                                }
+                            }
+                    }
+                    
                 }
-                
-                
-                //                .overlay(
-                //                    Text(DateFormatter.day.string(from: date))//.padding()
-                //                        .font(.body)
-                //                        .foregroundColor(isDateSelected(date) ? .white : .blue)
-                //                        .onTapGesture {
-                //
-                //                            setDate(date)
-                //                        }
-                //                )
+                .animation(.easeInOut, value: model.state)
             }
+
         case .failed:
             ErrorStateScreen()
+                .animation(.easeInOut, value: model.state)
             
         case .initial:
             EmptyView()
@@ -345,11 +348,6 @@ struct CalendarViews: View {
             }
         }
     }
-    
-//    func getCalendarDay(_ date: Date) -> CalendarDay? {
-//        let calendarDay = bookedDays.first(where: {$0.date == DateFormatter.test.string(from: date)})
-//        return calendarDay
-//    }
 }
 
 
@@ -359,23 +357,12 @@ enum DayStatus {
     case unavailable
 }
 
-//class CalendarDay{
-//    let date: Date
-//    let status: DayStatus
-//    let isDefaultPrice: Bool
-//    init(date: Date, status: DayStatus, isDefaultPrice: Bool){
-//        self.date = date
-//        self.status = status
-//        self.isDefaultPrice = isDefaultPrice
-//    }
-//}
-
 struct CalendarCell: View {
     
     let date: Date
     let isDateSelected: Bool
     let status: DayStatus
-    
+    let isDefaultPrice: Bool
     
     var body: some View {
         GeometryReader { reader in
@@ -415,15 +402,17 @@ struct CalendarCell: View {
                                     .padding(.bottom, 6)
                             )
                 }
-//                RoundedRectangle(cornerRadius: 4)
-//                                    .fill(Color(red: 0.341, green: 0.884, blue: 0.818, opacity: 1))
-//                                    .frame(width: reader.size.width, height: reader.size.height * 0.30)
-//                                    .overlay(
-//                                        Text("300")
-//
-//                                            .foregroundColor( .white)
-//                                            .font(.footnote)
-//                                    )
+                if !isDefaultPrice{
+                RoundedRectangle(cornerRadius: 4)
+                                    .fill(Color(red: 0.341, green: 0.884, blue: 0.818, opacity: 1))
+                                    .frame(width: reader.size.width, height: reader.size.height * 0.30)
+                                    .overlay(
+                                        Text("300")
+
+                                            .foregroundColor( .white)
+                                            .font(.footnote)
+                                    )
+                }
             }
         }
     }

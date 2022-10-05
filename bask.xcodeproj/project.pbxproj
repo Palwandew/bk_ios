@@ -80,6 +80,7 @@
 		C430368A28D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430368928D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift */; };
 		C430368F28D25A3F00C232D5 /* MyGuestsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430368E28D25A3F00C232D5 /* MyGuestsScreen.swift */; };
 		C430369328D2B3C700C232D5 /* MyGuestListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C430369228D2B3C700C232D5 /* MyGuestListItem.swift */; };
+		C437696228EDAD31005582E9 /* CalendarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C437696128EDAD31005582E9 /* CalendarScreen.swift */; };
 		C43DCEB728BDE254005FB7F4 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCEB628BDE254005FB7F4 /* ToastView.swift */; };
 		C43DCEB928BE0867005FB7F4 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCEB828BE0867005FB7F4 /* Toast.swift */; };
 		C440B92D28D1FD7E00909D21 /* AvailableFacilityItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440B92C28D1FD7E00909D21 /* AvailableFacilityItemResponse.swift */; };
@@ -364,6 +365,7 @@
 		C430368928D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnpublishedFacilitiesListViewModel.swift; sourceTree = "<group>"; };
 		C430368E28D25A3F00C232D5 /* MyGuestsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGuestsScreen.swift; sourceTree = "<group>"; };
 		C430369228D2B3C700C232D5 /* MyGuestListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGuestListItem.swift; sourceTree = "<group>"; };
+		C437696128EDAD31005582E9 /* CalendarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarScreen.swift; sourceTree = "<group>"; };
 		C43DCEB628BDE254005FB7F4 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		C43DCEB828BE0867005FB7F4 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		C440B92C28D1FD7E00909D21 /* AvailableFacilityItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableFacilityItemResponse.swift; sourceTree = "<group>"; };
@@ -590,6 +592,7 @@
 		C40310062894590E0046B645 /* Owner */ = {
 			isa = PBXGroup;
 			children = (
+				C437696028EDAD1F005582E9 /* Calendar */,
 				C482682C28970EB00072147F /* MyAdds */,
 				C48268272896ED550072147F /* MyBookings */,
 				C4031007289459280046B645 /* HomeScreen.swift */,
@@ -707,6 +710,14 @@
 				C48E9F5728D4E0E100FFD1AF /* ComplainGuestScreen.swift */,
 			);
 			path = Guests;
+			sourceTree = "<group>";
+		};
+		C437696028EDAD1F005582E9 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				C437696128EDAD31005582E9 /* CalendarScreen.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		C45C84CD28B74C9A00646719 /* Request Body Models */ = {
@@ -1569,6 +1580,7 @@
 				C41DCB6028CB49B2004888B1 /* CalendarButton.swift in Sources */,
 				C4AF9B232828216600EBB141 /* PostViewModel.swift in Sources */,
 				C4BB005D2890C576000D2E47 /* MaterialSecureField.swift in Sources */,
+				C437696228EDAD31005582E9 /* CalendarScreen.swift in Sources */,
 				C40EBA1828DD5FE500A09838 /* ExistingPromoTicket.swift in Sources */,
 				C4AF9B242828216600EBB141 /* PostView.swift in Sources */,
 				C4AF9B252828216600EBB141 /* ContentView.swift in Sources */,

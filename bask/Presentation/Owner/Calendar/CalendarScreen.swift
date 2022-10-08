@@ -85,6 +85,7 @@ struct CalendarScreen: View {
             }.padding(.horizontal)
             
             ZStack(alignment: .topTrailing) {
+                
                 CalendarViews(startDate: $startDate, endDate: $endDate)
                 
                 if menuShowed {

@@ -16,8 +16,8 @@ struct HomeScreen: View {
     
     var body: some View {
         
-        NavigationView {
-            GeometryReader{ geometry in
+        //NavigationView {
+            //GeometryReader{ geometry in
                 TabView{
                     
                     //MARK: - My Bookings
@@ -40,7 +40,7 @@ struct HomeScreen: View {
                     
                     //MARK: - Calendar
                     
-                    CalendarScreen()
+                    CalendarFacilitiesListScreen()
                         .onAppear(perform: {
                             print("onAppear() -> Calendar")
                         })
@@ -77,16 +77,18 @@ struct HomeScreen: View {
                     
                     //MARK: - Profile
                     
-                    ProfileTabScreen()
-                        .tabItem {
-                            Label("Profile", systemImage: "person.circle")
-                        }
-                        .navigationTitle("")
+                    //NavigationView {
+                        ProfileTabScreen()
+                            .tabItem {
+                                Label("Profile", systemImage: "person.circle")
+                            }
+                            .navigationTitle("")
                         .navigationBarHidden(true)
+                    //}
                     
                 }
 
-                .frame(width: geometry.size.width, height: geometry.size.height)
+                //.frame(width: geometry.size.width, height: geometry.size.height)
                 .accentColor(Color(AppColor.ACCENT_GREEN))
                 .navigationBarHidden(true)
                 .navigationBarBackButtonHidden(true)
@@ -97,8 +99,8 @@ struct HomeScreen: View {
                         .frame(width: 70, height: 70).padding()
                         
                 }
-            }.ignoresSafeArea(.all)
-        }
+            //}.ignoresSafeArea(.all)
+        //}
     }
 }
 

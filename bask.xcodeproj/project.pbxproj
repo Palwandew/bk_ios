@@ -252,6 +252,7 @@
 		C4D659AE282B0B8B00FAE1D1 /* CustomInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D659AD282B0B8B00FAE1D1 /* CustomInputField.swift */; };
 		C4D659B2282B4F5000FAE1D1 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D659B1282B4F5000FAE1D1 /* SignupViewModel.swift */; };
 		C4D659B4282B5A8900FAE1D1 /* LinearProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D659B3282B5A8900FAE1D1 /* LinearProgressBar.swift */; };
+		C4DA584728F197CA000A4EC1 /* CalendarFacilitiesListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DA584628F197CA000A4EC1 /* CalendarFacilitiesListScreen.swift */; };
 		C4F6675828D37C1500ABA680 /* UpcomingGuestsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6675728D37C1500ABA680 /* UpcomingGuestsScreen.swift */; };
 		C4F6675A28D37C4400ABA680 /* PresentGuestsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6675928D37C4400ABA680 /* PresentGuestsScreen.swift */; };
 		C4F6675C28D37E9C00ABA680 /* UnratedGuestListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6675B28D37E9C00ABA680 /* UnratedGuestListItem.swift */; };
@@ -542,6 +543,7 @@
 		C4D659AD282B0B8B00FAE1D1 /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
 		C4D659B1282B4F5000FAE1D1 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		C4D659B3282B5A8900FAE1D1 /* LinearProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearProgressBar.swift; sourceTree = "<group>"; };
+		C4DA584628F197CA000A4EC1 /* CalendarFacilitiesListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarFacilitiesListScreen.swift; sourceTree = "<group>"; };
 		C4F6675728D37C1500ABA680 /* UpcomingGuestsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingGuestsScreen.swift; sourceTree = "<group>"; };
 		C4F6675928D37C4400ABA680 /* PresentGuestsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentGuestsScreen.swift; sourceTree = "<group>"; };
 		C4F6675B28D37E9C00ABA680 /* UnratedGuestListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnratedGuestListItem.swift; sourceTree = "<group>"; };
@@ -716,6 +718,7 @@
 			isa = PBXGroup;
 			children = (
 				C437696128EDAD31005582E9 /* CalendarScreen.swift */,
+				C4DA584628F197CA000A4EC1 /* CalendarFacilitiesListScreen.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -1616,6 +1619,7 @@
 				C4A921CE28B601AB00969EF1 /* CheckList.swift in Sources */,
 				C41A26AD289C6DB30057F3FE /* AmenityPriceLengthInputView.swift in Sources */,
 				C4AF9B2A2828216600EBB141 /* Post.swift in Sources */,
+				C4DA584728F197CA000A4EC1 /* CalendarFacilitiesListScreen.swift in Sources */,
 				C49FB52F28A087D900A54D7D /* FacilityDescriptionScreen.swift in Sources */,
 				C462F7F028E16B56000C99E9 /* PaymentMethodsResponse.swift in Sources */,
 				C4D659AE282B0B8B00FAE1D1 /* CustomInputField.swift in Sources */,

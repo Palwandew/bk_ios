@@ -40,6 +40,11 @@
 "Deposit is %lld SAR" = "الإيداع هو %lld ر.س";
 
 
+//Owner Calendar Screen
+
+"Facilities" = "Facilities";
+
+
 // Facility details Screen
 "per night" = "لليلة الواحدة";
 "booked" = "حجز";

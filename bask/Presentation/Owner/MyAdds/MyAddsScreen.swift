@@ -10,73 +10,75 @@ import SwiftUI
 
 struct MyAddsScreen: View {
     var body: some View {
-        VStack(alignment: .leading){
-            
-            //MARK: - Title
-            
-            Text("My Ads")
-                .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
-                .foregroundColor(Color(AppColor.DARKEST_BLUE))
-            
-            
-            //MARK: - New Unit
-            NavigationLink{
-                FacilityNameScreen()
-            } label: {
-                RowButton(title: "Add a new unit", icon: "plus.square.fill")
-            }
-            
-            
-            //MARK: - My Units
-            NavigationLink{
-                MyUnitsScreen()
-            } label: {
-                RowButton(title: "My Units", icon: "house.fill")
-
-            }
-            
-            //MARK: - Guests
-            
-            NavigationLink{
-                MyGuestsScreen()
-            } label: {
-                RowButton(title: "Guests", icon: "person.fill")
-
-            }
-            
-            //MARK: - Cancellation policy
-            NavigationLink {
-                CancellationPolicyScreen()
-            } label: {
-                RowButton(title: "Cancellation policy", icon: "newspaper.fill")
-                    
-            }
-
-
-            //MARK: - My Offers
-            NavigationLink {
-                MyOffersScreen()
-            } label: {
-                RowButton(title: "My offers", icon: "flame.fill")
-            }
-            
-            //MARK: - Create Promo
-            
-            NavigationLink {
-                CreatePromoCodesScreen()
-            } label: {
-                RowButton(title: "Create promocode", icon: "qrcode")
-            }
-
-            
-                
-            
-            Spacer()
-            
-        }
-        .padding()
-        .background(Color.white)
         
+        NavigationView{
+            VStack(alignment: .leading){
+                
+                //MARK: - Title
+                
+                Text("My Ads")
+                    .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
+                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                
+                
+                //MARK: - New Unit
+                NavigationLink{
+                    FacilityNameScreen()
+                } label: {
+                    RowButton(title: "Add a new unit", icon: "plus.square.fill")
+                }
+                
+                
+                //MARK: - My Units
+                NavigationLink{
+                    MyUnitsScreen()
+                } label: {
+                    RowButton(title: "My Units", icon: "house.fill")
+
+                }
+                
+                //MARK: - Guests
+                
+                NavigationLink{
+                    MyGuestsScreen()
+                } label: {
+                    RowButton(title: "Guests", icon: "person.fill")
+
+                }
+                
+                //MARK: - Cancellation policy
+                NavigationLink {
+                    CancellationPolicyScreen()
+                } label: {
+                    RowButton(title: "Cancellation policy", icon: "newspaper.fill")
+                        
+                }
+
+
+                //MARK: - My Offers
+                NavigationLink {
+                    MyOffersScreen()
+                } label: {
+                    RowButton(title: "My offers", icon: "flame.fill")
+                }
+                
+                //MARK: - Create Promo
+                
+                NavigationLink {
+                    CreatePromoCodesScreen()
+                } label: {
+                    RowButton(title: "Create promocode", icon: "qrcode")
+                }
+
+                
+                    
+                
+                Spacer()
+                
+            }
+            .padding()
+            .background(Color.white)
+        }
     }
 }
 

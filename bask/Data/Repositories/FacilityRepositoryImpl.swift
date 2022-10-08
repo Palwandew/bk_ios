@@ -71,18 +71,23 @@ class FacilityRepositoryImpl: FacilityDomainReopProtocol {
     
     func getUnpublishedFacilities(completion: @escaping (Result<[UnpublishedFacility], Error>) -> Void) {
         
-        let endpoint = Endpoints.GET_UNPUBLISHED_FACILITIES
         
-        URLSession.shared.sendRequest(endpoint: endpoint, requestType: .get, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: nil, responseModel: UnpublishedFacilitiesResponse.self) { result in
-            switch result {
-            case .failure(let error):
-                print("error \(error.localizedDescription)")
-                completion(.failure(error))
-                
-            case .success(let response):
-                completion(.success(response.data.facilities))
-            }
-        }
+        let dummyFacility = UnpublishedFacility(id: "01", englishName: "Cafe de Hunza", facilityDescription: "Situated in Karimabad", address: "Karimabad Hunza", price: 20, progress: 30, images: [FacilityImage(photo: "dummyUrl")])
+        
+        completion(.success([dummyFacility]))
+        
+        //let endpoint = Endpoints.GET_UNPUBLISHED_FACILITIES
+        
+//        URLSession.shared.sendRequest(endpoint: endpoint, requestType: .get, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: nil, responseModel: UnpublishedFacilitiesResponse.self) { result in
+//            switch result {
+//            case .failure(let error):
+//                print("error \(error.localizedDescription)")
+//                completion(.failure(error))
+//
+//            case .success(let response):
+//                completion(.success(response.data.facilities))
+//            }
+//        }
     }
     
     func getFacility<T: Codable>(_ endpoint: Endpoints, response: T.Type, completion: @escaping (Result<T, Error>) -> Void) {

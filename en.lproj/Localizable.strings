@@ -40,6 +40,10 @@
 "%lld SAR per %lld days" = "%lld SAR per %lld day(s)";
 "Deposit is %lld SAR" = "Deposit is %lld SAR";
 
+//Owner Calendar Screen
+
+"Facilities" = "Facilities";
+
 // Facility details Screen
 "per night" = "per night";
 "booked" = "Booked";

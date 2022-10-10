@@ -9,7 +9,7 @@ import Foundation
 
 class CalendarRepositoryImpl: CalendarRepositoryProtocol {
     
-    let header = ["x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2NDY4ODE3MywiZXhwIjoxNjY1MTIwMTczfQ.hDybTvFXGEoUXU-Y4qWuZwe1DTsJNWtD2aQSiYmwoCE", "Content-Type":"application/json; charset=utf-8"]
+    let header = ["x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2NTM5MzcwOCwiZXhwIjoxNjY1ODI1NzA4fQ.Azv1UgM4yfLgcrGNA0JXrGlcGGBRShvUYt5bg9jh3aU", "Content-Type":"application/json; charset=utf-8"]
     
     func fetchCalendarForFacility(with facilityID: String, from startDate: Date, to endDate: Date, completion: @escaping (Result<[CalendarDay], Error>) -> Void) {
         

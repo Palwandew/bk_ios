@@ -9,7 +9,7 @@ import Foundation
 
 class FacilityRepositoryImpl: FacilityDomainReopProtocol {
     
-    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2NDE2MjQ1MywiZXhwIjoxNjY0NTk0NDUzfQ.fyPMLalXuhJIdQc8--1VzUgrpUlJfAzoNIJyomopV_4"
+    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2NTM5MzcwOCwiZXhwIjoxNjY1ODI1NzA4fQ.Azv1UgM4yfLgcrGNA0JXrGlcGGBRShvUYt5bg9jh3aU"
     
     func getBaskCutForRenting(completion: @escaping (Result<[FacilityPercentage], Error>) -> Void) {
         

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CalendarScreen: View {
     
+    @StateObject private var model: CalendarScreenViewModel = CalendarScreenViewModel(repo: FacilityRepositoryImpl())
+    
     @State var selectedIndex: Int = 0
     @State var startDate: Date? = nil
     @State var endDate: Date? = nil
@@ -26,7 +28,7 @@ struct CalendarScreen: View {
         VStack(alignment: .leading) {
             
             //MARK: - Title
-            CalendarFacilities(selectedIndex: selectedIndex)
+            CalendarFacilities(model: model, selectedIndex: selectedIndex)
             
             Group{
                 
@@ -36,23 +38,24 @@ struct CalendarScreen: View {
                     
                     Image(systemName: "calendar")
                     
-                    Text("Al Qatif 32641, Saudi Arabia")
+                    Text(model.selectedFacility?.address ?? "placeHolderAddress")
                         .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .body))
                         .foregroundColor(Color(AppColor.DARKEST_BLUE))
                         .lineLimit(2)
                     
-                }
+                }.redacted(reason: (model.selectedFacility != nil) ? [] : .placeholder)
                 
                 HStack(alignment: .top){
                     
                     Image(systemName: "calendar")
                     
-                    Text("Default price is 800 SAR per night")
+                    Text("Default price is \(model.selectedFacility?.defaultPrice ?? 0) per night")
                         .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .body))
                         .foregroundColor(Color(AppColor.DARKEST_BLUE))
                         .lineLimit(2)
                     
                 }.padding(.vertical, 4)
+                    .redacted(reason: (model.selectedFacility != nil) ? [] : .placeholder)
                 
                 if startDate == nil {
                     HStack {
@@ -86,7 +89,7 @@ struct CalendarScreen: View {
             
             ZStack(alignment: .topTrailing) {
                 
-                CalendarViews(startDate: $startDate, endDate: $endDate)
+                CalendarViews(model: model.datesViewModel, startDate: $startDate, endDate: $endDate)
                 
                 if menuShowed {
                     VStack(alignment: .leading, spacing: 16){
@@ -144,6 +147,8 @@ struct CalendarScreen_Previews: PreviewProvider {
 
 
 struct CalendarFacilities: View {
+    
+    @ObservedObject var model: CalendarScreenViewModel
     let selectedIndex: Int
     let tabHeader: [String] = ["Mountaina Resort", "Second", "Third Resort"]
     private let width: CGFloat = UIScreen.main.bounds.width
@@ -159,10 +164,23 @@ struct CalendarFacilities: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack{
-                        ForEach(tabHeader, id:\.self) { tab in
-                            Text(tab)
-                                .foregroundColor(selectedIndex == 0 ? Color(AppColor.DARKEST_BLUE) : Color(AppColor.MAIN_TEXT_LIGHT))
+                    ForEach(model.facilities) { facility in
+                        VStack{
+                            Text(facility.name)
+                                .foregroundColor(model.isFacilitySelected(facility) ? Color(AppColor.DARKEST_BLUE) : Color(AppColor.MAIN_TEXT_LIGHT))
                                 .font(.custom("Poppins-Regular", size: 16))
+                                .offset(y: model.isFacilitySelected(facility) ? 8 : 0)
+                                .onTapGesture {
+                                    model.updateSelectedFacility(with: facility)
+                                }
+                            
+                            if model.isFacilitySelected(facility) {
+                                RoundedRectangle(cornerRadius: 3)
+                                    .fill(Color(AppColor.ACCENT_GREEN))
+                                    .frame(height: 5)
+                            }
+                        }.contentShape(Rectangle())
+                            
                     }
                     .padding(.top, 8)
                     .padding(.bottom, 4)

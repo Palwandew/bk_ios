@@ -118,7 +118,7 @@ struct BookingConfirmationDialogScreen: View {
                         .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                 }.padding(.leading)
                     
-                CalendarViews(startDate: $startDate, endDate: $endDate, enabledInteraction: false)
+                //CalendarViews(startDate: $startDate, endDate: $endDate, enabledInteraction: false)
                 
                 Spacer()
             }.padding(.top)

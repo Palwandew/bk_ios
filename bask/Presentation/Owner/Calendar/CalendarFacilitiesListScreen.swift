@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalendarFacilitiesListScreen: View {
     
-    private var viewModel: UpcomingBookingItemViewModel = UpcomingBookingItemViewModel(facility: UpcomingBooking(id: 301, price: 300, bookingDates: BookingDates(startDate: "2022-10-20", endDate: "2022-10-24"), englishName: "Mountaina", checkInAfter: "12:00 PM", remainingTime: RemainingTime(days: 3, hours: 3, minutes: 2), facility: UpcomingBookingFacility(id: "20", images: [FacilityImage(photo: "fakeUrl")]), bookingstatus: UpcomingBookingstatus(statusName: "accepted")))
+    @StateObject var model = AvailableFacilitiesListViewModel()
     
     @State var facilities: [Int] = [1, 3]
     
@@ -33,29 +33,49 @@ struct CalendarFacilitiesListScreen: View {
             }.padding(.horizontal)
             
             NavigationLink(isActive: $showCalendar) {
-                CalendarViews(startDate: $startDate, endDate: $endDate)
+                //CalendarViews(startDate: $startDate, endDate: $endDate)
             } label: {
                 EmptyView()
             }
-
-            Spacer()
             
-            ScrollView {
-                LazyVStack(spacing: 16){
-                    ForEach(facilities, id:\.self) { facility in
-                        
-                        FacilityCard(facility: viewModel, bannerColor: Color(AppColor.LIGHT_VOILET))
-                            .frame(height: UIScreen.main.bounds.height * 0.15)
-                            .padding()
-                            .onTapGesture {
-                                //CalendarViews(startDate: $startDate, endDate: $endDate)
-                                print("Show calendar")
-                                showCalendar.toggle()
+            switch model.state {
+            case .loading:
+                Spinner()
+            case .success:
+                if model.facilities.isEmpty {
+                    
+                    EmptyState(illustration: "empty_my_units", message: "You don't have a published unit yet.")
+                    
+                } else {
+                    ScrollView{
+                        //VStack(alignment: .leading){
+                            
+                            
+                            ForEach(model.facilities) { facility in
+                                
+                                AvailableFacilityCard(
+                                    imageURL: facility.imgURL,
+                                    price: facility.price,
+                                    name: facility.name,
+                                    address: facility.address)
+                                    .frame(height: UIScreen.main.bounds.height * 0.15)
+                                    .padding()
+                                    .onTapGesture {
+                                        showCalendar.toggle()
+                                    }
+                                
                             }
-                    }
+                    }.padding(.bottom, 4)
+                    //}.background(Color(AppColor.BACKGROUND))
                 }
+                
+            case .failed:
+                ErrorStateScreen()
+            case .initial:
+                EmptyView()
             }
         }
+        .background(Color(AppColor.BACKGROUND))
     }
 }
 

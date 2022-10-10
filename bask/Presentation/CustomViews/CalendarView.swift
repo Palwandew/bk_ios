@@ -240,7 +240,7 @@ struct MonthView<DateView>: View where DateView: View {
 
 struct CalendarViews: View {
     @Environment(\.calendar) var calendar
-    @StateObject var model: CalendarViewModel = CalendarViewModel(repo: CalendarRepositoryImpl())
+    @ObservedObject var model: CalendarViewModel
     @Binding var startDate: Date?
     @Binding var endDate: Date?
     var enabledInteraction: Bool = true
@@ -275,7 +275,7 @@ struct CalendarViews: View {
                     
                     
                     if model.bookedDays.contains(date){
-                        CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.booked, isDefaultPrice: false )
+                        CalendarCell(model: model, date: date, isDateSelected: isDateSelected(date), status: DayStatus.booked, isDefaultPrice: false)
                         
                             .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
                             .padding(1)
@@ -287,7 +287,7 @@ struct CalendarViews: View {
                     }
                     
                     if model.availableDays.contains(date) {
-                        CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.available, isDefaultPrice: true )
+                        CalendarCell(model: model, date: date, isDateSelected: isDateSelected(date), status: DayStatus.available)
                         
                             .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
                             .padding(1)
@@ -298,7 +298,7 @@ struct CalendarViews: View {
                             }
                     }
                     if model.unavailableDays.contains(date) {
-                        CalendarCell(date: date, isDateSelected: isDateSelected(date), status: DayStatus.unavailable, isDefaultPrice: true )
+                        CalendarCell(model: model, date: date, isDateSelected: isDateSelected(date), status: DayStatus.unavailable)
                         
                             .frame(width: (UIScreen.main.bounds.width / 7) - 16, height: (UIScreen.main.bounds.width / 7) - 16)
                             .padding(1)
@@ -358,11 +358,11 @@ enum DayStatus {
 }
 
 struct CalendarCell: View {
-    
+    @ObservedObject var model: CalendarViewModel
     let date: Date
     let isDateSelected: Bool
     let status: DayStatus
-    let isDefaultPrice: Bool
+    var isDefaultPrice: Bool = true
     
     var body: some View {
         GeometryReader { reader in
@@ -402,7 +402,7 @@ struct CalendarCell: View {
                                     .padding(.bottom, 6)
                             )
                 }
-                if !isDefaultPrice{
+                if model.isSpecilPriceDay(date){
                 RoundedRectangle(cornerRadius: 4)
                                     .fill(Color(red: 0.341, green: 0.884, blue: 0.818, opacity: 1))
                                     .frame(width: reader.size.width, height: reader.size.height * 0.30)

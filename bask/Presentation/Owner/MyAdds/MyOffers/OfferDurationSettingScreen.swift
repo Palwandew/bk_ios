@@ -49,8 +49,8 @@ struct OfferDurationSettingScreen: View {
         }
         
         .sheet(isPresented: $show, content: {
-            CalendarViews(startDate: $startDate, endDate: $endDate)
-                .padding(.top)
+            //CalendarViews(startDate: $startDate, endDate: $endDate)
+                //.padding(.top)
         })
         
         .navigationBarTitleDisplayMode(.inline)

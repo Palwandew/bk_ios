@@ -16,8 +16,8 @@ struct HomeScreen: View {
     
     var body: some View {
         
-        //NavigationView {
-            //GeometryReader{ geometry in
+        NavigationView {
+            GeometryReader{ geometry in
                 TabView{
                     
                     //MARK: - My Bookings
@@ -40,7 +40,7 @@ struct HomeScreen: View {
                     
                     //MARK: - Calendar
                     
-                    CalendarFacilitiesListScreen()
+                    CalendarScreen()
                         .onAppear(perform: {
                             print("onAppear() -> Calendar")
                         })
@@ -99,8 +99,8 @@ struct HomeScreen: View {
                         .frame(width: 70, height: 70).padding()
                         
                 }
-            //}.ignoresSafeArea(.all)
-        //}
+            }.ignoresSafeArea(.all)
+        }
     }
 }
 

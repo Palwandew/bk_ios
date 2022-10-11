@@ -73,6 +73,9 @@ struct CalendarScreen: View {
                     HStack{
                         
                         MaterialPriceField(text: $price, isValid: $isValid, errorMessage: error, placeHolder: "Price per night")
+                            .onTapGesture {
+                                print("hii")
+                            }
                         
                         MaterialDropdown(menuShowed: $menuShowed, selectedText: selectedMenuItem) {
                             withAnimation {

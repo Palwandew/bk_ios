@@ -58,6 +58,8 @@ class CalendarScreenViewModel: ObservableObject {
         self.datesViewModel.getCalendar(for: newFacility.facilityID, newFacility.defaultPrice)
     }
     
+    //func check
+    
 }
 
 struct CalendarFacilityViewModel: Identifiable {

@@ -402,12 +402,12 @@ struct CalendarCell: View {
                                     .padding(.bottom, 6)
                             )
                 }
-                if model.isSpecilPriceDay(date){
+                if model.isSpecialPriceDay(date){
                 RoundedRectangle(cornerRadius: 4)
                                     .fill(Color(red: 0.341, green: 0.884, blue: 0.818, opacity: 1))
                                     .frame(width: reader.size.width, height: reader.size.height * 0.30)
                                     .overlay(
-                                        Text("300")
+                                        Text("\(model.getSpecialPrice(for: date))")
 
                                             .foregroundColor( .white)
                                             .font(.footnote)

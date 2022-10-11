@@ -103,12 +103,61 @@ class CalendarViewModel: ObservableObject {
         specialPriceDays.removeAll()
     }
     
-    func isSpecilPriceDay(_ date: Date) -> Bool {
+    func isSpecialPriceDay(_ date: Date) -> Bool {
         
         if let _ = specialPriceDays[date] {
             return true
         }
         return false
+    }
+    
+    func getSpecialPrice(for date: Date) -> Int {
+        if let specialPrice = specialPriceDays[date] {
+            return specialPrice
+        }
+        return 0
+    }
+    
+    func isDateRangeAvailable(from startDate: Date?, to endDate: Date?){
+        
+        //Note: Using force unwrape because getUserDateSelectionMode
+        //is verifying the Optional value.
+        switch getUserDateSelectionMode(for: startDate, and: endDate) {
+            case .onlyStartDate:
+                if bookedDays.contains(startDate!){
+                    
+                    print("cannot")
+                }
+            case .bothMissing:
+                print("unable to perform operation")
+            case .bothAvailable:
+                let dateRange = startDate!...endDate!
+                for day in bookedDays {
+                    if dateRange.contains(day){
+                        print("Show dialog")
+                    }
+                }
+        }
+    }
+    
+    private func getUserDateSelectionMode(for startDate: Date?, and endDate: Date?) -> UserDateSelectionMode {
+        guard let _ = startDate else {
+            return .bothMissing
+        }
+        
+        if let _ = endDate {
+            return .bothAvailable
+        }
+
+        return .onlyStartDate
+    }
+    
+    private enum UserDateSelectionMode: Int  {
+        
+        case bothMissing = 0
+        case onlyStartDate = 1
+        case bothAvailable = 2
+
     }
 }
 

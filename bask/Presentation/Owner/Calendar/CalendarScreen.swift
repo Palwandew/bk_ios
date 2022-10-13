@@ -28,7 +28,9 @@ struct CalendarScreen: View {
         VStack(alignment: .leading) {
             
             //MARK: - Title
-            CalendarFacilities(model: model, selectedIndex: selectedIndex)
+            CalendarFacilities(model: model, selectedIndex: selectedIndex, onFacilityUpdated: {
+                
+            })
             
             Group{
                 
@@ -75,6 +77,7 @@ struct CalendarScreen: View {
                         MaterialPriceField(text: $price, isValid: $isValid, errorMessage: error, placeHolder: "Price per night")
                             .onTapGesture {
                                 print("hii")
+                                model.checkSelectedDatesForAvailability(startDate, endDate)
                             }
                         
                         MaterialDropdown(menuShowed: $menuShowed, selectedText: selectedMenuItem) {
@@ -126,6 +129,12 @@ struct CalendarScreen: View {
                     
             }
             
+            if model.showSaveButton {
+                FilledButton(label: "Save", color: Color(AppColor.DARKEST_BLUE), action: {
+                    print("save")
+                }).padding(.horizontal)
+            }
+            
             
 //            TabView(selection: $selectedIndex.animation()) {
 //
@@ -136,9 +145,49 @@ struct CalendarScreen: View {
 //                    .tag(1)
 //            }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         }
+        .alertDialog(isShowing: $model.showAlertDialog, content: {
+            VStack{
+                Image("icon_complain")
+                
+                Text("You can't change price of a booked day")
+                    .font(.custom("Poppins-Regular", size: 20))
+                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                
+                Text("You can only change price of a available day")
+                    .font(.custom("Poppins-Regular", size: 18))
+                    .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                    .padding(.top, 8)
+                
+                Button{
+                    model.showAlertDialog.toggle()
+                } label: {
+                    Text("OK")
+                        .font(.custom("Poppins-Medium", size: 16))
+                        .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                }.padding(.vertical)
+            }.padding()
+        })
+        .onChange(of: model.showAlertDialog, perform: { showDialog in
+            if showDialog {
+                UIApplicationHelper.dimissKeyboard()
+            }
+        })
+        .gesture((DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                                        .onEnded({ value in
+                                            
+
+                                            if value.translation.height > 0 {
+                                                // down
+                                                UIApplicationHelper.dimissKeyboard()
+                                                
+                                            }
+                                        })))
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("")
     }
+    
+    
+    
 }
 
 
@@ -153,9 +202,10 @@ struct CalendarFacilities: View {
     
     @ObservedObject var model: CalendarScreenViewModel
     let selectedIndex: Int
-    let tabHeader: [String] = ["Mountaina Resort", "Second", "Third Resort"]
     private let width: CGFloat = UIScreen.main.bounds.width
     @State private var initialOffSet: CGFloat = UIScreen.main.bounds.width / 8
+    let onFacilityUpdated: () -> Void
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 4){
             Text("Calendar")
@@ -175,6 +225,7 @@ struct CalendarFacilities: View {
                                 .offset(y: model.isFacilitySelected(facility) ? 8 : 0)
                                 .onTapGesture {
                                     model.updateSelectedFacility(with: facility)
+                                    onFacilityUpdated()
                                 }
                             
                             if model.isFacilitySelected(facility) {

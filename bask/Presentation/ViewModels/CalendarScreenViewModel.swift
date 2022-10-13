@@ -15,6 +15,9 @@ class CalendarScreenViewModel: ObservableObject {
     
     @Published var selectedFacility: CalendarFacilityViewModel? = nil
     
+    @Published var showAlertDialog: Bool = false
+    @Published var showSaveButton: Bool = false
+    
     let datesViewModel: CalendarViewModel = CalendarViewModel(repo: CalendarRepositoryImpl())
     
     init(repo: FacilityDomainReopProtocol){
@@ -58,7 +61,15 @@ class CalendarScreenViewModel: ObservableObject {
         self.datesViewModel.getCalendar(for: newFacility.facilityID, newFacility.defaultPrice)
     }
     
-    //func check
+    func checkSelectedDatesForAvailability(_ startDate: Date?, _ endDate: Date?){
+        if datesViewModel.isDateRangeAvailable(from: startDate, to: endDate) {
+            print("Hillo")
+            showSaveButton = true 
+        } else {
+            print("Heehaa")
+            showAlertDialog.toggle()
+        }
+    }
     
 }
 

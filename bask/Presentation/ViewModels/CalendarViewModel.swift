@@ -118,26 +118,25 @@ class CalendarViewModel: ObservableObject {
         return 0
     }
     
-    func isDateRangeAvailable(from startDate: Date?, to endDate: Date?){
+    func isDateRangeAvailable(from startDate: Date?, to endDate: Date?) -> Bool {
         
-        //Note: Using force unwrape because getUserDateSelectionMode
+        //Note: Using force unwrap because getUserDateSelectionMode
         //is verifying the Optional value.
         switch getUserDateSelectionMode(for: startDate, and: endDate) {
             case .onlyStartDate:
-                if bookedDays.contains(startDate!){
-                    
-                    print("cannot")
-                }
+                return !bookedDays.contains(startDate!)
             case .bothMissing:
-                print("unable to perform operation")
+                return false
             case .bothAvailable:
                 let dateRange = startDate!...endDate!
                 for day in bookedDays {
                     if dateRange.contains(day){
-                        print("Show dialog")
+                        return false
                     }
                 }
+                return true
         }
+        
     }
     
     private func getUserDateSelectionMode(for startDate: Date?, and endDate: Date?) -> UserDateSelectionMode {

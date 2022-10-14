@@ -21,6 +21,7 @@ struct CalendarScreen: View {
     
     @State var menuShowed: Bool = false
     
+    
     @State var selectedMenuItem: String = "unavailable"
     private var menuItem: [String] = ["available", "booked", "unavailable"]
     
@@ -29,7 +30,8 @@ struct CalendarScreen: View {
             
             //MARK: - Title
             CalendarFacilities(model: model, selectedIndex: selectedIndex, onFacilityUpdated: {
-                
+                startDate = nil
+                endDate = nil
             })
             
             Group{
@@ -132,6 +134,7 @@ struct CalendarScreen: View {
             if model.showSaveButton {
                 FilledButton(label: "Save", color: Color(AppColor.DARKEST_BLUE), action: {
                     print("save")
+                    model.checkSelectedDatesForAvailability(startDate, endDate)
                 }).padding(.horizontal)
             }
             

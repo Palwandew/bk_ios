@@ -59,6 +59,7 @@ class CalendarScreenViewModel: ObservableObject {
     func updateSelectedFacility(with newFacility: CalendarFacilityViewModel) {
         self.selectedFacility = newFacility
         self.datesViewModel.getCalendar(for: newFacility.facilityID, newFacility.defaultPrice)
+        self.showSaveButton = false 
     }
     
     func checkSelectedDatesForAvailability(_ startDate: Date?, _ endDate: Date?){
@@ -71,6 +72,21 @@ class CalendarScreenViewModel: ObservableObject {
         }
     }
     
+    func performSaveAction(with price: String, and status: String){
+        /// if everything is ok save changes else throw exceptoin
+        if price.isEmpty {
+            
+        }
+        
+    }
+    
+    private func saveStatus(){
+        print("Status")
+    }
+    
+    private func savePriceWithStatus(){
+        
+    }
 }
 
 struct CalendarFacilityViewModel: Identifiable {

@@ -53,6 +53,10 @@ class CalendarViewModel: ObservableObject {
         }
     }
     
+    func sendUpdatedCalendarDatesToServer(with requestBody: GetFacilityCalendarDays, completion: @escaping (Result<String, Error>) -> Void) {
+        repository.updateFacilityDays(requestBody, completion: completion)
+    }
+    
     private func toDates(from data: [CalendarDay], with defaultPrice: Int?) {
         
         for day in data {

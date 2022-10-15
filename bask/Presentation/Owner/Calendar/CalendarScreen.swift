@@ -133,8 +133,9 @@ struct CalendarScreen: View {
             
             if model.showSaveButton {
                 FilledButton(label: "Save", color: Color(AppColor.DARKEST_BLUE), action: {
-                    print("save")
-                    model.checkSelectedDatesForAvailability(startDate, endDate)
+                    
+                    model.performSaveAction(for: price, with: selectedMenuItem, from: startDate, to: endDate)
+                    
                 }).padding(.horizontal)
             }
             

@@ -21,4 +21,6 @@ protocol FacilityDomainReopProtocol {
     
     // To get percentage cut that goes to bask
     func getBaskCutForRenting(completion: @escaping (Result<[FacilityPercentage], Error>) -> Void)
+    
+    
 }

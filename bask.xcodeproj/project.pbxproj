@@ -91,6 +91,7 @@
 		C443CE2228C8ABF5009E32F2 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443CE2128C8ABF5009E32F2 /* ReviewsView.swift */; };
 		C450F44428A7CE260083AB86 /* FreeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450F44328A7CE260083AB86 /* FreeService.swift */; };
 		C450F44628A7CE440083AB86 /* PaidService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450F44528A7CE440083AB86 /* PaidService.swift */; };
+		C45B4B2328FA3A49004D89BB /* UpdateCalendarDayRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45B4B2228FA3A49004D89BB /* UpdateCalendarDayRequestBody.swift */; };
 		C45C84C628B7342C00646719 /* PhotosUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45C84C528B7342C00646719 /* PhotosUseCase.swift */; };
 		C45C84C828B734F300646719 /* PhotosDomainRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45C84C728B734F300646719 /* PhotosDomainRepoProtocol.swift */; };
 		C45C84CA28B736A100646719 /* PhotosRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45C84C928B736A100646719 /* PhotosRepositoryImpl.swift */; };
@@ -378,6 +379,7 @@
 		C443CE2128C8ABF5009E32F2 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
 		C450F44328A7CE260083AB86 /* FreeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeService.swift; sourceTree = "<group>"; };
 		C450F44528A7CE440083AB86 /* PaidService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidService.swift; sourceTree = "<group>"; };
+		C45B4B2228FA3A49004D89BB /* UpdateCalendarDayRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCalendarDayRequestBody.swift; sourceTree = "<group>"; };
 		C45C84C528B7342C00646719 /* PhotosUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosUseCase.swift; sourceTree = "<group>"; };
 		C45C84C728B734F300646719 /* PhotosDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosDomainRepoProtocol.swift; sourceTree = "<group>"; };
 		C45C84C928B736A100646719 /* PhotosRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -733,6 +735,7 @@
 				C4F7E77E28D884AD0060A1C7 /* UpdatedGuestRatingRequestBody.swift */,
 				C4F7E78028D8BEDC0060A1C7 /* ComplainRequestBody.swift */,
 				C408F9DB28DBC90D00518632 /* NewOfferRequestBody.swift */,
+				C45B4B2228FA3A49004D89BB /* UpdateCalendarDayRequestBody.swift */,
 			);
 			path = "Request Body Models";
 			sourceTree = "<group>";
@@ -1599,6 +1602,7 @@
 				C430369328D2B3C700C232D5 /* MyGuestListItem.swift in Sources */,
 				C462F7FC28E187E8000C99E9 /* AddPaymentMethodResponse.swift in Sources */,
 				C462F80828E1A9A4000C99E9 /* WalletViewModel.swift in Sources */,
+				C45B4B2328FA3A49004D89BB /* UpdateCalendarDayRequestBody.swift in Sources */,
 				C482682E28970EC90072147F /* MyAddsScreen.swift in Sources */,
 				C4918D6328A19DBC00A8777D /* Gallery.swift in Sources */,
 				C4AF9B282828216600EBB141 /* PostUseCase.swift in Sources */,

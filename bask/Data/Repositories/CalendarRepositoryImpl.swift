@@ -9,6 +9,8 @@ import Foundation
 
 class CalendarRepositoryImpl: CalendarRepositoryProtocol {
     
+    
+    
     let header = ["x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2NTM5MzcwOCwiZXhwIjoxNjY1ODI1NzA4fQ.Azv1UgM4yfLgcrGNA0JXrGlcGGBRShvUYt5bg9jh3aU", "Content-Type":"application/json; charset=utf-8"]
     
     func fetchCalendarForFacility(with facilityID: String, from startDate: Date, to endDate: Date, completion: @escaping (Result<[CalendarDay], Error>) -> Void) {
@@ -30,5 +32,19 @@ class CalendarRepositoryImpl: CalendarRepositoryProtocol {
             }
         }
         
+    }
+    
+    func updateFacilityDays(_ body: GetFacilityCalendarDays, completion: @escaping (Result<String, Error>) -> Void) {
+        let endpoint = Endpoints(path: "calendar")
+        
+        print("Body \(body)")
+        URLSession.shared.sendUpdateRequest(endpoint: endpoint, requestType: .post, headers: header, body: body) { result in
+            switch result {
+            case .success(_):
+                completion(.success("successful"))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }

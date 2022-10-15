@@ -11,4 +11,6 @@ protocol CalendarRepositoryProtocol {
     
     func fetchCalendarForFacility(with facilityID: String, from startDate: Date, to endDate: Date, completion: @escaping (Result<[CalendarDay], Error>) -> Void)
     
+    // Update facility calendar days
+    func updateFacilityDays(_ body: GetFacilityCalendarDays, completion: @escaping (Result<String, Error>) -> Void)
 }

@@ -12,8 +12,7 @@ struct CalendarScreen: View {
     @StateObject private var model: CalendarScreenViewModel = CalendarScreenViewModel(repo: FacilityRepositoryImpl())
     
     @State var selectedIndex: Int = 0
-    @State var startDate: Date? = nil
-    @State var endDate: Date? = nil
+    
     
     @State var price: String = ""
     @State var isValid: Bool = true
@@ -22,17 +21,14 @@ struct CalendarScreen: View {
     @State var menuShowed: Bool = false
     
     
-    @State var selectedMenuItem: String = "unavailable"
-    private var menuItem: [String] = ["available", "booked", "unavailable"]
+    @State var selectedMenuItem: Status = .unavailable
+    private var menuItem: [Status] = [.available, .booked, .unavailable]
     
     var body: some View {
         VStack(alignment: .leading) {
             
             //MARK: - Title
-            CalendarFacilities(model: model, selectedIndex: selectedIndex, onFacilityUpdated: {
-                startDate = nil
-                endDate = nil
-            })
+            CalendarFacilities(model: model, selectedIndex: selectedIndex)
             
             Group{
                 
@@ -61,7 +57,7 @@ struct CalendarScreen: View {
                 }.padding(.vertical, 4)
                     .redacted(reason: (model.selectedFacility != nil) ? [] : .placeholder)
                 
-                if startDate == nil {
+                if model.startDate == nil {
                     HStack {
                         Spacer()
                         Text("Select dates to change status or price")
@@ -79,10 +75,10 @@ struct CalendarScreen: View {
                         MaterialPriceField(text: $price, isValid: $isValid, errorMessage: error, placeHolder: "Price per night")
                             .onTapGesture {
                                 print("hii")
-                                model.checkSelectedDatesForAvailability(startDate, endDate)
+                                model.checkSelectedDatesForAvailability()
                             }
                         
-                        MaterialDropdown(menuShowed: $menuShowed, selectedText: selectedMenuItem) {
+                        MaterialDropdown(menuShowed: $menuShowed, selectedText: selectedMenuItem.rawValue) {
                             withAnimation {
                                 menuShowed.toggle()
                             }
@@ -97,16 +93,16 @@ struct CalendarScreen: View {
             
             ZStack(alignment: .topTrailing) {
                 
-                CalendarViews(model: model.datesViewModel, startDate: $startDate, endDate: $endDate)
+                CalendarViews(model: model.datesViewModel, startDate: $model.startDate, endDate: $model.endDate)
                 
                 if menuShowed {
                     VStack(alignment: .leading, spacing: 16){
                         
                         ForEach(menuItem, id:\.self) { menuItem in
                             
-                            if !menuItem.elementsEqual(selectedMenuItem){
+                            if menuItem != selectedMenuItem{
                                 HStack {
-                                    Text(menuItem)
+                                    Text(menuItem.rawValue)
                                         .font(Font.custom("Poppins-Regular", size: 16))
                                         .foregroundColor(Color(AppColor.DARKEST_BLUE))
                                         .padding(.leading)
@@ -114,8 +110,9 @@ struct CalendarScreen: View {
                                     Spacer()
                                 }.contentShape(Rectangle())
                                 .onTapGesture {
-                                        selectedMenuItem = menuItem
-                                        menuShowed.toggle()
+                                    selectedMenuItem = menuItem
+                                    model.handleStatusChange(to: selectedMenuItem)
+                                    menuShowed.toggle()
                                 }
                             }
                         }
@@ -134,42 +131,25 @@ struct CalendarScreen: View {
             if model.showSaveButton {
                 FilledButton(label: "Save", color: Color(AppColor.DARKEST_BLUE), action: {
                     
-                    model.performSaveAction(for: price, with: selectedMenuItem, from: startDate, to: endDate)
+                    model.performSaveAction(for: price, with: selectedMenuItem.rawValue)
                     
                 }).padding(.horizontal)
             }
             
-            
-//            TabView(selection: $selectedIndex.animation()) {
-//
-//                Text("First")
-//                    .tag(0)
-//
-//                Text("second")
-//                    .tag(1)
-//            }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         }
         .alertDialog(isShowing: $model.showAlertDialog, content: {
-            VStack{
-                Image("icon_complain")
-                
-                Text("You can't change price of a booked day")
-                    .font(.custom("Poppins-Regular", size: 20))
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                
-                Text("You can only change price of a available day")
-                    .font(.custom("Poppins-Regular", size: 18))
-                    .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
-                    .padding(.top, 8)
-                
-                Button{
+            
+            //MARK: - Alert Dialogs
+
+            if model.priceChangeDialog {
+                BookedFacilityPriceChangeDialog(model: model)
+            } else {
+                BookingCancelationDialog(onProceedCancelation: {
+                    print("Send cancelation request")
+                }, onDismissDialog: {
                     model.showAlertDialog.toggle()
-                } label: {
-                    Text("OK")
-                        .font(.custom("Poppins-Medium", size: 16))
-                        .foregroundColor(Color(AppColor.DARKEST_BLUE))
-                }.padding(.vertical)
-            }.padding()
+                })
+            }
         })
         .onChange(of: model.showAlertDialog, perform: { showDialog in
             if showDialog {
@@ -208,7 +188,7 @@ struct CalendarFacilities: View {
     let selectedIndex: Int
     private let width: CGFloat = UIScreen.main.bounds.width
     @State private var initialOffSet: CGFloat = UIScreen.main.bounds.width / 8
-    let onFacilityUpdated: () -> Void
+    
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4){
@@ -229,7 +209,7 @@ struct CalendarFacilities: View {
                                 .offset(y: model.isFacilitySelected(facility) ? 8 : 0)
                                 .onTapGesture {
                                     model.updateSelectedFacility(with: facility)
-                                    onFacilityUpdated()
+                                   
                                 }
                             
                             if model.isFacilitySelected(facility) {
@@ -262,4 +242,36 @@ struct CalendarFacilities: View {
         }
         .background(Color.white)
     }
+}
+
+
+struct BookedFacilityPriceChangeDialog: View {
+    
+    @ObservedObject var model: CalendarScreenViewModel
+    
+    var body: some View {
+        VStack{
+            Image("icon_complain")
+
+            Text("You can't change price of a booked day")
+                .font(.custom("Poppins-Regular", size: 20))
+                .foregroundColor(Color(AppColor.DARKEST_BLUE))
+
+            Text("You can only change price of a available day")
+                .font(.custom("Poppins-Regular", size: 18))
+                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                .padding(.top, 8)
+
+            Button{
+                model.showAlertDialog.toggle()
+                model.showSaveButton = false
+            } label: {
+                Text("OK")
+                    .font(.custom("Poppins-Medium", size: 16))
+                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+
+            }.padding(.vertical)
+        }.padding()
+    }
+    
 }

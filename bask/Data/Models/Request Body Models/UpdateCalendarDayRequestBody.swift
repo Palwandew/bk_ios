@@ -10,12 +10,13 @@ import Foundation
 
 // MARK: - UpdatedCalendarDay
 struct UpdatedCalendarDay: Encodable {
+    let price: Int?
     let facilityID, date, status: String
 
     enum CodingKeys: String, CodingKey {
         case facilityID = "facilityId"
-        case date, status
+        case date, status, price
     }
 }
 
-typealias GetFacilityCalendarDays = [UpdatedCalendarDay]
+typealias UpdatedFacilityCalendarDays = [UpdatedCalendarDay]

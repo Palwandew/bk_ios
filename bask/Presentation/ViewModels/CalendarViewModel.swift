@@ -53,7 +53,7 @@ class CalendarViewModel: ObservableObject {
         }
     }
     
-    func sendUpdatedCalendarDatesToServer(with requestBody: GetFacilityCalendarDays, completion: @escaping (Result<String, Error>) -> Void) {
+    func sendUpdatedCalendarDatesToServer(with requestBody: UpdatedFacilityCalendarDays, completion: @escaping (Result<String, Error>) -> Void) {
         repository.updateFacilityDays(requestBody, completion: completion)
     }
     

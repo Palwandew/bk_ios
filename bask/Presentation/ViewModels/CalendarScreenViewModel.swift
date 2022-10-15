@@ -15,7 +15,11 @@ class CalendarScreenViewModel: ObservableObject {
     
     @Published var selectedFacility: CalendarFacilityViewModel? = nil
     
+    @Published var startDate: Date? = nil
+    @Published var endDate: Date? = nil
+    
     @Published var showAlertDialog: Bool = false
+    @Published var priceChangeDialog: Bool = true 
     @Published var showSaveButton: Bool = false
     
     let datesViewModel: CalendarViewModel = CalendarViewModel(repo: CalendarRepositoryImpl())
@@ -39,12 +43,10 @@ class CalendarScreenViewModel: ObservableObject {
                         self?.updateSelectedFacility(with: firstFacilityFromServer)
                         self?.datesViewModel.getCalendar(for: firstFacilityFromServer.facilityID, firstFacilityFromServer.defaultPrice)
                     }
-                    
-                    
-                    
-                    
+                      
                 case .failure(_):
                     print("Error")
+                    self?.datesViewModel.state = .failed
                 }
             }
             
@@ -59,77 +61,116 @@ class CalendarScreenViewModel: ObservableObject {
     func updateSelectedFacility(with newFacility: CalendarFacilityViewModel) {
         self.selectedFacility = newFacility
         self.datesViewModel.getCalendar(for: newFacility.facilityID, newFacility.defaultPrice)
+        self.startDate = nil
+        self.endDate = nil 
         self.showSaveButton = false 
     }
     
-    func checkSelectedDatesForAvailability(_ startDate: Date?, _ endDate: Date?){
+    func checkSelectedDatesForAvailability(){
         if datesViewModel.isDateRangeAvailable(from: startDate, to: endDate) {
             print("Hillo")
             showSaveButton = true 
         } else {
             print("Heehaa")
             showAlertDialog.toggle()
+            priceChangeDialog = true
         }
     }
     
-    func performSaveAction(for price: String, with status: String, from startDate: Date?, to endDate: Date?){
+    func handleStatusChange(to newStatus: Status){
+        if newStatus != .booked{
+            checkSelectedDatesForAvailability()
+            self.priceChangeDialog = false 
+        }
+    }
+    
+    func performSaveAction(for price: String, with status: String){
         
         if price.isEmpty {
-            saveStatus(status, from: startDate, to: endDate)
+            if datesViewModel.isDateRangeAvailable(from: startDate, to: endDate) {
+                saveStatus(status)
+            }else {
+                self.showAlertDialog.toggle()
+                self.priceChangeDialog = false
+            }
+
         } else {
             if datesViewModel.isDateRangeAvailable(from: startDate, to: endDate) {
+                print("Hii")
                 savePriceAndStatus(price, status)
+            }else {
+                self.showAlertDialog.toggle()
+                self.priceChangeDialog = true 
             }
         }
     }
     
-    private func saveStatus(_ status: String, from startDate: Date?, to endDate: Date?){
+    private func saveStatus(_ status: String){
+        createReqestBody(for: "", and: status)
+    }
+    
+    private func createReqestBody(for price: String, and status: String){
         guard let selectedFacility = selectedFacility, var startDate = startDate, let status = Status(rawValue: status) else {
-            return 
+            return
         }
         
-        var requestBody: GetFacilityCalendarDays = []
-        let date = DateFormatter.check.string(from: startDate)
+        var requestBody: UpdatedFacilityCalendarDays = []
+        
         if endDate != nil {
             
             while(startDate <= endDate!){
                 
-                
-                let day = createCalendarDay(for: selectedFacility.facilityID, on: date, with: status)
+                let date = DateFormatter.check.string(from: startDate)
+                let day = createCalendarDay(for: selectedFacility.facilityID, on: date, with: status, and: price)
                 requestBody.append(day)
                 print("Day Record \(day)")
                 let nextDate = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+                
                 guard let nextDate = nextDate else {
+                    print("next date is nil")
                     return
                 }
-                
+                print("Next date = \(nextDate)")
                 startDate = nextDate
             }
             sendDataToServer(requestBody)
         } else {
-        
-            let day = createCalendarDay(for: selectedFacility.facilityID, on: date, with: status)
+            let date = DateFormatter.check.string(from: startDate)
+            let day = createCalendarDay(for: selectedFacility.facilityID, on: date, with: status, and: price)
             requestBody.append(day)
             sendDataToServer(requestBody)
         }
     }
     
     private func savePriceAndStatus(_ price: String, _ status: String){
-        print("Price \(price) and \(status)")
+        createReqestBody(for: price, and: status)
     }
     
-    private func createCalendarDay(for facilityID: String, on date: String, with status: Status) -> UpdatedCalendarDay {
-        
-        return UpdatedCalendarDay(facilityID: facilityID, date: date, status: status.rawValue)
+    private func createCalendarDay(for facilityID: String, on date: String, with status: Status, and price: String) -> UpdatedCalendarDay {
+        if price.isEmpty {
+            return UpdatedCalendarDay(price: nil, facilityID: facilityID, date: date, status: status.rawValue)
+        } else {
+            let priceAsInt = Int(price)
+            return UpdatedCalendarDay(price: priceAsInt!, facilityID: facilityID, date: date, status: status.rawValue)
+        }
     }
     
-    private func sendDataToServer(_ data: GetFacilityCalendarDays){
+    private func sendDataToServer(_ data: UpdatedFacilityCalendarDays){
         datesViewModel.sendUpdatedCalendarDatesToServer(with: data) { [weak self] result in
             
             DispatchQueue.main.async {
                 switch result {
                 case .success(_):
                     print("Successful")
+                    guard let selectedFacility = self?.selectedFacility else {
+                        return
+                    }
+
+                    self?.datesViewModel.getCalendar(for: selectedFacility.facilityID, selectedFacility.defaultPrice)
+                    self?.startDate = nil
+                    self?.endDate = nil
+                    self?.showSaveButton.toggle()
+                    
                 case .failure(_):
                     print("Error")
                 }

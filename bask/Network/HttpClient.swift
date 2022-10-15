@@ -125,7 +125,9 @@ extension URLSession{
                 
                 do {
                     let requestBody = try JSONEncoder().encode(body)
-                    print("boy ==\(requestBody)")
+                    if let resultString = String(data: requestBody, encoding: .utf8) {
+                            print(resultString)
+                    }
                     request.httpBody = requestBody
                 } catch {
                     print("error encoding the data")

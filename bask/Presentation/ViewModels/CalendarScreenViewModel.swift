@@ -7,28 +7,37 @@
 
 import Foundation
 
+/// View model for the `Calender Screen`
 class CalendarScreenViewModel: ObservableObject {
     
+    
+    //MARK: - Repository
     private let repository: FacilityDomainReopProtocol
     
+    
+    //MARK: - Published properties
     @Published var facilities: [CalendarFacilityViewModel] = []
-    
     @Published var selectedFacility: CalendarFacilityViewModel? = nil
-    
     @Published var startDate: Date? = nil
     @Published var endDate: Date? = nil
-    
     @Published var showAlertDialog: Bool = false
     @Published var priceChangeDialog: Bool = true 
     @Published var showSaveButton: Bool = false
     
-    let datesViewModel: CalendarViewModel = CalendarViewModel(repo: CalendarRepositoryImpl())
     
+    //MARK: - CalendarViewModel
+    let calendarViewModel: CalendarViewModel = CalendarViewModel(repo: CalendarRepositoryImpl())
+    
+    
+    
+    //MARK: - init
     init(repo: FacilityDomainReopProtocol){
         self.repository = repo
         getAvailableFacilities()
     }
-    
+     
+    /// This will get all the facilities of the user and get the calendar days data from back-end
+    ///  of the first facility.
     func getAvailableFacilities(){
         self.repository.getAvailableFacilities { [weak self] result in
             
@@ -41,42 +50,61 @@ class CalendarScreenViewModel: ObservableObject {
                     if let firstFacilityFromServer = self?.facilities.first {
                         
                         self?.updateSelectedFacility(with: firstFacilityFromServer)
-                        self?.datesViewModel.getCalendar(for: firstFacilityFromServer.facilityID, firstFacilityFromServer.defaultPrice)
+                        self?.calendarViewModel.getCalendar(for: firstFacilityFromServer.facilityID, firstFacilityFromServer.defaultPrice)
                     }
                       
                 case .failure(_):
-                    print("Error")
-                    self?.datesViewModel.state = .failed
+                    self?.calendarViewModel.state = .failed
                 }
             }
             
         }
     }
     
+    /// This will check if the user has selected the facility.
+    /// - Parameter facilityToCheck: Facility of the user.
+    /// - Returns: `true` if the facility is selected, `false` otherwise.
     func isFacilitySelected(_ facilityToCheck: CalendarFacilityViewModel) -> Bool {
         
         return selectedFacility?.facilityID == facilityToCheck.facilityID
     }
     
+     
+    
+    /// This will update the selected facility with a new one.
+    /// - This method will change the currently selected facility to a provided one. This will
+    ///  be invoked whenever the user selects a facility for the horizontal list in `Calendar Screen`
+    /// - Parameter newFacility: Facility selected by the user.
     func updateSelectedFacility(with newFacility: CalendarFacilityViewModel) {
         self.selectedFacility = newFacility
-        self.datesViewModel.getCalendar(for: newFacility.facilityID, newFacility.defaultPrice)
+        self.calendarViewModel.getCalendar(for: newFacility.facilityID, newFacility.defaultPrice)
         self.startDate = nil
         self.endDate = nil 
         self.showSaveButton = false 
     }
     
+    
+    /// Checks for the user selected dates for availability.
+    ///  - This method will check for the date interval from start to end if they are not booked so that
+    ///  user can change the price or status and enables the save button if dates are available and shows
+    ///  a alert dialog if not.
     func checkSelectedDatesForAvailability(){
-        if datesViewModel.isDateRangeAvailable(from: startDate, to: endDate) {
-            print("Hillo")
+        if calendarViewModel.isDateRangeAvailable(from: startDate, to: endDate) {
+           
             showSaveButton = true 
         } else {
-            print("Heehaa")
+            
             showAlertDialog.toggle()
             priceChangeDialog = true
         }
     }
     
+    
+    
+    /// Handles the day status changes.
+    ///  - This method will be invoked whenever the user changes the day status
+    ///  in `Calendar Screen`
+    /// - Parameter newStatus: new day status selected by the user.
     func handleStatusChange(to newStatus: Status){
         if newStatus != .booked{
             checkSelectedDatesForAvailability()
@@ -84,31 +112,46 @@ class CalendarScreenViewModel: ObservableObject {
         }
     }
     
+    /// Handles the save button tap.
+    /// - This method will be invoked when the user taps on the save button.
+    /// This will check the selected dates for availability,
+    /// if the price is empty, this will send only the status.
+    /// Otherwise, this will send both the price and status to back-end for the selected dates range.
+    /// - Parameters:
+    ///   - price: Value of the price input field.
+    ///   - status: Status of the day status menu.
     func performSaveAction(for price: String, with status: String){
         
         if price.isEmpty {
-            if datesViewModel.isDateRangeAvailable(from: startDate, to: endDate) {
+            if calendarViewModel.isDateRangeAvailable(from: startDate, to: endDate) {
                 saveStatus(status)
             }else {
                 self.showAlertDialog.toggle()
                 self.priceChangeDialog = false
+                
             }
 
         } else {
-            if datesViewModel.isDateRangeAvailable(from: startDate, to: endDate) {
-                print("Hii")
+            if calendarViewModel.isDateRangeAvailable(from: startDate, to: endDate) {
+                
                 savePriceAndStatus(price, status)
             }else {
                 self.showAlertDialog.toggle()
-                self.priceChangeDialog = true 
+                self.priceChangeDialog = true
+                
             }
         }
     }
+    
     
     private func saveStatus(_ status: String){
         createReqestBody(for: "", and: status)
     }
     
+    /// Creates the POST request body.
+    /// - Parameters:
+    ///   - price: price selected by the user.
+    ///   - status: status selected by the user.
     private func createReqestBody(for price: String, and status: String){
         guard let selectedFacility = selectedFacility, var startDate = startDate, let status = Status(rawValue: status) else {
             return
@@ -156,7 +199,7 @@ class CalendarScreenViewModel: ObservableObject {
     }
     
     private func sendDataToServer(_ data: UpdatedFacilityCalendarDays){
-        datesViewModel.sendUpdatedCalendarDatesToServer(with: data) { [weak self] result in
+        calendarViewModel.sendUpdatedCalendarDatesToServer(with: data) { [weak self] result in
             
             DispatchQueue.main.async {
                 switch result {
@@ -166,7 +209,7 @@ class CalendarScreenViewModel: ObservableObject {
                         return
                     }
 
-                    self?.datesViewModel.getCalendar(for: selectedFacility.facilityID, selectedFacility.defaultPrice)
+                    self?.calendarViewModel.getCalendar(for: selectedFacility.facilityID, selectedFacility.defaultPrice)
                     self?.startDate = nil
                     self?.endDate = nil
                     self?.showSaveButton.toggle()
@@ -206,3 +249,4 @@ struct CalendarFacilityViewModel: Identifiable {
     
     
 }
+

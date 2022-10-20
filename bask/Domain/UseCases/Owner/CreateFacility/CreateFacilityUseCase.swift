@@ -8,7 +8,7 @@
 import Foundation
 
 
-class CreateFacilityUseCase {
+class CreateFacilityUseCase: OwnerFacilityUsecaseProtocol {
     private let createFacilityRepo: CreateFacilityDomainRepoProtocol
     
     init(repository: CreateFacilityDomainRepoProtocol){

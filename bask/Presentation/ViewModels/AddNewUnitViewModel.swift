@@ -9,7 +9,8 @@ import Foundation
 import CoreLocation
 
 class AddNewUnitViewModel: ObservableObject {
-    
+
+    private let ownerId = "7ae267e8-65cc-4c6d-948a-5518a8bfeb36"
     //MARK: - Usecase
     
     private let createFacilityUseCase: CreateFacilityUseCase
@@ -17,7 +18,7 @@ class AddNewUnitViewModel: ObservableObject {
     
     //MARK: - Properties
     
-    
+    private var creationProcess: FacilityCreationProcess = .new
     
     //MARK: - Navigation indicators
     
@@ -31,8 +32,7 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var willShowPriceSetupScreen: Bool = false
     @Published var willShowDescriptionScreen: Bool = false
     @Published var willShowPhotosScreen: Bool = false
-    
-    private let ownerId = "7ae267e8-65cc-4c6d-948a-5518a8bfeb36"
+
     @Published var facilityName: String = ""
     @Published var isValidEnglishName: Bool = true
     @Published var isValidArabicName: Bool = true
@@ -57,6 +57,12 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var shallRetry: Bool = false
     
     init(useCase: CreateFacilityUseCase){
+        switch creationProcess {
+        case .new:
+            <#code#>
+        case .unpublished:
+            <#code#>
+        }
         createFacilityUseCase = useCase
     }
     
@@ -74,6 +80,7 @@ class AddNewUnitViewModel: ObservableObject {
     
     
     func isFacilityNameValid() {
+        
         
         willShowAddRoomsScreen = true
 //        do {
@@ -573,4 +580,7 @@ enum FacilityCreationStep {
     case stepTen
 }
 
-
+enum FacilityCreationProcess: String {
+    case new = "new"
+    case unpublished = "unpublished"
+}

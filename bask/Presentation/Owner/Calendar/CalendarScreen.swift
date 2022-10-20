@@ -93,7 +93,7 @@ struct CalendarScreen: View {
             
             ZStack(alignment: .topTrailing) {
                 
-                CalendarViews(model: model.datesViewModel, startDate: $model.startDate, endDate: $model.endDate)
+                CalendarViews(model: model.calendarViewModel, startDate: $model.startDate, endDate: $model.endDate)
                 
                 if menuShowed {
                     VStack(alignment: .leading, spacing: 16){
@@ -161,7 +161,7 @@ struct CalendarScreen: View {
                                             
 
                                             if value.translation.height > 0 {
-                                                // down
+                                                
                                                 UIApplicationHelper.dimissKeyboard()
                                                 
                                             }
@@ -226,15 +226,6 @@ struct CalendarFacilities: View {
                 }
             }
             
-            
-//            HStack{
-//                RoundedRectangle(cornerRadius: 8).fill(Color(AppColor.ACCENT_GREEN))
-//                    .frame(width: UIScreen.main.bounds.width * 0.10, height: UIScreen.main.bounds.height * 0.01)
-//                    .offset(x: selectedIndex == 0 ? initialOffSet : (width - (width * 0.30)))
-//                    .animation(.interpolatingSpring(mass: 1.0,stiffness: 100.0,damping: 10,initialVelocity: 0), value: selectedIndex)
-//
-//            }
-//            .padding(.horizontal)
             
             LinearGradient(colors: [.white, Color(.sRGB, white: 0.85, opacity: 1)], startPoint: .bottom, endPoint: .top)
                 .frame(height: 6)

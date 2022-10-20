@@ -13,6 +13,8 @@ struct FacilityNameScreen: View {
     @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     @State var progress: Float = 0.083 // total 12 steps therefore each one is 0.083
     @State var arabicName: String = ""
+    @State var englishNameError: Bool = false
+    @State var arabicNameError: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 32.0){
@@ -27,7 +29,7 @@ struct FacilityNameScreen: View {
             
             //MARK: - English Name
             VStack(alignment: .trailing) {
-                MaterialTextField(text: $addNewUnitViewModel.facility.englishName, isValid: $addNewUnitViewModel.isValidEnglishName, errorMessage: "Please enter a name", placeHolder: "Name").keyboardType(.default)
+                UIKitWrappedTextField(text: $addNewUnitViewModel.facility.englishName, placeHolder: "English name", returnButton: .next, inputLanguageIdentifier: "en", tag: 1, error: $englishNameError)
                 
                 Text("\(addNewUnitViewModel.facilityName.count) / 50")
                     .font(Font.custom("Poppins-Light", size: 12.0))
@@ -37,15 +39,8 @@ struct FacilityNameScreen: View {
             //MARK: - Arabic Name
             
             VStack(alignment: .leading) {
-                ArabicTextInputField(text: $addNewUnitViewModel.facility.arabicName)
-                    .frame(height: 25)
-                    .padding()
-                .background(RoundedRectangle(cornerRadius: 10).stroke(addNewUnitViewModel.isValidArabicName ? .gray : .red, lineWidth: 1))
-                if !addNewUnitViewModel.isValidArabicName {
-                    Text("Please enter Arabic name")
-                        .foregroundColor(.red)
-                        .font(Font.custom("Poppins-Light", size: 12.0, relativeTo: .caption))
-                }
+                UIKitWrappedTextField(text: $addNewUnitViewModel.facility.arabicName, placeHolder: "Arabic name", returnButton: .continue, inputLanguageIdentifier: "ar", tag: 2, error: $arabicNameError)
+                
             }
             
             Spacer()
@@ -67,7 +62,7 @@ struct FacilityNameScreen: View {
             
         }
         .padding(.horizontal)
-        .background(Color(AppColor.BACKGROUND))
+        .background(Color.white)
         .toast(isShowing: $addNewUnitViewModel.shallRetry, content: {
             Toast(message: "An error occured. Please try again.", style: .failure)
             

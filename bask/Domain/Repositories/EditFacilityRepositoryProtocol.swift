@@ -9,7 +9,7 @@ import Foundation
 
 protocol EditFacilityRepositoryProtocol {
     
-    func getRoomsData(completion: @escaping (Result<Facility, Error>) -> Void)
+    func getRoomsData(for facilityID: String, completion: @escaping (Result<Facility, Error>) -> Void)
     
     
 }

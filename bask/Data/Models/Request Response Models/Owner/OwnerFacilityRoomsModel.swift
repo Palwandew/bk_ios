@@ -12,6 +12,8 @@ struct OwnerFacilityRoomsData: Codable {
     let facilityservices: [Facilityservice]
     let otherData: RoomsCount
     let page, pageCount: Int
+    
+    
 }
 
 // MARK: - Facilityservice
@@ -44,4 +46,13 @@ struct Facilityservicetype: Codable {
 struct RoomsCount: Codable {
     let length, width, capacity, noOfBathRooms: Int
     let noOfShowers: Int
+    
+    
+    func dotFacilityEntity() -> Facility {
+        let lengthString = String(length)
+        let widthString = String(width)
+        
+        
+        return Facility(length: lengthString, width: widthString, capacity: self.capacity, bathrooms: noOfBathRooms, showers: noOfShowers)
+    }
 }

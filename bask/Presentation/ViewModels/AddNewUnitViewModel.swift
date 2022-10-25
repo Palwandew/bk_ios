@@ -8,6 +8,36 @@
 import Foundation
 import CoreLocation
 
+struct FacilityNameViewModel {
+    
+    var englishName: String = ""
+    var arabicName: String = ""
+    var englishNameError: Bool = false
+    var arabicNameError: Bool = false
+    var shallNavigate: Bool = false
+    
+    mutating func onContinueTapped() {
+        if isNameValid(englishName) && isNameValid(arabicName){
+            shallNavigate = true
+        } else {
+            handleNameErrors()
+        }
+    }
+    
+    mutating private func handleNameErrors(){
+        if englishName.isEmpty {
+            englishNameError = true
+        }
+        if arabicName.isEmpty {
+            arabicNameError = true
+        }
+    }
+    
+    private func isNameValid(_ name: String) -> Bool {
+        return !(name.count < 3)
+    }
+}
+
 class AddNewUnitViewModel: ObservableObject {
 
     private let ownerId = "7ae267e8-65cc-4c6d-948a-5518a8bfeb36"
@@ -34,7 +64,7 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var willShowPhotosScreen: Bool = false
 
     @Published var facilityName: String = ""
-    @Published var isValidEnglishName: Bool = true
+    @Published var isValidEnglishName: Bool = true 
     @Published var isValidArabicName: Bool = true
     @Published var roomsCount: Int = 0
     @Published var kitchenCount: Int = 0
@@ -53,36 +83,28 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var toastStyle: ToastStyle = .success
     
     
+    @Published var facilityNameViewModel: FacilityNameViewModel = FacilityNameViewModel()
+    
     // Retry button indicator
     @Published var shallRetry: Bool = false
     
     init(useCase: CreateFacilityUseCase){
-        switch creationProcess {
-        case .new:
-            <#code#>
-        case .unpublished:
-            <#code#>
-        }
+        print("Init create new facility view model")
         createFacilityUseCase = useCase
     }
     
-    func urlTesting(){
-        let queryItem: [URLQueryItem] = [URLQueryItem(name: "facility", value: "123412")]
-        let endPoint = Endpoints(path: "/api/v1/facility", queryItems: queryItem)
-        guard let url = endPoint.url else {
-            print("invalid url ")
-            return
-        }
-        print(url.absoluteString)
+    deinit{
+        print("deinit create new facility view model")
     }
+    
     
     //MARK: - Step - 1 Validation
     
     
     func isFacilityNameValid() {
-        
-        
-        willShowAddRoomsScreen = true
+        facilityNameViewModel.onContinueTapped()
+        isValidEnglishName = false
+//        willShowAddRoomsScreen = true
 //        do {
 //            try facility.validateName()
 //            isValidEnglishName = true

@@ -54,6 +54,9 @@ struct Facility {
     // Description
     var description: String = ""
     
+    //let length, width, capacity, noOfBathRooms: Int
+    //let noOfShowers: Int
+    
     
     //MARK: - Name validation
     func validateName() throws  {

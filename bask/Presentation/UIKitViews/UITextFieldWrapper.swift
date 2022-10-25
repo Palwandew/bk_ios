@@ -92,6 +92,7 @@ struct UITextfieldWrapper: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: CustomTextField, context: Context) {
+        
     }
     
     func makeCoordinator() -> Coordinator {

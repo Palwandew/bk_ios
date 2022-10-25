@@ -13,6 +13,7 @@ struct FacilityNameScreen: View {
     @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     @State var progress: Float = 0.083 // total 12 steps therefore each one is 0.083
     @State var arabicName: String = ""
+    
     @State var englishNameError: Bool = false
     @State var arabicNameError: Bool = false
     
@@ -29,7 +30,7 @@ struct FacilityNameScreen: View {
             
             //MARK: - English Name
             VStack(alignment: .trailing) {
-                UIKitWrappedTextField(text: $addNewUnitViewModel.facility.englishName, placeHolder: "English name", returnButton: .next, inputLanguageIdentifier: "en", tag: 1, error: $englishNameError)
+                UIKitWrappedTextField(text: $addNewUnitViewModel.facilityNameViewModel.englishName, placeHolder: "English name", returnButton: .next, inputLanguageIdentifier: "en", tag: 1, error: $addNewUnitViewModel.facilityNameViewModel.englishNameError)
                 
                 Text("\(addNewUnitViewModel.facilityName.count) / 50")
                     .font(Font.custom("Poppins-Light", size: 12.0))
@@ -39,7 +40,7 @@ struct FacilityNameScreen: View {
             //MARK: - Arabic Name
             
             VStack(alignment: .leading) {
-                UIKitWrappedTextField(text: $addNewUnitViewModel.facility.arabicName, placeHolder: "Arabic name", returnButton: .continue, inputLanguageIdentifier: "ar", tag: 2, error: $arabicNameError)
+                UIKitWrappedTextField(text: $addNewUnitViewModel.facilityNameViewModel.arabicName, placeHolder: "Arabic name", returnButton: .continue, inputLanguageIdentifier: "ar", tag: 2, error: $addNewUnitViewModel.facilityNameViewModel.arabicNameError)
                 
             }
             
@@ -48,7 +49,7 @@ struct FacilityNameScreen: View {
             
             //MARK: - Continue Button 
             NavigationLink(destination:
-                            FacilityRoomsScreen().environmentObject(addNewUnitViewModel), isActive: $addNewUnitViewModel.willShowAddRoomsScreen) {
+                            FacilityRoomsScreen().environmentObject(addNewUnitViewModel), isActive: $addNewUnitViewModel.facilityNameViewModel.shallNavigate) {
                     EmptyView()
                 }
             

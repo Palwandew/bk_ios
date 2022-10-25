@@ -254,7 +254,7 @@
 		C4C63A8F2823560300343032 /* baskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A8E2823560300343032 /* baskTests.swift */; };
 		C4C63A992823560300343032 /* baskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A982823560300343032 /* baskUITests.swift */; };
 		C4C63A9B2823560300343032 /* baskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A9A2823560300343032 /* baskUITestsLaunchTests.swift */; };
-		C4CA1BFD29047965000F2291 /* EditRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CA1BFC29047965000F2291 /* EditRepositoryImpl.swift */; };
+		C4CA1BFD29047965000F2291 /* EditFacilityRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CA1BFC29047965000F2291 /* EditFacilityRepositoryImpl.swift */; };
 		C4D0872E289326B400DCEACF /* OTPInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D0872D289326B400DCEACF /* OTPInput.swift */; };
 		C4D659AC282AFA7100FAE1D1 /* NameCredentialsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D659AB282AFA7100FAE1D1 /* NameCredentialsScreen.swift */; };
 		C4D659AE282B0B8B00FAE1D1 /* CustomInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D659AD282B0B8B00FAE1D1 /* CustomInputField.swift */; };
@@ -553,7 +553,7 @@
 		C4C63ACA282385B000343032 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		C4C63ACC2823904B00343032 /* HttpClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClientProtocol.swift; sourceTree = "<group>"; };
 		C4C63AD128239DF700343032 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
-		C4CA1BFC29047965000F2291 /* EditRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRepositoryImpl.swift; sourceTree = "<group>"; };
+		C4CA1BFC29047965000F2291 /* EditFacilityRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFacilityRepositoryImpl.swift; sourceTree = "<group>"; };
 		C4D0872D289326B400DCEACF /* OTPInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPInput.swift; sourceTree = "<group>"; };
 		C4D659AB282AFA7100FAE1D1 /* NameCredentialsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCredentialsScreen.swift; sourceTree = "<group>"; };
 		C4D659AD282B0B8B00FAE1D1 /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
@@ -933,7 +933,7 @@
 				C485C52528E3FBCF00FC0E88 /* UserRepositoryImpl.swift */,
 				C4075E2B28E5631400FEA2F8 /* BookingRepositoryImpl.swift */,
 				C46E5F0828EC63950072F1F4 /* CalendarRepositoryImpl.swift */,
-				C4CA1BFC29047965000F2291 /* EditRepositoryImpl.swift */,
+				C4CA1BFC29047965000F2291 /* EditFacilityRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1486,7 +1486,7 @@
 				C462F80228E1A74B000C99E9 /* WalletRepositoryProtocol.swift in Sources */,
 				C462F7F428E16E0D000C99E9 /* PaymentMethodsUsecase.swift in Sources */,
 				C462F80428E1A794000C99E9 /* WalletProtocolImpl.swift in Sources */,
-				C4CA1BFD29047965000F2291 /* EditRepositoryImpl.swift in Sources */,
+				C4CA1BFD29047965000F2291 /* EditFacilityRepositoryImpl.swift in Sources */,
 				C4D659B4282B5A8900FAE1D1 /* LinearProgressBar.swift in Sources */,
 				C485C52628E3FBCF00FC0E88 /* UserRepositoryImpl.swift in Sources */,
 				C4075E2A28E561A100FEA2F8 /* BookingRepositoryProtocol.swift in Sources */,

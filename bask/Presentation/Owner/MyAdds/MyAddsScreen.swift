@@ -9,9 +9,12 @@ import SwiftUI
 
 
 struct MyAddsScreen: View {
+
+    
+    
     var body: some View {
-        
-        NavigationView{
+
+        //NavigationView{
             VStack(alignment: .leading){
                 
                 //MARK: - Title
@@ -79,7 +82,7 @@ struct MyAddsScreen: View {
             .padding()
             .background(Color.white)
         }
-    }
+    //}
 }
 
 struct MyAddsScreen_Previews: PreviewProvider {

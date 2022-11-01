@@ -48,7 +48,7 @@ struct UIKitWrappedTextField: View {
                 }
             }
             
-            if error && text.isEmpty {
+            if error {
                 Text("This field cannot be empty")
                     .font(.custom("Poppins-Regular", size: 12))
                     .foregroundColor(error ? Color(AppColor.RED): Color(AppColor.LIGHT_VOILET))
@@ -92,7 +92,10 @@ struct UITextfieldWrapper: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: CustomTextField, context: Context) {
-        
+        if error {
+            uiView.layer.borderColor = UIColor(red: 0.859, green: 0.185, blue: 0.142, alpha: 1).cgColor
+            
+        }
     }
     
     func makeCoordinator() -> Coordinator {

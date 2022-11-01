@@ -22,6 +22,8 @@ struct FacilityRoomsScreen: View {
         
         VStack(alignment: .leading, spacing: 32.0) {
             
+            //MARK: - Title
+            
             Text("Rooms")
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
@@ -29,63 +31,59 @@ struct FacilityRoomsScreen: View {
             
             
             ScrollView {
-                RoomSizeView(label: "Size of facility", length: $addNewUnitViewModel.facility.length, width: $addNewUnitViewModel.facility.width, validLength: $addNewUnitViewModel.isValidLength, validWidth: $addNewUnitViewModel.isValidWidth)
+                
+                
+                //MARK: - Facility Size Input
+                
+                RoomSizeView(label: "Size of facility", length: $addNewUnitViewModel.facilityRoomsViewModel.facilityLength, width: $addNewUnitViewModel.facilityRoomsViewModel.facilityWidth, validLength: $addNewUnitViewModel.facilityRoomsViewModel.validLength, validWidth: $addNewUnitViewModel.facilityRoomsViewModel.validWidth)
                     .padding(.horizontal, 1)
                     .offset(x: moving ? 5 : 0)
                     .animation(.interpolatingSpring(stiffness: 5000, damping: 20), value: moving)
                 
                 
                 
-                AmenityCounterView(counter: $addNewUnitViewModel.roomsCount, label: "Living rooms"){
+                //MARK: - Living Rooms Counter
+                
+                AmenityCounterView(counter: $addNewUnitViewModel.facilityRoomsViewModel.livingRoomsCount, label: "Living rooms"){
                     UIApplicationHelper.dimissKeyboard()
-                    addNewUnitViewModel.removeRoom()
+                    addNewUnitViewModel.decreaseCount(of: .livingRoom)
                 } onIncrease: {
-                    addNewUnitViewModel.addRoom()
+                    addNewUnitViewModel.increaseCount(of: .livingRoom)
                 }
                 
-                LazyVStack(alignment: .leading){
-                    ForEach($addNewUnitViewModel.facility.livingRooms) { $room in
-                        
-                        RoomSizeView(label: "Living room", length: $room.length, width: $room.width, validLength: $room.validLength, validWidth: $room.validWidth)
-                            .padding([.top, .leading, .trailing], 2)
-                            .padding(.bottom)
-                        
-                        
-                    }
-                }
-               
-                AmenityCounterView(counter: $addNewUnitViewModel.facility.kitchen, label: "Kitchen") {
-                    addNewUnitViewModel.decreaseKitchenCount()
+                
+                //MARK: - Kitchen Counter
+                AmenityCounterView(counter: $addNewUnitViewModel.facilityRoomsViewModel.kitchensCount, label: "Kitchen") {
+                    addNewUnitViewModel.decreaseCount(of: .kitchen)
                 } onIncrease: {
-                    addNewUnitViewModel.increaseKitchenCount()
+                    addNewUnitViewModel.increaseCount(of: .kitchen)
                 }.padding(.bottom)
                 
-                LazyVStack(alignment: .leading){
-                    ForEach(addNewUnitViewModel.kitchen.indices, id:\.self) { index in
-                        
-                        RoomSizeView(label: "Kitchen \(index)", length: $length, width: $length, validLength: $isValid, validWidth: $isValid)
-                            .padding([.top, .leading, .trailing], 2)
-                            .padding(.bottom)
-                        
-                    }
-                }
                 
-                AmenityCounterView(counter: $addNewUnitViewModel.facility.bathrooms, label: "Bathroom") {
-                    addNewUnitViewModel.decreaseBathroomCount()
+                
+                //MARK: - Bathroom Counter
+                AmenityCounterView(counter: $addNewUnitViewModel.facilityRoomsViewModel.bathroomsCount, label: "Bathroom") {
+                    addNewUnitViewModel.decreaseCount(of: .bathroom)
                 } onIncrease: {
-                    addNewUnitViewModel.increaseBathroomCount()
+                    addNewUnitViewModel.increaseCount(of: .bathroom)
                 }.padding(.bottom)
                 
-                AmenityCounterView(counter: $addNewUnitViewModel.facility.showers, label: "Shower") {
-                    addNewUnitViewModel.decreaseShowersCount()
+                
+                
+                //MARK: - Shower counter
+                AmenityCounterView(counter: $addNewUnitViewModel.facilityRoomsViewModel.showersCount, label: "Shower") {
+                    addNewUnitViewModel.decreaseCount(of: .shower)
                 } onIncrease: {
-                    addNewUnitViewModel.increaseShowersCount()
+                    addNewUnitViewModel.increaseCount(of: .shower)
                 }.padding(.bottom)
                 
-                AmenityCounterView(counter: $addNewUnitViewModel.facility.capacity, label: "Capacity") {
-                    addNewUnitViewModel.decreaseCapacityCount()
+                
+                
+                //MARK: - Capacity counter
+                AmenityCounterView(counter: $addNewUnitViewModel.facilityRoomsViewModel.personCapacity, label: "Capacity") {
+                    addNewUnitViewModel.decreaseCount(of: .personCapacity)
                 } onIncrease: {
-                    addNewUnitViewModel.increaseCapacityCount()
+                    addNewUnitViewModel.increaseCount(of: .personCapacity)
                 }.padding(.bottom)
                     .offset(x: moving ? 5 : 0)
                     .animation(.interpolatingSpring(stiffness: 5000, damping: 20), value: moving)
@@ -93,7 +91,8 @@ struct FacilityRoomsScreen: View {
                 
                 NavigationLink(destination:
                                 FacilityFreeAmenitiesScreen()
-                                .environmentObject(addNewUnitViewModel), isActive: $addNewUnitViewModel.willShowFreeAmenitiesScreen) {
+                                .environmentObject(addNewUnitViewModel),
+                               isActive: $addNewUnitViewModel.facilityRoomsViewModel.shallNavigate) {
                     EmptyView()
                 }
                 
@@ -108,26 +107,20 @@ struct FacilityRoomsScreen: View {
                 
             }
             
+            
+            //MARK: - Continue Button
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
-                print("tapped")
-                withAnimation {
-                    moving.toggle()
-                }
                 addNewUnitViewModel.onContinueTapped()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    withAnimation {
-                        moving.toggle()
-                    }
-                }
+                
                 
             }.padding(.top, -24)
             
         }
         .padding(.horizontal)
         .background(Color(AppColor.BACKGROUND))
-        .toast(isShowing: $addNewUnitViewModel.shallRetry, content: {
-            Toast(message: "An error occured. Please try again.", style: .failure)
+        .toast(isShowing: $addNewUnitViewModel.facilityRoomsViewModel.toast.willShow, content: {
+            Toast(message: addNewUnitViewModel.facilityRoomsViewModel.toast.message, style: addNewUnitViewModel.facilityRoomsViewModel.toast.style)
             
         })
         .navigationBarBackButtonHidden(true)

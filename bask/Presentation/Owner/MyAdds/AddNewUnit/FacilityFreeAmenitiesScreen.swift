@@ -37,51 +37,33 @@ struct FacilityFreeAmenitiesScreen: View {
                 
                 //MARK: - Wifi
                 
-                AmenityToggle(isOn: $addNewUnitViewModel.facility.wifi, label: "Wifi")
-                
-                
-                //MARK: - Parking
-                
-                AmenityToggle(isOn: $addNewUnitViewModel.facility.parking, label: "Parking")
-                
-                
-                //MARK: - Indoor Pools
-                
-                AmenityCounterView(counter: $indoorSwimmingPools, label: "Indoor swimming pool") {
-                    addNewUnitViewModel.removeIndoorSwimmingPool()
-                } onIncrease: {
-                    addNewUnitViewModel.addIndoorSwimmingPool()
-                }
-                
-                LazyVStack(alignment: .leading){
-                    ForEach($addNewUnitViewModel.facility.freeIndoorSwimmingPools) { $pool in
-                        
-                        RoomSizeView(label: "Indoor pool", length: $pool.length, width: $pool.width, validLength: $pool.validLength, validWidth: $pool.validWidth)
-                            .padding([.top, .leading, .trailing], 2)
-                            .padding(.bottom)
-                        
-                    }
-                }
-                
-                
-                //MARK: - Outdoor Pools
-                
-                AmenityCounterView(counter: $indoorSwimmingPools, label: "Outdoor swimming pool") {
-                    addNewUnitViewModel.removeOutdoorSwimmingPool()
-                } onIncrease: {
-                    addNewUnitViewModel.addOutdoorSwimmingPool()
-                }
-                
-                LazyVStack(alignment: .leading){
-                    ForEach($addNewUnitViewModel.facility.freeOutdoorSwimmingPools) { $pool in
-                        
-                        RoomSizeView(label: "Outdoor pool", length: $pool.length, width: $pool.width, validLength: $pool.validLength, validWidth: $pool.validWidth)
-                            .padding([.top, .leading, .trailing], 2)
-                            .padding(.bottom)
-                        
-                    }
-                }
-                
+                Group{
+                    Toggle(isOn: $isOn) {
+                        Text("Wifi")
+                    }.toggleStyle(Checkbox())
+                    
+                    
+                    //MARK: - Parking
+                    
+                    Toggle(isOn: $isOn) {
+                        Text("Parking")
+                    }.toggleStyle(Checkbox())
+                    
+                    
+                    //MARK: - Indoor Pools
+                    
+                    Toggle(isOn: $isOn) {
+                        Text("Indoor swimming pool")
+                    }.toggleStyle(Checkbox())
+                    
+                    
+                    //MARK: - Outdoor Pools
+                    
+                    Toggle(isOn: $isOn) {
+                        Text("Outdoor swimming pool")
+                    }.toggleStyle(Checkbox())
+                }.padding(1)
+                    .padding(.bottom)
                 
                 //MARK: - Checkboxes
                 

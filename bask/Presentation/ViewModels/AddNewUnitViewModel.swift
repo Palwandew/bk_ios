@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 
+
 struct FacilityNameViewModel {
     
     var englishName: String = ""
@@ -17,29 +18,172 @@ struct FacilityNameViewModel {
     var shallNavigate: Bool = false
     
     mutating func onContinueTapped() {
-        if isNameValid(englishName) && isNameValid(arabicName){
-            shallNavigate = true
-        } else {
-            handleNameErrors()
-        }
+        
+            do {
+                try validateFacilityName()
+                navigateToNextScreen()
+                
+            } catch FacilityNameErrors.emptyEnglishName {
+                englishNameError = true
+            } catch FacilityNameErrors.invalidEnglishName {
+                englishNameError = true
+            } catch FacilityNameErrors.emptyArabicName {
+                arabicNameError = true
+            } catch FacilityNameErrors.invalidArabicName {
+                arabicNameError = true 
+            } catch {
+                print("Unexpected error occurred \(error)")
+            }
+        
     }
     
-    mutating private func handleNameErrors(){
+    mutating func navigateToNextScreen(){
+        shallNavigate = true
+    }
+    
+    private func validateFacilityName() throws {
         if englishName.isEmpty {
-            englishNameError = true
+            throw FacilityNameErrors.emptyEnglishName
         }
         if arabicName.isEmpty {
-            arabicNameError = true
+            throw FacilityNameErrors.emptyArabicName
+        }
+        if englishName.count < 3 {
+            throw FacilityNameErrors.invalidEnglishName
+        }
+        if arabicName.count < 3 {
+            throw FacilityNameErrors.invalidArabicName
+        }
+    }
+}
+
+enum FacilityNameErrors: Error{
+    case emptyEnglishName
+    case invalidEnglishName
+    case emptyArabicName
+    case invalidArabicName
+}
+
+struct FacilityRoomsViewModel {
+    var facilityWidth: String = ""
+    var facilityLength: String = ""
+    var livingRoomsCount: Int = 0
+    var kitchensCount: Int = 0
+    var bathroomsCount: Int = 0
+    var showersCount: Int = 0
+    var personCapacity: Int = 0
+    var validWidth: Bool = true
+    var validLength: Bool = true 
+    var shallNavigate: Bool = false
+    var toast: ToastViewModel = ToastViewModel()
+    
+    mutating func onContinueTapped(){
+        do {
+            try validateFacilitySizeAndRooms()
+            navigateToNextScreen()
+        } catch FacilityRoomsError.NoLivingRoomsAdded {
+            showErrorToast(with: "Your facility must have at least one bed room.")
+            
+        } catch FacilityRoomsError.CapacityIsZero {
+            showErrorToast(with: "Your facility must be able to host one person.")
+            
+        } catch FacilityRoomsError.EmptySize{
+            validWidth = false
+            validLength = false
+        } catch {
+            print("Unknow Error Occured")
         }
     }
     
-    private func isNameValid(_ name: String) -> Bool {
-        return !(name.count < 3)
+    private func showErrorToast(with message: String){
+        toast.prepare(for: .failure, with: message)
+        toast.show()
+    }
+    
+    private mutating func navigateToNextScreen(){
+        shallNavigate = true
+    }
+    
+    mutating func increaseCount(of counter: Counter){
+        switch counter {
+        case .kitchen:
+            addCount(of: &kitchensCount)
+        case .personCapacity:
+            addCount(of: &personCapacity)
+        case .bathroom:
+            addCount(of: &bathroomsCount)
+        case .shower:
+            addCount(of: &showersCount)
+        case .livingRoom:
+            addCount(of: &livingRoomsCount)
+        }
+    }
+    
+    mutating func decreaseCount(of counter: Counter){
+        switch counter {
+        case .livingRoom:
+            decreaseCount(of: &livingRoomsCount)
+        case .kitchen:
+            decreaseCount(of: &kitchensCount)
+        case .personCapacity:
+            decreaseCount(of: &personCapacity)
+        case .bathroom:
+            decreaseCount(of: &bathroomsCount)
+        case .shower:
+            decreaseCount(of: &showersCount)
+        }
+    }
+    
+    private func addCount(of counter: inout Int){
+        counter += 1
+    }
+    
+    private func decreaseCount( of counter: inout Int){
+        if counter >= 1 {
+            counter -= 1
+        }
+    }
+    
+    
+    private func validateFacilitySizeAndRooms() throws {
+        if (facilityWidth.isEmpty && facilityLength.isEmpty) {
+            throw FacilityRoomsError.EmptySize
+        }
+        if facilityWidth.isEmpty {
+            throw FacilityRoomsError.EmptyWidth
+        }
+        if facilityLength.isEmpty {
+            throw FacilityRoomsError.EmptyLength
+        }
+        
+        if livingRoomsCount == 0 {
+            throw FacilityRoomsError.NoLivingRoomsAdded
+        }
+        
+        if personCapacity == 0 {
+            throw FacilityRoomsError.CapacityIsZero
+        }
+    }
+    
+    enum Counter {
+        case livingRoom
+        case kitchen
+        case bathroom
+        case shower
+        case personCapacity
+    }
+    
+    enum FacilityRoomsError: Error {
+        case EmptySize
+        case EmptyLength
+        case EmptyWidth
+        case NoLivingRoomsAdded
+        case CapacityIsZero
     }
 }
 
 class AddNewUnitViewModel: ObservableObject {
-
+    
     private let ownerId = "7ae267e8-65cc-4c6d-948a-5518a8bfeb36"
     //MARK: - Usecase
     
@@ -62,9 +206,9 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var willShowPriceSetupScreen: Bool = false
     @Published var willShowDescriptionScreen: Bool = false
     @Published var willShowPhotosScreen: Bool = false
-
+    
     @Published var facilityName: String = ""
-    @Published var isValidEnglishName: Bool = true 
+    @Published var isValidEnglishName: Bool = true
     @Published var isValidArabicName: Bool = true
     @Published var roomsCount: Int = 0
     @Published var kitchenCount: Int = 0
@@ -84,6 +228,7 @@ class AddNewUnitViewModel: ObservableObject {
     
     
     @Published var facilityNameViewModel: FacilityNameViewModel = FacilityNameViewModel()
+    @Published var facilityRoomsViewModel: FacilityRoomsViewModel = FacilityRoomsViewModel()
     
     // Retry button indicator
     @Published var shallRetry: Bool = false
@@ -103,115 +248,123 @@ class AddNewUnitViewModel: ObservableObject {
     
     func isFacilityNameValid() {
         facilityNameViewModel.onContinueTapped()
-        isValidEnglishName = false
-//        willShowAddRoomsScreen = true
-//        do {
-//            try facility.validateName()
-//            isValidEnglishName = true
-//            isValidArabicName = true
-//
-//            let data = facility.prepareRequestBodyWith(ownerID: ownerId)
-//
-//            do {
-//
-//                let requestBody = try JSONEncoder().encode(data)
-//
-//                let endpoint = Endpoints.CREATE_FACILITY
-//
-//                createFacilityUseCase.createFacility(endpoint, requestBody) { [weak self] result in
-//                    switch result {
-//                    case .failure(let error):
-//                        print("\(error)")
-//                        DispatchQueue.main.async {
-//                            self?.shallRetry = true
-//                        }
-//
-//                    case .success(let id):
-//                        print(id)
-//
-//                        DispatchQueue.main.async {
-//                            self?.facility.id = id
-//                            self?.shallRetry = false
-//                            self?.willShowAddRoomsScreen = true
-//                        }
-//                    }
-//                }
-//            } catch {
-//                print("error encoding data")
-//            }
-//
-//
-//
-//        } catch FacilityErrors.invalidEnglishName {
-//            print("English name is invalid")
-//            isValidEnglishName = false
-//        } catch FacilityErrors.invalidArabicName {
-//            print("Arabic name is invalid")
-//            isValidArabicName = false
-//        } catch {
-//            print("some error")
-//        }
+        
+        //        willShowAddRoomsScreen = true
+        //        do {
+        //            try facility.validateName()
+        //            isValidEnglishName = true
+        //            isValidArabicName = true
+        //
+        //            let data = facility.prepareRequestBodyWith(ownerID: ownerId)
+        //
+        //            do {
+        //
+        //                let requestBody = try JSONEncoder().encode(data)
+        //
+        //                let endpoint = Endpoints.CREATE_FACILITY
+        //
+        //                createFacilityUseCase.createFacility(endpoint, requestBody) { [weak self] result in
+        //                    switch result {
+        //                    case .failure(let error):
+        //                        print("\(error)")
+        //                        DispatchQueue.main.async {
+        //                            self?.shallRetry = true
+        //                        }
+        //
+        //                    case .success(let id):
+        //                        print(id)
+        //
+        //                        DispatchQueue.main.async {
+        //                            self?.facility.id = id
+        //                            self?.shallRetry = false
+        //                            self?.willShowAddRoomsScreen = true
+        //                        }
+        //                    }
+        //                }
+        //            } catch {
+        //                print("error encoding data")
+        //            }
+        //
+        //
+        //
+        //        } catch FacilityErrors.invalidEnglishName {
+        //            print("English name is invalid")
+        //            isValidEnglishName = false
+        //        } catch FacilityErrors.invalidArabicName {
+        //            print("Arabic name is invalid")
+        //            isValidArabicName = false
+        //        } catch {
+        //            print("some error")
+        //        }
     }
     
     
     //MARK: - Step - 2
     
     func onContinueTapped(){
-        willShowFreeAmenitiesScreen = true
-//        do {
-//            try facility.validateArea()
-//
-//            isValidWidth = true
-//            isValidLength = true
-//
-//            if facility.hasValidLivingRooms() {
-//                self.objectWillChange.send()
-//
-//                //showAlert.toggle()
-//
-//                let data = facility.prepareRequestBody()
-//
-//                guard let facilityId = facility.id else {
-//                    return
-//                }
-//
-//                let endpoint = Endpoints.UPDATE_FACILITY(facilityId)
-//
-//
-//                createFacilityUseCase.updateFacilityArea(endpoint, with: data) { [weak self] result  in
-//
-//                    DispatchQueue.main.async {
-//                        switch result {
-//                        case .success(_):
-//
-//                            //self.showAlert.toggle()
-//                            self?.shallRetry = false
-//                            self?.willShowFreeAmenitiesScreen = true
-//
-//
-//                        case .failure(let error):
-//                            print("\(error.localizedDescription)")
-//
-//                            self?.shallRetry = true
-//
-//                        }
-//                    }
-//
-//                }
-//
-//            }
-//
-//
-//        } catch FacilityErrors.invalidWidth {
-//            isValidWidth = false
-//        } catch FacilityErrors.invalidLength {
-//            isValidLength = false
-//        } catch FacilityErrors.emptyArea {
-//            isValidWidth = false
-//            isValidLength = false
-//        } catch {
-//            print("error")
-//        }
+        facilityRoomsViewModel.onContinueTapped()
+        //        do {
+        //            try facility.validateArea()
+        //
+        //            isValidWidth = true
+        //            isValidLength = true
+        //
+        //            if facility.hasValidLivingRooms() {
+        //                self.objectWillChange.send()
+        //
+        //                //showAlert.toggle()
+        //
+        //                let data = facility.prepareRequestBody()
+        //
+        //                guard let facilityId = facility.id else {
+        //                    return
+        //                }
+        //
+        //                let endpoint = Endpoints.UPDATE_FACILITY(facilityId)
+        //
+        //
+        //                createFacilityUseCase.updateFacilityArea(endpoint, with: data) { [weak self] result  in
+        //
+        //                    DispatchQueue.main.async {
+        //                        switch result {
+        //                        case .success(_):
+        //
+        //                            //self.showAlert.toggle()
+        //                            self?.shallRetry = false
+        //                            self?.willShowFreeAmenitiesScreen = true
+        //
+        //
+        //                        case .failure(let error):
+        //                            print("\(error.localizedDescription)")
+        //
+        //                            self?.shallRetry = true
+        //
+        //                        }
+        //                    }
+        //
+        //                }
+        //
+        //            }
+        //
+        //
+        //        } catch FacilityErrors.invalidWidth {
+        //            isValidWidth = false
+        //        } catch FacilityErrors.invalidLength {
+        //            isValidLength = false
+        //        } catch FacilityErrors.emptyArea {
+        //            isValidWidth = false
+        //            isValidLength = false
+        //        } catch {
+        //            print("error")
+        //        }
+    }
+    
+    func increaseCount(of counter: FacilityRoomsViewModel.Counter){
+        facilityRoomsViewModel.increaseCount(of: counter)
+    }
+    
+    func decreaseCount(of counter: FacilityRoomsViewModel.Counter){
+        facilityRoomsViewModel.decreaseCount(of: counter)
     }
     
     
@@ -219,31 +372,31 @@ class AddNewUnitViewModel: ObservableObject {
     
     func validateFreeAmenities() {
         willShowPaidAmenitiesScreen = true
-//        self.objectWillChange.send()
-//        if facility.hasValidFreeAmenities() {
-//
-//            let data = facility.prepareFreeServicesRequestBody()
-//
-//            createFacilityUseCase.updateFacility(with: facility.id, for: .stepThree, with: data) { [weak self] result in
-//                switch result {
-//                case .failure(let error):
-//                    print("error \(error)")
-//                    DispatchQueue.main.async {
-//                        self?.shallRetry = true
-//                    }
-//
-//                case .success(let success):
-//                    print("success \(success)")
-//                    DispatchQueue.main.async {
-//                        self?.shallRetry = false
-//                        self?.willShowPaidAmenitiesScreen = true
-//                    }
-//                }
-//            }
-//
-//        } else {
-//            print("Invalid free amenity")
-//        }
+        //        self.objectWillChange.send()
+        //        if facility.hasValidFreeAmenities() {
+        //
+        //            let data = facility.prepareFreeServicesRequestBody()
+        //
+        //            createFacilityUseCase.updateFacility(with: facility.id, for: .stepThree, with: data) { [weak self] result in
+        //                switch result {
+        //                case .failure(let error):
+        //                    print("error \(error)")
+        //                    DispatchQueue.main.async {
+        //                        self?.shallRetry = true
+        //                    }
+        //
+        //                case .success(let success):
+        //                    print("success \(success)")
+        //                    DispatchQueue.main.async {
+        //                        self?.shallRetry = false
+        //                        self?.willShowPaidAmenitiesScreen = true
+        //                    }
+        //                }
+        //            }
+        //
+        //        } else {
+        //            print("Invalid free amenity")
+        //        }
     }
     
     
@@ -253,31 +406,31 @@ class AddNewUnitViewModel: ObservableObject {
         //        facility.paidAmenities.validateWifiPrice()
         //        facility.paidAmenities.validateParkingPrice()
         willShowRulesScreen = true
-//        if facility.hasValidPaidAmenities() {
-//            print("Valid paid")
-//            let data = facility.preparePaidServicesRequestBody()
-//
-//            createFacilityUseCase.updateFacility(with: facility.id, for: .stepFour, with: data) { [weak self] result in
-//                switch result {
-//                case .failure(let error):
-//                    print("error \(error)")
-//                    DispatchQueue.main.async {
-//                        self?.shallRetry = true
-//                    }
-//
-//                case .success(let success):
-//                    print("success \(success)")
-//                    DispatchQueue.main.async {
-//                        self?.shallRetry = false
-//                        self?.willShowRulesScreen = true
-//                    }
-//                }
-//            }
-//
-//        } else {
-//            print("Invalid paid amenity")
-//        }
-//        self.objectWillChange.send()
+        //        if facility.hasValidPaidAmenities() {
+        //            print("Valid paid")
+        //            let data = facility.preparePaidServicesRequestBody()
+        //
+        //            createFacilityUseCase.updateFacility(with: facility.id, for: .stepFour, with: data) { [weak self] result in
+        //                switch result {
+        //                case .failure(let error):
+        //                    print("error \(error)")
+        //                    DispatchQueue.main.async {
+        //                        self?.shallRetry = true
+        //                    }
+        //
+        //                case .success(let success):
+        //                    print("success \(success)")
+        //                    DispatchQueue.main.async {
+        //                        self?.shallRetry = false
+        //                        self?.willShowRulesScreen = true
+        //                    }
+        //                }
+        //            }
+        //
+        //        } else {
+        //            print("Invalid paid amenity")
+        //        }
+        //        self.objectWillChange.send()
     }
     
     
@@ -286,25 +439,25 @@ class AddNewUnitViewModel: ObservableObject {
     func updateFacilityRules() {
         
         willShowLocationScreen = true
-//        willShowLocationScreen.toggle()
-//        let data = facility.prepareRulesRequestBody()
-//
-//        createFacilityUseCase.updateFacility(with: facility.id, for: .stepFive, with: data) { [weak self] result in
-//            switch result {
-//            case .failure(let error):
-//                print("error \(error)")
-//                DispatchQueue.main.async {
-//                    self?.shallRetry = true
-//                }
-//
-//            case .success(let success):
-//                print("success \(success)")
-//                DispatchQueue.main.async {
-//                    self?.shallRetry = false
-//                    self?.willShowLocationScreen = true
-//                }
-//            }
-//        }
+        //        willShowLocationScreen.toggle()
+        //        let data = facility.prepareRulesRequestBody()
+        //
+        //        createFacilityUseCase.updateFacility(with: facility.id, for: .stepFive, with: data) { [weak self] result in
+        //            switch result {
+        //            case .failure(let error):
+        //                print("error \(error)")
+        //                DispatchQueue.main.async {
+        //                    self?.shallRetry = true
+        //                }
+        //
+        //            case .success(let success):
+        //                print("success \(success)")
+        //                DispatchQueue.main.async {
+        //                    self?.shallRetry = false
+        //                    self?.willShowLocationScreen = true
+        //                }
+        //            }
+        //        }
     }
     
     
@@ -318,27 +471,27 @@ class AddNewUnitViewModel: ObservableObject {
     //MARK: - Step-6.2
     func updateFacilityLocation(with coordinates: CLLocationCoordinate2D) {
         willShowCheckInScreen = true
-//        facility.location.latitude = coordinates.latitude
-//        facility.location.longitude = coordinates.longitude
-//
-//        let data = facility.prepareLocationRequestBody()
-//        print("loc --> \(data)")
-//        createFacilityUseCase.updateFacility(with: facility.id, for: .stepSix, with: data) { [weak self] result in
-//            switch result {
-//            case .failure(let error):
-//                print("error \(error)")
-//                DispatchQueue.main.async {
-//                    self?.shallRetry = true
-//                }
-//
-//            case .success(let success):
-//                print("success \(success)")
-//                DispatchQueue.main.async {
-//                    self?.shallRetry = false
-//                    self?.willShowCheckInScreen = true
-//                }
-//            }
-//        }
+        //        facility.location.latitude = coordinates.latitude
+        //        facility.location.longitude = coordinates.longitude
+        //
+        //        let data = facility.prepareLocationRequestBody()
+        //        print("loc --> \(data)")
+        //        createFacilityUseCase.updateFacility(with: facility.id, for: .stepSix, with: data) { [weak self] result in
+        //            switch result {
+        //            case .failure(let error):
+        //                print("error \(error)")
+        //                DispatchQueue.main.async {
+        //                    self?.shallRetry = true
+        //                }
+        //
+        //            case .success(let success):
+        //                print("success \(success)")
+        //                DispatchQueue.main.async {
+        //                    self?.shallRetry = false
+        //                    self?.willShowCheckInScreen = true
+        //                }
+        //            }
+        //        }
     }
     
     
@@ -346,56 +499,56 @@ class AddNewUnitViewModel: ObservableObject {
     func validateCheckInCheckOutTimings() {
         
         willShowPriceSetupScreen = true
-//        if facility.hasValidCheckInTime() {
-//
-//            let data = facility.prepareCheckInTimeRequestBody()
-//
-//            createFacilityUseCase.updateFacility(with: facility.id, for: .stepSeven, with: data) { [weak self] result in
-//                switch result {
-//                case .failure(let error):
-//                    print("error \(error)")
-//                    DispatchQueue.main.async {
-//                        self?.shallRetry = true
-//                    }
-//
-//                case .success(let success):
-//                    print("success \(success)")
-//                    DispatchQueue.main.async {
-//                        self?.shallRetry = false
-//                        self?.willShowPriceSetupScreen = true
-//                    }
-//                }
-//            }
-//        }
+        //        if facility.hasValidCheckInTime() {
+        //
+        //            let data = facility.prepareCheckInTimeRequestBody()
+        //
+        //            createFacilityUseCase.updateFacility(with: facility.id, for: .stepSeven, with: data) { [weak self] result in
+        //                switch result {
+        //                case .failure(let error):
+        //                    print("error \(error)")
+        //                    DispatchQueue.main.async {
+        //                        self?.shallRetry = true
+        //                    }
+        //
+        //                case .success(let success):
+        //                    print("success \(success)")
+        //                    DispatchQueue.main.async {
+        //                        self?.shallRetry = false
+        //                        self?.willShowPriceSetupScreen = true
+        //                    }
+        //                }
+        //            }
+        //        }
     }
     
     
     //MARK: - Step-8
     func validateFaciltyPrice(){
         willShowDescriptionScreen = true
-//        if facility.hasValidPrice() {
-//
-//            let data = facility.preparePriceRequestBody()
-//
-//            createFacilityUseCase.updateFacility(with: facility.id, for: .stepEight, with: data) { [weak self] result in
-//                switch result {
-//                case .failure(_):
-//
-//                    DispatchQueue.main.async {
-//                        self?.shallRetry = true
-//                    }
-//
-//                case .success(_):
-//
-//                    DispatchQueue.main.async {
-//                        self?.shallRetry = false
-//                        self?.willShowDescriptionScreen = true
-//                    }
-//                }
-//            }
-//        } else {
-//            print("invalid price")
-//        }
+        //        if facility.hasValidPrice() {
+        //
+        //            let data = facility.preparePriceRequestBody()
+        //
+        //            createFacilityUseCase.updateFacility(with: facility.id, for: .stepEight, with: data) { [weak self] result in
+        //                switch result {
+        //                case .failure(_):
+        //
+        //                    DispatchQueue.main.async {
+        //                        self?.shallRetry = true
+        //                    }
+        //
+        //                case .success(_):
+        //
+        //                    DispatchQueue.main.async {
+        //                        self?.shallRetry = false
+        //                        self?.willShowDescriptionScreen = true
+        //                    }
+        //                }
+        //            }
+        //        } else {
+        //            print("invalid price")
+        //        }
     }
     
     
@@ -403,24 +556,24 @@ class AddNewUnitViewModel: ObservableObject {
     func onContineDescription(){
         willShowPhotosScreen = true
         
-//        let data = facility.prepareDescriptionRequestBody()
-//
-//        createFacilityUseCase.updateFacility(with: facility.id, for: .stepNine, with: data) { [weak self] result in
-//            switch result {
-//            case .failure(_):
-//
-//                DispatchQueue.main.async {
-//                    self?.shallRetry = true
-//                }
-//
-//            case .success(_):
-//
-//                DispatchQueue.main.async {
-//                    self?.shallRetry = false
-//                    self?.willShowPhotosScreen = true
-//                }
-//            }
-//        }
+        //        let data = facility.prepareDescriptionRequestBody()
+        //
+        //        createFacilityUseCase.updateFacility(with: facility.id, for: .stepNine, with: data) { [weak self] result in
+        //            switch result {
+        //            case .failure(_):
+        //
+        //                DispatchQueue.main.async {
+        //                    self?.shallRetry = true
+        //                }
+        //
+        //            case .success(_):
+        //
+        //                DispatchQueue.main.async {
+        //                    self?.shallRetry = false
+        //                    self?.willShowPhotosScreen = true
+        //                }
+        //            }
+        //        }
     }
     
     
@@ -480,15 +633,13 @@ class AddNewUnitViewModel: ObservableObject {
             UIApplicationHelper.popToRootView()
         }
     }
+    
     func addRoom() {
-        
-        facility.addRoom()
-        
+        facilityRoomsViewModel.increaseCount(of: .livingRoom)
     }
     
     func removeRoom() {
-        print("Array size \(rooms.count)")
-        facility.removeRoom()
+        facilityRoomsViewModel.decreaseCount(of: .livingRoom)
     }
     
     func addIndoorSwimmingPool(){

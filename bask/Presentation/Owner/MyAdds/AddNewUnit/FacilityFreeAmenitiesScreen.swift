@@ -14,13 +14,8 @@ struct FacilityFreeAmenitiesScreen: View {
 //    @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     
     @State var progress: Float = 0.249 // total 12 steps therefore each one is 0.083
-    @State var isWifiOn: Bool = false
-    @State var isParkingOn: Bool = true
-    @State var indoorSwimmingPools: Int = 0
-    @State var length: String = ""
-    @State var isValid: Bool = true
-    @State var showPaid: Bool = false
-    @State var isOn: Bool = false
+    @State var navigateToNextScreen: Bool = false
+    
     var body: some View {
         VStack(alignment: .leading) {
             
@@ -28,7 +23,7 @@ struct FacilityFreeAmenitiesScreen: View {
             //MARK: - Title
             
             
-            Text("Amenities (free)")
+            Text("Amenities")
                 .font(Font.custom("Poppins-Medium", size: 26, relativeTo: .title))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
@@ -38,28 +33,28 @@ struct FacilityFreeAmenitiesScreen: View {
                 //MARK: - Wifi
                 
                 Group{
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facilityAmenitiesViewModel.wifi) {
                         Text("Wifi")
                     }.toggleStyle(Checkbox())
                     
                     
                     //MARK: - Parking
                     
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facilityAmenitiesViewModel.parking) {
                         Text("Parking")
                     }.toggleStyle(Checkbox())
                     
                     
                     //MARK: - Indoor Pools
                     
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facilityAmenitiesViewModel.indoorPool) {
                         Text("Indoor swimming pool")
                     }.toggleStyle(Checkbox())
                     
                     
                     //MARK: - Outdoor Pools
                     
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facilityAmenitiesViewModel.outdoorPool) {
                         Text("Outdoor swimming pool")
                     }.toggleStyle(Checkbox())
                 }.padding(1)
@@ -68,36 +63,36 @@ struct FacilityFreeAmenitiesScreen: View {
                 //MARK: - Checkboxes
                 
                 Group {
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facilityAmenitiesViewModel.outdoorSitting) {
                         Text("Outdoor sitting")
                     }.toggleStyle(Checkbox())
                         
                     
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facilityAmenitiesViewModel.bbq) {
                         Text("Barbeque area")
                     }.toggleStyle(Checkbox())
                     
                     
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facilityAmenitiesViewModel.gym) {
                         Text("Gym")
                     }.toggleStyle(Checkbox())
                     
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facilityAmenitiesViewModel.gamesRoom) {
                         Text("Games room")
                     }.toggleStyle(Checkbox())
                     
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facilityAmenitiesViewModel.garden) {
                         Text("Garden")
                     }.toggleStyle(Checkbox())
                     
-                    Toggle(isOn: $isOn) {
+                    Toggle(isOn: $addNewUnitViewModel.facilityAmenitiesViewModel.playingField) {
                         Text("Playing field")
                     }.toggleStyle(Checkbox())
                 }.padding(.trailing, 1)
                     .padding(.bottom)
                 
                 NavigationLink(destination:
-                                FacilityRulesScreen().environmentObject(addNewUnitViewModel), isActive: $addNewUnitViewModel.willShowPaidAmenitiesScreen) {
+                                FacilityRulesScreen().environmentObject(addNewUnitViewModel), isActive: $navigateToNextScreen) {
                     EmptyView()
                 }
                 
@@ -109,7 +104,7 @@ struct FacilityFreeAmenitiesScreen: View {
                 
 //                print("tapped")
 //                showPaid.toggle()
-                addNewUnitViewModel.validateFreeAmenities()
+                navigateToNextScreen.toggle()
                 
                 
             }//.padding(.top, -24)

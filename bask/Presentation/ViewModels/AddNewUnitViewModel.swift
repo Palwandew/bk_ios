@@ -182,6 +182,23 @@ struct FacilityRoomsViewModel {
     }
 }
 
+struct FacilityAmenitiesViewModel {
+    var wifi: Bool = false
+    var parking: Bool = false
+    var indoorPool: Bool = false
+    var outdoorPool: Bool = false
+    var outdoorSitting: Bool = false
+    var bbq: Bool = false
+    var gym: Bool = false
+    var gamesRoom: Bool = false
+    var garden: Bool = false
+    var playingField: Bool = false
+}
+
+//struct FacilityRulesViewModel{
+//    var
+//}
+
 class AddNewUnitViewModel: ObservableObject {
     
     private let ownerId = "7ae267e8-65cc-4c6d-948a-5518a8bfeb36"
@@ -229,6 +246,7 @@ class AddNewUnitViewModel: ObservableObject {
     
     @Published var facilityNameViewModel: FacilityNameViewModel = FacilityNameViewModel()
     @Published var facilityRoomsViewModel: FacilityRoomsViewModel = FacilityRoomsViewModel()
+    @Published var facilityAmenitiesViewModel: FacilityAmenitiesViewModel = FacilityAmenitiesViewModel()
     
     // Retry button indicator
     @Published var shallRetry: Bool = false

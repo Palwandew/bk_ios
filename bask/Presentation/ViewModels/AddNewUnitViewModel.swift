@@ -195,9 +195,30 @@ struct FacilityAmenitiesViewModel {
     var playingField: Bool = false
 }
 
-//struct FacilityRulesViewModel{
-//    var
-//}
+struct FacilityRulesViewModel{
+    var petsAllowed: Bool = true
+    var allPetsAllowed: Bool = false
+    var cats: Bool = true
+    var dogs: Bool = false
+    var rodents: Bool = false
+    var reptile: Bool = false
+    var bigAnimals: Bool = false
+    var allowedToSmoke: Bool = true
+    var additonalRules: Bool = false
+    var additionalRulesDescription: String = ""
+}
+
+struct FacilityLocationViewModel{
+    
+    var location: Location = Location()
+    var shallNavigate: Bool = false
+    
+    mutating func onContinueTapped(){
+        if location.validAddress() {
+            shallNavigate = true
+        }
+    }
+}
 
 class AddNewUnitViewModel: ObservableObject {
     
@@ -247,6 +268,11 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var facilityNameViewModel: FacilityNameViewModel = FacilityNameViewModel()
     @Published var facilityRoomsViewModel: FacilityRoomsViewModel = FacilityRoomsViewModel()
     @Published var facilityAmenitiesViewModel: FacilityAmenitiesViewModel = FacilityAmenitiesViewModel()
+    
+    
+    @Published var facilityRulesViewModel: FacilityRulesViewModel = FacilityRulesViewModel()
+    
+    @Published var facilityLocationViewModel: FacilityLocationViewModel = FacilityLocationViewModel()
     
     // Retry button indicator
     @Published var shallRetry: Bool = false
@@ -482,7 +508,7 @@ class AddNewUnitViewModel: ObservableObject {
     //MARK: - Step-6.1
     // Note: This is step-6 because photos selection has been moved last step.
     func validateAddress() {
-        willShowMapScreen = facility.hasValidAddress()
+        facilityLocationViewModel.onContinueTapped()
     }
     
     

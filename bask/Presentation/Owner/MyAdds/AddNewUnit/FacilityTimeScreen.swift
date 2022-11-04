@@ -12,7 +12,7 @@ struct FacilityTimeScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: AddNewUnitViewModel
    // @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
-    @State var progress: Float = 0.332
+    @State var progress: Float = 7
     
     @State var checkInAfter: String = ""
     @State var checkInBefore: String = "02:00 PM"

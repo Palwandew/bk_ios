@@ -15,11 +15,20 @@ struct Location {
     var validStreet: Bool = true
     var longitude: Double = 45.0792 
     var latitude: Double = 23.8859
-    let status: Int = 1
     
     
     /// Checks whether the user has entered a valid address of the facilty.
     /// - Returns: True if the city and street is valid. False otherwise.
+    
+    func validateAddres() throws {
+        if city.isEmpty || city.count < 3 {
+            throw errors.invalidCity
+        }
+        if street.isEmpty || street.count < 3 {
+            throw errors.invalidStreetAddress
+        }
+    }
+    
     mutating func validAddress() -> Bool {
         mutateValidity(of: city, &validCity)
         mutateValidity(of: street, &validStreet)
@@ -29,7 +38,7 @@ struct Location {
     
     
     func toRequestBodyModel() -> FacilityLocationRequestBody {
-        return FacilityLocationRequestBody(country: self.country, city: self.city, address: self.street, latitude: self.latitude, longitude: self.longitude, locationStatus: self.status)
+        return FacilityLocationRequestBody(country: self.country, city: self.city, address: self.street, latitude: self.latitude, longitude: self.longitude)
     }
     
     
@@ -49,16 +58,19 @@ struct Location {
         case city
         case street
     }
+    
+    enum errors: Error {
+        case invalidCity
+        case invalidStreetAddress
+    }
 }
 
 // MARK: - FacilityRulesRequestBody
 struct FacilityLocationRequestBody: Codable {
     let country, city, address: String
     let latitude, longitude: Double
-    let locationStatus: Int
 
     enum CodingKeys: String, CodingKey {
         case country, city, address, latitude, longitude
-        case locationStatus = "location_status"
     }
 }

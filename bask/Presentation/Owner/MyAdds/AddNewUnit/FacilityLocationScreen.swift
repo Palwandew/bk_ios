@@ -13,7 +13,7 @@ struct FacilityLocationScreen: View {
     @EnvironmentObject var viewModel: AddNewUnitViewModel
     //@StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
 
-    @State var progress: Float = 0.332
+    @State var progress: Float = 0.5
     
     //@State var text: String = ""
     @State var valid: Bool = true
@@ -43,34 +43,34 @@ struct FacilityLocationScreen: View {
             
             //MARK: - Country
             
-            MaterialTextSelector(text: $viewModel.facility.location.country, placeHolder: "Country")
+            MaterialTextSelector(text: $viewModel.facilityLocationViewModel.location.country, placeHolder: "Country")
                 .frame(height: 55)
             
             
             //MARK: - City
             
-            MaterialTextField(text: $viewModel.facility.location.city, isValid: $viewModel.facility.location.validCity, errorMessage: errorMsg, placeHolder: "City")
+            MaterialTextField(text: $viewModel.facilityLocationViewModel.location.city, isValid: $viewModel.facilityLocationViewModel.location.validCity, errorMessage: errorMsg, placeHolder: "City")
                 .padding([.top, .horizontal], 1)
             
             //}
             
             //MARK: - Address
             
-            MaterialTextField(text: $viewModel.facility.location.street, isValid: $viewModel.facility.location.validStreet, errorMessage: errorMsg, placeHolder: "Address")
+            MaterialTextField(text: $viewModel.facilityLocationViewModel.location.street, isValid: $viewModel.facilityLocationViewModel.location.validStreet, errorMessage: errorMsg, placeHolder: "Address")
                 .padding([.top, .horizontal], 1)
             
             Spacer()
             
             
             NavigationLink(destination:
-                            FacilityMapScreen().environmentObject(viewModel), isActive: $viewModel.willShowMapScreen) {
+                            FacilityMapScreen().environmentObject(viewModel), isActive: $viewModel.facilityLocationViewModel.shallNavigate) {
                 EmptyView()
             }
             
             //MARK: - Continue Button
             FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                 
-                viewModel.validateAddress()
+                viewModel.facilityLocationViewModel.onContinueTapped()
             }
             
             

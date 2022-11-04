@@ -14,7 +14,7 @@ struct FacilityMapScreen: View {
     @EnvironmentObject var viewModel: AddNewUnitViewModel
 //    @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
 
-    @State var progress: Float = 0.332
+    @State var progress: Float = 0.6
     @State private var map = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 24.19970898091148, longitude: 45.11031652737802), span: MKCoordinateSpan(latitudeDelta: 8, longitudeDelta: 22))
      
     @State var showCheckIn: Bool = false 

@@ -12,7 +12,7 @@ struct FacilityRulesScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: AddNewUnitViewModel
     //@StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
-    @State var progress: Float = 0.332
+    @State var progress: Float = 0.4
     @State private var valid: Bool = true
     let errorMsg: LocalizedStringKey = "valid_description"
     
@@ -30,33 +30,32 @@ struct FacilityRulesScreen: View {
             
             //MARK: - Pets
             ScrollView {
-                AmenityToggle(isOn: $viewModel.facility.rules.petsAllowed, label: "Pets")
+                AmenityToggle(isOn: $viewModel.facilityRulesViewModel.petsAllowed, label: "Pets")
                 
-                if viewModel.facility.rules.petsAllowed {
+                if viewModel.facilityRulesViewModel.petsAllowed {
                     Group {
                         
-                        
                         //MARK: - All pets
-                        Toggle(isOn: $viewModel.facility.rules.petsAllAllowed) {
+                        Toggle(isOn: $viewModel.facilityRulesViewModel.allPetsAllowed) {
                             Text("All pets allowed")
                         }.toggleStyle(Checkbox())
                         
                         
                         //MARK: - Cats
-                        Toggle(isOn: $viewModel.facility.rules.petsCatsAllowed) {
+                        Toggle(isOn: $viewModel.facilityRulesViewModel.cats) {
                             Text("Cats")
                         }.toggleStyle(Checkbox())
                         
                         
                         //MARK: - Dogs
-                        Toggle(isOn: $viewModel.facility.rules.petsDogsAllowed) {
+                        Toggle(isOn: $viewModel.facilityRulesViewModel.dogs) {
                             Text("Dogs")
                         }.toggleStyle(Checkbox())
                         
                         
                         //MARK: - Rodents
                         VStack(alignment: .leading) {
-                            Toggle(isOn: $viewModel.facility.rules.petsRodentsAllowed) {
+                            Toggle(isOn: $viewModel.facilityRulesViewModel.rodents) {
                                 Text("Rodents")
                             }.toggleStyle(Checkbox())
                             
@@ -68,7 +67,7 @@ struct FacilityRulesScreen: View {
                         
                         //MARK: - Reptile
                         VStack(alignment: .leading) {
-                            Toggle(isOn: $viewModel.facility.rules.petsReptileAllowed) {
+                            Toggle(isOn: $viewModel.facilityRulesViewModel.reptile) {
                                 Text("Reptile")
                             }.toggleStyle(Checkbox())
                             
@@ -81,7 +80,7 @@ struct FacilityRulesScreen: View {
                         //MARK: - Big Animals
                         VStack(alignment: .leading) {
                             
-                            Toggle(isOn: $viewModel.facility.rules.petsBigAnimalAllowed) {
+                            Toggle(isOn: $viewModel.facilityRulesViewModel.bigAnimals) {
                                 Text("Big Animals")
                             }.toggleStyle(Checkbox())
                             
@@ -94,14 +93,14 @@ struct FacilityRulesScreen: View {
                 
                 
                 //MARK: - Smoke
-                AmenityToggle(isOn: $viewModel.facility.rules.smokingAllowed, label: "Allowed to smoke")
+                AmenityToggle(isOn: $viewModel.facilityRulesViewModel.allowedToSmoke, label: "Allowed to smoke")
                 
                 
                 //MARK: - Additional Rules
                 AmenityToggle(isOn: $viewModel.facility.rules.additionalRules, label: "Addtional rules")
                 
                 if viewModel.facility.rules.additionalRules {
-                    MaterialTextField(text: $viewModel.facility.rules.additionalRulesDescription, isValid: $valid, errorMessage: errorMsg, placeHolder: "Additional rules")
+                    MaterialTextField(text: $viewModel.facilityRulesViewModel.additionalRulesDescription, isValid: $valid, errorMessage: errorMsg, placeHolder: "Additional rules")
                         .padding(.horizontal, 1)
                 }
                 

@@ -11,7 +11,7 @@ struct FacilityNameScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
-    @State var progress: Float = 0.083 // total 12 steps therefore each one is 0.083
+    @State var progress: Float = 0.1 // total 12 steps therefore each one is 0.083
     @State var arabicName: String = ""
     
     @State var englishNameError: Bool = false

@@ -13,7 +13,7 @@ struct FacilityPriceSetupScreen: View {
     
     @EnvironmentObject var viewModel: AddNewUnitViewModel
     //@StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
-    @State var progress: Float = 0.332
+    @State var progress: Float = 8
     
     
     // ppn

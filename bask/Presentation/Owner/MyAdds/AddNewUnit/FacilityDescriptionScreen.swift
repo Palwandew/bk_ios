@@ -12,7 +12,7 @@ struct FacilityDescriptionScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: AddNewUnitViewModel
     //@StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
-    @State var progress: Float = 0.332
+    @State var progress: Float = 9
     @State var description: String = ""
     @State var isValid: Bool = true 
     let errorMessage: LocalizedStringKey = "valid_description"

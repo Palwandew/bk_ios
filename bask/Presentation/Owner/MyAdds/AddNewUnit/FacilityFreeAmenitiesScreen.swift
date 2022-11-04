@@ -13,7 +13,7 @@ struct FacilityFreeAmenitiesScreen: View {
     @EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
 //    @StateObject var addNewUnitViewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     
-    @State var progress: Float = 0.249 // total 12 steps therefore each one is 0.083
+    @State var progress: Float = 0.3 // total 12 steps therefore each one is 0.083
     @State var navigateToNextScreen: Bool = false
     
     var body: some View {

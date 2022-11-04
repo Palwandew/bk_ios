@@ -14,7 +14,7 @@ struct FacilityPicturesScreen: View {
     @EnvironmentObject var viewMode: AddNewUnitViewModel
     @StateObject var phViewModel = PhotosViewModel(useCase: PhotosUsecase(repo: PhotosRepositoryImpl(uploadManager: PhotosUploadManager())))// inject the object
    
-    @State var progress: Float = 0.332
+    @State var progress: Float = 1.0
     @State var showGallery: Bool = false
     @State var pickerResult: [Image] = []
     @State var showChecklist: Bool = false

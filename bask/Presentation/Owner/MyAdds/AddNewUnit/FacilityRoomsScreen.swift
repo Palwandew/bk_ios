@@ -12,7 +12,7 @@ struct FacilityRoomsScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var addNewUnitViewModel: AddNewUnitViewModel
     
-    @State var progress: Float = 0.166 // total 12 steps therefore each one is 0.083
+    @State var progress: Float = 0.2 // total 12 steps therefore each one is 0.083
     @State var length: String = ""
     @State var isValid: Bool = true
     @State var moving: Bool = false

@@ -26,7 +26,7 @@ struct MyAddsScreen: View {
                 
                 //MARK: - New Unit
                 NavigationLink{
-                    FacilityNameScreen()
+                    AddNewUnitScreen()
                 } label: {
                     RowButton(title: "Add a new unit", icon: "plus.square.fill")
                 }

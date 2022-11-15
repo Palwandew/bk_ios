@@ -51,6 +51,10 @@
 		C40FE0C928E95A8D00FDEFD8 /* DeclineBookingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FE0C828E95A8D00FDEFD8 /* DeclineBookingResponse.swift */; };
 		C40FE0CB28E9752600FDEFD8 /* OwnerPastBookingsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FE0CA28E9752600FDEFD8 /* OwnerPastBookingsResponse.swift */; };
 		C40FE0CD28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FE0CC28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift */; };
+		C40FF6AA2923DC95005C81EF /* AddNewUnitScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FF6A92923DC95005C81EF /* AddNewUnitScreen.swift */; };
+		C40FF6AC2923DCFB005C81EF /* CaseIterableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FF6AB2923DCFB005C81EF /* CaseIterableExtension.swift */; };
+		C40FF6AF2923EB64005C81EF /* FacilityNameStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FF6AE2923EB64005C81EF /* FacilityNameStep.swift */; };
+		C40FF6B12923F110005C81EF /* FacilityRoomsStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40FF6B02923F110005C81EF /* FacilityRoomsStep.swift */; };
 		C410D26428B4897000914D84 /* PhotosUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D26328B4897000914D84 /* PhotosUploadManager.swift */; };
 		C410D26628B48C4300914D84 /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D26528B48C4300914D84 /* PhotosViewModel.swift */; };
 		C410D51728FDDAB300165A12 /* UITextFieldWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D51628FDDAB300165A12 /* UITextFieldWrapper.swift */; };
@@ -164,7 +168,6 @@
 		C4826830289727B10072147F /* CancellationPolicyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482682F289727B10072147F /* CancellationPolicyScreen.swift */; };
 		C482683428973BF00072147F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683328973BF00072147F /* RadioButton.swift */; };
 		C48268362897454C0072147F /* CancellationPolicyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48268352897454C0072147F /* CancellationPolicyViewModel.swift */; };
-		C482683928974C4B0072147F /* FacilityNameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683828974C4B0072147F /* FacilityNameScreen.swift */; };
 		C482683B289751D70072147F /* AddNewUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683A289751D70072147F /* AddNewUnitViewModel.swift */; };
 		C482683D289759600072147F /* FacilityRoomsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683C289759600072147F /* FacilityRoomsScreen.swift */; };
 		C482683F28975DBF0072147F /* MaterialLengthField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683E28975DBF0072147F /* MaterialLengthField.swift */; };
@@ -345,6 +348,10 @@
 		C40FE0C828E95A8D00FDEFD8 /* DeclineBookingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclineBookingResponse.swift; sourceTree = "<group>"; };
 		C40FE0CA28E9752600FDEFD8 /* OwnerPastBookingsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerPastBookingsResponse.swift; sourceTree = "<group>"; };
 		C40FE0CC28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerPresentBookingsResponse.swift; sourceTree = "<group>"; };
+		C40FF6A92923DC95005C81EF /* AddNewUnitScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUnitScreen.swift; sourceTree = "<group>"; };
+		C40FF6AB2923DCFB005C81EF /* CaseIterableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseIterableExtension.swift; sourceTree = "<group>"; };
+		C40FF6AE2923EB64005C81EF /* FacilityNameStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityNameStep.swift; sourceTree = "<group>"; };
+		C40FF6B02923F110005C81EF /* FacilityRoomsStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRoomsStep.swift; sourceTree = "<group>"; };
 		C410D26328B4897000914D84 /* PhotosUploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosUploadManager.swift; sourceTree = "<group>"; };
 		C410D26528B48C4300914D84 /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
 		C410D51628FDDAB300165A12 /* UITextFieldWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldWrapper.swift; sourceTree = "<group>"; };
@@ -457,7 +464,6 @@
 		C482682F289727B10072147F /* CancellationPolicyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellationPolicyScreen.swift; sourceTree = "<group>"; };
 		C482683328973BF00072147F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		C48268352897454C0072147F /* CancellationPolicyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellationPolicyViewModel.swift; sourceTree = "<group>"; };
-		C482683828974C4B0072147F /* FacilityNameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityNameScreen.swift; sourceTree = "<group>"; };
 		C482683A289751D70072147F /* AddNewUnitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUnitViewModel.swift; sourceTree = "<group>"; };
 		C482683C289759600072147F /* FacilityRoomsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRoomsScreen.swift; sourceTree = "<group>"; };
 		C482683E28975DBF0072147F /* MaterialLengthField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialLengthField.swift; sourceTree = "<group>"; };
@@ -661,6 +667,15 @@
 			path = ToggleStyles;
 			sourceTree = "<group>";
 		};
+		C40FF6AD2923EB45005C81EF /* FacilityCreationSteps */ = {
+			isa = PBXGroup;
+			children = (
+				C40FF6AE2923EB64005C81EF /* FacilityNameStep.swift */,
+				C40FF6B02923F110005C81EF /* FacilityRoomsStep.swift */,
+			);
+			path = FacilityCreationSteps;
+			sourceTree = "<group>";
+		};
 		C41DCB6928CBAA13004888B1 /* Request Response Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -807,6 +822,7 @@
 				C46BD78928295FA0006AC587 /* ColorExtension.swift */,
 				C4B301F428DA5DA400FAE17D /* DateFormaterExtension.swift */,
 				C4B301F628DA5E0900FAE17D /* CalendarExtension.swift */,
+				C40FF6AB2923DCFB005C81EF /* CaseIterableExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -862,7 +878,7 @@
 		C482683728974C280072147F /* AddNewUnit */ = {
 			isa = PBXGroup;
 			children = (
-				C482683828974C4B0072147F /* FacilityNameScreen.swift */,
+				C40FF6AD2923EB45005C81EF /* FacilityCreationSteps */,
 				C482683C289759600072147F /* FacilityRoomsScreen.swift */,
 				C4B5380F2899D0C70067CC21 /* FacilityFreeAmenitiesScreen.swift */,
 				C47BE33F289AABA900B91D69 /* FacilityPaidAmenitiesScreen.swift */,
@@ -876,6 +892,7 @@
 				C4918D6028A19A9900A8777D /* FacilityPicturesScreen.swift */,
 				C4918D6828A1D66100A8777D /* FacilityPublishChecklistScreen.swift */,
 				C4918D6A28A1DBBB00A8777D /* PublishFacilityScreen.swift */,
+				C40FF6A92923DC95005C81EF /* AddNewUnitScreen.swift */,
 			);
 			path = AddNewUnit;
 			sourceTree = "<group>";
@@ -1529,6 +1546,7 @@
 				C403101B2894BBF10046B645 /* UpcomingBookings.swift in Sources */,
 				C40310192894A9060046B645 /* HorizontalSwipe.swift in Sources */,
 				C4B301EF28DA1FA400FAE17D /* OfferPriceSettingScreen.swift in Sources */,
+				C40FF6AA2923DC95005C81EF /* AddNewUnitScreen.swift in Sources */,
 				C47B734B28CFADF900C719BE /* AvailableFacilitiesListViewModel.swift in Sources */,
 				C464679B28D9FF2400AEA5D8 /* MyOffersScreen.swift in Sources */,
 				C462F7E828E152A5000C99E9 /* OwnerFacilitiesPercentageResponse.swift in Sources */,
@@ -1570,6 +1588,7 @@
 				C48790D728DEEAD500BD6224 /* ProfileInfoScreen.swift in Sources */,
 				C485C52828E3FDCE00FC0E88 /* ProfileInfoViewModel.swift in Sources */,
 				C4A00E3F289B1D6D00D78640 /* Dropdown.swift in Sources */,
+				C40FF6B12923F110005C81EF /* FacilityRoomsStep.swift in Sources */,
 				C4826830289727B10072147F /* CancellationPolicyScreen.swift in Sources */,
 				C403101D2894BC340046B645 /* FacilityCard.swift in Sources */,
 				C49191C228A301C100C03743 /* FacilityCreateName.swift in Sources */,
@@ -1603,6 +1622,7 @@
 				C4BB007F28913C7E000D2E47 /* FirstResponderTextField.swift in Sources */,
 				C440B92D28D1FD7E00909D21 /* AvailableFacilityItemResponse.swift in Sources */,
 				C485C52A28E409BE00FC0E88 /* VerifyPasswordScreen.swift in Sources */,
+				C40FF6AF2923EB64005C81EF /* FacilityNameStep.swift in Sources */,
 				C482111428C742A300D6F75F /* AvailableFacilitiesScreen.swift in Sources */,
 				C4B5380E2899B0820067CC21 /* FacilityServiceRooms.swift in Sources */,
 				C4918D6B28A1DBBB00A8777D /* PublishFacilityScreen.swift in Sources */,
@@ -1693,6 +1713,7 @@
 				C4BB007A2891162E000D2E47 /* CountriesCallingCodeScreen.swift in Sources */,
 				C462F7F828E16EE0000C99E9 /* PaymentMethodsProtocolImpl.swift in Sources */,
 				C4BB007128910797000D2E47 /* LocalDataSource.swift in Sources */,
+				C40FF6AC2923DCFB005C81EF /* CaseIterableExtension.swift in Sources */,
 				C48EEAD728E581D2002AC169 /* BookingConfirmationDialogScreen.swift in Sources */,
 				C4BB007828910DCB000D2E47 /* LocalDataSourceDI.swift in Sources */,
 				C44C065C2901DC260060F88A /* OnwerFacilityUsecaseProtocol.swift in Sources */,
@@ -1714,7 +1735,6 @@
 				C49191C028A2FAB000C03743 /* CreateFacilityRepositoryImpl.swift in Sources */,
 				C42DC5D128E0438300FCE145 /* WKWebView.swift in Sources */,
 				C41DCB6F28CBB477004888B1 /* FacilityRepositoryImpl.swift in Sources */,
-				C482683928974C4B0072147F /* FacilityNameScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

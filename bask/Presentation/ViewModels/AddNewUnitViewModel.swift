@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 
 
-struct FacilityNameViewModel {
+class FacilityNameViewModel: ObservableObject {
     
     var englishName: String = ""
     var arabicName: String = ""
@@ -17,7 +17,7 @@ struct FacilityNameViewModel {
     var arabicNameError: Bool = false
     var shallNavigate: Bool = false
     
-    mutating func onContinueTapped() {
+    func onContinueTapped() {
         
             do {
                 try validateFacilityName()
@@ -37,7 +37,7 @@ struct FacilityNameViewModel {
         
     }
     
-    mutating func navigateToNextScreen(){
+    func navigateToNextScreen(){
         shallNavigate = true
     }
     
@@ -64,7 +64,7 @@ enum FacilityNameErrors: Error{
     case invalidArabicName
 }
 
-struct FacilityRoomsViewModel {
+class FacilityRoomsViewModel: ObservableObject {
     var facilityWidth: String = ""
     var facilityLength: String = ""
     var livingRoomsCount: Int = 0
@@ -77,7 +77,7 @@ struct FacilityRoomsViewModel {
     var shallNavigate: Bool = false
     var toast: ToastViewModel = ToastViewModel()
     
-    mutating func onContinueTapped(){
+    func onContinueTapped(){
         do {
             try validateFacilitySizeAndRooms()
             navigateToNextScreen()
@@ -100,11 +100,11 @@ struct FacilityRoomsViewModel {
         toast.show()
     }
     
-    private mutating func navigateToNextScreen(){
+    private func navigateToNextScreen(){
         shallNavigate = true
     }
     
-    mutating func increaseCount(of counter: Counter){
+    func increaseCount(of counter: Counter){
         switch counter {
         case .kitchen:
             addCount(of: &kitchensCount)
@@ -119,7 +119,7 @@ struct FacilityRoomsViewModel {
         }
     }
     
-    mutating func decreaseCount(of counter: Counter){
+    func decreaseCount(of counter: Counter){
         switch counter {
         case .livingRoom:
             decreaseCount(of: &livingRoomsCount)
@@ -212,13 +212,39 @@ struct FacilityLocationViewModel{
     
     var location: Location = Location()
     var shallNavigate: Bool = false
+    var shallShowMap: Bool = false
     
     mutating func onContinueTapped(){
         if location.validAddress() {
-            shallNavigate = true
+            shallShowMap = true
         }
     }
+    
+    mutating func updateMapPin(with mapCenter : CLLocationCoordinate2D) {
+        location.updateCoordinates(with: mapCenter.latitude, and: mapCenter.longitude)
+        shallNavigate = true 
+        
+    }
 }
+
+class CheckInCheckOutViewModel: ObservableObject {
+    var checkInTime: String = ""
+    var checkOutTime: String = ""
+    
+}
+
+class FacilityPriceViewModel: ObservableObject {
+    var pricePerNight: String = ""
+    var deposit: String = ""
+    
+    func validateFacilityPrice(){
+        
+    }
+}
+
+
+
+
 
 class AddNewUnitViewModel: ObservableObject {
     
@@ -264,6 +290,7 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var showToast: Bool = false
     @Published var toastStyle: ToastStyle = .success
     
+    @Published var title: String = "Name of facility"
     
     @Published var facilityNameViewModel: FacilityNameViewModel = FacilityNameViewModel()
     @Published var facilityRoomsViewModel: FacilityRoomsViewModel = FacilityRoomsViewModel()
@@ -274,6 +301,7 @@ class AddNewUnitViewModel: ObservableObject {
     
     @Published var facilityLocationViewModel: FacilityLocationViewModel = FacilityLocationViewModel()
     
+    @Published var facilityPriceViewModel: FacilityPriceViewModel = FacilityPriceViewModel()
     // Retry button indicator
     @Published var shallRetry: Bool = false
     
@@ -284,6 +312,23 @@ class AddNewUnitViewModel: ObservableObject {
     
     deinit{
         print("deinit create new facility view model")
+    }
+    
+    
+    func onContinueTapped(nextStep: FacilityCreationState){
+        switch nextStep {
+        case .name:
+            updateTitle(with: "Name of facility")
+        case .amenities:
+            updateTitle(with: "Rooms")
+        case .address:
+            updateTitle(with: "Address")
+        }
+        
+    }
+    
+    private func updateTitle(with newTitle: String){
+        title = newTitle
     }
     
     

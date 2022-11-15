@@ -49,15 +49,7 @@ struct FacilityTimeScreen: View {
                         timeConstraint = .checkInAfter
                         showTimePicker.toggle()
                     }
-                
-                
-                MaterialTextSelector(text: $viewModel.facility.checkInBefore, placeHolder: "Check-in before")
-                    .frame(height: 60)
-                    .onTapGesture {
-                        print("hi")
-                        timeConstraint = .checkInBefore
-                        showTimePicker.toggle()
-                    }
+               
                 
                 MaterialTextSelector(text: $viewModel.facility.checkOutBefore, placeHolder: "Check-out before")
                     .frame(height: 60)

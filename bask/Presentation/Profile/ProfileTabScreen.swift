@@ -44,11 +44,11 @@ struct ProfileTabScreen: View {
                 
                 
                 //MARK: - Agreement
-                NavigationLink{
-                    FacilityNameScreen()
-                } label: {
-                    RowButton(title: "Agreement", icon: "doc.text.fill")
-                }
+//                NavigationLink{
+//                    FacilityNameSt()
+//                } label: {
+//                    RowButton(title: "Agreement", icon: "doc.text.fill")
+//                }
                 
                 
                 

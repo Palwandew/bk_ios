@@ -36,6 +36,11 @@ struct Location {
         return validCity && validStreet
     }
     
+    mutating func updateCoordinates(with lat: Double, and lon: Double){
+        latitude = lat
+        longitude = lon
+    }
+    
     
     func toRequestBodyModel() -> FacilityLocationRequestBody {
         return FacilityLocationRequestBody(country: self.country, city: self.city, address: self.street, latitude: self.latitude, longitude: self.longitude)

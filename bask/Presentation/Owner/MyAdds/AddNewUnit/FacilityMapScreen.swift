@@ -48,14 +48,14 @@ struct FacilityMapScreen: View {
                 
                     
                     NavigationLink(destination:
-                                    FacilityTimeScreen().environmentObject(viewModel), isActive: $viewModel.willShowCheckInScreen) {
+                                    FacilityTimeScreen().environmentObject(viewModel), isActive: $viewModel.facilityLocationViewModel.shallNavigate) {
                         EmptyView()
                     }
                     
                     
                     FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                         
-                        viewModel.updateFacilityLocation(with: map.center)
+                        viewModel.facilityLocationViewModel.updateMapPin(with: map.center)
                         
                         
                     }.padding([.horizontal, .top])

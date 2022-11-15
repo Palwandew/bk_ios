@@ -63,7 +63,7 @@ struct FacilityLocationScreen: View {
             
             
             NavigationLink(destination:
-                            FacilityMapScreen().environmentObject(viewModel), isActive: $viewModel.facilityLocationViewModel.shallNavigate) {
+                            FacilityMapScreen().environmentObject(viewModel), isActive: $viewModel.facilityLocationViewModel.shallShowMap) {
                 EmptyView()
             }
             

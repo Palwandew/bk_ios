@@ -51,7 +51,7 @@ struct FacilityPriceSetupScreen: View {
                 .padding(.bottom, 32)
             
             
-            MaterialPriceField(text: $viewModel.facility.pricePerNight, isValid: $viewModel.facility.validPrice, errorMessage: errorMessage, placeHolder: "Price per night")
+            MaterialPriceField(text: $viewModel.facilityPriceViewModel.pricePerNight, isValid: $viewModel.facility.validPrice, errorMessage: errorMessage, placeHolder: "Price per night")
             
             
             //MARK: - Deposit
@@ -67,7 +67,7 @@ struct FacilityPriceSetupScreen: View {
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                 .padding(.bottom, 32)
             
-            MaterialPriceField(text: $viewModel.facility.deposit, isValid: $viewModel.facility.validDeposit, errorMessage: errorMessage, placeHolder: "Deposit")
+            MaterialPriceField(text: $viewModel.facilityPriceViewModel.deposit, isValid: $viewModel.facility.validDeposit, errorMessage: errorMessage, placeHolder: "Deposit")
             
             Spacer()
             

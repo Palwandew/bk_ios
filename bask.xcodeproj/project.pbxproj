@@ -23,8 +23,6 @@
 		C4075E2828E5601700FEA2F8 /* OwnerUpcomingBookingsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4075E2728E5601700FEA2F8 /* OwnerUpcomingBookingsResponse.swift */; };
 		C4075E2A28E561A100FEA2F8 /* BookingRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4075E2928E561A100FEA2F8 /* BookingRepositoryProtocol.swift */; };
 		C4075E2C28E5631400FEA2F8 /* BookingRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4075E2B28E5631400FEA2F8 /* BookingRepositoryImpl.swift */; };
-		C4082844289D29D300C1B51B /* FacilityLocationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4082843289D29D300C1B51B /* FacilityLocationScreen.swift */; };
-		C4082846289D2E3300C1B51B /* FacilityMapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4082845289D2E3300C1B51B /* FacilityMapScreen.swift */; };
 		C4082848289D455B00C1B51B /* CountriesListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4082847289D455B00C1B51B /* CountriesListScreen.swift */; };
 		C408F9CE28DB45E200518632 /* MyOffersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C408F9CD28DB45E200518632 /* MyOffersViewModel.swift */; };
 		C408F9D028DB4E3600518632 /* OwnerFacilitiesForOffersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C408F9CF28DB4E3600518632 /* OwnerFacilitiesForOffersResponse.swift */; };
@@ -36,6 +34,9 @@
 		C408F9DC28DBC90D00518632 /* NewOfferRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C408F9DB28DBC90D00518632 /* NewOfferRequestBody.swift */; };
 		C408F9DE28DBEB5500518632 /* OwnerOffersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C408F9DD28DBEB5500518632 /* OwnerOffersResponse.swift */; };
 		C409A10828C9BD9500D4E6C7 /* FacilityImageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A10728C9BD9500D4E6C7 /* FacilityImageSliderView.swift */; };
+		C40D86512924174200C07628 /* FreeAmenitiesStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40D86502924174200C07628 /* FreeAmenitiesStep.swift */; };
+		C40D8653292431AB00C07628 /* FacilityRulesStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40D8652292431AB00C07628 /* FacilityRulesStep.swift */; };
+		C40D8655292432AF00C07628 /* AmenityToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40D8654292432AF00C07628 /* AmenityToggleView.swift */; };
 		C40E7F6228984E7200788652 /* AmenityCounterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6128984E7200788652 /* AmenityCounterButton.swift */; };
 		C40E7F6428985BE700788652 /* AmenityCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E7F6328985BE700788652 /* AmenityCounterView.swift */; };
 		C40EBA0D28DCE08E00A09838 /* OfferDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EBA0C28DCE08E00A09838 /* OfferDetailView.swift */; };
@@ -58,10 +59,11 @@
 		C410D26428B4897000914D84 /* PhotosUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D26328B4897000914D84 /* PhotosUploadManager.swift */; };
 		C410D26628B48C4300914D84 /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D26528B48C4300914D84 /* PhotosViewModel.swift */; };
 		C410D51728FDDAB300165A12 /* UITextFieldWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410D51628FDDAB300165A12 /* UITextFieldWrapper.swift */; };
+		C4175C2C292559BC004E932E /* FacilityMapCoordinatesStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4175C2B292559BC004E932E /* FacilityMapCoordinatesStep.swift */; };
+		C4175C2E29255F97004E932E /* FacilityCheckInTimeStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4175C2D29255F97004E932E /* FacilityCheckInTimeStep.swift */; };
 		C41A210628EB5C590028C4A3 /* GetFacilityCalendarResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A210528EB5C590028C4A3 /* GetFacilityCalendarResponse.swift */; };
 		C41A26AB289C345E0057F3FE /* MaterialPriceField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AA289C345E0057F3FE /* MaterialPriceField.swift */; };
 		C41A26AD289C6DB30057F3FE /* AmenityPriceLengthInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */; };
-		C41A26AF289C79810057F3FE /* FacilityRulesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */; };
 		C41CBF8F28D0C6A400EE55B2 /* LocalizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CBF8E28D0C6A400EE55B2 /* LocalizationHelper.swift */; };
 		C41CBF9128D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CBF9028D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift */; };
 		C41D312228D75FB60049042B /* RateGuestUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41D312128D75FB60049042B /* RateGuestUsecase.swift */; };
@@ -76,6 +78,7 @@
 		C41DCB6B28CBAA5A004888B1 /* BookedFacilitiesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6A28CBAA5A004888B1 /* BookedFacilitiesResponse.swift */; };
 		C41DCB6D28CBB31C004888B1 /* FacilityDomainRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6C28CBB31C004888B1 /* FacilityDomainRepoProtocol.swift */; };
 		C41DCB6F28CBB477004888B1 /* FacilityRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41DCB6E28CBB477004888B1 /* FacilityRepositoryImpl.swift */; };
+		C427009829252946007BA8F2 /* FacilityAddressStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C427009729252946007BA8F2 /* FacilityAddressStep.swift */; };
 		C42ACE6028E00BD300E7B86B /* AddAmountToWithdrawScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42ACE5F28E00BD300E7B86B /* AddAmountToWithdrawScreen.swift */; };
 		C42ACE6328E032EE00E7B86B /* PaymentMethodsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42ACE6228E032EE00E7B86B /* PaymentMethodsScreen.swift */; };
 		C42DC5D128E0438300FCE145 /* WKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42DC5D028E0438300FCE145 /* WKWebView.swift */; };
@@ -142,6 +145,8 @@
 		C46E5F0528EC5A170072F1F4 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46E5F0428EC5A170072F1F4 /* CalendarViewModel.swift */; };
 		C46E5F0728EC62770072F1F4 /* CalendarRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46E5F0628EC62770072F1F4 /* CalendarRepositoryProtocol.swift */; };
 		C46E5F0928EC63950072F1F4 /* CalendarRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46E5F0828EC63950072F1F4 /* CalendarRepositoryImpl.swift */; };
+		C476519D292BD6AC0021B067 /* FacilityPriceStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C476519C292BD6AC0021B067 /* FacilityPriceStep.swift */; };
+		C476519F292BDC870021B067 /* FacilityDescriptionStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C476519E292BDC870021B067 /* FacilityDescriptionStep.swift */; };
 		C47B734028CF2EBC00C719BE /* PhotosDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47B733F28CF2EBC00C719BE /* PhotosDownloadManager.swift */; };
 		C47B734328CF89DF00C719BE /* CacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47B734228CF89DF00C719BE /* CacheHelper.swift */; };
 		C47B734528CFA9C900C719BE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47B734428CFA9C900C719BE /* ImageLoader.swift */; };
@@ -169,7 +174,6 @@
 		C482683428973BF00072147F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683328973BF00072147F /* RadioButton.swift */; };
 		C48268362897454C0072147F /* CancellationPolicyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48268352897454C0072147F /* CancellationPolicyViewModel.swift */; };
 		C482683B289751D70072147F /* AddNewUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683A289751D70072147F /* AddNewUnitViewModel.swift */; };
-		C482683D289759600072147F /* FacilityRoomsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683C289759600072147F /* FacilityRoomsScreen.swift */; };
 		C482683F28975DBF0072147F /* MaterialLengthField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683E28975DBF0072147F /* MaterialLengthField.swift */; };
 		C485C52028E3F7C900FC0E88 /* GetUserDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C485C51F28E3F7C900FC0E88 /* GetUserDetailsResponse.swift */; };
 		C485C52228E3FB3400FC0E88 /* GetUserProfileDetailsUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C485C52128E3FB3400FC0E88 /* GetUserProfileDetailsUsecase.swift */; };
@@ -238,7 +242,6 @@
 		C4B5380A289953A00067CC21 /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B53809289953A00067CC21 /* Facility.swift */; };
 		C4B5380C28997CD20067CC21 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C4B5380B28997CD20067CC21 /* Poppins-Regular.ttf */; };
 		C4B5380E2899B0820067CC21 /* FacilityServiceRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5380D2899B0820067CC21 /* FacilityServiceRooms.swift */; };
-		C4B538102899D0C70067CC21 /* FacilityFreeAmenitiesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5380F2899D0C70067CC21 /* FacilityFreeAmenitiesScreen.swift */; };
 		C4B538122899DE4A0067CC21 /* AccentGreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B538112899DE4A0067CC21 /* AccentGreen.swift */; };
 		C4BB005B2890AB89000D2E47 /* MaterialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB005A2890AB89000D2E47 /* MaterialTextField.swift */; };
 		C4BB005D2890C576000D2E47 /* MaterialSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB005C2890C576000D2E47 /* MaterialSecureField.swift */; };
@@ -320,8 +323,6 @@
 		C4075E2728E5601700FEA2F8 /* OwnerUpcomingBookingsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerUpcomingBookingsResponse.swift; sourceTree = "<group>"; };
 		C4075E2928E561A100FEA2F8 /* BookingRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingRepositoryProtocol.swift; sourceTree = "<group>"; };
 		C4075E2B28E5631400FEA2F8 /* BookingRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingRepositoryImpl.swift; sourceTree = "<group>"; };
-		C4082843289D29D300C1B51B /* FacilityLocationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityLocationScreen.swift; sourceTree = "<group>"; };
-		C4082845289D2E3300C1B51B /* FacilityMapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityMapScreen.swift; sourceTree = "<group>"; };
 		C4082847289D455B00C1B51B /* CountriesListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListScreen.swift; sourceTree = "<group>"; };
 		C408F9CD28DB45E200518632 /* MyOffersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOffersViewModel.swift; sourceTree = "<group>"; };
 		C408F9CF28DB4E3600518632 /* OwnerFacilitiesForOffersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerFacilitiesForOffersResponse.swift; sourceTree = "<group>"; };
@@ -333,6 +334,9 @@
 		C408F9DB28DBC90D00518632 /* NewOfferRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOfferRequestBody.swift; sourceTree = "<group>"; };
 		C408F9DD28DBEB5500518632 /* OwnerOffersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerOffersResponse.swift; sourceTree = "<group>"; };
 		C409A10728C9BD9500D4E6C7 /* FacilityImageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityImageSliderView.swift; sourceTree = "<group>"; };
+		C40D86502924174200C07628 /* FreeAmenitiesStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeAmenitiesStep.swift; sourceTree = "<group>"; };
+		C40D8652292431AB00C07628 /* FacilityRulesStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRulesStep.swift; sourceTree = "<group>"; };
+		C40D8654292432AF00C07628 /* AmenityToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityToggleView.swift; sourceTree = "<group>"; };
 		C40E7F6128984E7200788652 /* AmenityCounterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterButton.swift; sourceTree = "<group>"; };
 		C40E7F6328985BE700788652 /* AmenityCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityCounterView.swift; sourceTree = "<group>"; };
 		C40EBA0C28DCE08E00A09838 /* OfferDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailView.swift; sourceTree = "<group>"; };
@@ -355,10 +359,11 @@
 		C410D26328B4897000914D84 /* PhotosUploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosUploadManager.swift; sourceTree = "<group>"; };
 		C410D26528B48C4300914D84 /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
 		C410D51628FDDAB300165A12 /* UITextFieldWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldWrapper.swift; sourceTree = "<group>"; };
+		C4175C2B292559BC004E932E /* FacilityMapCoordinatesStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityMapCoordinatesStep.swift; sourceTree = "<group>"; };
+		C4175C2D29255F97004E932E /* FacilityCheckInTimeStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityCheckInTimeStep.swift; sourceTree = "<group>"; };
 		C41A210528EB5C590028C4A3 /* GetFacilityCalendarResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFacilityCalendarResponse.swift; sourceTree = "<group>"; };
 		C41A26AA289C345E0057F3FE /* MaterialPriceField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialPriceField.swift; sourceTree = "<group>"; };
 		C41A26AC289C6DB30057F3FE /* AmenityPriceLengthInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenityPriceLengthInputView.swift; sourceTree = "<group>"; };
-		C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRulesScreen.swift; sourceTree = "<group>"; };
 		C41CBF8E28D0C6A400EE55B2 /* LocalizationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationHelper.swift; sourceTree = "<group>"; };
 		C41CBF9028D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableFacilitiesResponse.swift; sourceTree = "<group>"; };
 		C41D312128D75FB60049042B /* RateGuestUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateGuestUsecase.swift; sourceTree = "<group>"; };
@@ -373,6 +378,7 @@
 		C41DCB6A28CBAA5A004888B1 /* BookedFacilitiesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedFacilitiesResponse.swift; sourceTree = "<group>"; };
 		C41DCB6C28CBB31C004888B1 /* FacilityDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDomainRepoProtocol.swift; sourceTree = "<group>"; };
 		C41DCB6E28CBB477004888B1 /* FacilityRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRepositoryImpl.swift; sourceTree = "<group>"; };
+		C427009729252946007BA8F2 /* FacilityAddressStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityAddressStep.swift; sourceTree = "<group>"; };
 		C42ACE5F28E00BD300E7B86B /* AddAmountToWithdrawScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAmountToWithdrawScreen.swift; sourceTree = "<group>"; };
 		C42ACE6228E032EE00E7B86B /* PaymentMethodsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsScreen.swift; sourceTree = "<group>"; };
 		C42DC5D028E0438300FCE145 /* WKWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebView.swift; sourceTree = "<group>"; };
@@ -438,6 +444,8 @@
 		C46E5F0428EC5A170072F1F4 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		C46E5F0628EC62770072F1F4 /* CalendarRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRepositoryProtocol.swift; sourceTree = "<group>"; };
 		C46E5F0828EC63950072F1F4 /* CalendarRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRepositoryImpl.swift; sourceTree = "<group>"; };
+		C476519C292BD6AC0021B067 /* FacilityPriceStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityPriceStep.swift; sourceTree = "<group>"; };
+		C476519E292BDC870021B067 /* FacilityDescriptionStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDescriptionStep.swift; sourceTree = "<group>"; };
 		C47B733F28CF2EBC00C719BE /* PhotosDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosDownloadManager.swift; sourceTree = "<group>"; };
 		C47B734228CF89DF00C719BE /* CacheHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheHelper.swift; sourceTree = "<group>"; };
 		C47B734428CFA9C900C719BE /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
@@ -465,7 +473,6 @@
 		C482683328973BF00072147F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		C48268352897454C0072147F /* CancellationPolicyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellationPolicyViewModel.swift; sourceTree = "<group>"; };
 		C482683A289751D70072147F /* AddNewUnitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUnitViewModel.swift; sourceTree = "<group>"; };
-		C482683C289759600072147F /* FacilityRoomsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRoomsScreen.swift; sourceTree = "<group>"; };
 		C482683E28975DBF0072147F /* MaterialLengthField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialLengthField.swift; sourceTree = "<group>"; };
 		C485C51F28E3F7C900FC0E88 /* GetUserDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserDetailsResponse.swift; sourceTree = "<group>"; };
 		C485C52128E3FB3400FC0E88 /* GetUserProfileDetailsUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileDetailsUsecase.swift; sourceTree = "<group>"; };
@@ -518,7 +525,6 @@
 		C4B53809289953A00067CC21 /* Facility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
 		C4B5380B28997CD20067CC21 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		C4B5380D2899B0820067CC21 /* FacilityServiceRooms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityServiceRooms.swift; sourceTree = "<group>"; };
-		C4B5380F2899D0C70067CC21 /* FacilityFreeAmenitiesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityFreeAmenitiesScreen.swift; sourceTree = "<group>"; };
 		C4B538112899DE4A0067CC21 /* AccentGreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentGreen.swift; sourceTree = "<group>"; };
 		C4BB005A2890AB89000D2E47 /* MaterialTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialTextField.swift; sourceTree = "<group>"; };
 		C4BB005C2890C576000D2E47 /* MaterialSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialSecureField.swift; sourceTree = "<group>"; };
@@ -672,6 +678,13 @@
 			children = (
 				C40FF6AE2923EB64005C81EF /* FacilityNameStep.swift */,
 				C40FF6B02923F110005C81EF /* FacilityRoomsStep.swift */,
+				C40D86502924174200C07628 /* FreeAmenitiesStep.swift */,
+				C40D8652292431AB00C07628 /* FacilityRulesStep.swift */,
+				C427009729252946007BA8F2 /* FacilityAddressStep.swift */,
+				C4175C2B292559BC004E932E /* FacilityMapCoordinatesStep.swift */,
+				C4175C2D29255F97004E932E /* FacilityCheckInTimeStep.swift */,
+				C476519C292BD6AC0021B067 /* FacilityPriceStep.swift */,
+				C476519E292BDC870021B067 /* FacilityDescriptionStep.swift */,
 			);
 			path = FacilityCreationSteps;
 			sourceTree = "<group>";
@@ -879,12 +892,7 @@
 			isa = PBXGroup;
 			children = (
 				C40FF6AD2923EB45005C81EF /* FacilityCreationSteps */,
-				C482683C289759600072147F /* FacilityRoomsScreen.swift */,
-				C4B5380F2899D0C70067CC21 /* FacilityFreeAmenitiesScreen.swift */,
 				C47BE33F289AABA900B91D69 /* FacilityPaidAmenitiesScreen.swift */,
-				C41A26AE289C79810057F3FE /* FacilityRulesScreen.swift */,
-				C4082843289D29D300C1B51B /* FacilityLocationScreen.swift */,
-				C4082845289D2E3300C1B51B /* FacilityMapScreen.swift */,
 				C4082847289D455B00C1B51B /* CountriesListScreen.swift */,
 				C4A5C57C289F3DD9006AF774 /* FacilityTimeScreen.swift */,
 				C49FB52C28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift */,
@@ -1316,6 +1324,7 @@
 				C40EBA1728DD5FE500A09838 /* ExistingPromoTicket.swift */,
 				C48790CF28DE93F600BD6224 /* MessageDeliveryIndicator.swift */,
 				C48790D128DE981000BD6224 /* DynamicHeightTextInputField.swift */,
+				C40D8654292432AF00C07628 /* AmenityToggleView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1471,7 +1480,6 @@
 				C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */,
 				C4F7E77D28D855F50060A1C7 /* SingleGuestRatingResponse.swift in Sources */,
 				C482683F28975DBF0072147F /* MaterialLengthField.swift in Sources */,
-				C482683D289759600072147F /* FacilityRoomsScreen.swift in Sources */,
 				C4F7E78528D8D0100060A1C7 /* ComplainGuestUseCase.swift in Sources */,
 				C4F7E78328D8CE8C0060A1C7 /* ComplainGuestViewModel.swift in Sources */,
 				C41CBF9128D11F1B00EE55B2 /* AvailableFacilitiesResponse.swift in Sources */,
@@ -1526,7 +1534,6 @@
 				C42ACE6028E00BD300E7B86B /* AddAmountToWithdrawScreen.swift in Sources */,
 				C4AF9B1B2828216600EBB141 /* PostDI.swift in Sources */,
 				C4FF858E28D62A8F00ADBCDF /* PresentGuestsViewModel.swift in Sources */,
-				C4082844289D29D300C1B51B /* FacilityLocationScreen.swift in Sources */,
 				C4FF858628D6135300ADBCDF /* GuestsDomainRepoProtocol.swift in Sources */,
 				C465D51328AB07F000CFDBC4 /* Rules.swift in Sources */,
 				C47B734928CFAAFF00C719BE /* BookedFacilitiesListViewModel.swift in Sources */,
@@ -1539,7 +1546,6 @@
 				C4F6675C28D37E9C00ABA680 /* UnratedGuestListItem.swift in Sources */,
 				C4D0872E289326B400DCEACF /* OTPInput.swift in Sources */,
 				C48E9F5628D4A7F200FFD1AF /* MaterialCommentField.swift in Sources */,
-				C4B538102899D0C70067CC21 /* FacilityFreeAmenitiesScreen.swift in Sources */,
 				C4918D6128A19A9900A8777D /* FacilityPicturesScreen.swift in Sources */,
 				C410D51728FDDAB300165A12 /* UITextFieldWrapper.swift in Sources */,
 				C462F7EA28E15538000C99E9 /* FacilityPercentage.swift in Sources */,
@@ -1550,7 +1556,6 @@
 				C47B734B28CFADF900C719BE /* AvailableFacilitiesListViewModel.swift in Sources */,
 				C464679B28D9FF2400AEA5D8 /* MyOffersScreen.swift in Sources */,
 				C462F7E828E152A5000C99E9 /* OwnerFacilitiesPercentageResponse.swift in Sources */,
-				C41A26AF289C79810057F3FE /* FacilityRulesScreen.swift in Sources */,
 				C45C84CC28B738E200646719 /* PhotoSignedURLModel.swift in Sources */,
 				C465D51528AB41BE00CFDBC4 /* Location.swift in Sources */,
 				C49FB52D28A05B7D00A54D7D /* FacilityPriceSetupScreen.swift in Sources */,
@@ -1583,6 +1588,7 @@
 				C441FF5A28A456FD00AAC00C /* UIApplicationHelper.swift in Sources */,
 				C403100E289482B10046B645 /* MaterialTabView.swift in Sources */,
 				C408F9D828DB720100518632 /* Offer.swift in Sources */,
+				C40D86512924174200C07628 /* FreeAmenitiesStep.swift in Sources */,
 				C462F7FE28E1A577000C99E9 /* GetWalletStatusResponse.swift in Sources */,
 				C4B301F128DA2C0900FAE17D /* OfferDurationSettingScreen.swift in Sources */,
 				C48790D728DEEAD500BD6224 /* ProfileInfoScreen.swift in Sources */,
@@ -1629,7 +1635,6 @@
 				C4AF9B212828216600EBB141 /* PostModel.swift in Sources */,
 				C482683B289751D70072147F /* AddNewUnitViewModel.swift in Sources */,
 				C47FEB112896962B008BC4C2 /* CustomAlertDialog.swift in Sources */,
-				C4082846289D2E3300C1B51B /* FacilityMapScreen.swift in Sources */,
 				C440B92F28D224E200909D21 /* UnpublishedFacilitiesResponse.swift in Sources */,
 				C4A5C581289F4697006AF774 /* MaterialTimePicker.swift in Sources */,
 				C430368A28D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift in Sources */,
@@ -1645,6 +1650,8 @@
 				C4D659B2282B4F5000FAE1D1 /* SignupViewModel.swift in Sources */,
 				C41DCB6028CB49B2004888B1 /* CalendarButton.swift in Sources */,
 				C4AF9B232828216600EBB141 /* PostViewModel.swift in Sources */,
+				C4175C2E29255F97004E932E /* FacilityCheckInTimeStep.swift in Sources */,
+				C4175C2C292559BC004E932E /* FacilityMapCoordinatesStep.swift in Sources */,
 				C4BB005D2890C576000D2E47 /* MaterialSecureField.swift in Sources */,
 				C437696228EDAD31005582E9 /* CalendarScreen.swift in Sources */,
 				C40EBA1828DD5FE500A09838 /* ExistingPromoTicket.swift in Sources */,
@@ -1664,6 +1671,7 @@
 				C482682E28970EC90072147F /* MyAddsScreen.swift in Sources */,
 				C4918D6328A19DBC00A8777D /* Gallery.swift in Sources */,
 				C4AF9B282828216600EBB141 /* PostUseCase.swift in Sources */,
+				C40D8653292431AB00C07628 /* FacilityRulesStep.swift in Sources */,
 				C40EBA1B28DD948200A09838 /* MessagesInboxScreen.swift in Sources */,
 				C4F7E77F28D884AD0060A1C7 /* UpdatedGuestRatingRequestBody.swift in Sources */,
 				C4F6675828D37C1500ABA680 /* UpcomingGuestsScreen.swift in Sources */,
@@ -1677,11 +1685,13 @@
 				C49191C728A3061D00C03743 /* CreateFacilityUseCase.swift in Sources */,
 				C462F7F228E16BD6000C99E9 /* PaymentCard.swift in Sources */,
 				C462F7FA28E17065000C99E9 /* PaymentMethodsViewModel.swift in Sources */,
+				C427009829252946007BA8F2 /* FacilityAddressStep.swift in Sources */,
 				C4B5380A289953A00067CC21 /* Facility.swift in Sources */,
 				C47B734028CF2EBC00C719BE /* PhotosDownloadManager.swift in Sources */,
 				C41CBF8F28D0C6A400EE55B2 /* LocalizationHelper.swift in Sources */,
 				C45C84CA28B736A100646719 /* PhotosRepositoryImpl.swift in Sources */,
 				C4A921CE28B601AB00969EF1 /* CheckList.swift in Sources */,
+				C40D8655292432AF00C07628 /* AmenityToggleView.swift in Sources */,
 				C41A26AD289C6DB30057F3FE /* AmenityPriceLengthInputView.swift in Sources */,
 				C4AF9B2A2828216600EBB141 /* Post.swift in Sources */,
 				C4DA584728F197CA000A4EC1 /* CalendarFacilitiesListScreen.swift in Sources */,
@@ -1720,6 +1730,7 @@
 				C40E7F6428985BE700788652 /* AmenityCounterView.swift in Sources */,
 				C4B301F728DA5E0900FAE17D /* CalendarExtension.swift in Sources */,
 				C46BD78C2829627D006AC587 /* OutlinedButton.swift in Sources */,
+				C476519D292BD6AC0021B067 /* FacilityPriceStep.swift in Sources */,
 				C4BB007C28912D29000D2E47 /* EnterOTPScreen.swift in Sources */,
 				C408F9D628DB519800518632 /* OffersUsecase.swift in Sources */,
 				C41DCB6D28CBB31C004888B1 /* FacilityDomainRepoProtocol.swift in Sources */,
@@ -1733,6 +1744,7 @@
 				C485C52028E3F7C900FC0E88 /* GetUserDetailsResponse.swift in Sources */,
 				C40FE0C928E95A8D00FDEFD8 /* DeclineBookingResponse.swift in Sources */,
 				C49191C028A2FAB000C03743 /* CreateFacilityRepositoryImpl.swift in Sources */,
+				C476519F292BDC870021B067 /* FacilityDescriptionStep.swift in Sources */,
 				C42DC5D128E0438300FCE145 /* WKWebView.swift in Sources */,
 				C41DCB6F28CBB477004888B1 /* FacilityRepositoryImpl.swift in Sources */,
 			);

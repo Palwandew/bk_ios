@@ -182,7 +182,7 @@ class FacilityRoomsViewModel: ObservableObject {
     }
 }
 
-struct FacilityAmenitiesViewModel {
+class FacilityAmenitiesViewModel: ObservableObject {
     var wifi: Bool = false
     var parking: Bool = false
     var indoorPool: Bool = false
@@ -195,7 +195,7 @@ struct FacilityAmenitiesViewModel {
     var playingField: Bool = false
 }
 
-struct FacilityRulesViewModel{
+class FacilityRulesViewModel: ObservableObject{
     var petsAllowed: Bool = true
     var allPetsAllowed: Bool = false
     var cats: Bool = true
@@ -208,28 +208,32 @@ struct FacilityRulesViewModel{
     var additionalRulesDescription: String = ""
 }
 
-struct FacilityLocationViewModel{
+class FacilityLocationViewModel: ObservableObject{
     
     var location: Location = Location()
     var shallNavigate: Bool = false
     var shallShowMap: Bool = false
     
-    mutating func onContinueTapped(){
+    func onContinueTapped(){
         if location.validAddress() {
             shallShowMap = true
         }
     }
     
-    mutating func updateMapPin(with mapCenter : CLLocationCoordinate2D) {
+    func updateMapPin(with mapCenter : CLLocationCoordinate2D) {
         location.updateCoordinates(with: mapCenter.latitude, and: mapCenter.longitude)
-        shallNavigate = true 
-        
+        shallNavigate = true
     }
 }
 
 class CheckInCheckOutViewModel: ObservableObject {
     var checkInTime: String = ""
     var checkOutTime: String = ""
+    
+    func updateTime(){
+        checkInTime = "10:00 MP"
+        self.objectWillChange.send()
+    }
     
 }
 
@@ -240,6 +244,10 @@ class FacilityPriceViewModel: ObservableObject {
     func validateFacilityPrice(){
         
     }
+}
+
+class FacilityDescriptionViewModel: ObservableObject {
+    @Published var description: String = ""
 }
 
 
@@ -295,13 +303,13 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var facilityNameViewModel: FacilityNameViewModel = FacilityNameViewModel()
     @Published var facilityRoomsViewModel: FacilityRoomsViewModel = FacilityRoomsViewModel()
     @Published var facilityAmenitiesViewModel: FacilityAmenitiesViewModel = FacilityAmenitiesViewModel()
-    
-    
     @Published var facilityRulesViewModel: FacilityRulesViewModel = FacilityRulesViewModel()
-    
     @Published var facilityLocationViewModel: FacilityLocationViewModel = FacilityLocationViewModel()
-    
+    @Published var checkInCheckOutViewModel: CheckInCheckOutViewModel = CheckInCheckOutViewModel()
     @Published var facilityPriceViewModel: FacilityPriceViewModel = FacilityPriceViewModel()
+    
+    
+    @Published var facilityDescriptionViewModel: FacilityDescriptionViewModel = FacilityDescriptionViewModel()
     // Retry button indicator
     @Published var shallRetry: Bool = false
     
@@ -316,15 +324,34 @@ class AddNewUnitViewModel: ObservableObject {
     
     
     func onContinueTapped(nextStep: FacilityCreationState){
-        switch nextStep {
+        performAction(for: nextStep)
+    }
+    
+    func onBackTapped(previousStep: FacilityCreationState){
+        performAction(for: previousStep)
+    }
+    
+    private func performAction(for state: FacilityCreationState){
+        switch state {
         case .name:
             updateTitle(with: "Name of facility")
         case .amenities:
-            updateTitle(with: "Rooms")
+            updateTitle(with: "Amenities")
+        case .rules:
+            updateTitle(with: "Rules")
         case .address:
             updateTitle(with: "Address")
+        case .rooms:
+            updateTitle(with: "Rooms")
+        case .map:
+            updateTitle(with: "Location")
+        case .checkInTime:
+            updateTitle(with: "Set timings")
+        case .price:
+            updateTitle(with: "Price")
+        case .description:
+            updateTitle(with: "Describe your facility")
         }
-        
     }
     
     private func updateTitle(with newTitle: String){

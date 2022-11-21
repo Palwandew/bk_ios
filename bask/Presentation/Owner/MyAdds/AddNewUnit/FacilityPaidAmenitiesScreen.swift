@@ -42,7 +42,7 @@ struct FacilityPaidAmenitiesScreen: View {
                 
                 //MARK: - Wifi
                 
-                AmenityToggle(isOn: $addNewUnitViewModel.facility.paidAmenities.wifi, label: "Wifi")
+                AmenityToggleView(isOn: $addNewUnitViewModel.facility.paidAmenities.wifi, label: "Wifi")
                 
                 if addNewUnitViewModel.facility.paidAmenities.wifi {
                     AmenityPriceDecriptionInputView(text: $addNewUnitViewModel.facility.paidAmenities.wifiService.price, isValid: $addNewUnitViewModel.facility.paidAmenities.wifiService.validPrice, description: $addNewUnitViewModel.facility.paidAmenities.wifiService.description)
@@ -51,7 +51,7 @@ struct FacilityPaidAmenitiesScreen: View {
                 
                 //MARK: - Parking
                 
-                AmenityToggle(isOn: $addNewUnitViewModel.facility.paidAmenities.parking, label: "Parking")
+                AmenityToggleView(isOn: $addNewUnitViewModel.facility.paidAmenities.parking, label: "Parking")
                 
                 if addNewUnitViewModel.facility.paidAmenities.parking {
                     AmenityPriceDecriptionInputView(text: $addNewUnitViewModel.facility.paidAmenities.parkingService.price, isValid: $addNewUnitViewModel.facility.paidAmenities.parkingService.validPrice, description: $addNewUnitViewModel.facility.paidAmenities.parkingService.description)
@@ -98,7 +98,7 @@ struct FacilityPaidAmenitiesScreen: View {
                 
                 //MARK: - Pets
                 
-                AmenityToggle(isOn: $addNewUnitViewModel.facility.paidAmenities.pets, label: "Pets")
+                AmenityToggleView(isOn: $addNewUnitViewModel.facility.paidAmenities.pets, label: "Pets")
 
                 if addNewUnitViewModel.facility.paidAmenities.pets {
                     Group {
@@ -173,10 +173,10 @@ struct FacilityPaidAmenitiesScreen: View {
             
             //MARK: - Continue Button
             VStack {
-                NavigationLink(destination:
-                                FacilityRulesScreen().environmentObject(addNewUnitViewModel), isActive: $addNewUnitViewModel.willShowRulesScreen) {
-                    EmptyView()
-                }
+//                NavigationLink(destination:
+//                                FacilityRulesScreen().environmentObject(addNewUnitViewModel), isActive: $addNewUnitViewModel.willShowRulesScreen) {
+//                    EmptyView()
+//                }
                 
                 FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                     

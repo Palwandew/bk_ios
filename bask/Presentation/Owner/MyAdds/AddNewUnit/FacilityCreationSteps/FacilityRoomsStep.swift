@@ -108,3 +108,28 @@ struct FacilityRoomsStep: View {
 //        FacilityRoomsStep()
 //    }
 //}
+struct RoomSizeView: View {
+    
+    let label: String
+    @Binding var length: String
+    @Binding var width: String
+    @Binding var validLength: Bool
+    @Binding var validWidth: Bool
+    let errorMessage: LocalizedStringKey = "valid_description"
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            
+            Text(label)
+                .font(Font.custom("Poppins-Regular", size: 16.0))
+            
+            HStack {
+                MaterialLengthField(text: $length, isValid: $validLength, errorMessage: errorMessage, placeHolder: "x-meters")
+                
+                Image(systemName: "multiply")
+                
+                MaterialLengthField(text: $width, isValid: $validWidth, errorMessage: errorMessage, placeHolder: "y-meters")
+            }
+        }
+    }
+}

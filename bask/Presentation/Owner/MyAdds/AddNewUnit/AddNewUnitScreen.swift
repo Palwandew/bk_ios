@@ -11,11 +11,9 @@ struct AddNewUnitScreen: View {
     
     @State var creationSteps: [FacilityCreationState] = [.name]
     @State var currentStep: FacilityCreationState = .name
-    @State var currentProgress: Float = 1/3
+    @State var currentProgress: Float = 1/9
     @StateObject var model: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     
-    @StateObject var nameVM: FacilityNameViewModel = FacilityNameViewModel()
-    @StateObject var roomsVM: FacilityRoomsViewModel = FacilityRoomsViewModel()
     var body: some View {
         ZStack {
             VStack {
@@ -26,11 +24,11 @@ struct AddNewUnitScreen: View {
                     //MARK: - Back Button
                     if currentStep != .name {
                         
-                        generateBackButton()
+                        renderBackButton()
                         
                         Spacer()
                     } else {
-                        generateBackButton()
+                        renderBackButton()
                             .hidden()
                         
                         Spacer()
@@ -51,7 +49,7 @@ struct AddNewUnitScreen: View {
                         .onTapGesture {
                             UIApplicationHelper.popToRootView()
                         }
-                
+                    
                 }
                 
                 //MARK: - Navigation Title
@@ -70,30 +68,44 @@ struct AddNewUnitScreen: View {
                     //Text("Name")
                     FacilityNameStep(model: model.facilityNameViewModel)
                     
-                case .amenities:
-                    //Step two
+                case .rooms:
                     FacilityRoomsStep(model: model.facilityRoomsViewModel)
+                    
+                case .rules:
+                    FacilityRulesStep(model: model.facilityRulesViewModel)
+                    
+                case .amenities:
+                    FreeAmenitiesStep(model: model.facilityAmenitiesViewModel)
+                    
                 case .address:
                     //Step three
-                    Text("Address")
-                        .onTapGesture {
-                            print("OnCreateionSteps -> \(creationSteps)")
-                        }
-                }
-                Spacer()
-            
-                //MARK: - Continue Button
+                    FacilityAddressStep(model: model.facilityLocationViewModel)
                     
+                case .map:
+                    FacilityMapCoordinatesStep(model: model.facilityLocationViewModel)
+                        .padding(.horizontal, -16)
+                    
+                case .checkInTime:
+                    FacilityCheckInTimeStep(model: model.checkInCheckOutViewModel)
+                    
+                case .price:
+                    FacilityPriceStep(model: model.facilityPriceViewModel)
+                case .description:
+                    FacilityDescriptionStep(model: model.facilityDescriptionViewModel)
+                }
+                
+                Spacer()
+                
+                //MARK: - Continue Button
                 FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                     performContinueAction()
                 }
-                
             }
             .padding(.horizontal)
         }.navigationBarHidden(true)
     }
     
-    private func generateBackButton() -> some View {
+    private func renderBackButton() -> some View {
         return Button {
             performBackAction()
         } label: {
@@ -105,7 +117,7 @@ struct AddNewUnitScreen: View {
         if !creationSteps.contains(currentStep.next()) {
             currentStep = currentStep.next()
             creationSteps.append(currentStep)
-            currentProgress += 1/3
+            updateProgressBar()
             model.onContinueTapped(nextStep: currentStep)
         }
     }
@@ -114,7 +126,16 @@ struct AddNewUnitScreen: View {
         guard creationSteps.count > 1 else { return }
         creationSteps.removeAll(where: {$0 == currentStep})
         currentStep = currentStep.previous()
-        currentProgress -= 1/3
+        updateProgressBar(increase: false)
+        model.onBackTapped(previousStep: currentStep)
+    }
+    
+    private func updateProgressBar(increase: Bool = true){
+        if increase{
+            currentProgress += 1/9
+        } else {
+            currentProgress -= 1/9
+        }
     }
 }
 
@@ -127,6 +148,13 @@ struct AddNewUnitScreen_Previews: PreviewProvider {
 
 enum FacilityCreationState: String, CaseIterable {
     case name = "name"
+    case rooms = "rooms"
     case amenities = "amenities"
+    case rules = "rules"
     case address = "address"
+    case map = "Coordinates"
+    case checkInTime = "checkInTime"
+    case price = "price"
+    case description = "description"
+    
 }

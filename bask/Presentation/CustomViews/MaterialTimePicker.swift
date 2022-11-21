@@ -10,7 +10,7 @@ import SwiftUI
 struct MaterialTimePicker: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var newUnitViewModel: AddNewUnitViewModel
+    @EnvironmentObject var model: CheckInCheckOutViewModel
     @StateObject var timePickerViewModel = TimePickerViewModel()
     let constraint: TimeConstraint
     
@@ -112,12 +112,12 @@ struct MaterialTimePicker: View {
                     
                     switch constraint {
                     case .checkInAfter:
-                        newUnitViewModel.facility.checkInAfter = timePickerViewModel.getTime()
+                        model.checkInTime = timePickerViewModel.getTime()
                         
                     case .checkInBefore:
-                        newUnitViewModel.facility.checkInBefore = timePickerViewModel.getTime()
+                        model.checkOutTime = timePickerViewModel.getTime()
                     case .checkOutBefore:
-                        newUnitViewModel.facility.checkOutBefore = timePickerViewModel.getTime()
+                        model.checkOutTime = timePickerViewModel.getTime()
                     }
                     self.presentationMode.wrappedValue.dismiss()
                     

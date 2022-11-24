@@ -17,6 +17,7 @@ struct GalleryImage: View {
             
             ZStack(alignment: .topTrailing){
                 
+                
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)

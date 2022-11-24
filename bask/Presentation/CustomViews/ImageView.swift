@@ -18,7 +18,7 @@ struct ImageView: View {
         
         imageLoader.image
             .resizable()
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(contentMode: .fit)
             
     }
 }

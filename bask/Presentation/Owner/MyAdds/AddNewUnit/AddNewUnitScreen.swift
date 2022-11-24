@@ -11,7 +11,7 @@ struct AddNewUnitScreen: View {
     
     @State var creationSteps: [FacilityCreationState] = [.name]
     @State var currentStep: FacilityCreationState = .name
-    @State var currentProgress: Float = 1/9
+    @State var currentProgress: Float = 1/10
     @StateObject var model: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     
     var body: some View {
@@ -92,6 +92,9 @@ struct AddNewUnitScreen: View {
                     FacilityPriceStep(model: model.facilityPriceViewModel)
                 case .description:
                     FacilityDescriptionStep(model: model.facilityDescriptionViewModel)
+                    
+                case .pictures:
+                    FacilityPicturesStep(viewMode: model)
                 }
                 
                 Spacer()
@@ -131,10 +134,13 @@ struct AddNewUnitScreen: View {
     }
     
     private func updateProgressBar(increase: Bool = true){
+        
+        let steps: Float = 1/10
+        
         if increase{
-            currentProgress += 1/9
+            currentProgress += steps
         } else {
-            currentProgress -= 1/9
+            currentProgress -= steps
         }
     }
 }
@@ -156,5 +162,6 @@ enum FacilityCreationState: String, CaseIterable {
     case checkInTime = "checkInTime"
     case price = "price"
     case description = "description"
+    case pictures = "pictures"
     
 }

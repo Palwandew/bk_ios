@@ -351,6 +351,8 @@ class AddNewUnitViewModel: ObservableObject {
             updateTitle(with: "Price")
         case .description:
             updateTitle(with: "Describe your facility")
+        case .pictures:
+            updateTitle(with: "Add Photos")
         }
     }
     

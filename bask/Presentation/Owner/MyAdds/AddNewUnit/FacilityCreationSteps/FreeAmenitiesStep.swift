@@ -17,7 +17,6 @@ struct FreeAmenitiesStep: View {
             
             //MARK: - Title
             
-            
             ScrollView(.vertical, showsIndicators: false, content: {
                 
                 //MARK: - Wifi
@@ -85,51 +84,8 @@ struct FreeAmenitiesStep: View {
         
         }
         .background(Color.white)
-//            .toast(isShowing: $addNewUnitViewModel.shallRetry, content: {
-//                Toast(message: "An error occured. Please try again.", style: .failure)
-//
-//            })
-            .navigationBarBackButtonHidden(true)
-//            .navigationBarItems(
-//                leading:
-//                    Button(action : {
-//                        print("Back button tapped")
-//                        //self.dismiss.callAsFunction()
-//                        self.presentationMode.wrappedValue.dismiss()
-//                    }){
-//                        Image(systemName: "chevron.backward")
-//                            .foregroundColor(Color(AppColor.GREY))
-//
-//                    },
-//                trailing: Button(action : {
-//                    print("Back button tapped")
-//                    self.presentationMode.wrappedValue.dismiss()
-////                    self.dismiss.callAsFunction()
-//                }){
-//                    Text("Exit")
-//                        .font(Font.custom("Poppins-Light", size: 16.0))
-//                        .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
-//                        .onTapGesture {
-//                            UIApplicationHelper.popToRootView()
-//                        }
-//
-//                })
-//            .navigationBarTitleDisplayMode(.inline)
-//            .toolbar{
-//                ToolbarItem(placement: .principal){
-//                    HStack{
-//
-//                        LinearProgressBar(value: $progress)
-//                            .frame(width: UIScreen.main.bounds.width/2,height: UIScreen.main.bounds.height/100)
-//
-//                    }
-//                }
-//            }
+        .navigationBarBackButtonHidden(true)
+
     }
 }
 
-//struct FreeAmenitiesStep_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FreeAmenitiesStep()
-//    }
-//}

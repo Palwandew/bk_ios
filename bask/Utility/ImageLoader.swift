@@ -5,7 +5,6 @@
 //  Created by TEHSEEN ABBAS on 12/09/2022.
 //
 
-import Foundation
 import SwiftUI
 
 class ImageLoader: ObservableObject {

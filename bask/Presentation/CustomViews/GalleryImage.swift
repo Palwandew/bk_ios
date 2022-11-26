@@ -32,14 +32,11 @@ struct GalleryImage: View {
                         .resizable()
                         .frame(width: 24, height: 24)
                         .foregroundColor(.white)
-                        
                         .padding(12)
                         .background(RoundedRectangle(cornerRadius: 8).fill(Color(AppColor.DARKEST_BLUE).opacity(0.5)))
-                        .padding()
-                }
-                
+                        
+                }.padding([.top, .trailing])
                     
-                
             }
 //        }
     }

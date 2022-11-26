@@ -147,12 +147,12 @@ class PhotosViewModel: ObservableObject {
         
         images.append(generateThumbnail(of: url))
         
+        self.objectWillChange.send()
     }
     
     func removePhoto(at index: Int){
-        print("old size \(images.count)")
         images.remove(at: index)
-        print("new size \(images.count)")
+        urls.remove(at: index)
         self.objectWillChange.send()
     }
     
@@ -162,7 +162,6 @@ class PhotosViewModel: ObservableObject {
         let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
         if let imageSource = CGImageSourceCreateWithURL(url, imageSourceOptions) {
             let maxPixel: CFNumber = max(UIScreen.main.bounds.width, UIScreen.main.bounds.height) * 0.8 as CFNumber
-            //let createThumbnail: CFBoolean = kCFBooleanTrue
             let options =
             [kCGImageSourceCreateThumbnailFromImageAlways: true,
              kCGImageSourceShouldCacheImmediately: true,

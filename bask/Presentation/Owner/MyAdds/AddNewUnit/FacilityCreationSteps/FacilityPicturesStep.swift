@@ -10,7 +10,7 @@ import SwiftUI
 struct FacilityPicturesStep: View {
     
     @ObservedObject var model: PhotosViewModel// inject the object
-   
+    
     @State private var showGallery: Bool = false
     @State private var x: CGFloat = 0
     @State private var count: CGFloat = 0
@@ -28,46 +28,43 @@ struct FacilityPicturesStep: View {
                 .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                 .padding(.bottom, 16)
-                
+            
             if !model.images.isEmpty {
                 LazyHStack(spacing: 16) {
                     ForEach(0..<model.images.count, id:\.self) { index in
                         GalleryImage(image: model.images[index], onDelete: {
-                            if index == (model.images.count - 1){
-                                self.count -= 1
-                                self.x = -(UIScreen.main.bounds.width - 16) * self.count
-                            }
+                            
+                            updateOffSet(for: index)
                             model.removePhoto(at: index)
                             
                         })
-                            //.frame(width: UIScreen.main.bounds.width - 32)
                             .offset(x: self.x)
                             .simultaneousGesture(DragGesture()
                                                     .onChanged({ value in
-
+                                
                                 handleDragGestureChangedValue(value)
                             })
-                                                .onEnded({ value in
-
+                                                    .onEnded({ value in
+                                
                                 handleDragGestureEndedValue(value)
                             })
-                        ).animation(.spring(), value: self.x)
+                            ).animation(.spring(), value: self.x)
                     }
                 }.frame(maxWidth: UIScreen.main.bounds.width - 32, alignment: .leading)
-                    
+                
+                Spacer()
+                FilledButton(label: "Open Gallery", color: Color(AppColor.LIGHT_VOILET)) {
+                    showGallery = true
+                }.padding(.top, 16)
+                    .background(Color.white.opacity(0.5))
+            } else {
+                Spacer()
+                EmptyFacilityImagesIndicator()
+                    .onTapGesture {
+                        showGallery = true
+                    }
+                Spacer()
             }
-
-            //MARK: - Continue Button
-            
-            Spacer()
-            
-            FilledButton(label: "Open Gallery", color: Color(AppColor.LIGHT_VOILET)) {
-                showGallery = true
-            }.padding(.top, 16)
-                .background(Color.white.opacity(0.5))
-            
-            
-            
             
         }
         //MARK: - Gallery
@@ -77,6 +74,15 @@ struct FacilityPicturesStep: View {
         })
         .background(Color.white)
         .navigationBarBackButtonHidden(true)
+    }
+    
+    private func updateOffSet(for index: Int){
+        if (index == (model.images.count - 1)) {
+            self.x = -(UIScreen.main.bounds.width - 16) * CGFloat(index - 1)
+            self.count -= 1
+        } else {
+            self.x = -(UIScreen.main.bounds.width - 16) * CGFloat(index)
+        }
     }
     
     private func handleDragGestureChangedValue(_ value: DragGesture.Value){
@@ -117,12 +123,19 @@ struct FacilityPicturesStep: View {
 
 struct EmptyFacilityImagesIndicator: View {
     var body: some View{
-        Text("Hi")
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color(AppColor.GREY))
+                .opacity(0.3)
+            
+                .frame(width: UIScreen.main.bounds.width - 32, height: UIScreen.main.bounds.height * 0.3)
+            
+            Text("Tap here to add a photo.")
+                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+                .font(.custom("Poppins-Regular", size: 14))
+            
+        }
+        
     }
 }
 
-struct EmptyFacilityImagesIndicator_Previews: PreviewProvider {
-    static var previews: some View {
-        EmptyFacilityImagesIndicator()
-    }
-}

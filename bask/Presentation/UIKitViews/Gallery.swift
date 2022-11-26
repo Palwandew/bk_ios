@@ -64,7 +64,7 @@ struct Gallery: UIViewControllerRepresentable {
                     } catch {
                         print("Error writing data to file")
                     }
-                    
+                    print("Local URL ---> \(localURL)")
                     DispatchQueue.main.async {
                         self.parent.viewModel.handleURL(localURL)
                     }

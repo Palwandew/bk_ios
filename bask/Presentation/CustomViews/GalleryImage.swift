@@ -13,7 +13,7 @@ struct GalleryImage: View {
     let onDelete: () -> Void
     var body: some View {
         
-        GeometryReader { geomerty in
+//        GeometryReader { geomerty in
             
             ZStack(alignment: .topTrailing){
                 
@@ -21,27 +21,27 @@ struct GalleryImage: View {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: geomerty.size.width, height: geomerty.size.height)
+                    .frame(width: UIScreen.main.bounds.width - 32, height: UIScreen.main.bounds.height * 0.3) 
                     .clipShape(RoundedRectangle(cornerRadius: 8))
+
                 
-//                RoundedRectangle(cornerRadius: 10)
-//                    .fill(.gray)
-//                    .frame(width: geomerty.size.width, height: geomerty.size.height)
+                Button{
+                    onDelete()
+                } label: {
+                    Image(systemName: "trash")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                        .foregroundColor(.white)
+                        
+                        .padding(12)
+                        .background(RoundedRectangle(cornerRadius: 8).fill(Color(AppColor.DARKEST_BLUE).opacity(0.5)))
+                        .padding()
+                }
                 
                     
-                Image(systemName: "trash")
-                    .resizable()
-                    .frame(width: 24, height: 24)
-                    .foregroundColor(.white)
-                    .padding(12)
-                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(AppColor.DARKEST_BLUE).opacity(0.5)))
-                    .padding()
-                    .onTapGesture {
-                        onDelete()
-                    }
                 
             }
-        }
+//        }
     }
 }
 

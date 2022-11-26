@@ -310,6 +310,8 @@ class AddNewUnitViewModel: ObservableObject {
     
     
     @Published var facilityDescriptionViewModel: FacilityDescriptionViewModel = FacilityDescriptionViewModel()
+    
+    @Published var photosService: PhotosViewModel = PhotosViewModel(useCase: PhotosUsecase(repo: PhotosRepositoryImpl(uploadManager: PhotosUploadManager())))
     // Retry button indicator
     @Published var shallRetry: Bool = false
     

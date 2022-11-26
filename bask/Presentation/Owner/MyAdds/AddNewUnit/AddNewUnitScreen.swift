@@ -94,7 +94,7 @@ struct AddNewUnitScreen: View {
                     FacilityDescriptionStep(model: model.facilityDescriptionViewModel)
                     
                 case .pictures:
-                    FacilityPicturesStep(viewMode: model)
+                    FacilityPicturesStep(model: model.photosService)
                 }
                 
                 Spacer()

@@ -11,7 +11,7 @@ import PhotosUI
 struct Gallery: UIViewControllerRepresentable {
     
     @EnvironmentObject var viewModel: PhotosViewModel
-    @Binding var selectedImagesThumbnails: [Image]
+    //@Binding var imageURLs: [URL]
     @Binding var isPresented: Bool
     
     
@@ -43,7 +43,6 @@ struct Gallery: UIViewControllerRepresentable {
         func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             
             
-            parent.selectedImagesThumbnails.removeAll() // remove previous pictures from the main view
             parent.viewModel.images.removeAll()
             
             for image in results {
@@ -67,10 +66,7 @@ struct Gallery: UIViewControllerRepresentable {
                     }
                     
                     DispatchQueue.main.async {
-                        self.parent.viewModel.addURL(localURL)
-                        let imageThumbnail = self.generateThumbnail(of: localURL)/// move it to bg thread
-                        self.parent.selectedImagesThumbnails.append(imageThumbnail)
-                        
+                        self.parent.viewModel.handleURL(localURL)
                     }
                     
                     
@@ -79,29 +75,6 @@ struct Gallery: UIViewControllerRepresentable {
             parent.isPresented = false
         }
         
-        func generateThumbnail(of url: URL) -> Image {
-            let url = url as CFURL
-            var thumbNail: Image? = nil
-            let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
-            if let imageSource = CGImageSourceCreateWithURL(url, imageSourceOptions) {
-                let maxPixel: CFNumber = max(UIScreen.main.bounds.width, UIScreen.main.bounds.height) * 0.8 as CFNumber
-                //let createThumbnail: CFBoolean = kCFBooleanTrue
-                let options =
-                [kCGImageSourceCreateThumbnailFromImageAlways: true,
-                 kCGImageSourceShouldCacheImmediately: true,
-                 kCGImageSourceCreateThumbnailWithTransform: true,
-                 kCGImageSourceThumbnailMaxPixelSize: maxPixel] as CFDictionary
-                
-                guard let cgImg = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, options) else {
-                    return Image(systemName: "photo.fill")
-                }
-                
-                print("cgImage created")
-                
-                thumbNail = Image(decorative: cgImg, scale: 3.0)
-            }
-            return thumbNail ?? Image(systemName: "photo.fill")
-        }
     }
 }
 

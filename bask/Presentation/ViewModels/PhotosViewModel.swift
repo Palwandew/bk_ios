@@ -5,8 +5,7 @@
 //  Created by TEHSEEN ABBAS on 23/08/2022.
 //
 
-import Foundation
-import UserNotifications
+import SwiftUI
 import ImageIO
 
 class PhotosViewModel: ObservableObject {
@@ -18,7 +17,8 @@ class PhotosViewModel: ObservableObject {
     @Published var showProgress: Bool = false 
     @Published var isUploading: Bool = false
     @Published var uploadingCompleted: Bool = false 
-    @Published var images: [URL] = []
+    @Published var urls: [URL] = []
+    @Published var images: [Image] = []
     @Published var showPublishAdScreen: Bool = false
     
     init(useCase: PhotosUsecase){
@@ -53,7 +53,7 @@ class PhotosViewModel: ObservableObject {
         
         self.showProgress = true
         var image = 1
-        var imagesToUpload = images
+        var imagesToUpload = urls
     
 
         for photoURL in imagesToUpload {
@@ -141,24 +141,42 @@ class PhotosViewModel: ObservableObject {
         UNUserNotificationCenter.current().add(request)
     }
     
-    func imageIo(url: URL) -> CGImage? {
-        let url = url as CFURL
-        var thumbNail: CGImage? = nil
-        let imageSourceOption = [kCGImageSourceShouldCache: false] as CFDictionary
-        if let imageSource = CGImageSourceCreateWithURL(url, imageSourceOption) {
-            //let maxPixel: CFNumber = 200 as CFNumber
-            
-            let createThumbnail: CFBoolean = kCFBooleanTrue
-            let options = [kCGImageSourceCreateThumbnailFromImageIfAbsent: createThumbnail] as CFDictionary
-            
-            thumbNail = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, options)
-        }
-        return thumbNail
+    func handleURL(_ url: URL) {
+        
+        urls.append(url)
+        
+        images.append(generateThumbnail(of: url))
+        
     }
     
-    func addURL(_ url: URL) {
-        
-        images.append(url)
-        
+    func removePhoto(at index: Int){
+        print("old size \(images.count)")
+        images.remove(at: index)
+        print("new size \(images.count)")
+        self.objectWillChange.send()
+    }
+    
+    private func generateThumbnail(of url: URL) -> Image {
+        let url = url as CFURL
+        var thumbNail: Image? = nil
+        let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+        if let imageSource = CGImageSourceCreateWithURL(url, imageSourceOptions) {
+            let maxPixel: CFNumber = max(UIScreen.main.bounds.width, UIScreen.main.bounds.height) * 0.8 as CFNumber
+            //let createThumbnail: CFBoolean = kCFBooleanTrue
+            let options =
+            [kCGImageSourceCreateThumbnailFromImageAlways: true,
+             kCGImageSourceShouldCacheImmediately: true,
+             kCGImageSourceCreateThumbnailWithTransform: true,
+             kCGImageSourceThumbnailMaxPixelSize: maxPixel] as CFDictionary
+            
+            guard let cgImg = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, options) else {
+                return Image(systemName: "photo.fill")
+            }
+            
+            print("cgImage created")
+            
+            thumbNail = Image(decorative: cgImg, scale: 3.0)
+        }
+        return thumbNail ?? Image(systemName: "photo.fill")
     }
 }

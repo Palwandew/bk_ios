@@ -11,7 +11,13 @@ struct ImageView: View {
     @ObservedObject private var imageLoader: ImageLoader
     
     init(withURL url: String, size: CGSize) {
-        imageLoader = ImageLoader(urlString:url, size: size)
+        imageLoader = ImageLoader(urlString:url, size: size, imageSource: .remote)
+        print("IV remote")
+    }
+    
+    init(withLocalURL url: String, size: CGSize){
+        imageLoader = ImageLoader(urlString: url, size: size, imageSource: .local)
+        print("IV local")
     }
     
     var body: some View {
@@ -21,5 +27,7 @@ struct ImageView: View {
             .aspectRatio(contentMode: .fit)
             
     }
+    
+    
 }
 

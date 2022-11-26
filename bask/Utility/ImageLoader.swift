@@ -10,11 +10,13 @@ import SwiftUI
 class ImageLoader: ObservableObject {
     
     @Published var image = Image("icon_image_place_holder")
+    let imageSource: ImageSource
     
-    init(urlString:String, size: CGSize) {
+    init(urlString:String, size: CGSize, imageSource: ImageSource) {
         print("Init --> ImageLodeer")
-        
+        self.imageSource = imageSource
         if !urlString.isEmpty {
+            
             loadImage(urlString: urlString, size: size)
         }
     }
@@ -35,7 +37,13 @@ class ImageLoader: ObservableObject {
             return
         } else {
             print("Cache Miss")
-            loadImageFromNetwork(urlString: urlString, size: size)
+            switch imageSource {
+            case .local:
+                loadImageFromLocalFileSystem(urlString: urlString, size: size)
+            case .remote:
+                loadImageFromNetwork(urlString: urlString, size: size)
+            }
+            
         }
         
     }
@@ -70,6 +78,25 @@ class ImageLoader: ObservableObject {
                     self?.image = Image(decorative: downsampledImage, scale: 1)
                 }
             }
+        }
+    }
+    
+    private func loadImageFromLocalFileSystem(urlString: String, size: CGSize){
+        let url = URL(string: urlString)
+        guard let url = url else {
+            return
+        }
+
+        let thumbnail = generateThumbnail(path: url, size: size)
+        
+        guard let downsampledImage = thumbnail else {
+            return
+        }
+        
+        ImageCacheHelper.shared.set(forKey: urlString, image: downsampledImage)
+        
+        DispatchQueue.main.async {
+            self.image = Image(decorative: downsampledImage, scale: 1)
         }
     }
     
@@ -113,5 +140,10 @@ class ImageLoader: ObservableObject {
     
     deinit{
         print("Deinit ----> ImageLoader")
+    }
+    
+    enum ImageSource{
+        case local
+        case remote
     }
 }

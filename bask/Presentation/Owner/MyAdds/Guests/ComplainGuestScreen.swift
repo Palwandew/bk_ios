@@ -124,7 +124,7 @@ struct ComplainGuestScreen: View {
             
         }.padding(.horizontal)
             .sheet(isPresented: $showGallery, content: {
-                Gallery(selectedImagesThumbnails: $pickerResult, isPresented: $showGallery)
+                Gallery(isPresented: $showGallery)
                     .environmentObject(photoVm)
             })
             .toast(isShowing: $model.toast.willShow, content: {

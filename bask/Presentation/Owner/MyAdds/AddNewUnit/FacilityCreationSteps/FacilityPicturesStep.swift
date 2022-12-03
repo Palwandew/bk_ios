@@ -22,8 +22,7 @@ struct FacilityPicturesStep: View {
         
         VStack(alignment: .leading) {
             
-            //MARK: - Title
-            
+            //MARK: - Titleç
             Text("Make beautiful photos of your house. It significantly influences on guest`s interest. You can add maximum of 20 pictures.")
                 .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))

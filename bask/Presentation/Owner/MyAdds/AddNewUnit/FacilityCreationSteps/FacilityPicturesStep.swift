@@ -32,6 +32,8 @@ struct FacilityPicturesStep: View {
             if !model.images.isEmpty {
                 LazyHStack(spacing: 16) {
                     ForEach(0..<model.images.count, id:\.self) { index in
+                        
+                        //MARK: - Image slider
                         GalleryImage(image: model.images[index], onDelete: {
                             
                             updateOffSet(for: index)

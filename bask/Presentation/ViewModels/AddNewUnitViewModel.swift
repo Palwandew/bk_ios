@@ -11,11 +11,14 @@ import CoreLocation
 
 class FacilityNameViewModel: ObservableObject {
     
-    var englishName: String = ""
-    var arabicName: String = ""
-    var englishNameError: Bool = false
-    var arabicNameError: Bool = false
-    var shallNavigate: Bool = false
+    @Published var englishName: String = ""
+    @Published var arabicName: String = ""
+    @Published var englishNameError: Bool = false
+    @Published var arabicNameError: Bool = false
+    @Published var shallNavigate: Bool = false
+    var isFacilityNameValid: Bool {
+        return (!englishNameError && !arabicNameError)
+    }
     
     func onContinueTapped() {
         
@@ -41,6 +44,17 @@ class FacilityNameViewModel: ObservableObject {
         shallNavigate = true
     }
     
+    func validFacilityName() -> Bool {
+        if englishName.isEmpty || englishName.count < 3 {
+            self.englishNameError = true
+        }
+        
+        if arabicName.isEmpty || arabicName.count < 3 {
+            self.arabicNameError = true
+        }
+        
+        return isFacilityNameValid
+    }
     private func validateFacilityName() throws {
         if englishName.isEmpty {
             throw FacilityNameErrors.emptyEnglishName
@@ -298,6 +312,10 @@ class AddNewUnitViewModel: ObservableObject {
     @Published var showToast: Bool = false
     @Published var toastStyle: ToastStyle = .success
     
+    // New Implementation
+    @Published var creationSteps: [FacilityCreationState] = [.name]
+    @Published var currentStep: FacilityCreationState = .name
+    @Published var currentProgress: Float = 1/10
     @Published var title: String = "Name of facility"
     
     @Published var facilityNameViewModel: FacilityNameViewModel = FacilityNameViewModel()
@@ -363,8 +381,76 @@ class AddNewUnitViewModel: ObservableObject {
     }
     
     
-    //MARK: - Step - 1 Validation
+    //MARK: - New Implementation Helper
     
+    
+    func onBackButtonTapped(){
+        performBackAction()
+    }
+    
+    func onContinueButtonTapped(){
+        if validateUserInput(for: currentStep) {
+            print("Inside valid user input")
+            pushNextState()
+        }
+        
+    }
+    private func pushNextState(){
+        if !creationSteps.contains(currentStep.next()) {
+            currentStep = currentStep.next()
+            creationSteps.append(currentStep)
+            updateProgressBar()
+            onContinueTapped(nextStep: currentStep)
+        }
+    }
+    
+    private func performBackAction() {
+        guard creationSteps.count > 1 else { return }
+        creationSteps.removeAll(where: {$0 == currentStep})
+        currentStep = currentStep.previous()
+        updateProgressBar(increase: false)
+        onBackTapped(previousStep: currentStep)
+        print("eng name \(facilityNameViewModel.englishName)")
+        print("arabic name \(facilityNameViewModel.arabicName)")
+    }
+    
+    private func updateProgressBar(increase: Bool = true){
+        
+        let steps: Float = 1/10
+        
+        if increase{
+            currentProgress += steps
+        } else {
+            currentProgress -= steps
+        }
+    }
+    
+    private func validateUserInput(for step: FacilityCreationState) -> Bool{
+        switch step {
+        case .name:
+            return facilityNameViewModel.validFacilityName()
+        case .rooms:
+            return true
+        case .amenities:
+            return true
+        case .rules:
+            return true
+        case .address:
+            return true
+        case .map:
+            return true
+        case .checkInTime:
+            return true
+        case .price:
+            return true
+        case .description:
+            return true
+        case .pictures:
+            return true
+        }
+    }
+    
+    //MARK: - Step - 1 Validation
     
     func isFacilityNameValid() {
         facilityNameViewModel.onContinueTapped()

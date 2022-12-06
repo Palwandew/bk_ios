@@ -11,8 +11,8 @@ struct PublishFacilityScreen: View {
     
     
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var viewModel: AddNewUnitViewModel
-    
+    //@EnvironmentObject var viewModel: AddNewUnitViewModel
+    @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     private var facilityName: String = "Shul-e-Yal"
     @State var progress: Float = 1
     @State var show: Bool = false
@@ -50,6 +50,7 @@ struct PublishFacilityScreen: View {
                 .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                 .padding(.top)
+            
             
             
             //MARK: - Continue Button
@@ -106,18 +107,15 @@ struct PublishFacilityScreen: View {
                     Image(systemName: "chevron.backward")
                         .foregroundColor(Color(AppColor.GREY))
                     
-                })
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar{
-            ToolbarItem(placement: .principal){
-                HStack{
-                    
-                    LinearProgressBar(value: $progress)
-                        .frame(width: UIScreen.main.bounds.width/2,height: UIScreen.main.bounds.height/100)
-                    
-                }
+                },
+            trailing:
+                    Button{} label:{
+                Text("Show ad")
+                    .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
+                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                    .padding(.top)
             }
-        }
+        )
     }
 }
 

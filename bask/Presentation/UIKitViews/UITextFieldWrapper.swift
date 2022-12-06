@@ -78,6 +78,7 @@ struct UITextfieldWrapper: UIViewRepresentable {
         textField.layer.cornerRadius = 10
         textField.autocorrectionType = .no
         textField.tag = tag
+        //textField.text = text
         textField.autocapitalizationType = .none
         textField.font = UIFont(name: "Poppins-Regular", size: 16)
         textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
@@ -96,6 +97,8 @@ struct UITextfieldWrapper: UIViewRepresentable {
             uiView.layer.borderColor = UIColor(red: 0.859, green: 0.185, blue: 0.142, alpha: 1).cgColor
             
         }
+        
+        uiView.text = text
     }
     
     func makeCoordinator() -> Coordinator {

@@ -9,9 +9,7 @@ import SwiftUI
 
 struct AddNewUnitScreen: View {
     
-    @State var creationSteps: [FacilityCreationState] = [.name]
-    @State var currentStep: FacilityCreationState = .name
-    @State var currentProgress: Float = 1/10
+    @State var showPublishScreen: Bool = false
     @StateObject var model: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     
     var body: some View {
@@ -22,7 +20,7 @@ struct AddNewUnitScreen: View {
                 HStack{
                     
                     //MARK: - Back Button
-                    if currentStep != .name {
+                    if model.currentStep != .name {
                         
                         renderBackButton()
                         
@@ -37,7 +35,7 @@ struct AddNewUnitScreen: View {
                     
                     
                     //MARK: - Progress Bar
-                    LinearProgressIndicator(value: currentProgress)
+                    LinearProgressIndicator(value: model.currentProgress)
                         .frame(width: UIScreen.main.bounds.width/2,height: UIScreen.main.bounds.height/100)
                     
                     Spacer()
@@ -62,10 +60,8 @@ struct AddNewUnitScreen: View {
                 }
                 
                 //MARK: - Step Screens
-                switch currentStep {
+                switch model.currentStep {
                 case .name:
-                    //Step one
-                    //Text("Name")
                     FacilityNameStep(model: model.facilityNameViewModel)
                     
                 case .rooms:
@@ -78,7 +74,6 @@ struct AddNewUnitScreen: View {
                     FreeAmenitiesStep(model: model.facilityAmenitiesViewModel)
                     
                 case .address:
-                    //Step three
                     FacilityAddressStep(model: model.facilityLocationViewModel)
                     
                 case .map:
@@ -99,10 +94,15 @@ struct AddNewUnitScreen: View {
                 
                 Spacer()
                 
-                //MARK: - Continue Button
-                FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
-                    performContinueAction()
+                NavigationLink(destination:
+                                PublishFacilityScreen(), isActive:$showPublishScreen) {
+                    EmptyView()
                 }
+                
+                FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
+                    model.onContinueButtonTapped()
+                }
+                
             }
             .padding(.horizontal)
         }.navigationBarHidden(true)
@@ -110,39 +110,39 @@ struct AddNewUnitScreen: View {
     
     private func renderBackButton() -> some View {
         return Button {
-            performBackAction()
+            model.onBackButtonTapped()
         } label: {
             Image(systemName: "chevron.backward")
         }
     }
     
-    private func performContinueAction(){
-        if !creationSteps.contains(currentStep.next()) {
-            currentStep = currentStep.next()
-            creationSteps.append(currentStep)
-            updateProgressBar()
-            model.onContinueTapped(nextStep: currentStep)
-        }
-    }
-    
-    private func performBackAction() {
-        guard creationSteps.count > 1 else { return }
-        creationSteps.removeAll(where: {$0 == currentStep})
-        currentStep = currentStep.previous()
-        updateProgressBar(increase: false)
-        model.onBackTapped(previousStep: currentStep)
-    }
-    
-    private func updateProgressBar(increase: Bool = true){
-        
-        let steps: Float = 1/10
-        
-        if increase{
-            currentProgress += steps
-        } else {
-            currentProgress -= steps
-        }
-    }
+//    private func performContinueAction(){
+//        if !creationSteps.contains(currentStep.next()) {
+//            currentStep = currentStep.next()
+//            creationSteps.append(currentStep)
+//            updateProgressBar()
+//            model.onContinueTapped(nextStep: currentStep)
+//        }
+//    }
+//
+//    private func performBackAction() {
+//        guard creationSteps.count > 1 else { return }
+//        creationSteps.removeAll(where: {$0 == currentStep})
+//        currentStep = currentStep.previous()
+//        updateProgressBar(increase: false)
+//        model.onBackTapped(previousStep: currentStep)
+//    }
+//
+//    private func updateProgressBar(increase: Bool = true){
+//
+//        let steps: Float = 1/10
+//
+//        if increase{
+//            currentProgress += steps
+//        } else {
+//            currentProgress -= steps
+//        }
+//    }
 }
 
 struct AddNewUnitScreen_Previews: PreviewProvider {

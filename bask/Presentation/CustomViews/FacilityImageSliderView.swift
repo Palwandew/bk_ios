@@ -17,7 +17,6 @@ struct FacilityImagesSliderView: View {
     let onBackTapped: () -> Void
     let onPopupTapped: () -> Void
     
-    
     var body: some View {
         VStack{
             ZStack(alignment: .top) {
@@ -59,7 +58,7 @@ struct FacilityImagesSliderView: View {
                                 isPopupShown.toggle()
                             }
                         })
-                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
                     }
                     
                 }
@@ -75,9 +74,9 @@ struct ImageSliderView: View {
     @State private var currentIndex = 0
     let images: [FacilityImage]
     private let colors: [Color] = [.red, .blue]
-      
-      // MARK: - Body
-      
+    
+    // MARK: - Body
+    
     var body: some View {
         GeometryReader{ geometry in
             ZStack(alignment: .bottom) {
@@ -85,7 +84,7 @@ struct ImageSliderView: View {
                     ForEach(0..<images.count, id: \.self) { index in
                         ImageView(withURL: images[index].photo, size: CGSize(width: geometry.size.width, height: geometry.size.height))
                             .tag(index)
-                  }
+                    }
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 HStack(spacing: -48) {
@@ -93,7 +92,7 @@ struct ImageSliderView: View {
                     Spacer()
                     
                     ImageIndexIndicatorView(numberOfPages: colors.count, currentIndex: currentIndex)
-                        
+                    
                     Spacer()
                     
                     Text("\(currentIndex + 1) / \(colors.count)")
@@ -109,50 +108,48 @@ struct ImageSliderView: View {
 
 
 struct ImageIndexIndicatorView: View {
-  
-  // MARK: - Public Properties
-  
-  let numberOfPages: Int
-  let currentIndex: Int
-  
-  
-  // MARK: - Drawing Constants
-  
-  private let circleSize: CGFloat = 16
-  private let circleSpacing: CGFloat = 12
-  
+    
+    // MARK: - Public Properties
+    
+    let numberOfPages: Int
+    let currentIndex: Int
+    
+    
+    // MARK: - Drawing Constants
+    
+    private let circleSize: CGFloat = 16
+    private let circleSpacing: CGFloat = 12
+    
     private let primaryColor = Color(AppColor.ACCENT_GREEN)
-  private let secondaryColor = Color.white.opacity(0.6)
-  
-  private let smallScale: CGFloat = 0.6
-  
-  
-  // MARK: - Body
-  
-  var body: some View {
-    HStack(spacing: circleSpacing) {
-      ForEach(0..<numberOfPages) { index in // 1
-        if shouldShowIndex(index) {
-          Circle()
-            .fill(currentIndex == index ? primaryColor : secondaryColor) // 2
-            .scaleEffect(currentIndex == index ? 1 : smallScale)
-            
-            .frame(width: circleSize, height: circleSize)
-       
-            .transition(AnyTransition.opacity.combined(with: .scale)) // 3
-            
-            .id(index) // 4
+    private let secondaryColor = Color.white.opacity(0.6)
+    
+    private let smallScale: CGFloat = 0.6
+    
+    
+    // MARK: - Body
+    
+    var body: some View {
+        HStack(spacing: circleSpacing) {
+            ForEach(0..<numberOfPages, id:
+                        \.self) { index in // 1
+                if shouldShowIndex(index) {
+                    Circle()
+                        .fill(currentIndex == index ? primaryColor : secondaryColor) // 2
+                        .scaleEffect(currentIndex == index ? 1 : smallScale)
+                        .frame(width: circleSize, height: circleSize)
+                        .transition(AnyTransition.opacity.combined(with: .scale)) // 3
+                        .id(index) // 4
+                }
+            }
         }
-      }
     }
-  }
-  
-  
-  // MARK: - Private Methods
-  
-  func shouldShowIndex(_ index: Int) -> Bool {
-    ((currentIndex - 1)...(currentIndex + 1)).contains(index)
-  }
+    
+    
+    // MARK: - Private Methods
+    
+    func shouldShowIndex(_ index: Int) -> Bool {
+        ((currentIndex - 1)...(currentIndex + 1)).contains(index)
+    }
 }
 
 

@@ -47,7 +47,8 @@ struct FacilityPicturesScreen: View {
                 .background(Color.yellow)
             
             LazyHStack(spacing: 16) {
-                ForEach(0..<picLoop.count) { item in
+                ForEach(0..<picLoop.count, id:
+                            \.self) { item in
                     ImageView(withURL: "test.com", size: size)
                         .frame(width: UIScreen.main.bounds.width - 32)
                         .background(Color.orange)

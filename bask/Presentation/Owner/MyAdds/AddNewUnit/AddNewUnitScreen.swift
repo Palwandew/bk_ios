@@ -85,6 +85,7 @@ struct AddNewUnitScreen: View {
                     
                 case .price:
                     FacilityPriceStep(model: model.facilityPriceViewModel)
+                    
                 case .description:
                     FacilityDescriptionStep(model: model.facilityDescriptionViewModel)
                     

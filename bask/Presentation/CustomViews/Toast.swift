@@ -30,8 +30,9 @@ struct Toast: View {
         }
         //.frame(maxWidth: .infinity)
         .background(style == .success ? Color(AppColor.ACCENT_GREEN).cornerRadius(8) : Color(AppColor.RED).cornerRadius(8))
-        .padding(.horizontal)
-        .padding(.bottom, 64)
+//        .padding(.horizontal)
+        .padding(.bottom, 16)
+        
     }
     
     

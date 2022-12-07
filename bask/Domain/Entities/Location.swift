@@ -15,17 +15,21 @@ struct Location {
     var validStreet: Bool = true
     var longitude: Double = 45.0792 
     var latitude: Double = 23.8859
+    var isAddressValid: Bool {
+        return validCity && validStreet
+    }
     
     
     /// Checks whether the user has entered a valid address of the facilty.
     /// - Returns: True if the city and street is valid. False otherwise.
     
-    func validateAddres() throws {
-        if city.isEmpty || city.count < 3 {
-            throw errors.invalidCity
-        }
-        if street.isEmpty || street.count < 3 {
-            throw errors.invalidStreetAddress
+    mutating func validateAddress() {
+        if isValidAddress(city) && isValidAddress(street) {
+            mutateValidity(of: &validCity, to: true)
+            mutateValidity(of: &validStreet, to: true)
+        } else {
+            mutateValidity(of: &validCity, to: false)
+            mutateValidity(of: &validStreet, to: false)
         }
     }
     
@@ -56,6 +60,18 @@ struct Location {
             isValid = false
         } else {
             isValid = true
+        }
+    }
+    
+    private func mutateValidity(of validityIndicator: inout Bool, to value: Bool) {
+        validityIndicator = value
+    }
+    
+    private func isValidAddress(_ address: String) -> Bool {
+        if address.isEmpty || address.count < 3 {
+            return false
+        } else {
+            return true
         }
     }
     

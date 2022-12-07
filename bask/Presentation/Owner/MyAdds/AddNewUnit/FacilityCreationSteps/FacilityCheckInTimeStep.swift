@@ -30,8 +30,8 @@ struct FacilityCheckInTimeStep: View {
                 MaterialTextSelector(text: $model.checkInTime, placeHolder: "Check-in after")
                     .frame(height: 60)
                     .onTapGesture {
-                        model.updateTime()
-                        //showTimePicker(for: .checkInAfter)
+                        
+                        showTimePicker(for: .checkInAfter)
                     }
                
                 

@@ -20,30 +20,6 @@ class FacilityNameViewModel: ObservableObject {
         return (!englishNameError && !arabicNameError)
     }
     
-    func onContinueTapped() {
-        
-            do {
-                try validateFacilityName()
-                navigateToNextScreen()
-                
-            } catch FacilityNameErrors.emptyEnglishName {
-                englishNameError = true
-            } catch FacilityNameErrors.invalidEnglishName {
-                englishNameError = true
-            } catch FacilityNameErrors.emptyArabicName {
-                arabicNameError = true
-            } catch FacilityNameErrors.invalidArabicName {
-                arabicNameError = true 
-            } catch {
-                print("Unexpected error occurred \(error)")
-            }
-        
-    }
-    
-    func navigateToNextScreen(){
-        shallNavigate = true
-    }
-    
     func validFacilityName() -> Bool {
         if englishName.isEmpty || englishName.count < 3 {
             self.englishNameError = true
@@ -79,33 +55,43 @@ enum FacilityNameErrors: Error{
 }
 
 class FacilityRoomsViewModel: ObservableObject {
-    var facilityWidth: String = ""
-    var facilityLength: String = ""
-    var livingRoomsCount: Int = 0
-    var kitchensCount: Int = 0
-    var bathroomsCount: Int = 0
-    var showersCount: Int = 0
-    var personCapacity: Int = 0
-    var validWidth: Bool = true
-    var validLength: Bool = true 
-    var shallNavigate: Bool = false
-    var toast: ToastViewModel = ToastViewModel()
+    @Published var facilityWidth: String = ""
+    @Published var facilityLength: String = ""
+    @Published var livingRoomsCount: Int = 0
+    @Published var kitchensCount: Int = 0
+    @Published var bathroomsCount: Int = 0
+    @Published var showersCount: Int = 0
+    @Published var personCapacity: Int = 0
+    @Published var validWidth: Bool = true
+    @Published var validLength: Bool = true
+    var isRoomsDataValid: Bool {
+        return (validLength && validWidth && (livingRoomsCount > 0 && personCapacity > 0))
+    }
+    @Published var shallNavigate: Bool = false
+    @Published var toast: ToastViewModel = ToastViewModel()
     
-    func onContinueTapped(){
-        do {
-            try validateFacilitySizeAndRooms()
-            navigateToNextScreen()
-        } catch FacilityRoomsError.NoLivingRoomsAdded {
-            showErrorToast(with: "Your facility must have at least one bed room.")
-            
-        } catch FacilityRoomsError.CapacityIsZero {
-            showErrorToast(with: "Your facility must be able to host one person.")
-            
-        } catch FacilityRoomsError.EmptySize{
-            validWidth = false
-            validLength = false
-        } catch {
-            print("Unknow Error Occured")
+    
+    func validateRoomsData(){
+        UIApplicationHelper.dimissKeyboard()
+        validateFacilitySize()
+        validateLivingRoomsAndCapacityCount()
+        
+        print("Valid value ---> \(isRoomsDataValid)")
+    }
+    
+    private func validateFacilitySize() {
+        if facilityWidth.isEmpty {
+            self.validWidth = false
+        }
+        if facilityLength.isEmpty {
+            self.validLength = false
+        }
+    }
+    
+    private func validateLivingRoomsAndCapacityCount() {
+        if livingRoomsCount < 1 || personCapacity < 1{
+            showErrorToast(with: "Facility must contain a living room and accomodate at least one person to continue")
+            self.objectWillChange.send()
         }
     }
     
@@ -197,65 +183,88 @@ class FacilityRoomsViewModel: ObservableObject {
 }
 
 class FacilityAmenitiesViewModel: ObservableObject {
-    var wifi: Bool = false
-    var parking: Bool = false
-    var indoorPool: Bool = false
-    var outdoorPool: Bool = false
-    var outdoorSitting: Bool = false
-    var bbq: Bool = false
-    var gym: Bool = false
-    var gamesRoom: Bool = false
-    var garden: Bool = false
-    var playingField: Bool = false
+    @Published var wifi: Bool = false
+    @Published var parking: Bool = false
+    @Published var indoorPool: Bool = false
+    @Published var outdoorPool: Bool = false
+    @Published var outdoorSitting: Bool = false
+    @Published var bbq: Bool = false
+    @Published var gym: Bool = false
+    @Published var gamesRoom: Bool = false
+    @Published var garden: Bool = false
+    @Published var playingField: Bool = false
 }
 
 class FacilityRulesViewModel: ObservableObject{
-    var petsAllowed: Bool = true
-    var allPetsAllowed: Bool = false
-    var cats: Bool = true
-    var dogs: Bool = false
-    var rodents: Bool = false
-    var reptile: Bool = false
-    var bigAnimals: Bool = false
-    var allowedToSmoke: Bool = true
-    var additonalRules: Bool = false
-    var additionalRulesDescription: String = ""
+    @Published var petsAllowed: Bool = true
+    @Published var allPetsAllowed: Bool = false
+    @Published var cats: Bool = true
+    @Published var dogs: Bool = false
+    @Published var rodents: Bool = false
+    @Published var reptile: Bool = false
+    @Published var bigAnimals: Bool = false
+    @Published var allowedToSmoke: Bool = true
+    @Published var additonalRules: Bool = false
+    @Published var additionalRulesDescription: String = ""
 }
 
 class FacilityLocationViewModel: ObservableObject{
     
-    var location: Location = Location()
-    var shallNavigate: Bool = false
-    var shallShowMap: Bool = false
     
-    func onContinueTapped(){
-        if location.validAddress() {
-            shallShowMap = true
+    var country: String = "Saudi Arabia"
+    @Published var city: String = ""
+    @Published var validCity: Bool = true
+    @Published var street: String = ""
+    @Published var validStreet: Bool = true
+    @Published var longitude: Double = 45.11031652737802
+    @Published var latitude: Double = 24.19970898091148
+    var isStreetAddressValid: Bool {
+        return validCity && validStreet
+    }
+    
+    
+    func validateFacilityAddress() {
+        updateValidationStatus(of: city, with: &validCity)
+        updateValidationStatus(of: street, with: &validStreet)
+    }
+    
+    private func updateValidationStatus(of string: String, with validityIndicator: inout Bool) {
+        if string.isEmpty || string.count < 3 {
+            validityIndicator = false
+        } else {
+            validityIndicator = true
         }
     }
     
     func updateMapPin(with mapCenter : CLLocationCoordinate2D) {
-        location.updateCoordinates(with: mapCenter.latitude, and: mapCenter.longitude)
-        shallNavigate = true
+        self.latitude = mapCenter.latitude
+        self.longitude = mapCenter.longitude
     }
 }
 
 class CheckInCheckOutViewModel: ObservableObject {
-    var checkInTime: String = ""
-    var checkOutTime: String = ""
-    
-    func updateTime(){
-        checkInTime = "10:00 MP"
-        self.objectWillChange.send()
-    }
+    @Published var checkInTime: String = "12:00 PM"
+    @Published var checkOutTime: String = "12:00 PM"
     
 }
 
 class FacilityPriceViewModel: ObservableObject {
-    var pricePerNight: String = ""
-    var deposit: String = ""
+    @Published var pricePerNight: String = ""
+    @Published var deposit: String = ""
+    @Published var validPerNightPrice: Bool = true
+    @Published var validDepositPrice: Bool = true
+    
+    var isFacilityPriceValid: Bool {
+        return validDepositPrice && validPerNightPrice
+    }
     
     func validateFacilityPrice(){
+        validPerNightPrice = validatePrice(pricePerNight)
+        validDepositPrice = validatePrice(deposit)
+    }
+    
+    private func validatePrice(_ price: String) -> Bool {
+        return !price.isEmpty && price != "0"
         
     }
 }
@@ -410,8 +419,6 @@ class AddNewUnitViewModel: ObservableObject {
         currentStep = currentStep.previous()
         updateProgressBar(increase: false)
         onBackTapped(previousStep: currentStep)
-        print("eng name \(facilityNameViewModel.englishName)")
-        print("arabic name \(facilityNameViewModel.arabicName)")
     }
     
     private func updateProgressBar(increase: Bool = true){
@@ -430,13 +437,15 @@ class AddNewUnitViewModel: ObservableObject {
         case .name:
             return facilityNameViewModel.validFacilityName()
         case .rooms:
-            return true
+            facilityRoomsViewModel.validateRoomsData()
+            return facilityRoomsViewModel.isRoomsDataValid
         case .amenities:
             return true
         case .rules:
             return true
         case .address:
-            return true
+            facilityLocationViewModel.validateFacilityAddress()
+            return facilityLocationViewModel.isStreetAddressValid
         case .map:
             return true
         case .checkInTime:
@@ -453,7 +462,6 @@ class AddNewUnitViewModel: ObservableObject {
     //MARK: - Step - 1 Validation
     
     func isFacilityNameValid() {
-        facilityNameViewModel.onContinueTapped()
         
         //        willShowAddRoomsScreen = true
         //        do {
@@ -508,7 +516,6 @@ class AddNewUnitViewModel: ObservableObject {
     //MARK: - Step - 2
     
     func onContinueTapped(){
-        facilityRoomsViewModel.onContinueTapped()
         //        do {
         //            try facility.validateArea()
         //
@@ -670,13 +677,13 @@ class AddNewUnitViewModel: ObservableObject {
     //MARK: - Step-6.1
     // Note: This is step-6 because photos selection has been moved last step.
     func validateAddress() {
-        facilityLocationViewModel.onContinueTapped()
+        
     }
     
     
     //MARK: - Step-6.2
     func updateFacilityLocation(with coordinates: CLLocationCoordinate2D) {
-        willShowCheckInScreen = true
+        
         //        facility.location.latitude = coordinates.latitude
         //        facility.location.longitude = coordinates.longitude
         //

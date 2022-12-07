@@ -37,7 +37,7 @@ struct FacilityPriceStep: View {
                 .padding(.bottom, 32)
             
             
-            MaterialPriceField(text: $model.pricePerNight, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Price per night")
+            MaterialPriceField(text: $model.pricePerNight, isValid: $model.validPerNightPrice, errorMessage: errorMessage, placeHolder: "Price per night")
             
             
             //MARK: - Deposit
@@ -53,7 +53,7 @@ struct FacilityPriceStep: View {
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                 .padding(.bottom, 32)
             
-            MaterialPriceField(text: $model.deposit, isValid: $isValid, errorMessage: errorMessage, placeHolder: "Deposit")
+            MaterialPriceField(text: $model.deposit, isValid: $model.validDepositPrice, errorMessage: errorMessage, placeHolder: "Deposit")
             
             Spacer()
             

@@ -26,6 +26,9 @@ struct MaterialLengthField: View {
                 
                 TextField(placeHolder, text: $text, onEditingChanged: { (onEditingChange) in
                     isEditing = onEditingChange
+                    if !text.isEmpty {
+                        isValid = true
+                    }
                     updateBorder()
                 })
                     .font(Font.custom("Poppins-Light", size: 16.0, relativeTo: .headline))

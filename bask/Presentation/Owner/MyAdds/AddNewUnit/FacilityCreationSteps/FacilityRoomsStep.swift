@@ -40,44 +40,44 @@ struct FacilityRoomsStep: View {
                 
                 AmenityCounterView(counter: $model.livingRoomsCount, label: "Living rooms"){
                     UIApplicationHelper.dimissKeyboard()
-                    //addNewUnitViewModel.decreaseCount(of: .livingRoom)
+                    model.decreaseCount(of: .livingRoom)
                 } onIncrease: {
-                    //addNewUnitViewModel.increaseCount(of: .livingRoom)
+                    model.increaseCount(of: .livingRoom)
                 }
                 
                 
                 //MARK: - Kitchen Counter
                 AmenityCounterView(counter: $model.kitchensCount, label: "Kitchen") {
-                    //addNewUnitViewModel.decreaseCount(of: .kitchen)
+                    model.decreaseCount(of: .kitchen)
                 } onIncrease: {
-                    //addNewUnitViewModel.increaseCount(of: .kitchen)
+                    model.increaseCount(of: .kitchen)
                 }.padding(.bottom)
                 
                 
                 
                 //MARK: - Bathroom Counter
                 AmenityCounterView(counter: $model.bathroomsCount, label: "Bathroom") {
-  //                  addNewUnitViewModel.decreaseCount(of: .bathroom)
+                    model.decreaseCount(of: .bathroom)
                 } onIncrease: {
-  //                  addNewUnitViewModel.increaseCount(of: .bathroom)
+                    model.increaseCount(of: .bathroom)
                 }.padding(.bottom)
                 
                 
                 
                 //MARK: - Shower counter
                 AmenityCounterView(counter: $model.showersCount, label: "Shower") {
-   //                 addNewUnitViewModel.decreaseCount(of: .shower)
+                    model.decreaseCount(of: .shower)
                 } onIncrease: {
-   //                 addNewUnitViewModel.increaseCount(of: .shower)
+                    model.increaseCount(of: .shower)
                 }.padding(.bottom)
                 
                 
                 
                 //MARK: - Capacity counter
                 AmenityCounterView(counter: $model.personCapacity, label: "Capacity") {
-    //                addNewUnitViewModel.decreaseCount(of: .personCapacity)
+                    model.decreaseCount(of: .personCapacity)
                 } onIncrease: {
-    //                addNewUnitViewModel.increaseCount(of: .personCapacity)
+                    model.increaseCount(of: .personCapacity)
                 }.padding(.bottom)
 //                    .offset(x: moving ? 5 : 0)
 //                    .animation(.interpolatingSpring(stiffness: 5000, damping: 20), value: moving)
@@ -95,10 +95,12 @@ struct FacilityRoomsStep: View {
             
         }
         .background(Color.white)
-//        .toast(isShowing: $model.toast.willShow, content: {
-//            Toast(message: model.toast.message, style: model.toast.style)
-//
-//        })
+        .toast(isShowing: $model.toast.willShow, content: {
+            Toast(message: model.toast.message, style: model.toast.style)
+                .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .bottom)))
+            
+
+        })
         .navigationBarBackButtonHidden(true)
     }
 }

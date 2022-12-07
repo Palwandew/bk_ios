@@ -37,6 +37,9 @@ struct FacilityMapCoordinatesStep: View {
             }
             .background(Color.white)
             .navigationBarBackButtonHidden(true)
+            .onAppear {
+                map.center = CLLocationCoordinate2D(latitude: model.latitude, longitude: model.longitude)
+            }
             .onDisappear {
                 model.updateMapPin(with: map.center)
             }

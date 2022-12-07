@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct FacilityDescriptionStep: View {
+    
     @ObservedObject var model: FacilityDescriptionViewModel
-    @State var description: String = ""
-    @State var isValid: Bool = true 
+    @State private var isValid: Bool = true
     let errorMessage: LocalizedStringKey = "valid_description"
-    @State var showPicturesScreen: Bool = false
     
     var body: some View {
         

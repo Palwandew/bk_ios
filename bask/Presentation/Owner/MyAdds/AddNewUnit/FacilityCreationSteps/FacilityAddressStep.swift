@@ -30,20 +30,20 @@ struct FacilityAddressStep: View {
             
             //MARK: - Country
             
-            MaterialTextSelector(text: $model.location.country, placeHolder: "Country")
+            MaterialTextSelector(text: $model.country, placeHolder: "Country")
                 .frame(height: 55)
             
             
             //MARK: - City
             
-            MaterialTextField(text: $model.location.city, isValid: $model.location.validCity, errorMessage: errorMsg, placeHolder: "City")
+            MaterialTextField(text: $model.city, isValid: $model.validCity, errorMessage: errorMsg, placeHolder: "City")
                 .padding([.top, .horizontal], 1)
             
             //}
             
             //MARK: - Address
             
-            MaterialTextField(text: $model.location.street, isValid: $model.location.validStreet, errorMessage: errorMsg, placeHolder: "Address")
+            MaterialTextField(text: $model.street, isValid: $model.validStreet, errorMessage: errorMsg, placeHolder: "Address")
                 .padding([.top, .horizontal], 1)
             
             Spacer()

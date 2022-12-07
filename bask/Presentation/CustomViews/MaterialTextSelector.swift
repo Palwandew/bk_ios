@@ -13,7 +13,7 @@ struct MaterialTextSelector: View {
     let placeHolder: String
     var body: some View {
         GeometryReader { geomerty in
-            ZStack() {
+            ZStack(alignment: .topLeading) {
                 
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.gray, lineWidth: 1)
@@ -32,6 +32,20 @@ struct MaterialTextSelector: View {
                 }
                 .contentShape(Rectangle())
                 .padding()
+                
+                if !text.isEmpty{
+                    withAnimation {
+                        Text(placeHolder)
+                            .font(.custom("Poppins-Regular", size: 12))
+                            .foregroundColor(Color(AppColor.GREY))
+                            .background(Color.white)
+                            .offset(x: 16, y: -8)
+                            .animation(.spring(), value: text)
+                            
+                    }
+
+                        
+                }
             }.frame(width: geomerty.size.width, height: geomerty.size.height)
             
         }

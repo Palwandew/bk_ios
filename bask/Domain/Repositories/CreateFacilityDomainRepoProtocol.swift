@@ -12,6 +12,8 @@ protocol CreateFacilityDomainRepoProtocol {
 
 
     
+    func publishFacility(_ facility: Facility, completion: @escaping (Result<String, Error>) -> Void)
+    
     //MARK: - Step - 1
     func addFacilityName(_ endpoint: Endpoints, _ data: Data, completion: @escaping (Result<String, Error>) -> Void)
     

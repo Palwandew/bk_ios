@@ -22,5 +22,10 @@ protocol FacilityDomainReopProtocol {
     // To get percentage cut that goes to bask
     func getBaskCutForRenting(completion: @escaping (Result<[FacilityPercentage], Error>) -> Void)
     
+    // publish Facility
+    func publishFacility(_ facility: Facility, completion: @escaping (Result<String, Error>) -> Void)
+    
+    // save facility with unpublished status
+    func saveFacilityUnpublished(_ facility: Facility, completion: @escaping (Result<String, Error>) -> Void)
     
 }

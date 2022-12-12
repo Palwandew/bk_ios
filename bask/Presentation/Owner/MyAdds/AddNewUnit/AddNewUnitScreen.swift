@@ -10,7 +10,7 @@ import SwiftUI
 struct AddNewUnitScreen: View {
     
     @State var showPublishScreen: Bool = false
-    @StateObject var model: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
+    @StateObject var model: AddNewUnitViewModel = AddNewUnitViewModel(useCase: PublishFacilityUseCase(repository: FacilityRepositoryImpl()))
     
     var body: some View {
         ZStack {
@@ -96,7 +96,9 @@ struct AddNewUnitScreen: View {
                 Spacer()
                 
                 NavigationLink(destination:
-                                PublishFacilityScreen(), isActive:$showPublishScreen) {
+                                PublishFacilityScreen()
+                                    .environmentObject(model)
+                               , isActive:$model.showPublishScreen) {
                     EmptyView()
                 }
                 

@@ -8,342 +8,56 @@
 import Foundation
 
 //MARK: - Facility Entity
-struct Facility {
+struct Facility: Codable {
     
     //MARK: - Properties
+    let arabicName, englishName, facilityDescription, facilityType: String
+    let ownerID: String
+    let price: Int
+    let country, address, city: String
+    let latitude: Double
+    let cancellationPolicyID, length, width, capacity: Int
+    let noOfBathRooms, noOfShowers, feePercentage: Int
+    let status: String
+    let garden, playingField, gym, outdoorSitting: Bool
+    let bbqArea, petsAllowed, petsAllAllowed, petsCatsAllowed: Bool
+    let petsDogsAllowed, petsRodentsAllowed, petsReptileAllowed, petsBigAnimalAllowed: Bool
+    let smokingAllowed, additionalRules: Bool
+    let additionalRulesDescription: String
+    let longitude: Double
+    let checkInAfter, checkInBefore, checkOutBefore: String
+    let deposit, nameStatus, roomsStatus, amenityFreeStatus: Int
+    let amenityExtraStatus, rulesStatus, photoStatus, locationStatus: Int
+    let checkInOutStatus, priceStatus, descriptionStatus: Int
     
-    var id: String? = nil // Need to replace it with the actual facility id
-    var englishName: String = ""
-    var arabicName: String = ""
-    var length: String = ""
-    var width: String = ""
-    var livingRooms: [Room] = []
-    var kitchen: Int = 0
-    var capacity: Int = 8
-    var bathrooms: Int = 0
-    var showers: Int = 0
-    // Free Amenities
-    var wifi: Bool = true
-    var parking: Bool = true
-    var freeIndoorSwimmingPools: [AmenityFree] = []
-    var freeOutdoorSwimmingPools: [AmenityFree] = []
-    var outdoorSitting: Bool = false
-    var bbq: Bool = false
-    var gym: Bool = false
-    var gamesRoom: Bool = false
-    var garden: Bool = false
-    var playingField: Bool = false
-    // Paid Amenities
-    var paidAmenities: PaidService = PaidService()
-    let nameStatus: Int = 1
-    let room_status: Int = 1
-    // Rules
-    var rules: Rules = Rules()
-    // Location
-    var location: Location = Location()
-    // CheckIn
-    var checkInAfter: String = ""
-    var checkOutBefore: String = ""
-    var checkInBefore: String = ""
-    let checkInOutStatus: Int = 1
-    // Price
-    var pricePerNight: String = ""
-    var deposit: String = ""
-    var validPrice: Bool = true
-    var validDeposit: Bool = true
-    // Description
-    var description: String = ""
-    
-    //let length, width, capacity, noOfBathRooms: Int
-    //let noOfShowers: Int
-    
-    
-    //MARK: - Name validation
-    func validateName() throws  {
-        
-        if englishName.isEmpty || englishName.count < 3 {
-            throw FacilityErrors.invalidEnglishName
-        } else if arabicName.isEmpty || arabicName.count < 3 {
-            throw FacilityErrors.invalidArabicName
+    enum CodingKeys: String, CodingKey {
+            case arabicName, englishName
+            case facilityDescription = "description"
+            case facilityType
+            case ownerID = "ownerId"
+            case price, country, address, city, latitude
+            case cancellationPolicyID = "cancellationPolicyId"
+            case length, width, capacity, noOfBathRooms, noOfShowers, feePercentage, status, garden
+            case playingField = "playing_field"
+            case gym
+            case outdoorSitting = "outdoor_sitting"
+            case bbqArea = "bbq_area"
+            case petsAllowed, petsAllAllowed, petsCatsAllowed, petsDogsAllowed, petsRodentsAllowed, petsReptileAllowed, petsBigAnimalAllowed, smokingAllowed, additionalRules, additionalRulesDescription, longitude
+            case checkInAfter = "check_in_after"
+            case checkInBefore = "check_in_before"
+            case checkOutBefore = "check_out_before"
+            case deposit
+            case nameStatus = "name_status"
+            case roomsStatus = "rooms_status"
+            case amenityFreeStatus = "amenity_free_status"
+            case amenityExtraStatus = "amenity_extra_status"
+            case rulesStatus = "rules_status"
+            case photoStatus = "photo_status"
+            case locationStatus = "location_status"
+            case checkInOutStatus = "check_in_out_status"
+            case priceStatus = "price_status"
+            case descriptionStatus = "description_status"
         }
-        // return true
-        
-    }
-    
-    //MARK: - Area validation
-    func validateArea() throws {
-        if length.isEmpty && width.isEmpty {
-            throw FacilityErrors.emptyArea
-        } else if length.isEmpty || Int(length) ?? 0 <= 0 {
-            throw FacilityErrors.invalidLength
-        } else if width.isEmpty || Int(width) ?? 0 <= 0 {
-            throw FacilityErrors.invalidWidth
-        }
-    }
-    
-    
-    //MARK: - Living Rooms Validation
-    func hasValidLivingRooms() -> Bool {
-        if let room = livingRooms.first(where: { $0.length.isEmpty || $0.width.isEmpty}) {
-            
-            if room.length.isEmpty && room.width.isEmpty {
-                room.validLength = false
-                room.validWidth = false
-                
-            } else if room.length.isEmpty {
-                room.validLength = false
-                
-            } else {
-                room.validWidth = false
-                
-            }
-            
-            return false
-        } else {
-            _ = livingRooms.map {
-                $0.validLength = true
-                $0.validWidth = true
-            }
-            
-            return true
-        }
-    }
-    
-    
-    //MARK: - Free Amenities Validation
-    func hasValidFreeAmenities() -> Bool {
-        if let indoorPool = freeIndoorSwimmingPools.first(where: { $0.length.isEmpty || $0.width.isEmpty}) {
-            
-            if indoorPool.length.isEmpty && indoorPool.width.isEmpty {
-                indoorPool.validLength = false
-                indoorPool.validWidth = false
-                
-            } else if indoorPool.length.isEmpty {
-                indoorPool.validLength = false
-                
-            } else {
-                indoorPool.validWidth = false
-                
-            }
-            
-            return false
-        } else {
-            _ = freeIndoorSwimmingPools.map {
-                $0.validLength = true
-                $0.validWidth = true
-            }
-            
-            return true
-        }
-    }
-    
-    
-    //MARK: - Paid Amenities Validation
-    func hasValidPaidAmenities() -> Bool {
-        return paidAmenities.valid()
-        
-    }
-    
-    
-    //MARK: - Address Validation
-    mutating func hasValidAddress() -> Bool {
-        return location.validAddress()
-    }
-    
-    
-    //MARK: - Timing Validation
-    /// Checks if the facility check-in, check-out timings have been added.
-    /// - Returns: True if the user has added check-in and check-out timings. False otherwise, if either of
-    /// timings is missing.
-    func hasValidCheckInTime() -> Bool {
-        return !checkInAfter.isEmpty && !checkInBefore.isEmpty && !checkOutBefore.isEmpty
-    }
-    
-    
-    //MARK: - Price Validation
-    mutating func hasValidPrice() -> Bool {
-        
-        if pricePerNight.isEmpty {
-            validPrice = false
-        }
-        else if deposit.isEmpty {
-            validDeposit = false
-        } else {
-            validPrice = true
-            validDeposit = true 
-        }
-        return !pricePerNight.isEmpty && !deposit.isEmpty
-    }
-    
-    
-    //MARK: - Step-1 Request body
-    func prepareRequestBodyWith(ownerID: String) -> FacilityNameBodyData {
-        return FacilityNameBodyData(arabicName: self.arabicName, englishName: self.englishName, ownerID: ownerID)
-    }
-    
-    
-    //MARK: - Step-2 Request body
-    func prepareRequestBody() -> FacilityAreaBodyData {
-        
-        
-        let data = FacilityAreaBodyData(length: Int(self.length) ?? 0, width: Int(self.width) ?? 0, capacity: self.capacity, noOfShowers: self.showers, noOfBathRooms: self.bathrooms)
-        
-        return data
-        
-    }
-    
-    
-    //MARK: - Step-3 Request body
-    func prepareFreeServicesRequestBody() -> FacilityFreeAmenitiesRequestBody {
-        
-        var services: [FacilityFreeService] = []
-        
-        if !freeIndoorSwimmingPools.isEmpty {
-            for indoorPool in freeIndoorSwimmingPools {
-                let freeIndoorPool = FacilityFreeService(facilityID: id!, serviceTypeID: indoorPool.serviceTypeId, facilityServiceDescription: nil, length: Int(indoorPool.length), width: Int(indoorPool.width))
-                services.append(freeIndoorPool)
-            }
-            
-        }
-        
-        if !freeOutdoorSwimmingPools.isEmpty {
-            for outdoorPool in freeIndoorSwimmingPools {
-                let freeOutdoorPool = FacilityFreeService(facilityID: id!, serviceTypeID: outdoorPool.serviceTypeId, facilityServiceDescription: nil, length: Int(outdoorPool.length), width: Int(outdoorPool.width))
-                services.append(freeOutdoorPool)
-            }
-        }
-        
-        if wifi {
-            let wifiService = FacilityFreeService(facilityID: id!, serviceTypeID: 3, facilityServiceDescription: nil, length: nil, width: nil)
-            services.append(wifiService)
-        }
-        
-        if parking {
-            let parkingService = FacilityFreeService(facilityID: id!, serviceTypeID: 4, facilityServiceDescription: nil, length: nil, width: nil)
-            services.append(parkingService)
-        }
-        
-        return FacilityFreeAmenitiesRequestBody(facilityservices: services, facilityID: id ?? "")
-    }
-    
-    
-    //MARK: - Step-4 Request body
-    
-    func preparePaidServicesRequestBody() -> FacilityPaidAmenitiesRequestBody{
-        
-        let services = paidAmenities.preparePaidServices(for: id ?? "")
-        
-        return FacilityPaidAmenitiesRequestBody(facilityservices: services, facilityID: id ?? "")
-        
-    }
-    
-    
-    //MARK: - Step-5 Request body
-    
-    func prepareRulesRequestBody() -> FacilityRulesRequestBody {
-        return rules.toRequestBodyModel()
-    }
-    
-    
-    //MARK: - Step-6 Request body
-    
-    func prepareLocationRequestBody() -> FacilityLocationRequestBody {
-        return location.toRequestBodyModel()
-    }
-    
-    
-    //MARK: - Step-7 Request body
-    
-    func prepareCheckInTimeRequestBody() -> FacilityCheckInTimeRequestBody {
-        return FacilityCheckInTimeRequestBody(checkInAfter: self.checkInAfter, checkInBefore: self.checkInBefore, checkOutBefore: self.checkOutBefore, checkInOutStatus: self.checkInOutStatus)
-    }
-    
-    
-    //MARK: - Step-8 Request Body
-    
-    func preparePriceRequestBody() -> FacilityPriceRequestBody? {
-        guard let price = Int(self.pricePerNight) , let deposit = Int(self.deposit) else {
-            print("Conversion from String to Int failed")
-            return nil
-        }
-        return FacilityPriceRequestBody(price: price, deposit: deposit, priceStatus: 1)
-    }
-    
-    
-    //MARK: - Step-9 Request Body
-    func prepareDescriptionRequestBody() -> FacilityDescriptionRequestBody {
-        return FacilityDescriptionRequestBody(facilityDescriptionRequestBodyDescription: self.description, descriptionStatus: 1)
-    }
-    
-    
-    //MARK: - Mutating functions
-    mutating func addRoom(){
-        let room = Room()
-        livingRooms.append(room)
-    }
-    
-    mutating func removeRoom(){
-        if !livingRooms.isEmpty {
-            livingRooms.removeLast(1)
-        }
-    }
-    
-    
-    mutating func addIndoorSwimmingPool(){
-        let pool = AmenityFree(serviceTypeId: 5)
-        freeIndoorSwimmingPools.append(pool)
-    }
-    
-    mutating func removeIndoorSwimmingPool(){
-        if !freeIndoorSwimmingPools.isEmpty {
-            freeIndoorSwimmingPools.removeLast(1)
-        }
-    }
-    
-    mutating func addOutdoorSwimmingPool(){
-        let pool = AmenityFree(serviceTypeId: 6)
-        freeOutdoorSwimmingPools.append(pool)
-    }
-    
-    mutating func removeOutdoorSwimmingPool(){
-        if !freeOutdoorSwimmingPools.isEmpty {
-            freeOutdoorSwimmingPools.removeLast(1)
-        }
-    }
-    
-    mutating func increaseCounterOf(_ counter: Counter) {
-        switch counter {
-        case .capacity:
-            capacity += 1
-        case .bathroom:
-            bathrooms += 1
-        case .showers:
-            showers += 1
-        case .kitchen:
-            kitchen += 1
-        }
-    }
-    
-    mutating func decreaseCounterOf(_ counter: Counter) {
-        switch counter {
-        case .capacity:
-            if capacity > 0 {
-                capacity -= 1
-            }
-        case .bathroom:
-            if bathrooms > 0 {
-                bathrooms -= 1
-            }
-        case .showers:
-            if showers > 0 {
-                showers -= 1
-            }
-        case .kitchen:
-            if kitchen > 0 {
-                kitchen -= 1
-            }
-        }
-    }
 }
 
 enum Counter {
@@ -425,7 +139,7 @@ struct FacilityRulesRequestBody: Codable {
     let additionalRules: Bool
     let additionalRulesDescription: String
     let rulesStatus: Int
-
+    
     enum CodingKeys: String, CodingKey {
         case petsAllowed, petsAllAllowed, petsCatsAllowed, petsDogsAllowed, petsRodentsAllowed, petsReptileAllowed, petsBigAnimalAllowed, smokingAllowed, additionalRules, additionalRulesDescription
         case rulesStatus = "rules_status"
@@ -436,7 +150,7 @@ struct FacilityRulesRequestBody: Codable {
 struct FacilityCheckInTimeRequestBody: Codable {
     let checkInAfter, checkInBefore, checkOutBefore: String
     let checkInOutStatus: Int
-
+    
     enum CodingKeys: String, CodingKey {
         case checkInAfter = "check_in_after"
         case checkInBefore = "check_in_before"
@@ -448,7 +162,7 @@ struct FacilityCheckInTimeRequestBody: Codable {
 // MARK: - FacilityPriceRequestBody
 struct FacilityPriceRequestBody: Codable {
     let price, deposit, priceStatus: Int
-
+    
     enum CodingKeys: String, CodingKey {
         case price, deposit
         case priceStatus = "price_status"
@@ -460,7 +174,7 @@ struct FacilityPriceRequestBody: Codable {
 struct FacilityDescriptionRequestBody: Codable {
     let facilityDescriptionRequestBodyDescription: String
     let descriptionStatus: Int
-
+    
     enum CodingKeys: String, CodingKey {
         case facilityDescriptionRequestBodyDescription = "description"
         case descriptionStatus = "description_status"
@@ -468,10 +182,174 @@ struct FacilityDescriptionRequestBody: Codable {
 }
 
 
+enum FacilityCreationStep {
+    
+    case stepTwo
+    case stepThree
+    case stepFour
+    case stepFive
+    case stepSix
+    case stepSeven
+    case stepEight
+    case stepNine
+    case stepTen
+}
+
 //MARK: - FacilityPublishRequestBody
 struct FacilityPublishRequestBody: Codable {
-    let status: String 
+    let status: String
 }
 
 
 
+/// Builder class to create Facility object using builder pattfrom
+class FacilityBuilder {
+    private var arabicName, englishName, facilityDescription, facilityType: String
+    private var ownerID: String
+    private var price, deposit: Int
+    private var country, address, city: String
+    private var latitude, longitude: Double
+    private var cancellationPolicyID, length, width, capacity: Int
+    private var noOfBathRooms, noOfShowers, feePercentage: Int
+    private var status: String
+    private var garden, playingField, gym, outdoorSitting: Bool
+    private var bbqArea, petsAllowed, petsAllAllowed, petsCatsAllowed: Bool
+    private var petsDogsAllowed, petsRodentsAllowed, petsReptileAllowed, petsBigAnimalAllowed: Bool
+    private var smokingAllowed, additionalRules: Bool
+    private var additionalRulesDescription: String
+    private var checkInAfter, checkOutBefore: String
+    
+    init(){
+        ownerID = ""
+        status = ""
+        arabicName = ""
+        englishName = ""
+        facilityDescription = ""
+        facilityType = "Farm house"
+        price = 0
+        deposit = 0
+        country = "Saudi Arabia"
+        address = ""
+        city = ""
+        latitude = 0.0
+        longitude = 0.0
+        cancellationPolicyID = 1
+        length = 0
+        width = 0
+        capacity = 0
+        noOfBathRooms = 0
+        noOfShowers = 0
+        feePercentage = 0
+        garden = false
+        playingField = false
+        gym = false
+        outdoorSitting = false
+        bbqArea = false
+        petsAllowed = false
+        petsAllAllowed = false
+        petsCatsAllowed = false
+        petsDogsAllowed = false
+        petsRodentsAllowed = false
+        petsReptileAllowed = false
+        petsBigAnimalAllowed = false
+        smokingAllowed = false
+        additionalRules = false
+        additionalRulesDescription = ""
+        checkInAfter = ""
+        checkOutBefore = ""
+    }
+    
+    func setOwnerID(_ ownerID: String) -> Self {
+        self.ownerID = ownerID
+        
+        return self
+    }
+    
+    func setStatus(_ status: String) -> Self {
+        self.status = status
+        
+        return self
+    }
+    
+    func setName(from viewModel: FacilityNameViewModel) -> Self {
+        self.englishName = viewModel.englishName
+        self.arabicName = viewModel.arabicName
+        
+        return self
+    }
+    
+    func setRoomsData(from viewModel: FacilityRoomsViewModel) -> Self? {
+        guard let width = Int(viewModel.facilityWidth), let length = Int(viewModel.facilityLength) else {
+            return nil
+        }
+        self.length = length
+        self.width = width
+        self.noOfShowers = viewModel.showersCount
+        self.noOfBathRooms = viewModel.bathroomsCount
+        self.capacity = viewModel.personCapacity
+        
+        return self
+    }
+    
+    func setRules(from viewModel: FacilityRulesViewModel) -> Self {
+        self.petsAllowed = viewModel.petsAllowed
+        self.petsAllAllowed = viewModel.allPetsAllowed
+        self.petsCatsAllowed = viewModel.cats
+        self.petsDogsAllowed = viewModel.dogs
+        self.petsRodentsAllowed = viewModel.rodents
+        self.petsReptileAllowed = viewModel.reptile
+        self.petsBigAnimalAllowed = viewModel.bigAnimals
+        self.smokingAllowed = viewModel.allowedToSmoke
+        self.additionalRules = viewModel.additonalRules
+        self.additionalRulesDescription = viewModel.additionalRulesDescription
+        
+        return self
+    }
+    
+    func setAmenities(from viewModel: FacilityAmenitiesViewModel) -> Self {
+        self.garden = viewModel.garden
+        self.playingField = viewModel.playingField
+        self.gym = viewModel.gym
+        self.outdoorSitting = viewModel.outdoorSitting
+        self.bbqArea = viewModel.bbq
+        
+        return self
+    }
+    
+    func setAddress(from viewModel: FacilityLocationViewModel) -> Self {
+        self.address = viewModel.street
+        self.city = viewModel.city
+        self.latitude = viewModel.latitude
+        self.longitude = viewModel.longitude
+        
+        return self
+    }
+    
+    func setCheckInTime(from viewModel: CheckInCheckOutViewModel) -> Self {
+        self.checkInAfter = viewModel.checkInTime
+        self.checkOutBefore = viewModel.checkOutTime
+        
+        return self
+    }
+    
+    func setPrice(from viewModel: FacilityPriceViewModel) -> Self? {
+        
+        guard let price = Int(viewModel.pricePerNight), let deposit = Int(viewModel.deposit) else {
+            return nil
+        }
+        self.price = price
+        self.deposit = deposit
+        
+        return self
+    }
+    
+    func setDescription(from viewModel: FacilityDescriptionViewModel) -> Self {
+        self.facilityDescription = viewModel.description
+        
+        return self
+    }
+    
+    func build() -> Facility {
+        return Facility(arabicName: self.arabicName, englishName: self.englishName, facilityDescription: self.facilityDescription, facilityType: self.facilityType, ownerID: self.ownerID, price: self.price, country: self.country, address: self.address, city: self.city, latitude: self.latitude, cancellationPolicyID: self.cancellationPolicyID, length: self.length, width: self.width, capacity: self.capacity, noOfBathRooms: self.noOfBathRooms, noOfShowers: self.noOfShowers, feePercentage: self.feePercentage, status: self.status, garden: self.garden, playingField: self.playingField, gym: self.gym, outdoorSitting: self.outdoorSitting, bbqArea: self.bbqArea, petsAllowed: self.petsAllowed, petsAllAllowed: self.petsAllowed, petsCatsAllowed: self.petsCatsAllowed, petsDogsAllowed: self.petsDogsAllowed, petsRodentsAllowed: self.petsRodentsAllowed, petsReptileAllowed: self.petsReptileAllowed, petsBigAnimalAllowed: self.petsBigAnimalAllowed, smokingAllowed: self.smokingAllowed, additionalRules: self.additionalRules, additionalRulesDescription: self.additionalRulesDescription, longitude: self.longitude, checkInAfter: self.checkInAfter, checkInBefore: "12:00 PM", checkOutBefore: self.checkOutBefore, deposit: self.deposit, nameStatus: 1, roomsStatus: 1, amenityFreeStatus: 1, amenityExtraStatus: 1, rulesStatus: 1, photoStatus: 0, locationStatus: 1, checkInOutStatus: 1, priceStatus: 1, descriptionStatus: 1)
+    }
+}

@@ -7,14 +7,31 @@
 
 import SwiftUI
 
-struct OutlinedTextField: View {
+struct WiggleView: View {
+    @State private var offset: CGFloat = 0
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Wiggle Me!")
+                .padding()
+                .background(Color.green)
+                .foregroundColor(Color.white)
+                .font(.largeTitle)
+                .offset(x: offset, y: 0)
+                .onTapGesture {
+                    withAnimation(Animation.easeInOut(duration: 0.1)) {
+                        self.offset = 6
+                        self.offset = -self.offset
+                        //self.offset = 0
+                    }
+                }
+        }
     }
 }
 
+
 struct OutlinedTextField_Previews: PreviewProvider {
     static var previews: some View {
-        OutlinedTextField()
+        WiggleView()
     }
 }

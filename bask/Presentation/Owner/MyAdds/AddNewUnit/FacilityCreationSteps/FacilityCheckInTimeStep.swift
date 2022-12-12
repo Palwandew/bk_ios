@@ -32,6 +32,7 @@ struct FacilityCheckInTimeStep: View {
                     .onTapGesture {
                         
                         showTimePicker(for: .checkInAfter)
+                        
                     }
                
                 
@@ -45,7 +46,7 @@ struct FacilityCheckInTimeStep: View {
             
         }
         .sheet(isPresented: $showTimePicker, content: {
-            MaterialTimePicker(constraint: timeConstraint)
+            MaterialTimePicker(constraint: $timeConstraint)
                 .environmentObject(model)
         })
         .background(Color.white)
@@ -53,6 +54,7 @@ struct FacilityCheckInTimeStep: View {
     }
     
     private func showTimePicker(for newConstraint: TimeConstraint){
+        print("previous value \(timeConstraint) ..--.. new value \(newConstraint)")
         timeConstraint = newConstraint
         showTimePicker.toggle()
     }

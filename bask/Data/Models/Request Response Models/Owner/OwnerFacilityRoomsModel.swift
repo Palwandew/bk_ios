@@ -48,11 +48,11 @@ struct RoomsCount: Codable {
     let noOfShowers: Int
     
     
-    func dotFacilityEntity() -> Facility {
-        let lengthString = String(length)
-        let widthString = String(width)
-        
-        
-        return Facility(length: lengthString, width: widthString, capacity: self.capacity, bathrooms: noOfBathRooms, showers: noOfShowers)
-    }
+//    func dotFacilityEntity() -> Facility {
+//        let lengthString = String(length)
+//        let widthString = String(width)
+//        
+//        
+//        return Facility()
+//    }
 }

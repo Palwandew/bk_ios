@@ -14,18 +14,18 @@ class EditFacilityRepositoryImpl: EditFacilityRepositoryProtocol {
     
     func getRoomsData(for facilityID: String, completion: @escaping (Result<Facility, Error>) -> Void) {
         
-        let facilityId = URLQueryItem(name: "facilityId", value: facilityID)
-        let amenityType = URLQueryItem(name: "amenityType", value: "rooms")
-        let queryParameters: [URLQueryItem] = [facilityId, amenityType]
-        let endPoint = Endpoints(path: "facilityservice/singlefacility", queryItems: queryParameters)
-        
-        URLSession.shared.sendRequest(endpoint: endPoint, requestType: .get, headers: header, body: nil, responseModel: OwnerFacilityRoomsModel.self) { result in
-            switch result {
-            case .success(let response):
-                completion(.success(response.data.otherData.dotFacilityEntity()))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+//        let facilityId = URLQueryItem(name: "facilityId", value: facilityID)
+//        let amenityType = URLQueryItem(name: "amenityType", value: "rooms")
+//        let queryParameters: [URLQueryItem] = [facilityId, amenityType]
+//        let endPoint = Endpoints(path: "facilityservice/singlefacility", queryItems: queryParameters)
+//        
+//        URLSession.shared.sendRequest(endpoint: endPoint, requestType: .get, headers: header, body: nil, responseModel: OwnerFacilityRoomsModel.self) { result in
+//            switch result {
+//            case .success(let response):
+//                completion(.success(response.data.otherData.dotFacilityEntity()))
+//            case .failure(let error):
+//                completion(.failure(error))
+//            }
+//        }
     }
 }

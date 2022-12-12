@@ -114,3 +114,22 @@ class CreateFacilityUseCase: OwnerFacilityUsecaseProtocol {
     }
     
 }
+
+
+class PublishFacilityUseCase {
+    private let repository: FacilityDomainReopProtocol
+    
+    init(repository: FacilityDomainReopProtocol) {
+        self.repository = repository
+    }
+    
+    func publishFacility(_ facility: Facility, completion: @escaping (Result<String, Error>) -> Void) {
+        repository.publishFacility(facility, completion: completion)
+    }
+    
+    func saveUnpublished(_ facility: Facility, completion: @escaping (Result<String, Error>) -> Void)  {
+        repository.saveFacilityUnpublished(facility, completion: completion)
+    }
+    
+}
+

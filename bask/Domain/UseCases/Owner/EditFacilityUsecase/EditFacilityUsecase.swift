@@ -17,7 +17,7 @@ class EditFacilityUsecase: OwnerFacilityUsecaseProtocol {
     }
     
     func getRoomsData(for facilityID: String, completion: @escaping (Result<Facility, Error>) -> Void){
-        repository.getRoomsData(for: facilityID, completion: completion)
+        //repository.getRoomsData(for: facilityID, completion: completion)
     }
     
     func updateFacility(with facilityID: String?, for step: FacilityCreationStep, with data: Encodable, completion: @escaping (Result<String, Error>) -> Void) {

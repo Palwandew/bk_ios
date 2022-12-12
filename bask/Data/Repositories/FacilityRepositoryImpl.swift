@@ -9,7 +9,36 @@ import Foundation
 
 class FacilityRepositoryImpl: FacilityDomainReopProtocol {
     
-    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2NTg2NDM0OSwiZXhwIjoxNjY2Mjk2MzQ5fQ.Nwg2LF8QWo32Rt_9x4IakexkcdU3Zpf-RoHchpo-cHE"
+    let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDczMjZiLWU2ZTktNDYxNC1hYmU3LWFmZDlhMjhmNzdmNSIsImlhdCI6MTY3MDg4NjAyMiwiZXhwIjoxNjcxMzE4MDIyfQ.6SNSV1UxyZHQaQeFV8rxvCSj6t9tmVYFCZESmVp38Wg"
+    
+    func publishFacility(_ facility: Facility, completion: @escaping (Result<String, Error>) -> Void) {
+        let endpoint = Endpoints.CREATE_FACILITY
+        
+        URLSession.shared.sendUpdateRequest(endpoint: endpoint, requestType: .post, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: facility) { result in
+            switch result {
+            case .success(let success):
+                completion(.success(success))
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
+        }
+    }
+    
+    func saveFacilityUnpublished(_ facility: Facility, completion: @escaping (Result<String, Error>) -> Void) {
+        let endpoint = Endpoints.CREATE_FACILITY
+        
+        URLSession.shared.sendUpdateRequest(endpoint: endpoint, requestType: .post, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: facility) { result in
+            switch result {
+            case .success(let success):
+                completion(.success(success))
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
+        }
+    }
+    
+    
+    
     
     func getBaskCutForRenting(completion: @escaping (Result<[FacilityPercentage], Error>) -> Void) {
         

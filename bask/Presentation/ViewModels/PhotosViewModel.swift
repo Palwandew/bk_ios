@@ -28,7 +28,7 @@ class PhotosViewModel: ObservableObject {
     }
     
     
-    func onCreateTapped(facilityID: String?){
+    func initiatePhotosUploading(for facilityID: String?){
 
         self.facilityID = facilityID
 

@@ -72,7 +72,7 @@ struct MaterialPriceField: View {
                         .foregroundColor(borderColor)
                         .padding(.horizontal, 4)
                         .background(Rectangle()
-                                        .fill(Color(AppColor.BACKGROUND)))
+                            .fill(Color.white))
                         .offset(x: 8, y: -8)
                         .transition(.opacity)
                 }

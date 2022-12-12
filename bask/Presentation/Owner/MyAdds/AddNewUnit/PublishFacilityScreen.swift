@@ -11,8 +11,8 @@ struct PublishFacilityScreen: View {
     
     
     @Environment(\.presentationMode) var presentationMode
-    //@EnvironmentObject var viewModel: AddNewUnitViewModel
-    @StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
+    @EnvironmentObject var viewModel: AddNewUnitViewModel
+    //@StateObject var viewModel: AddNewUnitViewModel = AddNewUnitViewModel(useCase: CreateFacilityUseCase(repository: CreateFacilityReopositoryImpl()))
     private var facilityName: String = "Shul-e-Yal"
     @State var progress: Float = 1
     @State var show: Bool = false
@@ -45,7 +45,7 @@ struct PublishFacilityScreen: View {
             
             //MARK: - Message
             
-            Text("Your ad “\(facilityName)” is ready to be published. You can change everything after publishing.")
+            Text("Your facility “\(viewModel.facilityNameViewModel.englishName)” is ready to be published. You can change everything after publishing.")
                 .multilineTextAlignment(.center)
                 .font(Font.custom("Poppins-Regular", size: 14, relativeTo: .title))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
@@ -55,10 +55,10 @@ struct PublishFacilityScreen: View {
             
             //MARK: - Continue Button
             
-            NavigationLink(destination:
-                            FacilityPicturesScreen(), isActive: $show) {
-                EmptyView()
-            }.isDetailLink(false)
+//            NavigationLink(destination:
+//                            FacilityPicturesScreen(), isActive: $show) {
+//                EmptyView()
+//            }.isDetailLink(false)
             
             Spacer()
             
@@ -76,6 +76,7 @@ struct PublishFacilityScreen: View {
                 
                 print("tapped")
                 //showPicturesScreen.toggle()
+                
                 viewModel.publishFacility()
                 
             }.padding(.top)
@@ -87,16 +88,16 @@ struct PublishFacilityScreen: View {
         }
         .padding(.horizontal)
         .background(Color.white)
-        .toast(isShowing: $viewModel.showToast, content: {
-            
-            switch viewModel.toastStyle {
-            case .failure:
-                Toast(message: "An error occured while publishing your ad. Please try again.", style: .failure)
-            case .success:
-                Toast(message: "Your ad has been published successfully.", style: .success)
-            }
-            
-        })
+//        .toast(isShowing: $viewModel.showToast, content: {
+//
+//            switch viewModel.toastStyle {
+//            case .failure:
+//                Toast(message: "An error occured while publishing your ad. Please try again.", style: .failure)
+//            case .success:
+//                Toast(message: "Your ad has been published successfully.", style: .success)
+//            }
+//
+//        })
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading:

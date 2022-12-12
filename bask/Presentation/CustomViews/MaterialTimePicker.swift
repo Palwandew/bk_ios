@@ -12,7 +12,7 @@ struct MaterialTimePicker: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var model: CheckInCheckOutViewModel
     @StateObject var timePickerViewModel = TimePickerViewModel()
-    let constraint: TimeConstraint
+    @Binding var constraint: TimeConstraint
     
     var body: some View {
         //ZStack {
@@ -109,7 +109,7 @@ struct MaterialTimePicker: View {
                 
                 //MARK: - Apply
                 Button {
-                    
+                    print("Button value \(constraint)")
                     switch constraint {
                     case .checkInAfter:
                         model.checkInTime = timePickerViewModel.getTime()

@@ -37,11 +37,11 @@ struct FacilityPublishChecklistScreen: View {
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack{
-                        ForEach($viewModel.checkList.items){ $item in
-                            ChecklistRow(title: item.title, isCompleted: item.status)
-                                .padding(.bottom)
-
-                        }
+//                        ForEach($viewModel.checkList.items){ $item in
+//                            ChecklistRow(title: item.title, isCompleted: item.status)
+//                                .padding(.bottom)
+//
+//                        }
                     }
                 }
                 
@@ -63,7 +63,7 @@ struct FacilityPublishChecklistScreen: View {
 //                    withAnimation {
 //                        showProgress.toggle()
 //                    }
-                    photosViewModel.onCreateTapped(facilityID: viewModel.facility.id)
+//                    photosViewModel.onCreateTapped(facilityID: viewModel.facility.id)
                     //showPublish.toggle()
                     
                     
@@ -91,7 +91,7 @@ struct FacilityPublishChecklistScreen: View {
         }.onAppear {
             
             print("on appear")
-            viewModel.getChecklist()
+            //viewModel.getChecklist()
         }
     }
 }

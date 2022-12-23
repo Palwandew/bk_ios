@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ComplainGuestScreen: View {
     
-    @StateObject var photoVm = PhotosViewModel(useCase: PhotosUsecase(repo: PhotosRepositoryImpl(uploadManager: PhotosUploadManager())))
+    @StateObject var photoVm = PhotosViewModel()
     @StateObject var model = ComplainGuestViewModel(ComplainGuestUseCase(repo: GuestsRepositoryImpl()))
     @State var showGallery: Bool = false
     @State var pickerResult: [Image] = []

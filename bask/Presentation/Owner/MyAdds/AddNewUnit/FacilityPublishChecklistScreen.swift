@@ -47,10 +47,10 @@ struct FacilityPublishChecklistScreen: View {
                 
                 //MARK: - Continue Button
                 
-                NavigationLink(destination:
-                                PublishFacilityScreen().environmentObject(viewModel), isActive: $photosViewModel.showPublishAdScreen) {
-                    EmptyView()
-                }.isDetailLink(false)
+//                NavigationLink(destination:
+//                                PublishFacilityScreen().environmentObject(viewModel), isActive: $photosViewModel.showPublishAdScreen) {
+//                    EmptyView()
+//                }.isDetailLink(false)
                 
                 Spacer()
                 
@@ -84,9 +84,9 @@ struct FacilityPublishChecklistScreen: View {
             
             
             
-            if photosViewModel.showProgress {
-                UploadProgressView(progress: $photosViewModel.progress, successful: $photosViewModel.uploadingCompleted)
-            }
+//            if photosViewModel.showProgress {
+//                UploadProgressView(progress: $photosViewModel.progress, successful: $photosViewModel.uploadingCompleted)
+//            }
             
         }.onAppear {
             

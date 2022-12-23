@@ -76,11 +76,8 @@ struct SpinnerCircle: View {
     var rotation: Angle
     var color: Color
     
-    
-    
     var body: some View {
         Circle()
-            
             .trim(from: start, to: end)
             .stroke(style: StrokeStyle(lineWidth: 5, lineCap: .round))
             .fill(color)

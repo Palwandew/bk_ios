@@ -11,7 +11,7 @@ struct CountriesListScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     //@EnvironmentObject var signUpViewModel: SignupViewModel
-    @StateObject var signUpViewModel = SignupViewModel(getCallingCodeUseCase: GetCountriesCallingCodeUseCase(localDataSource: LocalDataSource()))
+    @StateObject var signUpViewModel = SignupViewModel()
     
     @State var selectedCountry: Country = Country(code: "+92", name: "Pakistan")
     @State var searchText: String = ""
@@ -57,29 +57,27 @@ struct CountriesListScreen: View {
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             .font(Font.custom("Poppins-Medium", size: 20.0, relativeTo: .headline))
             
-            ScrollView{
-                LazyVStack(alignment: .leading){
-                    ForEach(signUpViewModel.countries.filter({ (country: Country) -> Bool in
-                        return country.name.hasPrefix(searchText) || searchText == ""
-                    }), id:\.self) { country in
-                        
-                        if signUpViewModel.selectedCallingCodeCountry == country {
-                            CallingCodeItem(country: country, isSelected: true)
-                                
-                        } else {
-                            CallingCodeItem(country: country, onItemTapped: {
-                                signUpViewModel.selectedCallingCodeCountry = country
-                            })
-                                
-                        }
-                        
-                    }
-                }
-            }
+//            ScrollView{
+//                LazyVStack(alignment: .leading){
+//                    ForEach(signUpViewModel.countries.filter({ (country: Country) -> Bool in
+//                        return country.name.hasPrefix(searchText) || searchText == ""
+//                    }), id:\.self) { country in
+//                        
+//                        if signUpViewModel.selectedCallingCodeCountry == country {
+//                            CallingCodeItem(country: country, isSelected: true)
+//                                
+//                        } else {
+//                            CallingCodeItem(country: country, onItemTapped: {
+//                                signUpViewModel.selectedCallingCodeCountry = country
+//                            })
+//                                
+//                        }
+//                        
+//                    }
+//                }
+//            }
         }.padding(.horizontal)
-            .onAppear {
-                signUpViewModel.getCountriesCallingCode()
-            }
+            
     }
     
     private struct CallingCodeItem: View {

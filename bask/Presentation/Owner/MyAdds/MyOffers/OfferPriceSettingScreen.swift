@@ -126,16 +126,24 @@ struct OfferPriceSettingScreen: View {
 struct BackButton: View {
     let onTap: () -> Void
     var body: some View {
-        HStack {
-            Button(action: { withAnimation(.spring()) {
-                onTap()
-            }}) {
-                Image(systemName: "chevron.backward")
-                    .foregroundColor(.gray)
-                    .font(.system(size: 20))
-                    .padding()
-            }
-            Spacer()
+       
+        
+        Button {
+            onTap()
+        } label: {
+            Image(systemName: "chevron.backward")
+                .foregroundColor(.gray)
+                .font(.system(size: 20))
         }
+
+//            Button(action: { withAnimation(.spring()) {
+//                onTap()
+//            }}) {
+//                Image(systemName: "chevron.backward")
+//                    .foregroundColor(.gray)
+//                    .font(.system(size: 20))
+//                    .padding()
+//            }
+        
     }
 }

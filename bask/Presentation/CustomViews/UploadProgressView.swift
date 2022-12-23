@@ -95,8 +95,7 @@ struct UploadProgressView: View {
             Spacer()
         
         }
-        .background(Color.black.opacity(0.7))
-        .ignoresSafeArea(.all, edges: .all)
+        
 
     }
 }

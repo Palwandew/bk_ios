@@ -29,7 +29,7 @@ struct AppColor{
     static let CHAT_SENT_ITEM: UInt = 0xFFEAEDF9
     static let CHAT_BOOKED_ITEM: UInt = 0xFFE6E9F3
     static let CALENDAR_BOOKED_DAY: UInt = 0xFFEFF0F4
-    
+    static let GRADIENT_BLUE: UInt = 0xFF9C70D8
     
     // gradi
     static let WALLET_CARD_GARD: UInt = 0xFF2F3EA4

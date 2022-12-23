@@ -10,31 +10,22 @@ import Foundation
 class FacilityRepositoryImpl: FacilityDomainReopProtocol {
     
     let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDczMjZiLWU2ZTktNDYxNC1hYmU3LWFmZDlhMjhmNzdmNSIsImlhdCI6MTY3MDg4NjAyMiwiZXhwIjoxNjcxMzE4MDIyfQ.6SNSV1UxyZHQaQeFV8rxvCSj6t9tmVYFCZESmVp38Wg"
+    var header: [String: String]? {
+        ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"]
+    }
     
     func publishFacility(_ facility: Facility, completion: @escaping (Result<String, Error>) -> Void) {
         let endpoint = Endpoints.CREATE_FACILITY
         
-        URLSession.shared.sendUpdateRequest(endpoint: endpoint, requestType: .post, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: facility) { result in
-            switch result {
-            case .success(let success):
-                completion(.success(success))
-            case .failure(let failure):
-                completion(.failure(failure))
-            }
-        }
+        performNetworkCall(endpoint, facility, completion)
     }
+    
+    
     
     func saveFacilityUnpublished(_ facility: Facility, completion: @escaping (Result<String, Error>) -> Void) {
         let endpoint = Endpoints.CREATE_FACILITY
         
-        URLSession.shared.sendUpdateRequest(endpoint: endpoint, requestType: .post, headers: ["x-access-token": accessToken, "Content-Type":"application/json; charset=utf-8"], body: facility) { result in
-            switch result {
-            case .success(let success):
-                completion(.success(success))
-            case .failure(let failure):
-                completion(.failure(failure))
-            }
-        }
+        performNetworkCall(endpoint, facility, completion)
     }
     
     
@@ -127,6 +118,25 @@ class FacilityRepositoryImpl: FacilityDomainReopProtocol {
                 
             case .success(let response):
                 completion(.success(response))
+            }
+        }
+    }
+    
+    /// Performs a network call to create a facility on the server.
+    /// - Parameters:
+    ///   - endpoint: Endpoint of the request.
+    ///   - facility: Facility to create in back-end.
+    ///   - completion: completion handler.
+    fileprivate func performNetworkCall(_ endpoint: Endpoints, _ facility: Facility, _ completion: @escaping (Result<String, Error>) -> Void) {
+        URLSession.shared.dataTaskWithBody(endpoint: endpoint, requestType: .post, headers: self.header, encodeDataType: facility, decodeDataType: FacilityCreationResponse.self) { result in
+            switch result {
+            case .success(let responseData):
+                guard let facilityID = responseData.data.facility.id else {
+                    return completion(.failure(RequestError.unexpectedStatusCode))
+                }
+                completion(.success(facilityID))
+            case .failure(let failure):
+                completion(.failure(failure))
             }
         }
     }

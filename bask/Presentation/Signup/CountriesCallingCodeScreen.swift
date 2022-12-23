@@ -46,21 +46,21 @@ struct CountriesCallingCodeScreen: View {
             }.padding(.leading)
             
             ScrollView{
-                LazyVStack(alignment: .leading){
-                    ForEach(signUpViewModel.countries, id:\.self) { country in
-                        
-                        if signUpViewModel.selectedCallingCodeCountry == country {
-                            CallingCodeItem(country: country, isSelected: true)
-                                
-                        } else {
-                            CallingCodeItem(country: country, onItemTapped: {
-                                signUpViewModel.selectedCallingCodeCountry = country
-                            })
-                                
-                        }
-                        
-                    }
-                }
+//                LazyVStack(alignment: .leading){
+//                    ForEach(signUpViewModel.countries, id:\.self) { country in
+//                        
+//                        if signUpViewModel.selectedCallingCodeCountry == country {
+//                            CallingCodeItem(country: country, isSelected: true)
+//                                
+//                        } else {
+//                            CallingCodeItem(country: country, onItemTapped: {
+//                                signUpViewModel.selectedCallingCodeCountry = country
+//                            })
+//                                
+//                        }
+//                        
+//                    }
+//                }
             }
         }
     }

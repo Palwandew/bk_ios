@@ -34,9 +34,9 @@ struct EnterOTPScreen: View {
                 .font(Font.custom("Poppins-Medium", size: 26.0))
                 .foregroundColor(Color(AppColor.DARKEST_BLUE))
             
-            Text("We have sent you OTP on \(signUpViewModel.selectedCallingCodeCountry.code)\(signUpViewModel.phoneNumber)")
-                .font(Font.custom("Poppins-Light", size: 16, relativeTo: .body))
-                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
+//            Text("We have sent you OTP on \(signUpViewModel.selectedCallingCodeCountry.code)\(signUpViewModel.phoneNumber)")
+//                .font(Font.custom("Poppins-Light", size: 16, relativeTo: .body))
+//                .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
             
             Spacer()
             
@@ -62,9 +62,7 @@ struct EnterOTPScreen: View {
                 Text("Didn't receive the code?")
                     .font(Font.custom("Poppins-Light", size: 14, relativeTo: .callout))
                     .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
-                Text(String(signUpViewModel.countDown))
-                    .font(Font.custom("Poppins-Medium", size: 14, relativeTo: .callout))
-                    .foregroundColor(Color(AppColor.DARKEST_BLUE))
+                
                 
                 Spacer()
             }.padding(.top)
@@ -75,16 +73,13 @@ struct EnterOTPScreen: View {
             
             
             HStack {
-                
-                NavigationLink(destination: HomeScreen(), isActive: $signUpViewModel.willShowHomeScreen) {
-                    EmptyView()
-                }
+               
                 
                 Spacer()
                 FilledButton(label: "Continue", color: Color(AppColor.DARKEST_BLUE)) {
                     
                     print("tapped")
-                    signUpViewModel.startTimer()
+                
                     //isValid.toggle()
                     //showCodesList.toggle()
                     //signUpViewModel.validateUserEmailAndPassword()

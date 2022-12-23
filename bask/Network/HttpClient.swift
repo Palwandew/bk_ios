@@ -103,6 +103,68 @@ extension URLSession{
     }
     
     
+    func dataTaskWithBody<Value, T: Codable>(
+        endpoint: Endpoints,
+        requestType: RequestMethod,
+        headers: [String: String]?,
+        encodeDataType: Value?,
+        decodeDataType: T.Type,
+        completionHandler: @escaping (Result<T, RequestError>) -> Void) where Value: Encodable {
+            guard let url = endpoint.url else {
+                completionHandler(.failure(RequestError.invalidURL))
+                return
+            }
+            
+            var request = URLRequest(url: url)
+            
+            request.httpMethod = requestType.rawValue
+            request.allHTTPHeaderFields = headers
+            
+            if let body = encodeDataType {
+                
+                do {
+                    let encoder = JSONEncoder()
+                    encoder.outputFormatting = .prettyPrinted
+                    let requestBody = try encoder.encode(body)
+                    print(String(data: requestBody, encoding: .utf8) ?? "unable to print pretty json")
+                    request.httpBody = requestBody
+                } catch {
+                    print("error encoding the data")
+                }
+            }
+            
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let err = error {
+                    completionHandler(.failure(RequestError.unknown(err.localizedDescription)))
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse, 200...299 ~= response.statusCode else {
+                    let test  = response as? HTTPURLResponse
+                    print("code --> \(String(describing: test?.statusCode))")
+                    completionHandler(.failure(RequestError.unexpectedStatusCode))
+                    return
+                }
+                
+                guard let data = data else {
+                    completionHandler(.failure(RequestError.noResponse))
+                    return
+                }
+                do {
+                    let dataFromServer = try JSONDecoder().decode(T.self, from: data)
+                    //print("data from server \(dataFromServer)")
+                    completionHandler(.success(dataFromServer))
+                    
+                } catch {
+                    print("decode error")
+                    completionHandler(.failure(RequestError.decode))
+                }
+                
+            }.resume()
+        }
+    
+    
+    
     func sendUpdateRequest<Value>(
         endpoint: Endpoints,
         requestType: RequestMethod,

@@ -253,7 +253,131 @@ class FacilityDescriptionViewModel: ObservableObject {
     @Published var description: String = ""
 }
 
+class PublishFacilityViewModel: ObservableObject {
+    
+    private let publishFacilityUseCase: PublishFacilityUseCase
+    private let uploadPhotosUseCase: PhotosUsecase
+    @Published var title: String = "Publish your ad"
+    @Published var progress: Double = 0.0
+    @Published var status: UploadingStatusIndicator = .initial
+    @Published var dataStatus: UploadingStatusIndicator = .initial
+    @Published var photosStatus: UploadingStatusIndicator = .initial
+    var showPhotosIndicator: Bool {
+        return !photosToUpload.isEmpty
+    }
+    private var facility: Facility? = nil
+    private var photosToUpload: [URL] = []
+    private var facilityID: String? = nil
+    
+    init(publishFacilityUseCase: PublishFacilityUseCase, uploadPhotosUseCase: PhotosUsecase){
+        self.publishFacilityUseCase = publishFacilityUseCase
+        self.uploadPhotosUseCase = uploadPhotosUseCase
+    }
+    
+    func perpareDataToPublish(_ facility: Facility, with photos: [URL]){
+        self.facility = facility
+        self.photosToUpload = photos
+        
+    }
+    
+    func updateTitle(_ newTitle: String) {
+        title = newTitle
+    }
+    
+    func updateAllUploadingStatusIndicators(with newStatus: UploadingStatusIndicator){
+        status = newStatus
+        dataStatus = newStatus
+        photosStatus = newStatus
+    }
+    
+    func retryOperation(){
+        print("retry")
+    }
+    
+    func publishFacility(){
+        guard let facility = facility else { return }
+        self.status = .uploading
+        
+        publishFacilityUseCase.publishFacility(facility) { [weak self] result in
+            self?.handleFacilityDataUploadingResult(result)
+        }
 
+    }
+    
+    func saveUnpublished(){
+        
+        guard let facility = facility else { return }
+        self.status = .uploading
+        publishFacilityUseCase.saveUnpublished(facility) { [weak self] result in
+            
+            self?.handleFacilityDataUploadingResult(result)
+        }
+    }
+    
+    private func handleFacilityDataUploadingResult(_ result: Result<String, Error>){
+        DispatchQueue.main.async {
+            switch result {
+            case .success(let facilityID):
+                
+                self.dataStatus = .success
+                self.facilityID = facilityID
+                if self.showPhotosIndicator {
+                    self.initiatePhotosUploading()
+                }
+                self.objectWillChange.send()
+                
+            case .failure(_):
+                self.updateAllUploadingStatusIndicators(with: .error)
+                
+            }
+        }
+    }
+    
+    private func initiatePhotosUploading(){
+
+        guard let facilityID = facilityID else {
+            return
+        }
+        uploadPhotos(facilityID)
+        
+    }
+    
+    
+    private func uploadPhotos(_ facilityID: String){
+        
+
+        let firstURL = photosToUpload.removeFirst()
+       
+    
+        self.uploadPhotosUseCase.uploadPhoto(of: facilityID, from: firstURL) { progress in
+            
+            DispatchQueue.main.async {
+                self.progress = progress
+                
+            }
+        } completion: { [weak self] result in
+            switch result{
+            case .failure(_):
+                
+                DispatchQueue.main.async {
+                    self?.status = .error
+                    self?.photosStatus = .error
+                }
+                
+            case .success(_):
+                if !(self?.photosToUpload.isEmpty)! {
+                    self?.uploadPhotos(facilityID)
+                } else {
+                    DispatchQueue.main.async {
+                        // Navigate
+                        self?.status = .success
+                        self?.photosStatus = .success
+                    }
+                }
+            }
+        }
+    }
+}
 
 
 //MARK: - AddNewUnitViewModel
@@ -280,7 +404,9 @@ class AddNewUnitViewModel: ObservableObject {
     
     @Published var facilityDescriptionViewModel: FacilityDescriptionViewModel = FacilityDescriptionViewModel()
     
-    @Published var photosService: PhotosViewModel = PhotosViewModel(useCase: PhotosUsecase(repo: PhotosRepositoryImpl(uploadManager: PhotosUploadManager())))
+    @Published var publishFacilityViewModel: PublishFacilityViewModel = PublishFacilityViewModel(publishFacilityUseCase: PublishFacilityUseCase(repository: FacilityRepositoryImpl()), uploadPhotosUseCase: PhotosUsecase(repo: PhotosRepositoryImpl(uploadManager: PhotosUploadManager())))
+    
+    @Published var photosViewModel: PhotosViewModel = PhotosViewModel()
     // Retry button indicator
     @Published var shallRetry: Bool = false
     
@@ -342,6 +468,11 @@ class AddNewUnitViewModel: ObservableObject {
     func onContinueButtonTapped(){
         if validateUserInput(for: currentStep) {
             if currentStep == .pictures {
+                
+                guard let facility = buildFacility(status: "unpublished") else {
+                    return
+                }
+                publishFacilityViewModel.perpareDataToPublish(facility, with: photosViewModel.urls)
                 showPublishScreen = true
             } else {
                 pushNextState()
@@ -405,38 +536,7 @@ class AddNewUnitViewModel: ObservableObject {
         }
     }
     
-    func publishFacility(){
-        guard let facility = buildFacility(status: "published") else {
-            return
-        }
-        
-        publishFacilityUseCase.publishFacility(facility) { [weak self] result in
-            switch result {
-            case .success(let success):
-                print("Succesful published \(success)")
-                let facilityID = "fake_facility_id"
-                //self?.photosService.initiatePhotosUploading(for: facilityID)
-            case .failure(let failure):
-                print("Faild \(failure)")
-            }
-        }
-    }
     
-    func saveFacilityUnpublished(){
-        guard let facility = buildFacility(status: "unpublished") else {
-            return
-        }
-        
-        publishFacilityUseCase.saveUnpublished(facility) { result in
-            switch result {
-            case .success(let success):
-                print("Succesful published \(success)")
-            case .failure(let failure):
-                print("Faild \(failure)")
-            }
-        }
-        print("Facility --> \(facility)")
-    }
     
     
     private func buildFacility(status: String) -> Facility? {

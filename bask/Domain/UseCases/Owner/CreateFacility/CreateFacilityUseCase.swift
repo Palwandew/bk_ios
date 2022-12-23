@@ -128,6 +128,7 @@ class PublishFacilityUseCase {
     }
     
     func saveUnpublished(_ facility: Facility, completion: @escaping (Result<String, Error>) -> Void)  {
+        
         repository.saveFacilityUnpublished(facility, completion: completion)
     }
     

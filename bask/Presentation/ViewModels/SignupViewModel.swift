@@ -10,96 +10,101 @@ import Foundation
 class SignupViewModel: ObservableObject {
     
     
-    private let getCountriesCallingCodeUseCase: GetCountriesCallingCodeUseCase
-    
-    //MARK: - Properties for signup step-1
-    @Published var firstName: String = ""
-    @Published var lastName: String = ""
-    @Published var city: String = ""
-    @Published var willShowEmailInputScreen = false
-    @Published var navigate: Bool = false
-    @Published var isValid: Bool = true
-    
-    //MARK: - Properties for signup step-2
-    @Published var email: String = ""
-    @Published var password: String = ""
-    @Published var willShowVerifyPhoneScreen = false
-    
-    
-    //MARK: - Properties for signup step-3
-    @Published var phoneNumber: String = ""
-    @Published var selectedCallingCodeCountry = Country(code: "+92", name: "Pakistan")
-    @Published var willShowEnterOTPScreen: Bool = false
-    
-    //MARK: - Properties for signup step-4
-    @Published var countDown = 120
-    @Published var willShowHomeScreen = false
-    
-    //MARK: - Error indicators
-    @Published var isValidFirstName: Bool = true
-    @Published var isValidEmail: Bool = true
-    @Published var isValidPassword: Bool = true
-    @Published var isValidPhoneNumber: Bool = true
-    
-    //MARK: - Properties for calling code screen
-    @Published var countries: [Country] = []
-    
-    
-    init(getCallingCodeUseCase: GetCountriesCallingCodeUseCase){
-        self.getCountriesCallingCodeUseCase = getCallingCodeUseCase
+    @Published var steps: [SignUpSteps] = [.email]
+    @Published var currentStep: SignUpSteps = .email
+    @Published var signUpForm: SignUpFormModel = SignUpFormModel(fullName: "", city: "", email: "", password: "",
+                                                                 phoneNumber: "")
+    var isButtonEnabled: Bool {
+        return validateButtonStatus()
     }
-    
-    func validateUserFullName(){
-        if self.firstName.isEmpty || self.firstName.count < 2{
-            isValidFirstName = false
-        } else {
-            isValidFirstName = true
-            willShowEmailInputScreen = true
-        }
-    }
-    
-    func validateUserEmailAndPassword(){
-        if self.email.isEmpty {
-            isValidEmail = false
-            return
-        }
-        if self.password.isEmpty {
-            isValidPassword = false
-            return
-        } else {
-            isValidEmail = true
-            isValidPassword = true
-            willShowVerifyPhoneScreen = true
-        }
+    @Published var ownerTypeAccout = true
+    enum SignUpSteps: String, CaseIterable {
+        case email
+        case password
+        case name
         
     }
     
-    func getCountriesCallingCode(){
-        getCountriesCallingCodeUseCase.getCountriesCallingCode { countries in
-            print(countries)
-            DispatchQueue.main.async {
-                self.countries = countries
+    func next() {
+        pushNextState()
+    }
+    
+    func back() {
+        performBackAction()
+    }
+    
+    func onEmailSubmitTapped() {
+        if signUpForm.email.isEmpty {
+            signUpForm.emailHelperText = .empty
+        }
+    }
+    
+    func onNameSubmitTapped() {
+        //
+    }
+    
+    func validateEmailAddressWhileTyping(_ char: String)  {
+        
+        if char.isEmpty {
+            signUpForm.emailHelperText = .empty
+        } else {
+            let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+            
+            let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx).evaluate(with: char)
+            
+            if emailPred {
+                signUpForm.emailHelperText = .valid
+            } else {
+                signUpForm.emailHelperText = .invalid
             }
         }
     }
     
-    func validateUserPhoneNumber(){
-        if self.phoneNumber.isEmpty || self.phoneNumber.count < 8 {
-            isValidPhoneNumber = false
+    func validateMinimumPasswordCharactersLimit(_ char: String){
+        if char.isEmpty {
+            signUpForm.passwordHelperText = .empty
         } else {
-            isValidPhoneNumber = true
-            willShowEnterOTPScreen = true
+            if char.count < 8 {
+                signUpForm.passwordHelperText = .invalid
+            } else {
+                signUpForm.passwordHelperText = .valid
+            }
         }
     }
     
-    func startTimer(){
-//        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {timer in
-//            self.countDown -= 1
-//            if self.countDown == 0 {
-//                timer.invalidate()
-//            }
-//        }
-        willShowHomeScreen = true
+    func validateMinimumNameLimit(_ char: String){
+        if char.isEmpty {
+            signUpForm.nameHelperText = .empty
+        } else {
+            signUpForm.nameHelperText = .valid
+        }
     }
     
+    private func validateButtonStatus() -> Bool {
+        switch currentStep {
+        case .email:
+            return !signUpForm.email.isEmpty && (signUpForm.emailHelperText == .valid)
+        case .password:
+            return !signUpForm.password.isEmpty && (signUpForm.passwordHelperText == .valid)
+        case .name:
+            return !signUpForm.fullName.isEmpty && (signUpForm.nameHelperText == .valid)
+        }
+    }
+    
+    private func pushNextState(){
+        if !steps.contains(currentStep.next()) {
+            currentStep = currentStep.next()
+            steps.append(currentStep)
+            
+        }
+    }
+    
+    private func performBackAction() {
+        guard steps.count > 1 else { return }
+        steps.removeAll(where: {$0 == currentStep})
+        currentStep = currentStep.previous()
+    }
 }
+
+
+

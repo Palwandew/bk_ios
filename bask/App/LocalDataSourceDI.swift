@@ -11,11 +11,9 @@ class LocalSourceDI {
     
     func localDependencies() -> SignupViewModel {
         
-        let localDataSource = LocalDataSource()
         
-        let getCountriesCallingCode = GetCountriesCallingCodeUseCase(localDataSource: localDataSource)
         
-        let vm = SignupViewModel(getCallingCodeUseCase: getCountriesCallingCode)
+        let vm = SignupViewModel()
         
         return vm
     }

@@ -11,6 +11,7 @@ import Foundation
 struct Facility: Codable {
     
     //MARK: - Properties
+    let id: String?
     let arabicName, englishName, facilityDescription, facilityType: String
     let ownerID: String
     let price: Int
@@ -31,6 +32,7 @@ struct Facility: Codable {
     let checkInOutStatus, priceStatus, descriptionStatus: Int
     
     enum CodingKeys: String, CodingKey {
+            case id
             case arabicName, englishName
             case facilityDescription = "description"
             case facilityType
@@ -58,6 +60,19 @@ struct Facility: Codable {
             case priceStatus = "price_status"
             case descriptionStatus = "description_status"
         }
+}
+
+//MARK: - Facility Creation Respo
+// MARK: - Facility
+struct FacilityCreationResponse: Codable {
+    let data: FacilityCreationResponseData
+    let error: Bool
+    let message: String
+}
+
+// MARK: - DataClass
+struct FacilityCreationResponseData: Codable {
+    let facility: Facility
 }
 
 enum Counter {
@@ -350,6 +365,6 @@ class FacilityBuilder {
     }
     
     func build() -> Facility {
-        return Facility(arabicName: self.arabicName, englishName: self.englishName, facilityDescription: self.facilityDescription, facilityType: self.facilityType, ownerID: self.ownerID, price: self.price, country: self.country, address: self.address, city: self.city, latitude: self.latitude, cancellationPolicyID: self.cancellationPolicyID, length: self.length, width: self.width, capacity: self.capacity, noOfBathRooms: self.noOfBathRooms, noOfShowers: self.noOfShowers, feePercentage: self.feePercentage, status: self.status, garden: self.garden, playingField: self.playingField, gym: self.gym, outdoorSitting: self.outdoorSitting, bbqArea: self.bbqArea, petsAllowed: self.petsAllowed, petsAllAllowed: self.petsAllowed, petsCatsAllowed: self.petsCatsAllowed, petsDogsAllowed: self.petsDogsAllowed, petsRodentsAllowed: self.petsRodentsAllowed, petsReptileAllowed: self.petsReptileAllowed, petsBigAnimalAllowed: self.petsBigAnimalAllowed, smokingAllowed: self.smokingAllowed, additionalRules: self.additionalRules, additionalRulesDescription: self.additionalRulesDescription, longitude: self.longitude, checkInAfter: self.checkInAfter, checkInBefore: "12:00 PM", checkOutBefore: self.checkOutBefore, deposit: self.deposit, nameStatus: 1, roomsStatus: 1, amenityFreeStatus: 1, amenityExtraStatus: 1, rulesStatus: 1, photoStatus: 0, locationStatus: 1, checkInOutStatus: 1, priceStatus: 1, descriptionStatus: 1)
+        return Facility(id: nil, arabicName: self.arabicName, englishName: self.englishName, facilityDescription: self.facilityDescription, facilityType: self.facilityType, ownerID: self.ownerID, price: self.price, country: self.country, address: self.address, city: self.city, latitude: self.latitude, cancellationPolicyID: self.cancellationPolicyID, length: self.length, width: self.width, capacity: self.capacity, noOfBathRooms: self.noOfBathRooms, noOfShowers: self.noOfShowers, feePercentage: self.feePercentage, status: self.status, garden: self.garden, playingField: self.playingField, gym: self.gym, outdoorSitting: self.outdoorSitting, bbqArea: self.bbqArea, petsAllowed: self.petsAllowed, petsAllAllowed: self.petsAllowed, petsCatsAllowed: self.petsCatsAllowed, petsDogsAllowed: self.petsDogsAllowed, petsRodentsAllowed: self.petsRodentsAllowed, petsReptileAllowed: self.petsReptileAllowed, petsBigAnimalAllowed: self.petsBigAnimalAllowed, smokingAllowed: self.smokingAllowed, additionalRules: self.additionalRules, additionalRulesDescription: self.additionalRulesDescription, longitude: self.longitude, checkInAfter: self.checkInAfter, checkInBefore: "12:00 PM", checkOutBefore: self.checkOutBefore, deposit: self.deposit, nameStatus: 1, roomsStatus: 1, amenityFreeStatus: 1, amenityExtraStatus: 1, rulesStatus: 1, photoStatus: 0, locationStatus: 1, checkInOutStatus: 1, priceStatus: 1, descriptionStatus: 1)
     }
 }

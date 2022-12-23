@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileTabScreen: View {
     
+    @EnvironmentObject var flowVM: FlowSelectorViewModel
     @State var showLogoutDialog: Bool = false
     
     var body: some View {
@@ -80,6 +81,7 @@ struct ProfileTabScreen: View {
             } perform: {
                 print("Logout needs to be done")
                 showLogoutDialog.toggle()
+                flowVM.isSignedIn = false
             }
             
         }
@@ -89,8 +91,8 @@ struct ProfileTabScreen: View {
     }
 }
 
-struct ProfileTabScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileTabScreen()
-    }
-}
+//struct ProfileTabScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileTabScreen()
+//    }
+//}

@@ -50,10 +50,6 @@ class HttpClient: HttpClientProtocol {
         
     }
     
-    
-    
-    
-    
     func sendRequest<T>(endpoint: URL?, reqestType: RequestMethod, authorization: String?, body: Data? , responseModel: T.Type, complete completion: @escaping (Result<T, RequestError>) -> Void) where T : Decodable, T : Encodable {
         
         guard let url = endpoint else {

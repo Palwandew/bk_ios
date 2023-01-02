@@ -9,7 +9,7 @@ import Foundation
 
 protocol UserRepositoryProtocol {
     
-    func checkEmailAvailability(_ email: String, completion: @escaping (Result<Bool, RequestError>) -> Void)
+    func checkEmailAvailability(_ email: String, completion: @escaping (Result<EmailAvailabilityModel, RequestError>) -> Void)
     
     func signUp(_: User, completion: @escaping (Result<User, RequestError>) -> Void)
     

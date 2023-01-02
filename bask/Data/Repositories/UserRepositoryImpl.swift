@@ -18,6 +18,7 @@ struct Create: Codable{
     var password: String
     var phoneNumber: String?
 }
+
 class BaskUserRepo: UserRepositoryProtocol {
     
     let httpClient: HttpClientProtocol
@@ -26,17 +27,10 @@ class BaskUserRepo: UserRepositoryProtocol {
         self.httpClient = httpClient
     }
     
-    func checkEmailAvailability(_ email: String, completion: @escaping (Result<Bool, RequestError>) -> Void){
+    func checkEmailAvailability(_ email: String, completion: @escaping (Result<EmailAvailabilityModel, RequestError>) -> Void){
         let endpoint = Endpoint(path: "verify?email=\(email)")
         
-//        httpClient.sendRequest(endpoint: endpoint.url, requestType: .get, authorization: nil) { result in
-//            switch result {
-//            case .success(let success):
-//                completion(.success(true))
-//            case .failure(let failure):
-//                completion(.failure(failure))
-//            }
-//        }
+        httpClient.sendRequest(endpoint: endpoint.url, reqestType: .get, authorization: nil, body: nil, responseModel: EmailAvailabilityModel.self, complete: completion)
     }
     func signUp(_ : User, completion: @escaping (Result<User, RequestError>) -> Void) {
         
@@ -83,7 +77,7 @@ class UserRepositoryImpl: UserRepositoryProtocol {
         
     }
     
-    func checkEmailAvailability(_ email: String, completion: @escaping (Result<Bool, RequestError>) -> Void) {
+    func checkEmailAvailability(_ email: String, completion: @escaping (Result<EmailAvailabilityModel, RequestError>) -> Void) {
         print("hi")
     }
     

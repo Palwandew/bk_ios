@@ -11,6 +11,7 @@
 		3217CC43295A9A1C008E6905 /* SignupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3217CC42295A9A1C008E6905 /* SignupUseCase.swift */; };
 		3235C690295368B400179489 /* MultiStepHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3235C68F295368B400179489 /* MultiStepHandler.swift */; };
 		3235C6942953B6D400179489 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3235C6932953B6D400179489 /* TextInputView.swift */; };
+		323CDA35296379250082E987 /* EmailAvailabilityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323CDA34296379250082E987 /* EmailAvailabilityModel.swift */; };
 		3282284329559FD5004E246A /* SignInSignUpSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3282284229559FD5004E246A /* SignInSignUpSelectionViewModel.swift */; };
 		32B482C629520E3400499DBA /* FlowSelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B482C529520E3400499DBA /* FlowSelectorViewModel.swift */; };
 		32B482C829521DBD00499DBA /* UserSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B482C729521DBD00499DBA /* UserSelectionView.swift */; };
@@ -311,6 +312,7 @@
 		3217CC42295A9A1C008E6905 /* SignupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupUseCase.swift; sourceTree = "<group>"; };
 		3235C68F295368B400179489 /* MultiStepHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStepHandler.swift; sourceTree = "<group>"; };
 		3235C6932953B6D400179489 /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
+		323CDA34296379250082E987 /* EmailAvailabilityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAvailabilityModel.swift; sourceTree = "<group>"; };
 		3282284229559FD5004E246A /* SignInSignUpSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInSignUpSelectionViewModel.swift; sourceTree = "<group>"; };
 		32B482C529520E3400499DBA /* FlowSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowSelectorViewModel.swift; sourceTree = "<group>"; };
 		32B482C729521DBD00499DBA /* UserSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSelectionView.swift; sourceTree = "<group>"; };
@@ -1034,6 +1036,7 @@
 				C4A921CB28B5FB7E00969EF1 /* FacilityChecklistModel.swift */,
 				C45C84CB28B738E200646719 /* PhotoSignedURLModel.swift */,
 				32B482C929524B9000499DBA /* SignUpFormModel.swift */,
+				323CDA34296379250082E987 /* EmailAvailabilityModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1706,6 +1709,7 @@
 				C45C84C628B7342C00646719 /* PhotosUseCase.swift in Sources */,
 				C482111028C7353300D6F75F /* BookedFacilitiesScreen.swift in Sources */,
 				C410D26428B4897000914D84 /* PhotosUploadManager.swift in Sources */,
+				323CDA35296379250082E987 /* EmailAvailabilityModel.swift in Sources */,
 				C49BC91A28F4355D0015F0C1 /* CalendarScreenViewModel.swift in Sources */,
 				C4B538122899DE4A0067CC21 /* AccentGreen.swift in Sources */,
 				C44C065A2901CF330060F88A /* EditFacilityUsecase.swift in Sources */,

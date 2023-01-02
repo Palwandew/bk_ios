@@ -23,7 +23,7 @@ class SignupUseCase {
         
     }
     
-    func verifyEmail(_ email: String){
-        
+    func verifyEmail(_ email: String, completion: @escaping (Result<EmailAvailabilityModel, RequestError>) -> Void){
+        repository.checkEmailAvailability(email, completion: completion)
     }
 }

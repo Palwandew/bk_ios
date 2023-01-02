@@ -24,6 +24,7 @@ struct SignUpFormModel {
         case valid = "You'll need to confirm this email later."
         case empty = "Don't forget to enter your email address."
         case invalid = "This email is invalid. Make sure it's written like \n example@email.com"
+        case notAvailable = "This email is already registered. Choose a different one."
     }
     
     enum NameHelperText: String {

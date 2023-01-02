@@ -51,9 +51,6 @@ class SignupViewModel: ObservableObject {
     
     func onButtonTapped(){
         
-        if currentStep == .email {
-            signUpUseCase.verifyEmail(signUpForm.email)
-        }
         if currentStep == .name {
             //flowVM.isSignedIn.toggle()
             showAlert.toggle()
@@ -131,7 +128,6 @@ class SignupViewModel: ObservableObject {
             return !signUpForm.fullName.isEmpty && (signUpForm.nameHelperText == .valid)
         }
     }
-    
     
     private func pushNextState(){
         if !steps.contains(currentStep.next()) {

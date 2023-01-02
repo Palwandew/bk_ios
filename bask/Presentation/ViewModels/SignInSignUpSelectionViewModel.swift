@@ -8,4 +8,15 @@
 import Foundation
 
 class SignInSignUpSelectionViewModel: ObservableObject {
+    
+    @Published var state: SignInSignUpSelectionState = .initial
+    enum SignInSignUpSelectionState {
+        case initial
+        case signUp
+        case login
+    }
+    
+    func updateState(to newState: SignInSignUpSelectionState){
+        state = newState
+    }
 }

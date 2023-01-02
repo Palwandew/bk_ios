@@ -8,9 +8,9 @@
 import Foundation
 
 class LoginUseCase {
-    private let loginRepository: LoginDomainRepoProtocol
+    private let loginRepository: AuthenticationProtocol
     
-    init(loginRepository: LoginDomainRepoProtocol){
+    init(loginRepository: AuthenticationProtocol){
         self.loginRepository = loginRepository
     }
     

@@ -9,12 +9,12 @@ import Foundation
 
 class LocalSourceDI {
     
-    func localDependencies() -> SignupViewModel {
-        
-        
-        
-        let vm = SignupViewModel()
-        
-        return vm
-    }
+//    func localDependencies() -> SignupViewModel {
+//        
+//        
+//        
+//        let vm = SignupViewModel(repo: LoginRepositoryImp())
+//        
+//        return vm
+//    }
 }

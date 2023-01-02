@@ -11,7 +11,7 @@ struct CountriesListScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     //@EnvironmentObject var signUpViewModel: SignupViewModel
-    @StateObject var signUpViewModel = SignupViewModel()
+    //@StateObject var signUpViewModel = SignupViewModel(repo: LoginRepositoryImp())
     
     @State var selectedCountry: Country = Country(code: "+92", name: "Pakistan")
     @State var searchText: String = ""

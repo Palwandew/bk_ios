@@ -7,6 +7,102 @@
 
 import Foundation
 
+class HttpClient: HttpClientProtocol {
+    func sendRequest<T>(endpoint: URL?, requestType: RequestMethod, authorization: String?, complete completion: @escaping (Result<T.Type, RequestError>) -> Void) where T : Equatable {
+        
+        
+        guard let url = endpoint else {
+            return completion(.failure(RequestError.invalidURL))
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = requestType.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(authorization, forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let _ = error {
+                completion(.failure(RequestError.unknown("error in http client")))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, 200...299 ~= response.statusCode else {
+                if let httpResponse = response as? HTTPURLResponse {
+                    switch httpResponse.statusCode {
+                    case 401:
+                        return completion(.failure(.unauthorized))
+                    case 409:
+                        return completion(.failure(.conflict))
+                    default:
+                        return completion(.failure(.unexpectedStatusCode))
+                    }
+                }
+                return completion(.failure(.unexpectedStatusCode))
+            }
+            
+            guard let _ = data else {
+                completion(.failure(RequestError.noResponse))
+                return
+            }
+            completion(.success(T.self))
+        }
+        task.resume()
+        
+    }
+    
+    
+    
+    
+    
+    func sendRequest<T>(endpoint: URL?, reqestType: RequestMethod, authorization: String?, body: Data? , responseModel: T.Type, complete completion: @escaping (Result<T, RequestError>) -> Void) where T : Decodable, T : Encodable {
+        
+        guard let url = endpoint else {
+            return completion(.failure(RequestError.invalidURL))
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = reqestType.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(authorization, forHTTPHeaderField: "Authorization")
+        
+        request.httpBody = body
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let _ = error {
+                completion(.failure(RequestError.unknown("error in http client")))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, 200...299 ~= response.statusCode else {
+                if let httpResponse = response as? HTTPURLResponse {
+                    switch httpResponse.statusCode {
+                    case 401:
+                        return completion(.failure(.unauthorized))
+                    default:
+                        return completion(.failure(.unexpectedStatusCode))
+                    }
+                }
+                return completion(.failure(.unexpectedStatusCode))
+            }
+            
+            guard let data = data else {
+                completion(.failure(RequestError.noResponse))
+                return
+            }
+            
+            do {
+                let dataFromServer = try JSONDecoder().decode(T.self, from: data)
+                print(String(data: data, encoding: .utf8) ?? "unable to print pretty json")
+                completion(.success(dataFromServer))
+                
+            } catch {
+                completion(.failure(RequestError.decode))
+            }
+        }
+        task.resume()
+    }
+}
+
 extension URLSession{
     
     func sendRequest<T: Codable>(
@@ -60,7 +156,7 @@ extension URLSession{
                 }
                 
             }.resume()
-    }
+        }
     
     func deleteRequest(endpoint: Endpoints,
                        headers: [String : String]?,
@@ -99,7 +195,7 @@ extension URLSession{
             completion(.success("Successfully deleted."))
             
         }.resume()
-
+        
     }
     
     
@@ -188,7 +284,7 @@ extension URLSession{
                 do {
                     let requestBody = try JSONEncoder().encode(body)
                     if let resultString = String(data: requestBody, encoding: .utf8) {
-                            print(resultString)
+                        print(resultString)
                     }
                     request.httpBody = requestBody
                 } catch {
@@ -215,18 +311,18 @@ extension URLSession{
                     return
                 }
                 completion(.success("Successful."))
-//                do {
-//                    let requestBody = try JSONDecoder().decode(Test.self, from: data!)
-//                    print("res ==\(requestBody)")
-//                } catch {
-//                    print("error encoding the data")
-//                }
-//                print("Data from server \(String(describing: data))")
-//                completion(.success("Successful."))
-
+                //                do {
+                //                    let requestBody = try JSONDecoder().decode(Test.self, from: data!)
+                //                    print("res ==\(requestBody)")
+                //                } catch {
+                //                    print("error encoding the data")
+                //                }
+                //                print("Data from server \(String(describing: data))")
+                //                completion(.success("Successful."))
+                
                 
             }.resume()
-    }
+        }
     
 }
 
@@ -248,7 +344,7 @@ struct TestRatinginfo: Codable {
     let bookingID: Int
     let ratinginfoDescription: String
     let id: Int
-
+    
     enum CodingKeys: String, CodingKey {
         case author
         case ratedObject = "rated_object"

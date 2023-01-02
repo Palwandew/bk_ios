@@ -12,23 +12,23 @@ protocol AppDIProtocol {
     
 }
 
-class AppDI: AppDIProtocol {
+class AppDI {
     
     static let shared = AppDI()
     
-    func postDependencies() -> PostViewModel {
-        let postDI: PostDI = PostDI()
-        let postViewModel = postDI.postDependencies()
-        
-        return postViewModel
-    }
+//    func postDependencies() -> PostViewModel {
+//        let postDI: PostDI = PostDI()
+//        let postViewModel = postDI.postDependencies()
+//
+//        return postViewModel
+//    }
     
-    func signupDependencies() -> SignupViewModel {
-        
-        let localDataSourceDI: LocalSourceDI = LocalSourceDI()
-        let signUpVM = localDataSourceDI.localDependencies()
-        return signUpVM
-    }
+//    func signupDependencies() -> SignupViewModel {
+//        
+//        let localDataSourceDI: LocalSourceDI = LocalSourceDI()
+//        //let signUpVM = localDataSourceDI.localDependencies()
+//        return signUpVM
+//    }
 }
 
 

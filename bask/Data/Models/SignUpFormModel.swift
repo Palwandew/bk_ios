@@ -17,6 +17,8 @@ struct SignUpFormModel {
     var emailHelperText: EmailHelperText = .valid
     var nameHelperText: NameHelperText = .valid
     var passwordHelperText: PasswordHelperText = .valid
+    var userType: UserType 
+    
     
     enum EmailHelperText: String {
         case valid = "You'll need to confirm this email later."
@@ -34,4 +36,8 @@ struct SignUpFormModel {
         case empty = "Don't forget to enter your password."
         case invalid = "Your password needs to be at least 8 characters long."
     }
+    
+    
+    
+    
 }

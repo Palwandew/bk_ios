@@ -16,12 +16,12 @@ struct Endpoints{
 
 extension Endpoints{
     var url: URL? {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "api.baskapp.co"
-        components.path = apiVersion + path
+        var components = URLComponents(string: "http://localhost:8080")!
+//        components.scheme = "http"
+//        components.host = "127.0.0.1:8080"
+//
+        components.path = path
         components.queryItems = queryItems
-        
         return components.url
     }
 }
@@ -45,6 +45,8 @@ extension Endpoints{
     static let GET_OWNER_FACILITIES: Endpoints = Endpoints(path: "facility/calendartab")
     static let OFFER: Endpoints = Endpoints(path:"offer")
     static let MYOFFERS: Endpoints = Endpoints(path: "offer/myoffers")
+    
+    
     
     static func GET_OFFER_ITEM_DETAILS(with query: [URLQueryItem]) -> Endpoints {
         return Endpoints(path: "facility/offeritem", queryItems: query)
@@ -71,4 +73,27 @@ extension Endpoints{
     static func UPDATE_FACILITY(_ facilityID: String) -> Endpoints {
         return Endpoints(path: "facility/\(facilityID)", queryItems: nil)
     }
+}
+
+protocol URLEndpoint {
+    var baseURL: String { get }
+    var path: String { get set }
+    var url: URL? { get }
+}
+
+struct Endpoint: URLEndpoint {
+    internal var baseURL: String
+    
+    internal var path: String
+    
+    var url: URL? {
+        return URL(string: baseURL + path)
+    }
+    
+    init(path: String) {
+        self.baseURL = "http://127.0.0.1:8080/"
+        self.path = path
+    }
+    
+
 }

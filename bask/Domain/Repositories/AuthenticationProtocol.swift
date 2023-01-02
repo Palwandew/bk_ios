@@ -7,8 +7,10 @@
 
 import Foundation
 
-protocol LoginDomainRepoProtocol{
+protocol AuthenticationProtocol{
     
     func login(with email: String, password: String, completion: @escaping (User?) -> Void)
+    
+    func signUp(user: User, completion: @escaping (Result<User,RequestError>) -> Void)
     
 }

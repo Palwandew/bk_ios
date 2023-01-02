@@ -11,7 +11,7 @@ class ProfileInfoViewModel: ObservableObject {
     
     private let useCase: GetUserProfileDetailsUsecase
     
-    @Published var user: UserViewModel = UserViewModel(User())
+    @Published var user: UserViewModel = UserViewModel(User(fullName: "asf", email: "asf", password: "asfd", type: .guest))
     
     @Published var isCurrentPasswordVerified: Bool = false 
     @Published var isCurrentPasswordValid: Bool = true
@@ -161,10 +161,10 @@ struct UserViewModel {
     init(_ user: User){
         self.user = user
         
-        self.fullName = self.user.fullName ?? ""
+        self.fullName = self.user.fullName 
         self.city = self.user.city ?? ""
         self.phone = self.user.mobileNumber ?? ""
-        self.email = self.user.email ?? ""
+        self.email = self.user.email 
     }
     
 //    var fullName: String {

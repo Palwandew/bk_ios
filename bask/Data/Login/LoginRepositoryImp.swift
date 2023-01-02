@@ -7,7 +7,18 @@
 
 import Foundation
 
-class LoginRepositoryImp: LoginDomainRepoProtocol{
+class LoginRepositoryImp: AuthenticationProtocol{
+    
+    func signUp(user: User, completion: @escaping (Result<User,RequestError>) -> Void) {
+        
+        //let endPoint = Endpoints.ADD_COMPLAIN
+        //
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            completion(.success(user))
+        })
+    }
+    
    
     func login(with email: String, password: String, completion: @escaping (User?) -> Void) {
 //        let encodedString = Data("\(email):\(password)".utf8).base64EncodedString()

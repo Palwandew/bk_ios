@@ -10,12 +10,10 @@ import SwiftUI
 struct UserSelectionView: View {
     
     
-    @Binding var isOwnerSelected: Bool
+    @Binding var currentUserType: UserType
+    @State var animate: Bool = false
     
     var body: some View {
-        
-        
-        
         GeometryReader{ reader in
             ZStack {
                 ZStack(alignment:.leading){
@@ -27,17 +25,21 @@ struct UserSelectionView: View {
                         .fill(Color(AppColor.DARK_BLUE))
                         .frame(width: reader.size.width/2 - 16,height: reader.size.height * 0.80)
                         .shadow(radius: 4)
-                        .offset(x: isOwnerSelected ? 0: reader.size.width/2 + 8)
+                        .offset(x: currentUserType == .owner ? 0: reader.size.width/2 + 8)
                         .padding(.leading, 4)
-                        .animation(.spring(), value: isOwnerSelected)
+                        .animation(.spring(), value: animate)
                     
                 }
                 
                 HStack{
                     createLabel("Owner")
                         .onTapGesture {
-                            if !isOwnerSelected {
-                                isOwnerSelected.toggle()
+                            if currentUserType != .owner {
+                                withAnimation {
+                                    animate.toggle()
+                                    currentUserType = .owner
+                                }
+
                             }
                             
                         }
@@ -46,12 +48,15 @@ struct UserSelectionView: View {
                     
                     createLabel("Guest")
                         .onTapGesture {
-                            if isOwnerSelected {
-                                isOwnerSelected.toggle()
+                            
+                            if currentUserType != .guest {
+                                withAnimation {
+                                    animate.toggle()
+                                    currentUserType = .guest
+                                }
                             }
                         }
                 }
-                
             }
         }
     }

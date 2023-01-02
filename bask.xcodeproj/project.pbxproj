@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3204D9A8295983CD009EFF39 /* AuthenticationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3204D9A7295983CD009EFF39 /* AuthenticationHelper.swift */; };
+		3217CC43295A9A1C008E6905 /* SignupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3217CC42295A9A1C008E6905 /* SignupUseCase.swift */; };
 		3235C690295368B400179489 /* MultiStepHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3235C68F295368B400179489 /* MultiStepHandler.swift */; };
 		3235C6942953B6D400179489 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3235C6932953B6D400179489 /* TextInputView.swift */; };
 		3282284329559FD5004E246A /* SignInSignUpSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3282284229559FD5004E246A /* SignInSignUpSelectionViewModel.swift */; };
@@ -14,6 +16,8 @@
 		32B482C829521DBD00499DBA /* UserSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B482C729521DBD00499DBA /* UserSelectionView.swift */; };
 		32B482CA29524B9000499DBA /* SignUpFormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B482C929524B9000499DBA /* SignUpFormModel.swift */; };
 		32B482CC29525B3400499DBA /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B482CB29525B3400499DBA /* SignUpScreen.swift */; };
+		32C1CCB0295C2760007C8524 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1CCAF295C2760007C8524 /* KeychainHelper.swift */; };
+		32D6A8CE2962249300E93BE0 /* VerifyEmailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6A8CD2962249300E93BE0 /* VerifyEmailUseCase.swift */; };
 		32E7373B2940C8C3006E5F2C /* OutlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E7373A2940C8C3006E5F2C /* OutlinedTextField.swift */; };
 		C4031008289459280046B645 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4031007289459280046B645 /* HomeScreen.swift */; };
 		C403100A28945D8D0046B645 /* MyBookings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403100928945D8D0046B645 /* MyBookings.swift */; };
@@ -215,7 +219,6 @@
 		C4A921CA28B5AA6700969EF1 /* UploadProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A921C928B5AA6700969EF1 /* UploadProgressView.swift */; };
 		C4A921CC28B5FB7E00969EF1 /* FacilityChecklistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A921CB28B5FB7E00969EF1 /* FacilityChecklistModel.swift */; };
 		C4A921CE28B601AB00969EF1 /* CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A921CD28B601AB00969EF1 /* CheckList.swift */; };
-		C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC82823833E00343032 /* Endpoint.swift */; };
 		C4AF9B172828216600EBB141 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACA282385B000343032 /* RequestError.swift */; };
 		C4AF9B182828216600EBB141 /* HttpClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ACC2823904B00343032 /* HttpClientProtocol.swift */; };
 		C4AF9B192828216600EBB141 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AD128239DF700343032 /* RequestMethod.swift */; };
@@ -223,16 +226,11 @@
 		C4AF9B1B2828216600EBB141 /* PostDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC22823723C00343032 /* PostDI.swift */; };
 		C4AF9B1C2828216600EBB141 /* AppDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC42823741800343032 /* AppDI.swift */; };
 		C4AF9B1D2828216600EBB141 /* LoginRepositoryImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2B84428280A66006E8C11 /* LoginRepositoryImp.swift */; };
-		C4AF9B1E2828216600EBB141 /* LoginEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2B84628280E49006E8C11 /* LoginEndpoint.swift */; };
-		C4AF9B1F2828216600EBB141 /* PostRepositoryImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ABA28236A0800343032 /* PostRepositoryImp.swift */; };
-		C4AF9B202828216600EBB141 /* PostRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63ABE28236A3000343032 /* PostRemoteDataSource.swift */; };
-		C4AF9B212828216600EBB141 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AC028236A7400343032 /* PostModel.swift */; };
-		C4AF9B222828216600EBB141 /* PostEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492059D2827BF5700EB1112 /* PostEndpoint.swift */; };
 		C4AF9B232828216600EBB141 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AB52823665100343032 /* PostViewModel.swift */; };
 		C4AF9B242828216600EBB141 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AB72823683F00343032 /* PostView.swift */; };
 		C4AF9B252828216600EBB141 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63A7F282355FF00343032 /* ContentView.swift */; };
 		C4AF9B262828216600EBB141 /* PostDomainRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AB028235D4900343032 /* PostDomainRepoProtocol.swift */; };
-		C4AF9B272828216600EBB141 /* LoginDomainRepoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2B840282809C9006E8C11 /* LoginDomainRepoProtocol.swift */; };
+		C4AF9B272828216600EBB141 /* AuthenticationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2B840282809C9006E8C11 /* AuthenticationProtocol.swift */; };
 		C4AF9B282828216600EBB141 /* PostUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AB228235E7800343032 /* PostUseCase.swift */; };
 		C4AF9B292828216600EBB141 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2B84228280A20006E8C11 /* LoginUseCase.swift */; };
 		C4AF9B2A2828216600EBB141 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C63AAE28235C1200343032 /* Post.swift */; };
@@ -309,6 +307,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3204D9A7295983CD009EFF39 /* AuthenticationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHelper.swift; sourceTree = "<group>"; };
+		3217CC42295A9A1C008E6905 /* SignupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupUseCase.swift; sourceTree = "<group>"; };
 		3235C68F295368B400179489 /* MultiStepHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStepHandler.swift; sourceTree = "<group>"; };
 		3235C6932953B6D400179489 /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		3282284229559FD5004E246A /* SignInSignUpSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInSignUpSelectionViewModel.swift; sourceTree = "<group>"; };
@@ -316,6 +316,8 @@
 		32B482C729521DBD00499DBA /* UserSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSelectionView.swift; sourceTree = "<group>"; };
 		32B482C929524B9000499DBA /* SignUpFormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFormModel.swift; sourceTree = "<group>"; };
 		32B482CB29525B3400499DBA /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
+		32C1CCAF295C2760007C8524 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		32D6A8CD2962249300E93BE0 /* VerifyEmailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEmailUseCase.swift; sourceTree = "<group>"; };
 		32E7373A2940C8C3006E5F2C /* OutlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedTextField.swift; sourceTree = "<group>"; };
 		C4031007289459280046B645 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		C403100928945D8D0046B645 /* MyBookings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookings.swift; sourceTree = "<group>"; };
@@ -509,13 +511,11 @@
 		C49191C128A301C100C03743 /* FacilityCreateName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityCreateName.swift; sourceTree = "<group>"; };
 		C49191C628A3061D00C03743 /* CreateFacilityUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFacilityUseCase.swift; sourceTree = "<group>"; };
 		C49191C828A319B900C03743 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
-		C492059D2827BF5700EB1112 /* PostEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEndpoint.swift; sourceTree = "<group>"; };
 		C49BC91928F4355D0015F0C1 /* CalendarScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarScreenViewModel.swift; sourceTree = "<group>"; };
 		C4A00E3E289B1D6D00D78640 /* Dropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
-		C4A2B840282809C9006E8C11 /* LoginDomainRepoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDomainRepoProtocol.swift; sourceTree = "<group>"; };
+		C4A2B840282809C9006E8C11 /* AuthenticationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProtocol.swift; sourceTree = "<group>"; };
 		C4A2B84228280A20006E8C11 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		C4A2B84428280A66006E8C11 /* LoginRepositoryImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepositoryImp.swift; sourceTree = "<group>"; };
-		C4A2B84628280E49006E8C11 /* LoginEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndpoint.swift; sourceTree = "<group>"; };
 		C4A5C57E289F3EFB006AF774 /* MaterialTextSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialTextSelector.swift; sourceTree = "<group>"; };
 		C4A5C580289F4697006AF774 /* MaterialTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialTimePicker.swift; sourceTree = "<group>"; };
 		C4A921C928B5AA6700969EF1 /* UploadProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadProgressView.swift; sourceTree = "<group>"; };
@@ -560,12 +560,8 @@
 		C4C63AB228235E7800343032 /* PostUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUseCase.swift; sourceTree = "<group>"; };
 		C4C63AB52823665100343032 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		C4C63AB72823683F00343032 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
-		C4C63ABA28236A0800343032 /* PostRepositoryImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepositoryImp.swift; sourceTree = "<group>"; };
-		C4C63ABE28236A3000343032 /* PostRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRemoteDataSource.swift; sourceTree = "<group>"; };
-		C4C63AC028236A7400343032 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		C4C63AC22823723C00343032 /* PostDI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDI.swift; sourceTree = "<group>"; };
 		C4C63AC42823741800343032 /* AppDI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDI.swift; sourceTree = "<group>"; };
-		C4C63AC82823833E00343032 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		C4C63ACA282385B000343032 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		C4C63ACC2823904B00343032 /* HttpClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClientProtocol.swift; sourceTree = "<group>"; };
 		C4C63AD128239DF700343032 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
@@ -851,6 +847,8 @@
 				C47B734228CF89DF00C719BE /* CacheHelper.swift */,
 				C47B734428CFA9C900C719BE /* ImageLoader.swift */,
 				C41CBF8E28D0C6A400EE55B2 /* LocalizationHelper.swift */,
+				3204D9A7295983CD009EFF39 /* AuthenticationHelper.swift */,
+				32C1CCAF295C2760007C8524 /* KeychainHelper.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -989,7 +987,6 @@
 			isa = PBXGroup;
 			children = (
 				C4A2B84428280A66006E8C11 /* LoginRepositoryImp.swift */,
-				C4A2B84628280E49006E8C11 /* LoginEndpoint.swift */,
 				C46BD75E2828FA8B006AC587 /* LoginResponseModel.swift */,
 			);
 			path = Login;
@@ -1152,7 +1149,6 @@
 				C4BB0072289107A7000D2E47 /* Models */,
 				C4BB006C28910657000D2E47 /* countries_code.json */,
 				C49205A32827E4FD00EB1112 /* Login */,
-				C4C63AB92823699200343032 /* Post */,
 				C4BB007028910797000D2E47 /* LocalDataSource.swift */,
 			);
 			path = Data;
@@ -1203,6 +1199,8 @@
 				C462F7F328E16E0D000C99E9 /* PaymentMethodsUsecase.swift */,
 				C462F80528E1A91A000C99E9 /* GetWalletStatusUsecase.swift */,
 				C485C52128E3FB3400FC0E88 /* GetUserProfileDetailsUsecase.swift */,
+				3217CC42295A9A1C008E6905 /* SignupUseCase.swift */,
+				32D6A8CD2962249300E93BE0 /* VerifyEmailUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1211,7 +1209,7 @@
 			isa = PBXGroup;
 			children = (
 				C4C63AB028235D4900343032 /* PostDomainRepoProtocol.swift */,
-				C4A2B840282809C9006E8C11 /* LoginDomainRepoProtocol.swift */,
+				C4A2B840282809C9006E8C11 /* AuthenticationProtocol.swift */,
 				C4BB007328910802000D2E47 /* CountryCallingCodeRepoProtocol.swift */,
 				C49191BD28A2F92700C03743 /* CreateFacilityDomainRepoProtocol.swift */,
 				C45C84C728B734F300646719 /* PhotosDomainRepoProtocol.swift */,
@@ -1237,17 +1235,6 @@
 			path = Post;
 			sourceTree = "<group>";
 		};
-		C4C63AB92823699200343032 /* Post */ = {
-			isa = PBXGroup;
-			children = (
-				C4C63ABA28236A0800343032 /* PostRepositoryImp.swift */,
-				C4C63ABE28236A3000343032 /* PostRemoteDataSource.swift */,
-				C4C63AC028236A7400343032 /* PostModel.swift */,
-				C492059D2827BF5700EB1112 /* PostEndpoint.swift */,
-			);
-			path = Post;
-			sourceTree = "<group>";
-		};
 		C4C63AC62823830700343032 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -1263,7 +1250,6 @@
 		C4C63AC72823831600343032 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				C4C63AC82823833E00343032 /* Endpoint.swift */,
 				C4C63ACA282385B000343032 /* RequestError.swift */,
 				C4C63ACC2823904B00343032 /* HttpClientProtocol.swift */,
 				C4C63AD128239DF700343032 /* RequestMethod.swift */,
@@ -1483,7 +1469,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4AF9B162828216600EBB141 /* Endpoint.swift in Sources */,
 				C4F7E77D28D855F50060A1C7 /* SingleGuestRatingResponse.swift in Sources */,
 				C482683F28975DBF0072147F /* MaterialLengthField.swift in Sources */,
 				C4F7E78528D8D0100060A1C7 /* ComplainGuestUseCase.swift in Sources */,
@@ -1530,6 +1515,7 @@
 				C4031010289494B30046B645 /* MaterialTabViewRouter.swift in Sources */,
 				C46E5F0728EC62770072F1F4 /* CalendarRepositoryProtocol.swift in Sources */,
 				C41DCB6628CB4B04004888B1 /* BookingDatesInfoView.swift in Sources */,
+				3217CC43295A9A1C008E6905 /* SignupUseCase.swift in Sources */,
 				C408F9D428DB500F00518632 /* OffersRepositoryImpl.swift in Sources */,
 				C48268262896E8860072147F /* EmptyState.swift in Sources */,
 				C47B734728CFAA3400C719BE /* ImageView.swift in Sources */,
@@ -1583,10 +1569,10 @@
 				C41DCB6828CB4C95004888B1 /* FacilityAmenitiesView.swift in Sources */,
 				C48790D028DE93F600BD6224 /* MessageDeliveryIndicator.swift in Sources */,
 				C45C84C828B734F300646719 /* PhotosDomainRepoProtocol.swift in Sources */,
-				C4AF9B1E2828216600EBB141 /* LoginEndpoint.swift in Sources */,
 				C46E5F0928EC63950072F1F4 /* CalendarRepositoryImpl.swift in Sources */,
 				C485C52428E3FB7E00FC0E88 /* UserRepositoryProtocol.swift in Sources */,
 				C4075E2C28E5631400FEA2F8 /* BookingRepositoryImpl.swift in Sources */,
+				3204D9A8295983CD009EFF39 /* AuthenticationHelper.swift in Sources */,
 				C41D312428D77E100049042B /* RateGuestRequestBody.swift in Sources */,
 				C482683428973BF00072147F /* RadioButton.swift in Sources */,
 				C450F44428A7CE260083AB86 /* FreeService.swift in Sources */,
@@ -1608,7 +1594,6 @@
 				C48E9F5828D4E0E100FFD1AF /* ComplainGuestScreen.swift in Sources */,
 				32B482C829521DBD00499DBA /* UserSelectionView.swift in Sources */,
 				C4FF858A28D6152800ADBCDF /* UpcomingGuestsViewModel.swift in Sources */,
-				C4AF9B1F2828216600EBB141 /* PostRepositoryImp.swift in Sources */,
 				C47B734328CF89DF00C719BE /* CacheHelper.swift in Sources */,
 				C4FF858428D6126900ADBCDF /* UpcomingGuestsResponse.swift in Sources */,
 				C41DCB5C28CB4925004888B1 /* FacilityPriceHeader.swift in Sources */,
@@ -1629,7 +1614,6 @@
 				C42DC5D528E0663800FCE145 /* FacilityPercentageScreen.swift in Sources */,
 				C40FBF07289A854B00557AEB /* AmenityDescriptionCounter.swift in Sources */,
 				C46BD75F2828FA8B006AC587 /* LoginResponseModel.swift in Sources */,
-				C4AF9B202828216600EBB141 /* PostRemoteDataSource.swift in Sources */,
 				C408F9D228DB4F7400518632 /* OffersDomainRepoProtocol.swift in Sources */,
 				C4FF858828D6144600ADBCDF /* GuestsRepositoryImpl.swift in Sources */,
 				C4BB007F28913C7E000D2E47 /* FirstResponderTextField.swift in Sources */,
@@ -1639,7 +1623,6 @@
 				C482111428C742A300D6F75F /* AvailableFacilitiesScreen.swift in Sources */,
 				C4B5380E2899B0820067CC21 /* FacilityServiceRooms.swift in Sources */,
 				C4918D6B28A1DBBB00A8777D /* PublishFacilityScreen.swift in Sources */,
-				C4AF9B212828216600EBB141 /* PostModel.swift in Sources */,
 				C482683B289751D70072147F /* AddNewUnitViewModel.swift in Sources */,
 				C47FEB112896962B008BC4C2 /* CustomAlertDialog.swift in Sources */,
 				C440B92F28D224E200909D21 /* UnpublishedFacilitiesResponse.swift in Sources */,
@@ -1650,7 +1633,6 @@
 				C40EBA1428DD461700A09838 /* NewPromoCodeScreen.swift in Sources */,
 				C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */,
 				C43DCEB928BE0867005FB7F4 /* Toast.swift in Sources */,
-				C4AF9B222828216600EBB141 /* PostEndpoint.swift in Sources */,
 				C40EBA0F28DCF1E800A09838 /* OfferItemDetailsResponse.swift in Sources */,
 				C49191BE28A2F92700C03743 /* CreateFacilityDomainRepoProtocol.swift in Sources */,
 				C41DCB6B28CBAA5A004888B1 /* BookedFacilitiesResponse.swift in Sources */,
@@ -1670,7 +1652,7 @@
 				C4AF9B262828216600EBB141 /* PostDomainRepoProtocol.swift in Sources */,
 				C408F9DE28DBEB5500518632 /* OwnerOffersResponse.swift in Sources */,
 				C49191C928A319B900C03743 /* Room.swift in Sources */,
-				C4AF9B272828216600EBB141 /* LoginDomainRepoProtocol.swift in Sources */,
+				C4AF9B272828216600EBB141 /* AuthenticationProtocol.swift in Sources */,
 				C44C065E2901E6E80060F88A /* EditFacilityRepositoryProtocol.swift in Sources */,
 				C482111228C735E200D6F75F /* MyUnitsViewModel.swift in Sources */,
 				C430369328D2B3C700C232D5 /* MyGuestListItem.swift in Sources */,
@@ -1684,6 +1666,7 @@
 				C40EBA1B28DD948200A09838 /* MessagesInboxScreen.swift in Sources */,
 				3235C6942953B6D400179489 /* TextInputView.swift in Sources */,
 				C4F7E77F28D884AD0060A1C7 /* UpdatedGuestRatingRequestBody.swift in Sources */,
+				32C1CCB0295C2760007C8524 /* KeychainHelper.swift in Sources */,
 				C4F6675828D37C1500ABA680 /* UpcomingGuestsScreen.swift in Sources */,
 				C42DC5DA28E06E5900FCE145 /* FaqAnswerScreen.swift in Sources */,
 				C47FEB132896A874008BC4C2 /* MyBookingsViewModel.swift in Sources */,
@@ -1691,6 +1674,7 @@
 				C46BD78728295CCB006AC587 /* AppColor.swift in Sources */,
 				C4B301ED28DA1ACA00FAE17D /* ChooseOfferFacility.swift in Sources */,
 				C4A921CC28B5FB7E00969EF1 /* FacilityChecklistModel.swift in Sources */,
+				32D6A8CE2962249300E93BE0 /* VerifyEmailUseCase.swift in Sources */,
 				C403101F2894C71F0046B645 /* SpecifiRoundCorner.swift in Sources */,
 				C49191C728A3061D00C03743 /* CreateFacilityUseCase.swift in Sources */,
 				C462F7F228E16BD6000C99E9 /* PaymentCard.swift in Sources */,

@@ -9,13 +9,23 @@ import Foundation
 
 protocol HttpClientProtocol{
     func sendRequest<T: Codable>(
-        endpoint: String,
+        endpoint: URL?,
         reqestType: RequestMethod,
-        headers: [String : String]?,
-        body: [String : String]?,
+        authorization: String?,
+        body: Data?,
         responseModel: T.Type,
         complete completion: @escaping (Result<T, RequestError>) -> Void)
+    
+    func sendRequest<T>(
+        endpoint: URL?,
+        requestType: RequestMethod,
+        authorization: String?,
+        complete completion: @escaping (Result<T.Type, RequestError>) -> Void) where T : Equatable
+    
 }
 
-
+enum Authorization: String {
+    case bearer = "Bearer"
+    case basic = "Basic"
+}
 

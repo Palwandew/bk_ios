@@ -81,7 +81,7 @@ struct ProfileTabScreen: View {
             } perform: {
                 print("Logout needs to be done")
                 showLogoutDialog.toggle()
-                flowVM.isSignedIn = false
+                flowVM.isSignedIn.toggle()
             }
             
         }

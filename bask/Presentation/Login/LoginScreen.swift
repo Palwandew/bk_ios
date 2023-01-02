@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct LoginScreen: View {
+    
+    @ObservedObject var vm: SignInSignUpSelectionViewModel
+    @State private var email: String = ""
+    @State private var password: String = ""
+    
     enum Field: Hashable {
             case email
             case password
         }
-    @ObservedObject var vm: FlowSelectorViewModel
-    @State private var email: String = ""
-    @State private var password: String = ""
+
    
     private var emailFocused: Bool {
         focusedField == .email
@@ -83,6 +86,7 @@ struct LoginScreen: View {
                 print("login")
             }
         }
+        .padding(.horizontal)
     }
 }
 

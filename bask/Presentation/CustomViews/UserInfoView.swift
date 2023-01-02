@@ -22,7 +22,7 @@ struct UserInfoView: View {
                     .clipShape(Circle())
                 
                 VStack(alignment: .leading) {
-                    Text(type == .user ? "Guest" : "Owner")
+                    Text(type == .guest ? "Guest" : "Owner")
                         .font(Font.custom("Poppins-Regular", size: 12))
                         .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
                     
@@ -32,7 +32,7 @@ struct UserInfoView: View {
                 }
                 
                 Spacer()
-                if type == .user {
+                if type == .guest {
                     Text(rating)
                         .font(Font.custom("Poppins-Medium", size: 16))
                         .foregroundColor(Color(AppColor.DARKEST_BLUE))
@@ -43,7 +43,7 @@ struct UserInfoView: View {
             }
             
             
-            if type == .user{
+            if type == .guest{
                 HStack{
                     
                     Image("icon_complain")
@@ -68,7 +68,7 @@ struct UserInfoView: View {
     }
 }
 
-enum UserType{
-    case user
-    case owner
+enum UserType: String{
+    case guest = "user"
+    case owner = "owner"
 }

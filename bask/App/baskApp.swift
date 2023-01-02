@@ -17,102 +17,82 @@ struct baskApp: App {
         WindowGroup {
             
             NavigationView {
-                if vm.isSignedIn {
-                    HomeScreen()
-                        .transition(.opacity)
-                } else {
-                    SignInSignUpSelectionView()
-                        .padding([.horizontal, .bottom])
-                }
+               FlowSelector(model: vm)
             }
             .environmentObject(vm)
         }
     }
 }
 
-//struct SplashScreen: View {
-//
-//    @State private var isSplashShown: Bool = true
-//    var body: some View {
-//
-//        ZStack{
-//
-//            if isSplashShown{
-//
-//                SignInSignUpSelectionView()
-//
-//            } else {
-//                //MARK: - Splash View
-//                LinearGradient(gradient: Gradient(colors: [Color(AppColor.GRADIENT_BLUE), Color(AppColor.ACCENT_GREEN)]), startPoint: .top, endPoint: .bottom)
-//                    .ignoresSafeArea(.all)
-//
-//                Image("logo")
-//                    .resizable()
-//                    .frame(width: 100.0, height: 100.0)
-//
-//            }
-//        }
-////        .onAppear {
-////            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-////                withAnimation {
-////                    isSplashShown.toggle()
-////                }
-////            })
-////        }
-//    }
-//}
+struct FlowSelector: View {
+    
+    @ObservedObject var model: FlowSelectorViewModel
+    var body: some View {
+
+        if model.isSignedIn {
+            HomeScreen()
+                .transition(.opacity)
+            
+        } else {
+            SignInSignUpSelectionView()
+                .transition(.opacity)
+        }
+    }
+}
 
 
 struct SignInSignUpSelectionView: View {
-    @Namespace private var heroAnimation
-    @StateObject var vm: FlowSelectorViewModel = FlowSelectorViewModel()
+    
+    @StateObject var model = SignInSignUpSelectionViewModel()
     
     var body: some View {
         
-        VStack(spacing: 16.0){
+
             
-            switch vm.state{
+            switch model.state{
             case .initial:
-                HStack(alignment: VerticalAlignment.top){
-                    VStack(alignment: .leading) {
+                VStack(spacing: 16.0){
+                    HStack(alignment: VerticalAlignment.top){
+                        VStack(alignment: .leading) {
+                            
+                            Image("logo")
+                                .resizable()
+                                .frame(width: 90.0, height: 90.0)
+                                .padding(.leading, -18)
+                            
+                            Text(NSLocalizedString("Welcome to", comment: "")).font(Font.custom("Poppins-Medium", size: 33))
+                                .foregroundColor(Color(AppColor.DARK_BLUE))
+                            
+                            Text("Bask").font(Font.custom("Poppins-Medium", size: 33))
+                                .foregroundColor(Color(AppColor.ACCENT_GREEN))
+                            
+                        }
                         
-                        Image("logo")
-                            .resizable()
-                            .frame(width: 90.0, height: 90.0)
-                            .padding(.leading, -18)
-                        
-                        Text(NSLocalizedString("Welcome to", comment: "")).font(Font.custom("Poppins-Medium", size: 33))
-                            .foregroundColor(Color(AppColor.DARK_BLUE))
-                        
-                        Text("Bask").font(Font.custom("Poppins-Medium", size: 33))
-                            .foregroundColor(Color(AppColor.ACCENT_GREEN))
+                        Spacer()
                         
                     }
                     
                     Spacer()
                     
-                }
-                
-                Spacer()
-                
-                FilledButton(label: "Sign up", color: Color(AppColor.DARKEST_BLUE), action: {
-                    withAnimation(.spring()){
-                        vm.updateState(to: .signUp)
-                    }
-                }).matchedGeometryEffect(id: "btn", in: heroAnimation)
-                
-                OutlinedButton(label: "Log in", color: Color(AppColor.DARK_BLUE), action: {
-                    withAnimation{
-                        vm.updateState(to: .login)
-                    }
-                })
+                    FilledButton(label: "Sign up", color: Color(AppColor.DARKEST_BLUE), action: {
+                        withAnimation(.spring()){
+                            model.updateState(to: .signUp)
+                        }
+                    })
+                    
+                    OutlinedButton(label: "Log in", color: Color(AppColor.DARK_BLUE), action: {
+                        withAnimation{
+                            model.updateState(to: .login)
+                        }
+                    })
+                }.padding(.horizontal)
             case .login:
-                LoginScreen(vm: vm)
+                LoginScreen(vm: model)
                     .transition(.move(edge: .trailing))
             case .signUp:
-                SignUpScreen(animation: heroAnimation, flowVM: vm)
+                SignUpScreen(flowVM: model)
                     .transition(.move(edge: .trailing))
-            }
+            
         }
     }
 }

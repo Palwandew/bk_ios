@@ -48,7 +48,7 @@ class PhotosViewModel: ObservableObject {
         UNUserNotificationCenter.current().add(request)
     }
     
-    func handleURL(_ url: URL) {
+    func handlieURL(_ url: URL) {
         
         urls.append(url)
         

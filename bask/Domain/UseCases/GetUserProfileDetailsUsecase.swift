@@ -16,7 +16,7 @@ class GetUserProfileDetailsUsecase {
     }
     
     func getUserProfileDetails(completion: @escaping (Result<User, Error>) -> Void){
-        print("hi")
+        
         repository.getUser(completion: completion)
     }
     

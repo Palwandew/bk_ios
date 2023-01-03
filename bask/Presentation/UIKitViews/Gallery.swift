@@ -66,7 +66,7 @@ struct Gallery: UIViewControllerRepresentable {
                     }
                     print("Local URL ---> \(localURL)")
                     DispatchQueue.main.async {
-                        self.parent.viewModel.handleURL(localURL)
+                        self.parent.viewModel.handlieURL(localURL)
                     }
                     
                     

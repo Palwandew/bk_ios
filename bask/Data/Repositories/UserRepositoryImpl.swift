@@ -7,21 +7,9 @@
 
 import Foundation
 
-
-struct ClientToken: Codable {
-    let accessToken: String
-    let refreshToken: String
-}
-struct Create: Codable{
-    var fullName: String
-    var email: String
-    var password: String
-    var phoneNumber: String?
-}
-
 class BaskUserRepo: UserRepositoryProtocol {
     
-    let httpClient: HttpClientProtocol
+    private let httpClient: HttpClientProtocol
     
     init(httpClient: HttpClientProtocol){
         self.httpClient = httpClient
@@ -32,23 +20,16 @@ class BaskUserRepo: UserRepositoryProtocol {
         
         httpClient.sendRequest(endpoint: endpoint.url, reqestType: .get, authorization: nil, body: nil, responseModel: EmailAvailabilityModel.self, complete: completion)
     }
-    func signUp(_ : User, completion: @escaping (Result<User, RequestError>) -> Void) {
+    
+    func signUp(user: User, completion: @escaping (Result<ClientToken, RequestError>) -> Void) {
         
         let endpoint = Endpoint(path: "signup").url
-        let body = Create(fullName: "Naffo", email: "tehseen@naffoo.com", password: "pakistan2023", phoneNumber: "+923160971191")
+        
         do {
-            let data = try JSONEncoder().encode(body)
-            httpClient.sendRequest(endpoint: endpoint, reqestType: .post, authorization: nil, body: data, responseModel: ClientToken.self) { result in
-                switch result {
-                case .success(let success):
-                    print("Sucess \(success)")
-                case .failure(let failure):
-                    
-                    print("Failed \(failure.customMessage)")
-                }
-            }
+            let data = try JSONEncoder().encode(user)
+            httpClient.sendRequest(endpoint: endpoint, reqestType: .post, authorization: nil, body: data, responseModel: ClientToken.self, complete: completion)
+            
         } catch {
-            print("error")
             completion(.failure(.unknown(error.localizedDescription)))
         }
 
@@ -72,7 +53,9 @@ class BaskUserRepo: UserRepositoryProtocol {
 
 class UserRepositoryImpl: UserRepositoryProtocol {
     
-    func signUp(_: User, completion: @escaping (Result<User, RequestError>) -> Void){
+    
+    
+    func signUp(user : User, completion: @escaping (Result<ClientToken, RequestError>) -> Void){
         let _ = Endpoints(path: "signup")
         
     }

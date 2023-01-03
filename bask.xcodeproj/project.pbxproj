@@ -12,13 +12,13 @@
 		3235C690295368B400179489 /* MultiStepHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3235C68F295368B400179489 /* MultiStepHandler.swift */; };
 		3235C6942953B6D400179489 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3235C6932953B6D400179489 /* TextInputView.swift */; };
 		323CDA35296379250082E987 /* EmailAvailabilityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323CDA34296379250082E987 /* EmailAvailabilityModel.swift */; };
+		323CDA372963E0FB0082E987 /* ClientTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323CDA362963E0FB0082E987 /* ClientTokenModel.swift */; };
 		3282284329559FD5004E246A /* SignInSignUpSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3282284229559FD5004E246A /* SignInSignUpSelectionViewModel.swift */; };
 		32B482C629520E3400499DBA /* FlowSelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B482C529520E3400499DBA /* FlowSelectorViewModel.swift */; };
 		32B482C829521DBD00499DBA /* UserSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B482C729521DBD00499DBA /* UserSelectionView.swift */; };
 		32B482CA29524B9000499DBA /* SignUpFormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B482C929524B9000499DBA /* SignUpFormModel.swift */; };
 		32B482CC29525B3400499DBA /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B482CB29525B3400499DBA /* SignUpScreen.swift */; };
 		32C1CCB0295C2760007C8524 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1CCAF295C2760007C8524 /* KeychainHelper.swift */; };
-		32D6A8CE2962249300E93BE0 /* VerifyEmailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D6A8CD2962249300E93BE0 /* VerifyEmailUseCase.swift */; };
 		32E7373B2940C8C3006E5F2C /* OutlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E7373A2940C8C3006E5F2C /* OutlinedTextField.swift */; };
 		C4031008289459280046B645 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4031007289459280046B645 /* HomeScreen.swift */; };
 		C403100A28945D8D0046B645 /* MyBookings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403100928945D8D0046B645 /* MyBookings.swift */; };
@@ -313,13 +313,13 @@
 		3235C68F295368B400179489 /* MultiStepHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStepHandler.swift; sourceTree = "<group>"; };
 		3235C6932953B6D400179489 /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
 		323CDA34296379250082E987 /* EmailAvailabilityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAvailabilityModel.swift; sourceTree = "<group>"; };
+		323CDA362963E0FB0082E987 /* ClientTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTokenModel.swift; sourceTree = "<group>"; };
 		3282284229559FD5004E246A /* SignInSignUpSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInSignUpSelectionViewModel.swift; sourceTree = "<group>"; };
 		32B482C529520E3400499DBA /* FlowSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowSelectorViewModel.swift; sourceTree = "<group>"; };
 		32B482C729521DBD00499DBA /* UserSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSelectionView.swift; sourceTree = "<group>"; };
 		32B482C929524B9000499DBA /* SignUpFormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFormModel.swift; sourceTree = "<group>"; };
 		32B482CB29525B3400499DBA /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
 		32C1CCAF295C2760007C8524 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
-		32D6A8CD2962249300E93BE0 /* VerifyEmailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEmailUseCase.swift; sourceTree = "<group>"; };
 		32E7373A2940C8C3006E5F2C /* OutlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedTextField.swift; sourceTree = "<group>"; };
 		C4031007289459280046B645 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		C403100928945D8D0046B645 /* MyBookings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookings.swift; sourceTree = "<group>"; };
@@ -1037,6 +1037,7 @@
 				C45C84CB28B738E200646719 /* PhotoSignedURLModel.swift */,
 				32B482C929524B9000499DBA /* SignUpFormModel.swift */,
 				323CDA34296379250082E987 /* EmailAvailabilityModel.swift */,
+				323CDA362963E0FB0082E987 /* ClientTokenModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1203,7 +1204,6 @@
 				C462F80528E1A91A000C99E9 /* GetWalletStatusUsecase.swift */,
 				C485C52128E3FB3400FC0E88 /* GetUserProfileDetailsUsecase.swift */,
 				3217CC42295A9A1C008E6905 /* SignupUseCase.swift */,
-				32D6A8CD2962249300E93BE0 /* VerifyEmailUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1400,7 +1400,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					C4C63A79282355FF00343032 = {
 						CreatedOnToolsVersion = 13.1;
@@ -1537,6 +1537,7 @@
 				C42DC5D828E06B2100FCE145 /* HelpCenterScreen.swift in Sources */,
 				C40FE0CD28E9892300FDEFD8 /* OwnerPresentBookingsResponse.swift in Sources */,
 				C47E020A292C532200896A61 /* FacilityPicturesStep.swift in Sources */,
+				323CDA372963E0FB0082E987 /* ClientTokenModel.swift in Sources */,
 				C4A921CA28B5AA6700969EF1 /* UploadProgressView.swift in Sources */,
 				C4F6675C28D37E9C00ABA680 /* UnratedGuestListItem.swift in Sources */,
 				C4D0872E289326B400DCEACF /* OTPInput.swift in Sources */,
@@ -1677,7 +1678,6 @@
 				C46BD78728295CCB006AC587 /* AppColor.swift in Sources */,
 				C4B301ED28DA1ACA00FAE17D /* ChooseOfferFacility.swift in Sources */,
 				C4A921CC28B5FB7E00969EF1 /* FacilityChecklistModel.swift in Sources */,
-				32D6A8CE2962249300E93BE0 /* VerifyEmailUseCase.swift in Sources */,
 				C403101F2894C71F0046B645 /* SpecifiRoundCorner.swift in Sources */,
 				C49191C728A3061D00C03743 /* CreateFacilityUseCase.swift in Sources */,
 				C462F7F228E16BD6000C99E9 /* PaymentCard.swift in Sources */,
@@ -1795,6 +1795,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -1856,6 +1857,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -2073,7 +2075,7 @@
 				C4C63A9D2823560300343032 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		C4C63A9E2823560300343032 /* Build configuration list for PBXNativeTarget "bask" */ = {
 			isa = XCConfigurationList;
@@ -2082,7 +2084,7 @@
 				C4C63AA02823560300343032 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		C4C63AA12823560300343032 /* Build configuration list for PBXNativeTarget "baskTests" */ = {
 			isa = XCConfigurationList;
@@ -2091,7 +2093,7 @@
 				C4C63AA32823560300343032 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		C4C63AA42823560300343032 /* Build configuration list for PBXNativeTarget "baskUITests" */ = {
 			isa = XCConfigurationList;
@@ -2100,7 +2102,7 @@
 				C4C63AA62823560300343032 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

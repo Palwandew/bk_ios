@@ -6,30 +6,20 @@
 //
 
 import Foundation
-
-public struct User{
-    var id: String?
-    let fullName: String
-    var city: String?
-    let mobileNumber: String?
-    let email: String
-    let password: String
-    let type: UserType
-    var loggedIn: Bool
-    var signUpWith: String
-    var country: String
+ 
+struct User: Codable{
+    let id: String?
+    var fullName: String
+    var email: String
+    var password: String
+    var phoneNumber: String?
     
-    init(fullName: String, email: String, password: String, type: UserType) {
-        self.id = nil
+    init(id: String? = nil, fullName: String, email: String, password: String, phoneNumber: String? = nil) {
+        self.id = id
         self.fullName = fullName
-        self.city = nil
-        self.mobileNumber = nil
         self.email = email
         self.password = password
-        self.type = type
-        self.loggedIn = false
-        self.signUpWith = "email"
-        self.country = "Saudi Arabia"
+        self.phoneNumber = phoneNumber
     }
     
     func isDataValid() -> Bool {

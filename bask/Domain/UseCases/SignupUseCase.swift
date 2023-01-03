@@ -2,7 +2,7 @@
 //  SignupUseCase.swift
 //  bask
 //
-//  Created by MapMac on 27/12/2022.
+//  Created by TEHSEEN ABBAS on 27/12/2022.
 //
 
 import Foundation
@@ -14,9 +14,9 @@ class SignupUseCase {
         self.repository = repository
     }
     
-    func signUp(_ user: User, completion: @escaping (Result<User, RequestError>) -> Void){
+    func signUp(_ user: User, completion: @escaping (Result<ClientToken, RequestError>) -> Void){
         if user.isDataValid() {
-            repository.signUp(user, completion: completion)
+            repository.signUp(user: user, completion: completion)
         } else {
             completion(.failure(.unknown("Invalid user data")))
         }

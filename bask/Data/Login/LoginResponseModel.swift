@@ -41,7 +41,7 @@ struct UserClass: Codable {
     }
     
     func dotUserEntity() -> User{
-        return User(fullName: "asf", email: "asf", password: "as", type: .guest)
+        return User(fullName: "asf", email: "asf", password: "as")
     }
 }
 

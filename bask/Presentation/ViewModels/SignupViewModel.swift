@@ -52,15 +52,15 @@ class SignupViewModel: ObservableObject {
     func onButtonTapped(){
         
         if currentStep == .name {
-            //flowVM.isSignedIn.toggle()
             showAlert.toggle()
-            let user = User(fullName: signUpForm.fullName, email: signUpForm.email, password: signUpForm.email, type: signUpForm.userType)
+            let user = User(fullName: signUpForm.fullName, email: signUpForm.email, password: signUpForm.email)
             signUpUseCase.signUp(user) { [weak self] result in
                 
                 DispatchQueue.main.async {
                     switch result {
-                    case .success(_):
+                    case .success(let clientToken):
                         // save user creds to keychain
+                        KeychainHelper.shared.save(clientToken, "access", "bk")
                         
                         self?.showAlert.toggle()
                         self?.signUpSuccessful.toggle()
@@ -91,12 +91,26 @@ class SignupViewModel: ObservableObject {
             let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx).evaluate(with: char)
             
             if emailPred {
-                signUpForm.emailHelperText = .valid
+                signUpUseCase.verifyEmail(char) { result in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let email):
+                            if email.isAvailable {
+                                self.signUpForm.emailHelperText = .valid
+                            } else {
+                                self.signUpForm.emailHelperText = .notAvailable
+                            }
+                        case .failure(let error):
+                            print("Error \(error)")
+                        }
+                    }
+                }
             } else {
                 signUpForm.emailHelperText = .invalid
             }
         }
     }
+    
     
     func validateMinimumPasswordCharactersLimit(_ char: String){
         if char.isEmpty {

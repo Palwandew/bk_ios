@@ -17,7 +17,9 @@ struct baskApp: App {
         WindowGroup {
             
             NavigationView {
-               FlowSelector(model: vm)
+               //FlowSelector(model: vm)
+                
+                HomeScreen()
             }
             .environmentObject(vm)
         }

@@ -16,7 +16,7 @@ struct OwnerUpcomingBookingResponse: Codable {
 
 // MARK: - OwnerUpcomingBookingsData
 struct OwnerUpcomingBookingsData: Codable {
-    let upcomingBookings: [UpcomingBooking]
+    let upcomingBookings: [UpcomingBookingOld]
 
     enum CodingKeys: String, CodingKey {
         case upcomingBookings = "upcoming_bookings"
@@ -24,7 +24,7 @@ struct OwnerUpcomingBookingsData: Codable {
 }
 
 // MARK: - UpcomingBooking
-struct UpcomingBooking: Codable {
+struct UpcomingBookingOld: Codable {
     let id, price: Int
     let bookingDates: BookingDates
     let englishName, checkInAfter: String
@@ -73,3 +73,18 @@ struct UpcomingBookingFacility: Codable {
 struct RemainingTime: Codable {
     let days, hours, minutes: Int
 }
+
+
+// MARK: - UpcomingBooking
+struct UpcomingBooking: Codable {
+    let id: String
+    let facilityImage: String?
+    let facilityName: String
+    let price: Double
+    let checkInDate: Date
+    let checkOutDate: Date
+}
+
+typealias UpcomingBookings = [UpcomingBooking]
+
+

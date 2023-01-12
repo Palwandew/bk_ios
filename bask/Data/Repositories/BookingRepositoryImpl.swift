@@ -11,7 +11,7 @@ class BookingRepositoryImpl: BookingRepositoryProtocol {
     
     let header = ["x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2NDY4ODE3MywiZXhwIjoxNjY1MTIwMTczfQ.hDybTvFXGEoUXU-Y4qWuZwe1DTsJNWtD2aQSiYmwoCE", "Content-Type":"application/json; charset=utf-8"]
     
-    func getUpcomingBookings(completion: @escaping (Result<[UpcomingBooking], Error>) -> Void) {
+    func getUpcomingBookings(completion: @escaping (Result<[UpcomingBookingOld], Error>) -> Void) {
         
         let endpoint = Endpoints(path: "booking/upcoming")
         

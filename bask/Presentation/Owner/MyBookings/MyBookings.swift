@@ -60,7 +60,7 @@ struct MyBookings: View {
                 Spacer()
                 switch viewRouter.currentTab {
                 case .one:
-                    UpcomingBookings()
+                    UpcomingBookingsView()
                         .environmentObject(myBookingsViewModel)
                         .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
                         .onLeftSwipe {

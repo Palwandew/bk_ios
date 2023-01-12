@@ -28,7 +28,7 @@
 		C40310132894A2FE0046B645 /* LeftSwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40310122894A2FE0046B645 /* LeftSwipe.swift */; };
 		C40310172894A6260046B645 /* RightSwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40310162894A6260046B645 /* RightSwipe.swift */; };
 		C40310192894A9060046B645 /* HorizontalSwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40310182894A9060046B645 /* HorizontalSwipe.swift */; };
-		C403101B2894BBF10046B645 /* UpcomingBookings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403101A2894BBF10046B645 /* UpcomingBookings.swift */; };
+		C403101B2894BBF10046B645 /* UpcomingBookingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403101A2894BBF10046B645 /* UpcomingBookingsView.swift */; };
 		C403101D2894BC340046B645 /* FacilityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403101C2894BC340046B645 /* FacilityCard.swift */; };
 		C403101F2894C71F0046B645 /* SpecifiRoundCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403101E2894C71F0046B645 /* SpecifiRoundCorner.swift */; };
 		C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C405785A282E22A000C7D67A /* PasswordInputField.swift */; };
@@ -329,7 +329,7 @@
 		C40310122894A2FE0046B645 /* LeftSwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftSwipe.swift; sourceTree = "<group>"; };
 		C40310162894A6260046B645 /* RightSwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightSwipe.swift; sourceTree = "<group>"; };
 		C40310182894A9060046B645 /* HorizontalSwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSwipe.swift; sourceTree = "<group>"; };
-		C403101A2894BBF10046B645 /* UpcomingBookings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingBookings.swift; sourceTree = "<group>"; };
+		C403101A2894BBF10046B645 /* UpcomingBookingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingBookingsView.swift; sourceTree = "<group>"; };
 		C403101C2894BC340046B645 /* FacilityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityCard.swift; sourceTree = "<group>"; };
 		C403101E2894C71F0046B645 /* SpecifiRoundCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifiRoundCorner.swift; sourceTree = "<group>"; };
 		C405785A282E22A000C7D67A /* PasswordInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputField.swift; sourceTree = "<group>"; };
@@ -871,7 +871,7 @@
 			isa = PBXGroup;
 			children = (
 				C403100928945D8D0046B645 /* MyBookings.swift */,
-				C403101A2894BBF10046B645 /* UpcomingBookings.swift */,
+				C403101A2894BBF10046B645 /* UpcomingBookingsView.swift */,
 				C48268282896EDAF0072147F /* PresentBookings.swift */,
 				C482682A289700BB0072147F /* PastBookings.swift */,
 				C48EEAD628E581D2002AC169 /* BookingConfirmationDialogScreen.swift */,
@@ -1544,7 +1544,7 @@
 				C48E9F5628D4A7F200FFD1AF /* MaterialCommentField.swift in Sources */,
 				C410D51728FDDAB300165A12 /* UITextFieldWrapper.swift in Sources */,
 				C462F7EA28E15538000C99E9 /* FacilityPercentage.swift in Sources */,
-				C403101B2894BBF10046B645 /* UpcomingBookings.swift in Sources */,
+				C403101B2894BBF10046B645 /* UpcomingBookingsView.swift in Sources */,
 				C40310192894A9060046B645 /* HorizontalSwipe.swift in Sources */,
 				C4B301EF28DA1FA400FAE17D /* OfferPriceSettingScreen.swift in Sources */,
 				C40FF6AA2923DC95005C81EF /* AddNewUnitScreen.swift in Sources */,

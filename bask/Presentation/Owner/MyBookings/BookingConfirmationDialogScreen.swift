@@ -27,8 +27,8 @@ struct BookingConfirmationDialogScreen: View {
                 .font(.custom("Poppins-Medium", size: 16))
                 .foregroundColor(Color(AppColor.MAIN_TEXT_LIGHT))
             
-            AvailableFacilityCard(imageURL: model.facilityToConfirmBooking?.imageURL ?? "", price: model.facilityToConfirmBooking?.price ?? 0, name: model.facilityToConfirmBooking?.name ?? "Mountain", address: "")
-                .frame(height: UIScreen.main.bounds.height * 0.15)
+//            AvailableFacilityCard(imageURL: model.facilityToConfirmBooking?.imageURL ?? "", price: model.facilityToConfirmBooking?.price ?? 0, name: model.facilityToConfirmBooking?.name ?? "Mountain", address: "")
+//                .frame(height: UIScreen.main.bounds.height * 0.15)
             
             if model.screenState == .loading {
                 Spinner()
@@ -49,9 +49,9 @@ struct BookingConfirmationDialogScreen: View {
                         showCalendar.toggle()
                     }
                 
-                InfoView(icon: "folder.fill", text: LocalizedStringKey("\(model.facilityToConfirmBooking?.price ?? 0) SAR per \(model.facilityToConfirmBooking?.getTotalDaysOfBooking() ?? 0) days"))
-               
-                InfoView(icon: "folder.fill", text: LocalizedStringKey("Deposit is \(model.facilityToConfirmBooking?.price ?? 0) SAR"))
+//                InfoView(icon: "folder.fill", text: LocalizedStringKey("\(model.facilityToConfirmBooking?.price ?? 0) SAR per \(model.facilityToConfirmBooking?.getTotalDaysOfBooking() ?? 0) days"))
+//               
+//                InfoView(icon: "folder.fill", text: LocalizedStringKey("Deposit is \(model.facilityToConfirmBooking?.price ?? 0) SAR"))
             }
 
             

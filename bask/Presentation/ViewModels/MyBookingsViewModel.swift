@@ -133,23 +133,27 @@ class MyBookingsViewModel: ObservableObject {
     
     private func getUpcomingBookings() {
         
-        repository.getUpcomingBookings { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(_):
-                    print("Error occuree")
-                    
-                    self?.screenState = .failed
-                case .success(let upComingBookings):
-                    
-                    let filteredArray = upComingBookings.filter { upcomingBooking in
-                        upcomingBooking.bookingstatus.statusName != "rejected"
-                    }
-                    self?.upComingBookings = filteredArray.map(UpcomingBookingItemViewModel.init)
-                    self?.screenState = .success
-                }
-            }
-        }
+        let item = UpcomingBooking(id: UUID().uuidString, facilityImage: "fake", facilityName: "Shul-e-Yal", price: 300.0, checkInDate: .init(timeInterval: 5000, since: .now), checkOutDate: .distantFuture)
+        let model = UpcomingBookingItemViewModel(booking: item)
+        self.upComingBookings.append(model)
+        self.screenState = .success
+//        repository.getUpcomingBookings { [weak self] result in
+//            DispatchQueue.main.async {
+//                switch result {
+//                case .failure(_):
+//                    print("Error occuree")
+//
+//                    self?.screenState = .failed
+//                case .success(let upComingBookings):
+//
+//                    let filteredArray = upComingBookings.filter { upcomingBooking in
+//                        upcomingBooking.bookingstatus.statusName != "rejected"
+//                    }
+//                    self?.upComingBookings = filteredArray.map(UpcomingBookingItemViewModel.init)
+//                    self?.screenState = .success
+//                }
+//            }
+//        }
     }
     
     private func changeState(state: ScreenState) {
@@ -239,78 +243,48 @@ class PastBookingItemViewModel: Identifiable {
 }
 
 
-class UpcomingBookingItemViewModel: Identifiable {
+struct UpcomingBookingItemViewModel: Identifiable {
     
-    let id: Int
-    private let facility: UpcomingBooking
+    let id: UUID
+    private let booking: UpcomingBooking
     
-    init(facility: UpcomingBooking){
-        self.id = facility.id
-        self.facility = facility
+    init(booking: UpcomingBooking){
+        self.id = UUID()
+        self.booking = booking
     }
     
     var bookingID: String {
-        String(self.facility.id)
+        self.booking.id
     }
     
-    var price: Int {
-        self.facility.price
+    var price: String {
+        self.booking.price.formatted()
     }
     
-    var name: String {
-        self.facility.englishName
+    var facility: String {
+        self.booking.facilityName
     }
     
     
     var bookedDates: String {
-        let startDate = Calendar.current.generateDate(from: self.facility.bookingDates.startDate)
-        guard let date = startDate else { return ""}
-        let startDateString = DateFormatter.startDate.string(from: date)
         
-        let endDate = Calendar.current.generateDate(from: self.facility.bookingDates.endDate)
-        guard let date = endDate else { return ""}
-        let endDateString = DateFormatter.endDate.string(from: date)
+        return self.booking.checkInDate.formatted(date: .abbreviated, time: .omitted) + " - " + self.booking.checkOutDate.formatted(date: .abbreviated, time: .omitted)
+    }
+    
+    var timeRemaining: String {
+        let date1 = Date.now
+        let date2 = self.booking.checkInDate
+        let components = Calendar.current.dateComponents([.day], from: date1, to: date2)
         
-        return startDateString + " - " + endDateString
-    }
-    
-    var daysRemaining: Int {
-        self.facility.remainingTime.days
-    }
-    
-    var hoursRemaining: Int {
-        self.facility.remainingTime.hours
-    }
-    
-    var minutesRemainig: Int {
-        self.facility.remainingTime.minutes
-    }
-    
-    var status: BookingStatus {
-        BookingStatus(rawValue: self.facility.bookingstatus.statusName) ?? .pending
+        let duration = "\(components.day ?? 0) days"
+        
+        return duration
     }
     
     var imageURL: String {
-        self.facility.facility.images.first?.photo ?? "imageDummyURL"
+        self.booking.facilityImage ?? "imageDummyURL"
     }
     
-    
-    private func generateDate(from date: String) -> Date? {
-        let startDate = DateFormatter.check.date(from: date)
-        guard let date = startDate else { return nil}
-        
-        return date
-    }
-    
-    func getTotalDaysOfBooking() -> Int? {
-        let startDate = Calendar.current.generateDate(from: self.facility.bookingDates.startDate)
-        guard let startDate = startDate else { return nil}
-        
-        let endDate = Calendar.current.generateDate(from: self.facility.bookingDates.endDate)
-        guard let endDate = endDate else { return nil}
-        
-        return Calendar.current.numberOfDaysBetween(startDate, and: endDate)
-    }
 }
 
 enum ScreenState {

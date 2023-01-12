@@ -35,7 +35,7 @@ struct FacilityCard: View {
                         
                         Spacer()
                         
-                        Text(facility.name)
+                        Text(facility.facility)
                             .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .body))
                             .lineLimit(2)
                             .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
@@ -53,7 +53,7 @@ struct FacilityCard: View {
             VStack{
                 HStack {
                     Spacer()
-                    Text("\(facility.daysRemaining) \(facility.minutesRemainig) \(facility.minutesRemainig) time")
+                    Text(facility.timeRemaining)
                         .foregroundColor(.white)
                         .font(Font.custom("Poppins-Medium", size: 10, relativeTo: .callout))
                         .padding(8)

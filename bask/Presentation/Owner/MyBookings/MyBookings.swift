@@ -11,7 +11,7 @@ struct MyBookings: View {
     
     @State var value: Float = 0.50
     @StateObject var viewRouter = MaterialTabViewRouter()
-    @StateObject var myBookingsViewModel = MyBookingsViewModel(BookingRepositoryImpl())
+    @StateObject var myBookingsViewModel = MyBookingsViewModel(BookingRepositoryImpl(httpClient: HttpClient()))
     @State var showAlertDialog: Bool = false
     
     

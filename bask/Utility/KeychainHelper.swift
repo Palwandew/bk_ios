@@ -13,6 +13,14 @@ class KeychainHelper {
     
     static let shared = KeychainHelper()
     
+    var isUserLoggedIn: Bool {
+        if let _ = self.read(service: "access", account: "bk", type: ClientToken.self) {
+            return true
+        } else {
+            return false 
+        }
+    }
+    
     private init(){}
     
     func save<T>(_ data: T, _ service: String, _ account: String) where T: Codable{

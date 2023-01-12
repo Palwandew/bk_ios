@@ -11,18 +11,23 @@ class BookingRepositoryImpl: BookingRepositoryProtocol {
     
     let header = ["x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhZTI2N2U4LTY1Y2MtNGM2ZC05NDhhLTU1MThhOGJmZWIzNiIsImlhdCI6MTY2NDY4ODE3MywiZXhwIjoxNjY1MTIwMTczfQ.hDybTvFXGEoUXU-Y4qWuZwe1DTsJNWtD2aQSiYmwoCE", "Content-Type":"application/json; charset=utf-8"]
     
-    func getUpcomingBookings(completion: @escaping (Result<[UpcomingBookingOld], Error>) -> Void) {
+    private let httpClient: HttpClientProtocol
+    
+    init(httpClient: HttpClientProtocol) {
+        self.httpClient = httpClient
+    }
+    
+    func getUpcomingBookings(completion: @escaping (Result<[UpcomingBooking], RequestError>) -> Void) {
         
-        let endpoint = Endpoints(path: "booking/upcoming")
-        
-        URLSession.shared.sendRequest(endpoint: endpoint, requestType: .get, headers: header, body: nil, responseModel: OwnerUpcomingBookingResponse.self) { result in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let response):
-                completion(.success(response.data.upcomingBookings))
-            }
+        let endpoint = Endpoint(path: "bookings/upcoming")
+        guard let user = KeychainHelper.shared.read(service: "access", account: "bk", type: ClientToken.self) else {
+            print("Nil keychain")
+            return completion(.failure(.unauthorized))
         }
+        print("Endp -_- \(endpoint.url)")
+        
+        httpClient.sendRequest(endpoint: endpoint.url, reqestType: .get, authorization: "Bearer \(user.accessToken)", body: nil, responseModel: UpcomingBookings.self, complete: completion)
+
     }
     
     func declineBooking(with bookingID: String, completion: @escaping (Result<String, Error>) -> Void) {

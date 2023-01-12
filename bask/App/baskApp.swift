@@ -12,14 +12,17 @@ struct baskApp: App {
     //let postViewModel = AppDI.shared.postDependencies()
     //let signUpViewModel = AppDI.shared.signupDependencies()
     @StateObject var vm: FlowSelectorViewModel = FlowSelectorViewModel()
-    
+    private let keyChainHelper = KeychainHelper.shared
     var body: some Scene {
         WindowGroup {
             
             NavigationView {
-               //FlowSelector(model: vm)
-                
-                HomeScreen()
+                if keyChainHelper.isUserLoggedIn {
+                    HomeScreen()
+                } else {
+                    FlowSelector(model: vm)
+                }
+
             }
             .environmentObject(vm)
         }

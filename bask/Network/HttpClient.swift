@@ -22,6 +22,7 @@ class HttpClient: HttpClientProtocol {
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let _ = error {
+                print("_ error")
                 completion(.failure(RequestError.unknown("error in http client")))
                 return
             }
@@ -30,17 +31,22 @@ class HttpClient: HttpClientProtocol {
                 if let httpResponse = response as? HTTPURLResponse {
                     switch httpResponse.statusCode {
                     case 401:
+                        print("authorization error")
                         return completion(.failure(.unauthorized))
                     case 409:
+                        print("conflict error")
                         return completion(.failure(.conflict))
                     default:
+                        print("Unexpected error \(httpResponse.statusCode)")
                         return completion(.failure(.unexpectedStatusCode))
                     }
                 }
+                print("Unexpected error ")
                 return completion(.failure(.unexpectedStatusCode))
             }
             
             guard let _ = data else {
+                print("no res")
                 completion(.failure(RequestError.noResponse))
                 return
             }
@@ -73,16 +79,20 @@ class HttpClient: HttpClientProtocol {
                 if let httpResponse = response as? HTTPURLResponse {
                     switch httpResponse.statusCode {
                     case 401:
+                        print("Unauthor")
                         return completion(.failure(.unauthorized))
                     default:
+                        print("Unexpected")
                         return completion(.failure(.unexpectedStatusCode))
                     }
                 }
+                print("Unexpected")
                 return completion(.failure(.unexpectedStatusCode))
             }
             
             guard let data = data else {
                 completion(.failure(RequestError.noResponse))
+                print("data error")
                 return
             }
             
@@ -92,6 +102,7 @@ class HttpClient: HttpClientProtocol {
                 completion(.success(dataFromServer))
                 
             } catch {
+                print("decode")
                 completion(.failure(RequestError.decode))
             }
         }

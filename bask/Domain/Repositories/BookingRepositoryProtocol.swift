@@ -9,7 +9,7 @@ import Foundation
 
 protocol BookingRepositoryProtocol {
     
-    func getUpcomingBookings(completion: @escaping (Result<[UpcomingBookingOld], Error>) -> Void)
+    func getUpcomingBookings(completion: @escaping (Result<[UpcomingBooking], RequestError>) -> Void)
     
     func declineBooking(with bookingID: String, completion: @escaping (Result<String, Error>) -> Void)
     

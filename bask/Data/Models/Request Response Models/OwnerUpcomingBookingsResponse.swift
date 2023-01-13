@@ -76,7 +76,7 @@ struct RemainingTime: Codable {
 
 
 // MARK: - UpcomingBooking
-struct UpcomingBooking: Codable {
+struct UpcomingBooking: Codable, BookingItem {
     let id: String
     let facilityImage: String?
     let facilityName: String
@@ -87,4 +87,12 @@ struct UpcomingBooking: Codable {
 
 typealias UpcomingBookings = [UpcomingBooking]
 
+protocol BookingItem {
+    var id: String { get }
+    var facilityImage: String? { get }
+    var facilityName: String { get }
+    var price: Double { get }
+    var checkInDate: Date { get }
+    var checkOutDate: Date { get }
+}
 

@@ -9,10 +9,11 @@ import SwiftUI
 
 struct MyBookings: View {
     
-    @State var value: Float = 0.50
-    @StateObject var viewRouter = MaterialTabViewRouter()
-    @StateObject var myBookingsViewModel = MyBookingsViewModel(BookingRepositoryImpl(httpClient: HttpClient()))
-    @State var showAlertDialog: Bool = false
+    @State private var value: Float = 0.50
+    @State private var currentSelection: Int = 0
+    @StateObject private var viewRouter = MaterialTabViewRouter()
+    @StateObject private var myBookingsViewModel = MyBookingsViewModel(BookingRepositoryImpl(httpClient: HttpClient()))
+    @State private var showAlertDialog: Bool = false
     
     
     var body: some View {
@@ -31,7 +32,6 @@ struct MyBookings: View {
                     .padding(.horizontal)
             }
             
-            VStack {
                 
                 VStack(alignment: .leading) {
                     Text("My Bookings")
@@ -58,79 +58,39 @@ struct MyBookings: View {
 
                 
                 Spacer()
-                switch viewRouter.currentTab {
-                case .one:
+                
+                TabView(selection: $currentSelection) {
                     UpcomingBookingsView()
                         .environmentObject(myBookingsViewModel)
-                        .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
-                        .onLeftSwipe {
-                            withAnimation {
-                                viewRouter.currentTab = .two
-                            }
-                        }
-                        .onAppear {
-                            print("onAppear() -> Upcoming bookings")
-//                            myBookingsViewModel.screenState = .loading
-                        }
-                        .onDisappear {
-                            print("onDisappear() -> Upcoming bookings")
-                            //myBookingsViewModel.screenState = .loading
-                        }
-                        
+                        .tag(0)
                     
-                case .two:
                     PresentBookings()
                         .environmentObject(myBookingsViewModel)
-                        .transition(.asymmetric(insertion: .opacity, removal: .opacity))
-                        .onHorizontalSwipe(
-                            onLeft: {
-                                withAnimation {
-                                    viewRouter.currentTab = .three
-                                }
-                            },
-                            onRight: {
-                                withAnimation {
-                                    viewRouter.currentTab = .one
-                                }
-                            })
-                        .onAppear {
-                            print("onAppear() -> Present bookings")
-                            myBookingsViewModel.getPresentBookings()
-                        }
-                        .onDisappear {
-                            print("onDisappear() -> Present bookings")
-                            //myBookingsViewModel.screenState = .loading
-                        }
+                        .tag(1)
                     
-                case .three:
                     PastBookings()
                         .environmentObject(myBookingsViewModel)
-                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
-                        .onRightSwipe {
-                            withAnimation {
-                                viewRouter.currentTab = .two
-                            }
-
-                        }
-                        .onAppear {
-                            print("onAppear() -> Past bookings")
-                            myBookingsViewModel.getPastBookings()
-                        }
-                        .onDisappear {
-                            print("onDisappear() -> Past bookings")
-                            //myBookingsViewModel.screenState = .loading
-                        }
-                }
-                
-                
+                        .tag(2)
+                    
+                }.tabViewStyle(.page)
+                    .onChange(of: currentSelection) { newValue in
+                        self.handleTabChange(newValue)
+                    }
                 Spacer()
-            }
-            
-            
-            
             
         }.background(Color.white)
-        
+    }
+    
+    private func handleTabChange(_ newValue: Int){
+        if newValue == 0 {
+            viewRouter.currentTab = .one
+        }
+        if newValue == 1 {
+            viewRouter.currentTab = .two
+        }
+        if newValue == 2 {
+            viewRouter.currentTab = .three
+        }
     }
 }
 

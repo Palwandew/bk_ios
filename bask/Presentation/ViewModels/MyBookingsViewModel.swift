@@ -9,7 +9,7 @@ import Foundation
 
 class MyBookingsViewModel: ObservableObject {
     @Published var isLoadingAlertPresented: Bool = false
-    @Published var screenState: ScreenState = .loading
+    @Published var screenState: ScreenState = .success
     
     @Published var facilityToConfirmBooking: UpcomingBookingItemViewModel? = nil
     @Published var upComingBookings: [UpcomingBookingItemViewModel] = []
@@ -28,7 +28,7 @@ class MyBookingsViewModel: ObservableObject {
         print("MyBookingsViewModel -> init()")
         self.repository = repo
         
-        getUpcomingBookings()
+        //getUpcomingBookings()
     }
     
     func updateState() {
@@ -94,22 +94,22 @@ class MyBookingsViewModel: ObservableObject {
     }
     
     func getPresentBookings() {
-        screenState = .loading
-        repository.getPresentBookings() { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(_):
-                    print("Error occuree")
-                    
-                    self?.screenState = .failed
-                case .success(let presentBookings):
-                    
-                    
-                    self?.presentBookings = presentBookings.map(PresentBookingItemViewModel.init)
-                    self?.screenState = .success
-                }
-            }
-        }
+//        screenState = .loading
+//        repository.getPresentBookings() { [weak self] result in
+//            DispatchQueue.main.async {
+//                switch result {
+//                case .failure(_):
+//                    print("Error occuree")
+//
+//                    self?.screenState = .failed
+//                case .success(let presentBookings):
+//
+//
+//                    self?.presentBookings = presentBookings.map(PresentBookingItemViewModel.init)
+//                    self?.screenState = .success
+//                }
+//            }
+//        }
     }
     
     func getPastBookings() {
@@ -161,36 +161,34 @@ class MyBookingsViewModel: ObservableObject {
     
     
     class PresentBookingItemViewModel: Identifiable {
-        let id: Int
-        private let facility: PresentBooking
+        let id: UUID
+        private let booking: BookingItem
         
-        init(facility: PresentBooking){
-            self.facility = facility
-            self.id = facility.id
+        init(booking: BookingItem){
+            self.id = UUID()
+            self.booking = booking
         }
         
-        var price: Int {
-            self.facility.price
+        var bookingID: String {
+            self.booking.id
         }
         
-        var name: String {
-            self.facility.englishName
+        var price: String {
+            self.booking.price.formatted()
         }
+        
+        var facility: String {
+            self.booking.facilityName
+        }
+        
         
         var bookedDates: String {
-            let startDate = Calendar.current.generateDate(from: self.facility.bookingDates.startDate)
-            guard let date = startDate else { return ""}
-            let startDateString = DateFormatter.startDate.string(from: date)
             
-            let endDate = Calendar.current.generateDate(from: self.facility.bookingDates.endDate)
-            guard let date = endDate else { return ""}
-            let endDateString = DateFormatter.endDate.string(from: date)
-            
-            return startDateString + " - " + endDateString
+            return self.booking.checkInDate.formatted(date: .abbreviated, time: .omitted) + " - " + self.booking.checkOutDate.formatted(date: .abbreviated, time: .omitted)
         }
         
         var imageURL: String {
-            self.facility.facility.images.first?.photo ?? "imageDummyURL"
+            self.booking.facilityImage ?? "imageDummyURL"
         }
         
     }
@@ -238,9 +236,9 @@ class MyBookingsViewModel: ObservableObject {
     struct UpcomingBookingItemViewModel: Identifiable {
         
         let id: UUID
-        private let booking: UpcomingBooking
+        private let booking: BookingItem
         
-        init(booking: UpcomingBooking){
+        init(booking: BookingItem){
             self.id = UUID()
             self.booking = booking
         }

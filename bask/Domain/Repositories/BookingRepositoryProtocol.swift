@@ -15,8 +15,8 @@ protocol BookingRepositoryProtocol {
     
     func acceptBooking(with bookingID: String, completion: @escaping (Result<String, Error>) -> Void)
     
-    func getPresentBookings(completion: @escaping (Result<[PresentBooking], Error>) -> Void)
+    func getPresentBookings(completion: @escaping (Result<[PresentBookingOld], Error>) -> Void)
     
-    func getPastBookings(completion: @escaping (Result<[PastBooking], Error>) -> Void)
+    func getPastBookings(completion: @escaping (Result<[PastBookingOld], Error>) -> Void)
     
 }

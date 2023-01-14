@@ -16,7 +16,7 @@ struct OwnerPastBookingsResponse: Codable {
 
 // MARK: - OwnerPastBookingsData
 struct OwnerPastBookingsData: Codable {
-    let pastBookings: [PastBooking]
+    let pastBookings: [PastBookingOld]
 
     enum CodingKeys: String, CodingKey {
         case pastBookings = "past_bookings"
@@ -24,7 +24,7 @@ struct OwnerPastBookingsData: Codable {
 }
 
 // MARK: - PastBooking
-struct PastBooking: Codable {
+struct PastBookingOld: Codable {
     let id, price: Int
     let bookingDates: BookingDates
     let englishName, checkInAfter: String

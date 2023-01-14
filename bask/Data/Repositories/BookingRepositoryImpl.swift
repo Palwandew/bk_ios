@@ -58,7 +58,7 @@ class BookingRepositoryImpl: BookingRepositoryProtocol {
         }
     }
     
-    func getPresentBookings(completion: @escaping (Result<[PresentBooking], Error>) -> Void){
+    func getPresentBookings(completion: @escaping (Result<[PresentBookingOld], Error>) -> Void){
         let endpoint = Endpoints(path: "booking/present")
         
         URLSession.shared.sendRequest(endpoint: endpoint, requestType: .get, headers: header, body: nil, responseModel: OwnerPresentBookingsResponse.self) { result in
@@ -71,7 +71,7 @@ class BookingRepositoryImpl: BookingRepositoryProtocol {
         }
     }
     
-    func getPastBookings(completion: @escaping (Result<[PastBooking], Error>) -> Void){
+    func getPastBookings(completion: @escaping (Result<[PastBookingOld], Error>) -> Void){
         let endpoint = Endpoints(path: "booking/past")
 
         URLSession.shared.sendRequest(endpoint: endpoint, requestType: .get, headers: header, body: nil, responseModel: OwnerPastBookingsResponse.self) { result in

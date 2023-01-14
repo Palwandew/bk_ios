@@ -20,5 +20,62 @@
             landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8CAFF2F4-7091-4FAF-8219-196F67AF2E5D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bask/Presentation/ViewModels/MyBookingsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "getUpcomingBookings()"
+            landmarkType = "7">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.Log">
+                  <ActionContent
+                     message = "response"
+                     conveyanceType = "0">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
+            <Locations>
+               <Location
+                  uuid = "8CAFF2F4-7091-4FAF-8219-196F67AF2E5D - 7f7d667c3371950f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;bask.UpcomingBooking&gt;, bask.RequestError&gt;) -&gt; () in bask.MyBookingsViewModel.getUpcomingBookings() -&gt; ()"
+                  moduleName = "bask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mapmac/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/Documents%20-%20MapMac%E2%80%99s%20MacBook%20Pro/bk_ios/bask/Presentation/ViewModels/MyBookingsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137"
+                  offsetFromSymbolStart = "236">
+               </Location>
+               <Location
+                  uuid = "8CAFF2F4-7091-4FAF-8219-196F67AF2E5D - b8afcf3d30d53db7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (Swift.Result&lt;Swift.Array&lt;bask.UpcomingBooking&gt;, bask.RequestError&gt;) -&gt; () in bask.MyBookingsViewModel.getUpcomingBookings() -&gt; ()"
+                  moduleName = "bask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mapmac/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/Documents%20-%20MapMac%E2%80%99s%20MacBook%20Pro/bk_ios/bask/Presentation/ViewModels/MyBookingsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "94">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

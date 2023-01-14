@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-struct PastBookings: View {
+struct PastBookingsView: View {
     @EnvironmentObject var model: MyBookingsViewModel
-    @State var upComingBookings: [Int] = []
     var body: some View {
         
         switch model.screenState {
@@ -23,9 +22,9 @@ struct PastBookings: View {
             } else {
                 ScrollView{
                     LazyVStack(alignment: .leading){
-                        ForEach(model.pastBookings) { facility in
+                        ForEach(model.pastBookings) { pastBookingVM in
                             
-                            PastBookingItemCard(model: facility)
+                            PastBookingItemCard(model: pastBookingVM)
                                 .frame(height: UIScreen.main.bounds.height * 0.15)
                                 .padding()
                             
@@ -35,7 +34,7 @@ struct PastBookings: View {
             }
             
         case .failed:
-            Text("error occured")
+            ErrorStateScreen()
         case .initial:
             Text("hi")
         }

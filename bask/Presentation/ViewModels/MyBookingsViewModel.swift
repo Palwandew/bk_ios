@@ -10,14 +10,10 @@ import Foundation
 class MyBookingsViewModel: ObservableObject {
     @Published var isLoadingAlertPresented: Bool = false
     @Published var screenState: ScreenState = .success
-    
     @Published var facilityToConfirmBooking: UpcomingBookingItemViewModel? = nil
     @Published var upComingBookings: [UpcomingBookingItemViewModel] = []
     @Published var presentBookings: [PresentBookingItemViewModel] = []
     @Published var pastBookings: [PastBookingItemViewModel] = []
-    
-    
-    
     @Published var toast: ToastViewModel = ToastViewModel()
     
     private let repository: BookingRepositoryProtocol
@@ -80,7 +76,6 @@ class MyBookingsViewModel: ObservableObject {
                 self?.screenState = .success
                 switch result {
                 case .failure(_):
-                    print("Error occuree")
                     self?.toast.prepare(for: .failure, with: "Error occured while decling the booking. Please try again.")
                     
                 case .success(_):
@@ -196,9 +191,9 @@ class MyBookingsViewModel: ObservableObject {
     
     class PastBookingItemViewModel: Identifiable {
         let id: Int
-        private let facility: PastBooking
+        private let facility: PastBookingOld
         
-        init(facility: PastBooking){
+        init(facility: PastBookingOld){
             self.facility = facility
             self.id = facility.id
         }

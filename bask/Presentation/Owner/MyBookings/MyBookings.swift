@@ -61,18 +61,17 @@ struct MyBookings: View {
                 
                 TabView(selection: $currentSelection) {
                     UpcomingBookingsView()
-                        .environmentObject(myBookingsViewModel)
                         .tag(0)
                     
-                    PresentBookings()
-                        .environmentObject(myBookingsViewModel)
+                    PresentBookingsView()
                         .tag(1)
                     
-                    PastBookings()
-                        .environmentObject(myBookingsViewModel)
+                    PastBookingsView()
                         .tag(2)
                     
-                }.tabViewStyle(.page)
+                }
+                .environmentObject(myBookingsViewModel)
+                .tabViewStyle(.page)
                     .onChange(of: currentSelection) { newValue in
                         self.handleTabChange(newValue)
                     }

@@ -179,8 +179,8 @@
 		C482111828C7599100D6F75F /* FacilityDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482111728C7599100D6F75F /* FacilityDetailScreen.swift */; };
 		C48268242896E47E0072147F /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48268232896E47D0072147F /* Spinner.swift */; };
 		C48268262896E8860072147F /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48268252896E8860072147F /* EmptyState.swift */; };
-		C48268292896EDAF0072147F /* PresentBookings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48268282896EDAF0072147F /* PresentBookings.swift */; };
-		C482682B289700BB0072147F /* PastBookings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482682A289700BB0072147F /* PastBookings.swift */; };
+		C48268292896EDAF0072147F /* PresentBookingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48268282896EDAF0072147F /* PresentBookingsView.swift */; };
+		C482682B289700BB0072147F /* PastBookingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482682A289700BB0072147F /* PastBookingsView.swift */; };
 		C482682E28970EC90072147F /* MyAddsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482682D28970EC90072147F /* MyAddsScreen.swift */; };
 		C4826830289727B10072147F /* CancellationPolicyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482682F289727B10072147F /* CancellationPolicyScreen.swift */; };
 		C482683428973BF00072147F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482683328973BF00072147F /* RadioButton.swift */; };
@@ -479,8 +479,8 @@
 		C482111728C7599100D6F75F /* FacilityDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDetailScreen.swift; sourceTree = "<group>"; };
 		C48268232896E47D0072147F /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		C48268252896E8860072147F /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
-		C48268282896EDAF0072147F /* PresentBookings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentBookings.swift; sourceTree = "<group>"; };
-		C482682A289700BB0072147F /* PastBookings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastBookings.swift; sourceTree = "<group>"; };
+		C48268282896EDAF0072147F /* PresentBookingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentBookingsView.swift; sourceTree = "<group>"; };
+		C482682A289700BB0072147F /* PastBookingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastBookingsView.swift; sourceTree = "<group>"; };
 		C482682D28970EC90072147F /* MyAddsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAddsScreen.swift; sourceTree = "<group>"; };
 		C482682F289727B10072147F /* CancellationPolicyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellationPolicyScreen.swift; sourceTree = "<group>"; };
 		C482683328973BF00072147F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
@@ -872,8 +872,8 @@
 			children = (
 				C403100928945D8D0046B645 /* MyBookings.swift */,
 				C403101A2894BBF10046B645 /* UpcomingBookingsView.swift */,
-				C48268282896EDAF0072147F /* PresentBookings.swift */,
-				C482682A289700BB0072147F /* PastBookings.swift */,
+				C48268282896EDAF0072147F /* PresentBookingsView.swift */,
+				C482682A289700BB0072147F /* PastBookingsView.swift */,
 				C48EEAD628E581D2002AC169 /* BookingConfirmationDialogScreen.swift */,
 			);
 			path = MyBookings;
@@ -1513,7 +1513,7 @@
 				C48790D528DEE54600BD6224 /* ProfileTabScreen.swift in Sources */,
 				C4FF859228D63C4B00ADBCDF /* RatingGuestsViewModel.swift in Sources */,
 				C41DCB6428CB4AA2004888B1 /* FacilitySizeInfoView.swift in Sources */,
-				C48268292896EDAF0072147F /* PresentBookings.swift in Sources */,
+				C48268292896EDAF0072147F /* PresentBookingsView.swift in Sources */,
 				C46BD78228292161006AC587 /* FilledButton.swift in Sources */,
 				C4031010289494B30046B645 /* MaterialTabViewRouter.swift in Sources */,
 				C46E5F0728EC62770072F1F4 /* CalendarRepositoryProtocol.swift in Sources */,
@@ -1632,7 +1632,7 @@
 				C440B92F28D224E200909D21 /* UnpublishedFacilitiesResponse.swift in Sources */,
 				C4A5C581289F4697006AF774 /* MaterialTimePicker.swift in Sources */,
 				C430368A28D23CA700C232D5 /* UnpublishedFacilitiesListViewModel.swift in Sources */,
-				C482682B289700BB0072147F /* PastBookings.swift in Sources */,
+				C482682B289700BB0072147F /* PastBookingsView.swift in Sources */,
 				C4FC11462930B882001B8B9B /* GalleryImagesView.swift in Sources */,
 				C40EBA1428DD461700A09838 /* NewPromoCodeScreen.swift in Sources */,
 				C405785B282E22A000C7D67A /* PasswordInputField.swift in Sources */,

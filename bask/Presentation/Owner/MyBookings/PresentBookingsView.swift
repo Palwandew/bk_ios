@@ -7,25 +7,25 @@
 
 import SwiftUI
 
-struct PresentBookings: View {
+struct PresentBookingsView: View {
     @EnvironmentObject var model: MyBookingsViewModel
-    @State var upComingBookings: [Int] = []
+    
     var body: some View {
         
         switch model.screenState {
         case .loading:
             Spinner()
         case .success:
-            if model.upComingBookings.isEmpty {
+            if model.presentBookings.isEmpty {
                 
                 EmptyState(illustration: "empty_my_bookings", message: "Currently, no bookings in progress.")
                 
             } else {
                 ScrollView{
                     LazyVStack(alignment: .leading){
-                        ForEach(model.presentBookings) { facility in
+                        ForEach(model.presentBookings) { presentBookingVM in
                             
-                            PresentBookingItemCard(model: facility)
+                            PresentBookingItemCard(model: presentBookingVM)
                                 .frame(height: UIScreen.main.bounds.height * 0.15)
                                 .padding()
                             
@@ -69,7 +69,7 @@ struct PresentBookingItemCard: View {
                         
                         Spacer()
                         
-                        Text(model.name)
+                        Text(model.facility)
                             .font(Font.custom("Poppins-Medium", size: 16, relativeTo: .body))
                             .lineLimit(2)
                             .foregroundColor(Color(AppColor.MAIN_TEXT_DARK))
